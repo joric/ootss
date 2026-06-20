@@ -72,7 +72,7 @@
     { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroes2_thief_goblin"}},
     { "type": "Feature", "geometry": { "type": "Point", "coordinates": [830, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroes2_2"}},
     { "type": "Feature", "geometry": { "type": "Point", "coordinates": [840, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroes2_2b"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [870, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroesmosh_pt_small"}},
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [870, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "mosh_pit_small"}},
     { "type": "Feature", "geometry": { "type": "Point", "coordinates": [880, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroes2_17_intro"}},
     { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 400, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroes2_17"}},
     { "type": "Feature", "geometry": { "type": "Point", "coordinates": [930, 370, 0] }, "properties": { "type": "level", "area": "heroes2_monsters", "name": "heroes2_20"}},
