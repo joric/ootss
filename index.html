@@ -95,6 +95,11 @@ Order of the Sinking Star (15 June 2026)
 
 <script>
 
+function resetTitle() {
+  document.title = "Joric's Order of the Sinking Star";
+}
+
+
 let map = null;
 
 function drawMap() {
@@ -149,6 +154,7 @@ function drawMap() {
   });
 
   L.control.zoom({ position: 'bottomright' }).addTo(map);
+  L.control.mousePosition({lngFirst: true, latFormatter:Math.round, lngFormatter:Math.round }).addTo(map);
 
 
   let tilesLayer = L.tileLayer('tiles/{z}/{y}/{x}.webp', {
@@ -163,11 +169,12 @@ function drawMap() {
   const markerGroup = L.layerGroup().addTo(map);
 
 
+/*
   map.on('mousemove', function(e) {
     let p = {x:e.latlng.lng, y:e.latlng.lat};
-    document.title = 'X:' + p.x.toFixed(5) + ' Y:' + p.y.toFixed(5);
+    document.title = 'X:' + p.x.toFixed(0) + ' Y:' + p.y.toFixed(0);
   });
-
+*/
 /*
   map.on('click', e => {
       var lng = e.latlng.lng;
