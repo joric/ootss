@@ -114,15 +114,14 @@ function drawMap() {
     // Fit map to image bounds
     map.fitBounds(bounds);
 
+    const markerGroup = L.layerGroup().addTo(map);
+
+/*
     map.on('mousemove', function(e) {
       let p = {x:e.latlng.lng, y:e.latlng.lat};
       document.title = 'X:' + p.x.toFixed(5) + ' Y:' + p.y.toFixed(5);
     });
 
-
-    const markerGroup = L.layerGroup().addTo(map);
-
-/*
     map.on('click', e => {
         var lng = e.latlng.lng;
         var lat = e.latlng.lat;
