@@ -1,109 +1,1595 @@
-{ "type": "FeatureCollection", "features": [
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [670, 730, 0] }, "properties": { "type": "level", "area": "promesst", "name": "promesst1_streamlined"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1000, 750, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_1"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1010, 750, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1020, 750, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1030, 750, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_4"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1300, 920, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_13"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1220, 900, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_14"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1090, 730, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1100, 730, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_6_alt"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 790, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_7"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1090, 790, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_8_v5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1160, 770, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_11"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1170, 770, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_12"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1300, 690, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_pals"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1300, 700, 0] }, "properties": { "type": "level", "area": "mirror", "name": "walk_it_over"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1300, 830, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_factory_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1410, 850, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_21"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1420, 850, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_22_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1230, 760, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_15"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1240, 760, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_19"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1250, 760, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_17"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1260, 790, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_18"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1270, 790, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_20"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1280, 790, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_sink"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1270, 600, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_10_alt2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 650, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mundane_mirror"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1070, 650, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_10_b_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1060, 650, 0] }, "properties": { "type": "level", "area": "mirror", "name": "mirror_10_d"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [860, 610, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_1"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [860, 600, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_2_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [860, 590, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [860, 580, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_4"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [800, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_7.5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [810, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_8_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_10_inv_v4_b"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [830, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_9"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_6"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [900, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_7_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [910, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_5_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [920, 570, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_4.5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [930, 530, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_16_v3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [840, 530, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_15"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [830, 530, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_2_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 530, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_13_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [810, 530, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_11_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [790, 480, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_18"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [790, 470, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_9"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [790, 450, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_21_v3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [930, 450, 0] }, "properties": { "type": "level", "area": "heroes1", "name": "heroes1_17"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 380, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_5_altE"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 370, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_5_no_crystal"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 360, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_5.5v5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 350, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_6_v3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 340, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_9"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 310, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_11_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [790, 310, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_10.5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [800, 310, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "one_fire_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [830, 320, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_10a_intro"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [840, 320, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_10a"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [850, 320, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_3monster"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 290, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_10"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [830, 290, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_11_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [840, 290, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_12_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [870, 300, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_13"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [880, 300, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_14"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 300, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_15"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 310, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_reprise"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 320, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_16v4"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 330, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_18"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 390, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_3_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 400, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_thief_goblin"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [830, 400, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [840, 400, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_2b"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [870, 400, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "mosh_pit_small"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [880, 400, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_17_intro"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [890, 400, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_17"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [930, 370, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_20"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [930, 320, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_21b"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [920, 310, 0] }, "properties": { "type": "level", "area": "heroes2", "name": "heroes2_22_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [870, 270, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_10"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [860, 270, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_11_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [850, 270, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "druid_and_dragon"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [850, 260, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "wizard_and_druid_alt_5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [850, 250, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_15_v4"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [780, 200, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_5"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [790, 180, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_4"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [800, 180, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_3_v2"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [810, 180, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_2_v4"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [820, 180, 0] }, "properties": { "type": "level", "area": "heroes3", "name": "heroes3_1_v3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1100, 500, 0] }, "properties": { "type": "level", "area": "water", "name": "worlds_collide_heroes_and_mirrors_v3"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 430, 0] }, "properties": { "type": "level", "area": "water", "name": "dipping_your_toes_in"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 420, 0] }, "properties": { "type": "level", "area": "water", "name": "crystal_bridges"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [980, 310, 0]  }, "properties": { "type": "level", "area": "water", "name": "dont_push_the_button"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1000, 310, 0] }, "properties": { "type": "level", "area": "water", "name": "detonator"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1110, 340, 0] }, "properties": { "type": "level", "area": "water", "name": "push_and_pull_zach"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1110, 300, 0] }, "properties": { "type": "level", "area": "water", "name": "quadrants"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1100, 300, 0] }, "properties": { "type": "level", "area": "water", "name": "quadrants_follow_up"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1070, 300, 0] }, "properties": { "type": "level", "area": "water", "name": "drowner"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1060, 300, 0] }, "properties": { "type": "level", "area": "water", "name": "surrounded"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1260, 160, 0] }, "properties": { "type": "level", "area": "water", "name": "one_vs_three"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 250, 0] }, "properties": { "type": "level", "area": "water", "name": "dunk_tank_alt"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 230, 0] }, "properties": { "type": "level", "area": "water", "name": "island_hopping"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1080, 210, 0] }, "properties": { "type": "level", "area": "water", "name": "a_wiz_out_of_water"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1230, 240, 0] }, "properties": { "type": "level", "area": "water", "name": "gully_alt"}},
-    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [1260, 230, 0] }, "properties": { "type": "level", "area": "water", "name": "easy_situation_v2"}}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69,
+          104
+        ]
+      },
+      "properties": {
+        "type": "marker",
+        "area": "marker",
+        "name": "069,104"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -19.0,
+          -1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "promesst",
+        "name": "promesst1_streamlined"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          18.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.0,
+          16.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.0,
+          -1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.0,
+          -1.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_6_alt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          5.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.0,
+          5.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_8_v5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          -5.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_pals"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          -4.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "walk_it_over"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          9.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_factory_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.0,
+          11.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.0,
+          11.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_22_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          5.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.0,
+          5.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.0,
+          5.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_sink"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.0,
+          -14.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_10_alt2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          -9.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mundane_mirror"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0,
+          -9.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_10_b_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.0,
+          -9.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "mirror",
+        "name": "mirror_10_d"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -13.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -14.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_2_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -15.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -16.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_7.5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_8_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_10_inv_v4_b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_7_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_5_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_4.5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_16_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_2_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_13_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_11_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.0,
+          -26.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.0,
+          -27.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.0,
+          -29.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_21_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          -29.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes1",
+        "name": "heroes1_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -36.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_5_altE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -37.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_5_no_crystal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -38.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_5.5v5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -39.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_6_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -40.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_11_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_10.5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "one_fire_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0,
+          -42.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_10a_intro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0,
+          -42.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_10a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.0,
+          -42.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_3monster"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0,
+          -45.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0,
+          -45.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_11_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0,
+          -45.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_12_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_reprise"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -42.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_16v4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -41.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0,
+          -35.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_3_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_thief_goblin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_2b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "mosh_pit_small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_17_intro"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          -34.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          -37.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          -42.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_21b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes2",
+        "name": "heroes2_22_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          -47.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          -47.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_11_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.0,
+          -47.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "druid_and_dragon"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.0,
+          -48.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "wizard_and_druid_alt_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.0,
+          -49.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_15_v4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.0,
+          -54.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.0,
+          -56.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.0,
+          -56.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_3_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.0,
+          -56.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_2_v4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0,
+          -56.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_1_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "worlds_collide_heroes_and_mirrors_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          -31.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "dipping_your_toes_in"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          -32.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "crystal_bridges"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "dont_push_the_button"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.0,
+          -43.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "detonator"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          -40.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "push_and_pull_zach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "quadrants"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "quadrants_follow_up"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "drowner"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.0,
+          -44.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "surrounded"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          -58.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "one_vs_three"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          -49.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "dunk_tank_alt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          -51.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "island_hopping"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          -53.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "a_wiz_out_of_water"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.0,
+          -50.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "gully_alt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          -51.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "water",
+        "name": "easy_situation_v2"
+      }
+    }
   ]
 }
-  
