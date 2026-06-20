@@ -241,7 +241,8 @@ function drawMap() {
 
       marker.feature = feature;
 
-      marker.bindTooltip(marker => `${marker.feature.properties.name} (${marker.feature.properties.area})`);
+
+      marker.bindTooltip(marker => `${marker.feature.properties.name} (${marker.feature.properties.area}) [${marker.feature.geometry.coordinates[0]},${marker.feature.geometry.coordinates[1]}]`);
 
       marker.bindPopup(marker => { return '<pre>'+JSON.stringify(marker.feature, null, 2)+'</pre>' + String(marker.getLatLng())});
 
