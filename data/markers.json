@@ -6,6 +6,21 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          69,
+          104
+        ]
+      },
+      "properties": {
+        "type": "marker",
+        "area": "marker",
+        "name": "069,104"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -19.0,
           -1.0
         ]
