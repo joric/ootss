@@ -12,7 +12,7 @@
       },
       "properties": {
         "type": "level",
-        "area": "misc",
+        "area": "dummy",
         "name": "center"
       }
     },
@@ -27,7 +27,7 @@
       },
       "properties": {
         "type": "level",
-        "area": "misc",
+        "area": "dummy",
         "name": "069,104"
       }
     },
