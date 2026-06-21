@@ -112,6 +112,7 @@ function updateMarkerLabels() {
   const showLabels = currentZoom >= 5; // Adjust threshold as needed
   document.querySelectorAll('.marker-label').forEach(label => {
     label.style.display = showLabels ? 'block' : 'none';
+    //label.style.fontSize = (currentZoom * 4) + 'px';
   });
 }
 
