@@ -305,8 +305,7 @@ function drawMap() {
           const wrapper = document.createElement('div');
           wrapper.className = 'image-wrapper';
           wrapper.innerHTML = `
-            <div class="popup-header">${props.name}</div>
-            <div class="popup-subheader">${props.area} [${getCoordinates(marker)}]</div>
+            <div class="popup-header">${props.name} (${props.area}) [${getCoordinates(marker)}]</div>
             ${bodyHTML}
           `;
           return wrapper;
