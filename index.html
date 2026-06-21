@@ -109,7 +109,7 @@ let map = null;
 
 function updateMarkerLabels() {
   const currentZoom = map.getZoom();
-  const showLabels = currentZoom >= 4; // Adjust threshold as needed
+  const showLabels = currentZoom >= 5; // Adjust threshold as needed
   document.querySelectorAll('.marker-label').forEach(label => {
     label.style.display = showLabels ? 'block' : 'none';
   });
