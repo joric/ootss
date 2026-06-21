@@ -308,140 +308,16 @@ function drawMap() {
 
     baseLayers['Demo2_16k'] = tilesLayer;
 
-// Extended Layer Control with marker counts - Fixed Version
-L.Control.LayersExtended = L.Control.Layers.extend({
-    options: {
-        collapsed: true,
-        position: 'topright',
-        autoZIndex: true,
-        hideSingleBase: false,
-        sortLayers: false
-    },
+    // update overlay names to include count
 
-    _update: function() {
-        // Call parent update
-        if (L.Control.Layers.prototype._update) {
-            L.Control.Layers.prototype._update.call(this);
-        }
+var overlaysWithCounts = Object.fromEntries(
+  Object.entries(layers).map(([name, layer]) => [
+    `${name}${typeof layer.getLayers === 'function' ? ' ('+layer.getLayers().length+')' : ''}`,
+    layer
+  ])
+);
 
-        // Update the displayed layer names with counts
-        var containers = this._container.querySelectorAll('.leaflet-control-layers-list input[type="radio"], .leaflet-control-layers-list input[type="checkbox"]');
-        
-        containers.forEach(function(input) {
-            var label = input.parentNode;
-            var layer = input.layers;
-            
-            // Skip if layer is undefined
-            if (!layer) return;
-            
-            // Find the layer in our records
-            var layerObj = null;
-            
-            // Check base layers
-            for (var i = 0; i < this._layers.length; i++) {
-                var entry = this._layers[i];
-                // Skip undefined entries
-                if (!entry || !entry.layer) continue;
-                
-                if (entry.layer === layer) {
-                    layerObj = entry;
-                    break;
-                }
-            }
-            
-            if (layerObj) {
-                var name = layerObj.name || '';
-                var count = this._getMarkerCount(layer);
-                
-                // Find the text node (skip the input element)
-                var textNode = null;
-                for (var child of label.childNodes) {
-                    if (child.nodeType === 3) { // Text node
-                        textNode = child;
-                        break;
-                    }
-                }
-                
-                if (textNode) {
-                    var displayName = name + ' (' + count + ')';
-                    textNode.textContent = displayName;
-                }
-            }
-        }.bind(this));
-    },
-
-    _getMarkerCount: function(layer) {
-        var count = 0;
-        
-        // Skip if layer is undefined
-        if (!layer) return 0;
-        
-        // If it's a layer group or feature group, count its layers
-        if (layer.getLayers && typeof layer.getLayers === 'function') {
-            try {
-                var layers = layer.getLayers();
-                count = layers ? layers.length : 0;
-            } catch(e) {
-                count = 0;
-            }
-        } 
-        // If it's a single marker
-        else if (layer instanceof L.Marker) {
-            count = 1;
-        }
-        // If it's a geoJSON layer
-        else if (layer instanceof L.GeoJSON) {
-            try {
-                count = layer.getLayers().length;
-            } catch(e) {
-                count = 0;
-            }
-        }
-        
-        return count;
-    },
-
-    // Override addOverlay and addBaseLayer to trigger update
-    addOverlay: function(layer, name) {
-        // Validate inputs
-        if (!layer) return this;
-        
-        L.Control.Layers.prototype.addOverlay.call(this, layer, name);
-        // Update the display after adding
-        if (this._map) {
-            this._update();
-        }
-        return this;
-    },
-
-    addBaseLayer: function(layer, name) {
-        if (!layer) return this;
-        
-        L.Control.Layers.prototype.addBaseLayer.call(this, layer, name);
-        if (this._map) {
-            this._update();
-        }
-        return this;
-    },
-
-    onAdd: function(map) {
-        var container = L.Control.Layers.prototype.onAdd.call(this, map);
-        // Store reference to map for updates
-        this._map = map;
-        // Initial update
-        this._update();
-        return container;
-    }
-});
-
-// Factory function
-L.control.layersExtended = function(baseLayers, overlays, options) {
-    return new L.Control.LayersExtended(baseLayers, overlays, options);
-};
-
-    //let layercontrol = L.control.layers(baseLayers, layers, {collapsed: false, position: 'topright'}).addTo(map);
-
-    let layercontrol = L.control.layersExtended(baseLayers, layers, {collapsed: false, position: 'topright'}).addTo(map);
+    let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: false, position: 'topright'}).addTo(map);
 
 
   })
