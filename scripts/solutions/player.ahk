@@ -6,7 +6,7 @@ global solIndex := 0
 global stopFlag := false
 
 ; Load CSV: name,sequence per line
-Loop Read, "solutions.csv" {
+Loop Read, "solutions_rle.csv" {
     line := A_LoopReadLine
     if (line = "")
         continue

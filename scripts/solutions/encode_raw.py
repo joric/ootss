@@ -12,5 +12,5 @@ def process_file(input_path, output_path):
             outfile.write(f"{name},{s2rle_after(sequence)}\n")
 
 if __name__ == "__main__":
-    process_file("solutions_raw.csv", "solutions.csv")
+    process_file("solutions_raw.csv", "solutions_rle.csv")
     print("Done.")
