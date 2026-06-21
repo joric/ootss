@@ -307,6 +307,7 @@ function drawMap() {
           wrapper.innerHTML = `
             <div class="popup-header">${props.name} (${props.area}) [${getCoordinates(marker)}]</div>
             ${bodyHTML}
+            ${props.solution||'No solution available yet'}
           `;
           return wrapper;
         };
