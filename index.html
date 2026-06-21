@@ -327,7 +327,8 @@ function drawMap() {
     let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: false, position: 'topright'}).addTo(map);
 
 
-    map.on('zoom', updateMarkerLabels);
+    map.on('zoom overlayadd', updateMarkerLabels);
+
 
     updateMarkerLabels();
 
