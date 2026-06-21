@@ -327,7 +327,7 @@ function drawMap() {
         };
 
         img.onerror = () => {
-          const wrapper = buildWrapper(`<div class="image-error">only mirror area images are available just yet</div>`);
+          const wrapper = buildWrapper(`<div class="image-error">Only mirror area images are available just yet</div>`);
           marker.unbindPopup();
           marker.bindPopup(wrapper, { offset: [0, -35], maxWidth: 360, minWidth: 360 });
           marker.openPopup();
