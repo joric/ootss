@@ -64,7 +64,7 @@ Play(s) {
         solIndex := nextIndex  ; only advance if fully played
 }
 
-; Ctrl+Alt+E: set index to a specific level by name (does NOT play)
+; Ctrl+E: set index to a specific level by name (does NOT play)
 ^e:: {
     global solMap, solNames, solIndex
 
