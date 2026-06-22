@@ -357,31 +357,7 @@ Order of the Sinking Star Demo (19 June 2026)
 
 let map = null;
 let markerGroup = null;
-
-let images = [
-  { src: 'images/levels/mirror_1.webp', title: 'mirror_1' },
-  { src: 'images/levels/mirror_2.webp', title: 'mirror_2' },
-  { src: 'images/levels/mirror_3.webp', title: 'mirror_3' },
-  { src: 'images/levels/mirror_4.webp', title: 'mirror_4' },
-  { src: 'images/levels/mirror_5.webp', title: 'mirror_5' },
-  { src: 'images/levels/mirror_6.webp', title: 'mirror_6' },
-
-  { src: 'images/levels/mirror_1.webp', title: 'mirror_1' },
-  { src: 'images/levels/mirror_2.webp', title: 'mirror_2' },
-  { src: 'images/levels/mirror_3.webp', title: 'mirror_3' },
-  { src: 'images/levels/mirror_4.webp', title: 'mirror_4' },
-  { src: 'images/levels/mirror_5.webp', title: 'mirror_5' },
-  { src: 'images/levels/mirror_6.webp', title: 'mirror_6' },
-
-
-  { src: 'images/levels/mirror_1.webp', title: 'mirror_1' },
-  { src: 'images/levels/mirror_2.webp', title: 'mirror_2' },
-  { src: 'images/levels/mirror_3.webp', title: 'mirror_3' },
-  { src: 'images/levels/mirror_4.webp', title: 'mirror_4' },
-  { src: 'images/levels/mirror_5.webp', title: 'mirror_5' },
-  { src: 'images/levels/mirror_6.webp', title: 'mirror_6' },
-
-]
+let images = [];
 
 function focusMarkerByName(name) {
   let found = null
@@ -409,7 +385,6 @@ let thumbSwiper = null;
 function updateCaption() {
   const record = images[mainSwiper.activeIndex]
   if (!record) return
-  // тут полный доступ к объекту — title, description, author и т.д.
   caption.innerHTML = `
     <div class="caption-title">${record.title || ''}</div>
     <div class="caption-desc"><small>${record.area || ''}</small></div>
@@ -464,8 +439,8 @@ function initImages() {
     mousewheel: {
       sensitivity: 1,
 
-      thresholdDelta: 0,   // минимальная "сила" скролла для срабатывания — снижаем порог
-      thresholdTime: 0,    // минимальное время между событиями — убираем искусственную задержку
+      thresholdDelta: 0,
+      thresholdTime: 0,
 
     },
     speed: 150,
@@ -487,8 +462,8 @@ function initImages() {
       sensitivity: 1,
       releaseOnEdges: true,
 
-      thresholdDelta: 0,   // минимальная "сила" скролла для срабатывания — снижаем порог
-      thresholdTime: 0,    // минимальное время между событиями — убираем искусственную задержку
+      thresholdDelta: 0,
+      thresholdTime: 0,
 
 
     },
