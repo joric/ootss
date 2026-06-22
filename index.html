@@ -483,22 +483,32 @@ function initImages() {
 
   closeBtn.onclick = closeGallery
 
+  function handleImageActivate() {
+    const record = images[mainSwiper.activeIndex]
+    closeGallery()
+    if (record) {
+      focusMarkerByName(record.name)
+    }
+  }
+
   mainSwiper.on('click', (swiper, event) => {
     if (event.target.classList.contains('slide-bg')) {
-      const slide = event.target.closest('.swiper-slide')
-      const index = swiper.slides.indexOf(slide)
-      const record = images[index]
-
-      closeGallery()
-
-      if (record) {
-        focusMarkerByName(record.name)
-      }
+      handleImageActivate()
     }
   })
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeGallery()
+    if (!overlay.classList.contains('open')) return
+
+    if (e.key === 'Escape') {
+      closeGallery()
+    }
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleImageActivate();
+    }
+
   })
 
 
