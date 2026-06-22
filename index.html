@@ -363,13 +363,14 @@ let map = null;
 let markerGroup = null;
 let images = [];
 
+let currentOpenMarker = null;
+
 function focusMarkerByName(name) {
   let found = null
 
   map.eachLayer((layer) => {
 
     if (layer instanceof L.Marker) {
-      console.log(layer);
       if (layer.feature.properties.name === name) found = layer;
     }
   })
@@ -514,6 +515,7 @@ function initImages() {
     }
 
     if (e.key === 'Enter') {
+      currentOpenMarker = null;
       e.preventDefault();
       handleImageActivate();
     }
@@ -711,23 +713,20 @@ function drawMap() {
 
       //marker.bindPopup(marker => { return `<div class="image-wrapper"><img src="images/levels/${marker.feature.properties.name}.webp"></div>`}, {
 
+      marker.on('popupopen', () => {
+        currentOpenMarker = marker;
+      })
+
+      marker.on('popupclose', () => {
+        currentOpenMarker = null;
+      })
+
       marker.on('click', () => {
         const props = marker.feature.properties;
         const name = props.name;
 
         const buildWrapper = (bodyHTML) => {
           const wrapper = document.createElement('div');
-
-          /*
-          wrapper.addEventListener('keydown', function(event){
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              // need to get props name from wrapper
-              openImage(props.name);
-            }
-          });
-          */
-
           wrapper.className = 'image-wrapper';
           wrapper.innerHTML = `
             <div class="popup-header"><a href="javascript:copyToClipboard('${props.name}')"><b>${props.name}</b></a><br>${props.area} (${getCoordinates(marker)})</div>
@@ -921,7 +920,11 @@ function drawMap() {
         //map.toggleFullscreen();
       }
     } else if (e.code=='Enter') {
-      //
+
+      console.log('here');
+      if (currentOpenMarker) {
+        openImage(currentOpenMarker.feature.properties.name);
+      }
     }
   });
 
