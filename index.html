@@ -94,11 +94,6 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 .image-wrapper {
   display: block;
 }
-.image-wrapper img {
-  display: block;
-  max-width: 100%;
-  max-height: 360px;
-}
 
 .image-wrapper img {
   display: block;
@@ -496,6 +491,9 @@ function initImages() {
 
   function closeGallery() {
     overlay.classList.remove('open')
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
   }
 
   closeBtn.onclick = closeGallery
@@ -518,7 +516,8 @@ function initImages() {
     if (!overlay.classList.contains('open')) return
 
     if (e.key === 'Escape') {
-      closeGallery()
+      e.preventDefault();
+      closeGallery();
     }
 
     if (e.key === 'Enter') {
@@ -968,8 +967,6 @@ function drawMap() {
         //map.toggleFullscreen();
       }
     } else if (e.code=='Enter') {
-
-      console.log('here');
       if (currentOpenMarker) {
         openImage(currentOpenMarker.feature.properties.name);
       }
