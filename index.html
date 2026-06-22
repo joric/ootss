@@ -203,6 +203,7 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 }
 
 .thumbSwiper {
+  height: 180px;
   width: 100%;
   padding: 14px 20px;
   box-sizing: border-box;
@@ -294,6 +295,27 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
   font-family: sans-serif;
 }
 
+.mainSwiper .swiper-slide .slide-bg {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.thumbSwiper .swiper-slide .slide-bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.thumbSwiper .swiper-slide {
+  will-change: transform;
+}
+
 
 </style>
 
@@ -374,7 +396,7 @@ function focusMarkerByName(name) {
 
   if (!found) return;
 
-  map.flyTo(found.getLatLng(), map.getZoom(), { duration: 0.1 })
+  map.flyTo(found.getLatLng(), map.getZoom(), { duration: 0.2 })
   map.once('moveend', () => {
     found.fire('click');
     found.closeTooltip();
@@ -413,14 +435,16 @@ function initImages() {
   const main = document.getElementById('main')
   const thumbs = document.getElementById('thumbs')
 
-  // build slides
   for (const item of images) {
     main.insertAdjacentHTML('beforeend',
-      `<div class="swiper-slide"><img src="${item.src}"></div>`
+      `<div class="swiper-slide">
+        <div class="slide-bg" style="background-image: url('${item.src}')"></div>
+      </div>`
     )
-
     thumbs.insertAdjacentHTML('beforeend',
-      `<div class="swiper-slide"><img src="${item.src}"></div>`
+      `<div class="swiper-slide">
+        <div class="slide-bg" style="background-image: url('${item.src}')"></div>
+      </div>`
     )
   }
 
@@ -485,11 +509,12 @@ function initImages() {
   closeBtn.onclick = closeGallery
 
   mainSwiper.on('click', (swiper, event) => {
-    if (event.target.tagName === 'IMG') {
+    if (event.target.classList.contains('slide-bg')) {
+      const slide = event.target.closest('.swiper-slide')
+      const index = swiper.slides.indexOf(slide)
+      const record = images[index]
 
-      const record = images[swiper.activeIndex];
-
-      closeGallery();
+      closeGallery()
 
       if (record) {
         focusMarkerByName(record.name)
