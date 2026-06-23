@@ -56,7 +56,7 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 
 .marker-label {
   position: absolute;
-  bottom: -16px;
+  bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
   width: max-content;
@@ -465,7 +465,7 @@ function getIconHTML(feature, size=48) {
 
   let html = options.html || `<i class="${options.class}" style="color:${fg}"><span class="icon-text">${title}</span></i>`;
 
-  return `<span class="icon-base icon-${size}" style="color:${bg}">${html}</span>`;
+  return `<span class="icon-base icon-${size}" style="color:${bg}">${html}</span><div class="marker-label">${feature.properties.name}</div>`;
 }
 
 let baseIcon = (feature) => {
