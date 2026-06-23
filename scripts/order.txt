@@ -37,8 +37,8 @@ heroes1_7_v2
 heroes1_6
 heroes1_7.5
 heroes1_8_v2
-heroes1_10_inv_v4_b
 heroes1_9
+heroes1_10_inv_v4_b
 heroes1_11_v2
 heroes1_13_v2
 heroes1_12_v2_alt
