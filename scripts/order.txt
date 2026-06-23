@@ -6,8 +6,8 @@ mirror_2
 mirror_3
 mirror_4
 mirror_5
-mirror_6_alt
 mirror_7
+mirror_6_alt
 mirror_8_v5
 mirror_11
 mirror_12
@@ -33,12 +33,12 @@ heroes1_3
 heroes1_4
 heroes1_4.5
 heroes1_5_v2
-heroes1_6
 heroes1_7_v2
+heroes1_6
 heroes1_7.5
 heroes1_8_v2
-heroes1_9
 heroes1_10_inv_v4_b
+heroes1_9
 heroes1_11_v2
 heroes1_13_v2
 heroes1_12_v2_alt
