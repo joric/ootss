@@ -4,11 +4,10 @@ import os
 with open ('order.txt') as f:
     names = f.read().splitlines()
 
+name_order = {name: index for index, name in enumerate(names)}
+
 with open('../data/markers.json') as f:
     j = json.load(f)
-
-
-name_order = {name: index for index, name in enumerate(names)}
 
 # Sort features by the order of names
 features = sorted(
