@@ -10,6 +10,6 @@ with open(fname) as f:
     rows = [l.split(':', 1) for l in f.read().splitlines() if l]
 
 with open(fname, 'w') as f:
-    f.writelines(f"{n},{rle(s)}\n" for n, s in rows)
+    f.writelines(f"{n}:{rle(s)}\n" for n, s in rows)
 
 print("Done.")
