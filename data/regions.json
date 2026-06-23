@@ -6,7 +6,7 @@
     "coordinates": [[[-9.5, -58.5], [9.5, -58.5], [9.5, -45.5], [-9.5, -45.5], [-9.5, -58.5]]]
   },
   "properties": {
-    "color": "#00ff00",
+    "color": "#ff00ff",
     "name": "heroes3",
     "title": "Heroes 3: Bard, Druid"
   }
@@ -18,7 +18,7 @@
     "coordinates": [[[-9.5, -44.5], [9.5, -44.5], [9.5, -32.5], [-9.5, -32.5], [-9.5, -44.5]]]
   },
   "properties": {
-    "color": "#ff00ff",
+    "color": "#00ff00",
     "name": "heroes2",
     "title": "Heroes 2: Monsters"
   }
@@ -42,7 +42,7 @@
     "coordinates": [[[-9.5, -31.5], [9.5, -31.5], [9.5, -8.5], [-9.5, -8.5], [-9.5, -31.5]]]
   },
   "properties": {
-    "color": "#0000ff",
+    "color": "#ff0000",
     "name": "heroes1",
     "title": "Heroes of Hauling"
   }
@@ -66,7 +66,7 @@
     "coordinates": [[[-9.5, 5.5], [-9.5, 6.5], [-47.5, 6.5], [-47.5, -6.5], [-9.5, -6.5], [-9.5, 5.5]]]
   },
   "properties": {
-    "color": "#546eba",
+    "color": "#0000ff",
     "name": "promesst",
     "title": "The Promise"
   }
@@ -78,7 +78,7 @@
     "coordinates": [[[8.5, -6.5], [15.5, -6.5], [15.5, -14.5], [41.5, -14.5], [41.5, -6.5], [57.5, -6.5], [57.5, 12.5], [45.5, 12.5], [45.5, 19.5], [34.5, 19.5], [34.5, 12.5], [8.5, 12.5], [8.5, 5.5], [8.5, -6.5]]]
   },
   "properties": {
-    "color": "#f09025",
+    "color": "#ffa500",
     "name": "mirror",
     "title": "Mirror Isles"
   }

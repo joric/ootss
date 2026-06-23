@@ -15,11 +15,11 @@ dy = -74 - (192-108)//2 + 0.5
 colorMap = {
     '#000000': { 'name': 'center',       'title': 'Center' },
     '#ffff00': { 'name': 'crossroads',   'title': 'Crossroads'        },
-    '#546eba': { 'name': 'promesst',     'title': 'The Promise'       },
-    '#f09025': { 'name': 'mirror',       'title': 'Mirror Isles' },
-    '#0000ff': { 'name': 'heroes1',      'title': 'Heroes of Hauling' },
-    '#ff00ff': { 'name': 'heroes2',      'title': 'Heroes 2: Monsters' },
-    '#00ff00': { 'name': 'heroes3',      'title': 'Heroes 3: Bard, Druid' },
+    '#0000ff': { 'name': 'promesst',     'title': 'The Promise'       },
+    '#ffa500': { 'name': 'mirror',       'title': 'Mirror Isles' },
+    '#ff0000': { 'name': 'heroes1',      'title': 'Heroes of Hauling' },
+    '#00ff00': { 'name': 'heroes2',      'title': 'Heroes 2: Monsters' },
+    '#ff00ff': { 'name': 'heroes3',      'title': 'Heroes 3: Bard, Druid' },
     '#00ffff': { 'name': 'water',        'title': 'Heroes and Water' },
 };
 
