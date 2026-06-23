@@ -26,8 +26,6 @@
         ]
       },
       "properties": {
-        "title": "1",
-        "solution": "d2xa4xa6w",
         "type": "level",
         "area": "mirror",
         "name": "mirror_1"
@@ -43,8 +41,6 @@
         ]
       },
       "properties": {
-        "title": "2",
-        "solution": "dsdxa3d3xs5aw3s4xd2",
         "type": "level",
         "area": "mirror",
         "name": "mirror_2"
@@ -60,8 +56,6 @@
         ]
       },
       "properties": {
-        "title": "3",
-        "solution": "asa2wdsdw5a4xw7s4xdsd2wawas2w4d3sa2was7dsa6w6as5ds2a2wd5sdwawd2sds4x",
         "type": "level",
         "area": "mirror",
         "name": "mirror_3"
@@ -77,8 +71,6 @@
         ]
       },
       "properties": {
-        "title": "4",
-        "solution": "w2d3xdw2d2wasaw2dwasaw2xw4",
         "type": "level",
         "area": "mirror",
         "name": "mirror_4"
@@ -94,8 +86,6 @@
         ]
       },
       "properties": {
-        "title": "5",
-        "solution": "a2swd2s2a3d3w2asdsa4d4xs2dw4s5a2w2awd2sdw5a2w2dsasdwds4ds2aw2s5xs2",
         "type": "level",
         "area": "mirror",
         "name": "mirror_5"
@@ -111,9 +101,7 @@
         ]
       },
       "properties": {
-        "title": "6",
         "type": "level",
-        "solution": "wa4wasd3w2asdsa2was3xawa9d4s3aw2dwa5d5s2dwdwa7d6xaw",
         "area": "mirror",
         "name": "mirror_6_alt"
       }
@@ -128,7 +116,6 @@
         ]
       },
       "properties": {
-        "solution": "awaxawawas8awdw5ad3xd8",
         "type": "level",
         "area": "mirror",
         "name": "mirror_7"
@@ -144,7 +131,6 @@
         ]
       },
       "properties": {
-        "solution": "a6w4a4sd3wds4d7w2dasa2wd2sdw2dsdsawasdsa8xw3xa4d4xsa2",
         "type": "level",
         "area": "mirror",
         "name": "mirror_8_v5"
@@ -190,7 +176,6 @@
         ]
       },
       "properties": {
-        "title": "13",
         "type": "level",
         "area": "mirror",
         "name": "mirror_13"
@@ -206,7 +191,6 @@
         ]
       },
       "properties": {
-        "title": "14",
         "type": "level",
         "area": "mirror",
         "name": "mirror_14"
@@ -1362,7 +1346,6 @@
         ]
       },
       "properties": {
-        "solution": "a2xdxd4sxwa2was3wd5wa4was6cas4d3wd3s2a2w2d4w2sxa3wasd4s3awdsd2saw3d3sxw4cscdw5d6s2dsd2wcsa6wa3w5",
         "type": "level",
         "area": "mixed",
         "name": "worlds_collide_heroes_and_mirrors_v3"
@@ -1408,7 +1391,6 @@
         ]
       },
       "properties": {
-        "solution": "cwa3w3ds2dsa5scd4w2s2awa8cw2cd6ws2awa5cs2wd5w3ds2dsa5cdscacs2dcas2cdwcsd2a2w3d6w3ds2dsa7csa2w2s2dcas2cdwcsd3a2csdcwca3wcsa4csd4",
         "type": "level",
         "area": "water",
         "name": "push_and_pull_zach"
@@ -1424,7 +1406,6 @@
         ]
       },
       "properties": {
-        "solution": "sdca2sd5wcwdsasds3acw4asd4was4d2w5caw",
         "type": "level",
         "area": "water",
         "name": "quadrants"
