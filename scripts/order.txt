@@ -62,9 +62,9 @@ heroes2_3monster
 heroes2_10
 heroes2_11_v2_easier
 heroes2_12_v2
-one_fire_v2
-heroes2_10.5
 heroes2_11_v2
+heroes2_10.5
+one_fire_v2
 heroes2_13
 heroes2_14
 heroes2_15

@@ -966,14 +966,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -6.0,
+          -8.0,
           -43.0
         ]
       },
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "one_fire_v2"
+        "name": "heroes2_11_v2"
       }
     },
     {
@@ -996,14 +996,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -8.0,
+          -6.0,
           -43.0
         ]
       },
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_11_v2"
+        "name": "one_fire_v2"
       }
     },
     {
