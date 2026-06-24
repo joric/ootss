@@ -921,7 +921,7 @@ function drawMap() {
           wrapper.innerHTML = `
             <div class="popup-header"><a href="javascript:copyToClipboard('${props.name}')"><b>${props.name}</b></a> / ${props.area} (${getCoordinates(marker)})</div>
             ${bodyHTML}
-            ${solutions[props.name] && '<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>'+solutions[props.name]+'</a></span>'||''}
+            ${solutions[props.name] && '<span class="wrap">Solution:&nbsp;<a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>'+solutions[props.name]+'</a></span>'||''}
           `;
           return wrapper;
         };
