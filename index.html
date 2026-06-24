@@ -485,7 +485,7 @@ let icons = {};
 const getIcon = f => ({bg: 'red', fg: 'blue'});
 
 
-const customMarker = (latlng, feature) => L.marker(latlng, {feature: feature, id: feature.properties.path, icon: baseIcon(feature)});
+const customMarker = (latlng, feature) => L.marker(latlng, {searchText: feature.properties.name.toLowerCase(), feature: feature, id: feature.properties.path, icon: baseIcon(feature)});
 
 
 let mainSwiper = null;
@@ -1089,13 +1089,17 @@ function drawMap() {
   //map.whenReady(drawGrid);
 
   document.addEventListener("keydown",function (e) {
+
+    if (e.target.id.startsWith('searchtext')) return;
+
     if (e.code=='KeyF') {
       if (e.ctrlKey) {
         searchControl.expand(true);
         e.preventDefault();
-      } else if (!e.target.id.startsWith('searchtext')) {
+      } else {
         //map.toggleFullscreen();
       }
+
     } else if (e.code=='Enter') {
       if (currentOpenMarker && !isGalleryOpen) {
         openGallery(currentOpenMarker.feature.properties.name);
