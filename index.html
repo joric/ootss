@@ -501,6 +501,9 @@ function updateCaption() {
 }
 
 function toggleGallery() {
+  if (document.activeElement) {
+    document.activeElement.blur();
+  }
   const overlay = document.getElementById('galleryOverlay');
   overlay.classList.toggle('open')
 }
@@ -601,9 +604,6 @@ function initImages() {
 
   function closeGallery() {
     overlay.classList.remove('open')
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
   }
 
   closeBtn.onclick = closeGallery
@@ -1094,7 +1094,7 @@ function drawMap() {
       }
     } else if (e.code=='Enter') {
       if (currentOpenMarker) {
-        openImage(currentOpenMarker.feature.properties.name);
+        openGallery(currentOpenMarker.feature.properties.name);
       }
     } else if (e.code=='Escape') {
       toggleGallery();
