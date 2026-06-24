@@ -1132,7 +1132,7 @@ function drawMap() {
 
 window.onload = function() {
   fetch('data/solutions.txt').then(r => r.text()).then(data => {
-    solutions = Object.fromEntries(data.split('\n').map(l => l.trim().split(':', 2)).filter(([, v])=>v));
+    solutions = Object.fromEntries(data.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=>v));
     console.log(`${Object.keys(solutions).length} solutions found`);
   });
 
