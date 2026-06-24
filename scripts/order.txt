@@ -25,6 +25,7 @@ mirror_10_alt2
 mundane_mirror
 mirror_10_b_v2
 mirror_10_d
+promesst1_streamlined
 heroes1_1
 heroes1_2_v2
 heroes1_3
@@ -102,4 +103,3 @@ dunk_tank_alt
 gully_alt
 easy_situation_v2
 one_vs_three
-promesst1_streamlined

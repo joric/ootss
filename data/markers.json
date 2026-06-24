@@ -6,21 +6,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          61.0,
-          70.0
-        ]
-      },
-      "properties": {
-        "type": "level",
-        "area": "promesst",
-        "name": "promesst1_streamlined"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           94.0,
           68.0
         ]
@@ -419,6 +404,21 @@
         "type": "level",
         "area": "mirror",
         "name": "mirror_10_d"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.0,
+          70.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "promesst",
+        "name": "promesst1_streamlined"
       }
     },
     {
