@@ -84,7 +84,7 @@ SetPlayingUI() {
 
 ; ---------- Load ----------
 LoadSolutions() {
-    global solMap, solNames, SolutionsPath
+    global solMap, solNames
     solMap := Map()
     solNames := []
     Loop Read, SolutionsPath {
@@ -104,7 +104,7 @@ LoadSolutions()
 
 ; ---------- Save ----------
 SaveSolutions() {
-    global solMap, solNames, SolutionsPath
+    global solMap, solNames
     out := ""
     for i, name in solNames {
         out .= name ":" solMap[name] "`n"
@@ -156,6 +156,14 @@ DisplayList() {
 NameFromDisplay(text) {
     return RegExReplace(text, " \(\d+\)$", "")
 }
+FirstUnsolvedIndex() {
+    global solNames, solMap
+    for i, name in solNames {
+        if (solMap[name] = "")
+            return i
+    }
+    return 1
+}
 
 ; ---------- Playback ----------
 SendCode(code) {
@@ -196,8 +204,9 @@ GetActiveLevelName() {
     if (name = "" && solIndex >= 1 && solIndex <= solNames.Length)
         name := solNames[solIndex]
     if (name = "" && solNames.Length >= 1) {
-        name := solNames[1]
-        solIndex := 1
+        name := solNames[solIndex >= 1 ? solIndex : FirstUnsolvedIndex()]
+        if (solIndex < 1 || solIndex > solNames.Length)
+            solIndex := FirstUnsolvedIndex()
     }
     return name
 }
@@ -300,7 +309,7 @@ RefreshDropdown(selectName := "") {
             }
         }
     } else if (solNames.Length >= 1) {
-        ddl.Choose(1)
+        ddl.Choose(FirstUnsolvedIndex())
     }
 }
 
@@ -320,9 +329,10 @@ OpenGui(*) {
     mainGui := Gui("+AlwaysOnTop", BASE_TITLE)
     mainGui.Add("Text", , "Level:")
     ddl := mainGui.Add("DropDownList", "w300 vChoice", DisplayList())
-    startSel := (solIndex >= 1 && solIndex <= solNames.Length) ? solIndex : 1
+    startSel := (solIndex >= 1 && solIndex <= solNames.Length) ? solIndex : FirstUnsolvedIndex()
     if (solNames.Length >= 1)
         ddl.Choose(startSel)
+    solIndex := startSel
     ddl.OnEvent("Change", OnDropdownChange)
 
     playBtn := mainGui.Add("Button", "w90", "Play")
