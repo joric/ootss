@@ -20,21 +20,21 @@ global ddl := 0
 global SolutionsPath := "../data/solutions.txt"
 
 global RECORD_KEY := Map(
-    "u", UP,
-    "l", LEFT,
-    "d", DOWN,
-    "r", RIGHT,
-    "x", PRIMARY_ACTION,
-    "c", SWITCH_CHARACTERS
+    "U", UP,
+    "L", LEFT,
+    "D", DOWN,
+    "R", RIGHT,
+    "X", PRIMARY_ACTION,
+    "C", SWITCH_CHARACTERS
 )
 
 global PLAYBACK_KEY := Map(
-    "u", "{Up}",
-    "l", "{Left}",
-    "d", "{Down}",
-    "r", "{Right}",
-    "x", PRIMARY_ACTION,
-    "c", SWITCH_CHARACTERS
+    "U", "{Up}",
+    "L", "{Left}",
+    "D", "{Down}",
+    "R", "{Right}",
+    "X", PRIMARY_ACTION,
+    "C", SWITCH_CHARACTERS
 )
 
 ; ---------- Load ----------
