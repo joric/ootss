@@ -156,7 +156,12 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
   transform: translateY(40px)
 }
 
-.popup-header a {
+.nohref,
+.nohref:link,
+.nohref:visited,
+.nohref:hover,
+.nohref:active,
+.nohref:focus {
   text-decoration: none;
   color: inherit;
 }
@@ -918,11 +923,13 @@ function drawMap() {
         const buildWrapper = (bodyHTML) => {
           const wrapper = document.createElement('div');
           wrapper.className = 'image-wrapper';
-          wrapper.innerHTML = `
-            <div class="popup-header"><a href="javascript:copyToClipboard('${props.name}')"><b>${props.name}</b></a> / ${props.area} (${getCoordinates(marker)})</div>
-            ${bodyHTML}
-            ${solutions[props.name] && '<span class="wrap">Solution:&nbsp;<a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>'+solutions[props.name]+'</a></span>'||''}
-          `;
+          let html = `<a class="nohref" href="javascript:copyToClipboard('${props.name}')"><b>${props.name}</b></a> / ${props.area} (${getCoordinates(marker)})`;
+          html += bodyHTML;
+          const solution = solutions[props.name];
+          if (solution) {
+            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>:&nbsp<a class="nohref" href="javascript:copyToClipboard('${solution}')">${solution}</a>`;
+          }
+          wrapper.innerHTML = html;
           return wrapper;
         };
 
