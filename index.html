@@ -900,7 +900,35 @@ function drawMap() {
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
-            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${s.length}):&nbsp<span class="copyable">${s}</span></span>`;
+
+          function colorizeSegments(text, colorMap) {
+            // colorMap: { L: 'lime', R: 'red', U: 'colorForU', D: 'colorForD', ... }
+  
+            // Match any letter (uppercase or lowercase) followed by optional digits
+            const segments = text.match(/[A-Za-z]\d*/g);
+  
+            if (!segments) return text;
+  
+            return segments.map(seg => {
+              const letter = seg[0];
+              const color = colorMap[letter] || colorMap[letter.toUpperCase()] || 'black';
+              return `<span style="color: ${color};">${seg}</span>`;
+            }).join('');
+          }
+
+          // Example usage:
+          const inputText = "UR2D2R3D2L2U2LDRD2RURU2L4D3LULU2R2URDLD3L2U3R3D2RU2R2U2";
+
+          const colorTable = {
+            'L': 'darkgreen',      // darker than lime
+            'R': 'darkred',        // darker than red
+            'U': 'darkblue',       // darker than deepskyblue
+            'D': 'saddlebrown',    // darker than darkorange
+          };
+
+
+            const t = s;//colorizeSegments(s, colorTable);
+            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${s.length}):&nbsp<span class="copyable">${t}</span></span>`;
           }
           wrapper.innerHTML = html;
           return wrapper;
