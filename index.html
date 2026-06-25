@@ -1155,7 +1155,7 @@ window.onload = function() {
     solutions = Object.fromEntries(data.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
     const a = Object.values(solutions).map(s=>s.length);
     if (a) {
-      console.log(`${a.length} solutions, ${Math.min(...a)} moves min, ${Math.max(...a)} moves max, ${~~(a.reduce((x,y)=>x+y,0)/a.length)} moves average`);
+      console.log(`${a.length} solutions, ${Math.min(...a)} min, ${Math.max(...a)} max, ${~~(a.reduce((x,y)=>x+y,0)/a.length)} average`);
     }
   });
 
