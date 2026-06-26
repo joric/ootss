@@ -128,8 +128,19 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
   transform: translateY(40px)
 }
 
-.copyable {
+.copyable,
+.copyable a,
+.copyable a:visited,
+.copyable a:hover,
+.copyable a:active {
   cursor: pointer;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.copyable:hover,
+.copyable a:hover {
+  opacity: 0.7;
 }
 
 /*--------------------------*/
@@ -406,6 +417,8 @@ Order of the Sinking Star Demo (19 June 2026)
 
 <script>
 
+let mapParam = {};
+
 let map = null;
 let markerGroup = null;
 let regionData = null;
@@ -669,6 +682,12 @@ function copyToClipboard(text) {
   setTimeout(function(e){ document.getElementById('alert').classList.add('closed') },1500);
 }
 
+function getBaseURL() {
+  return window.location.href.replace(/#.*$/,'');
+}
+
+function getMapURL(id) { return getBaseURL() + '#' + encodeURIComponent(id); }
+
 function drawMap() {
   // old map was 1920x1080 and the grid was almost precisely 10 pixels
   // center was at 860, 740
@@ -899,38 +918,12 @@ function drawMap() {
         const buildWrapper = (bodyHTML) => {
           const wrapper = document.createElement('div');
           wrapper.className = 'image-wrapper';
-          let html = `<b class="copyable">${props.name}</b></a> / ${props.area} (${getCoordinates(marker)})`;
+          let backlink = `<a class="copyable" href="${getMapURL(props.name)}"><i class="fa fa-link"></i></a>`;
+          let html = `<b class="copyable">${props.name}</b></a> / ${props.area} (${getCoordinates(marker)}) ${backlink}`;
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
-
-          function colorizeSegments(text, colorMap) {
-            // colorMap: { L: 'lime', R: 'red', U: 'colorForU', D: 'colorForD', ... }
-  
-            // Match any letter (uppercase or lowercase) followed by optional digits
-            const segments = text.match(/[A-Za-z]\d*/g);
-  
-            if (!segments) return text;
-  
-            return segments.map(seg => {
-              const letter = seg[0];
-              const color = colorMap[letter] || colorMap[letter.toUpperCase()] || 'black';
-              return `<span style="color: ${color};">${seg}</span>`;
-            }).join('');
-          }
-
-          // Example usage:
-          const inputText = "UR2D2R3D2L2U2LDRD2RURU2L4D3LULU2R2URDLD3L2U3R3D2RU2R2U2";
-
-          const colorTable = {
-            'L': 'darkgreen',      // darker than lime
-            'R': 'darkred',        // darker than red
-            'U': 'darkblue',       // darker than deepskyblue
-            'D': 'saddlebrown',    // darker than darkorange
-          };
-
-
-            const t = s;//colorizeSegments(s, colorTable);
+            const t = s;
             html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${s.length}):&nbsp<span class="copyable">${t}</span></span>`;
           }
           wrapper.innerHTML = html;
@@ -1013,6 +1006,13 @@ function drawMap() {
     searchControl = new L.Control.Search({propertyName: 'searchText', initial: false, layer: markerGroup, hideMarkerOnCollapse: true}).addTo(map);
 
     initImages();
+
+    let name = mapParam.markerName;
+    mapParam = {};
+    if (name) {
+      focusMarkerByName(name);
+    }
+
 
   })
 
@@ -1143,11 +1143,26 @@ function drawMap() {
 
 window.onload = function() {
 
+  if (location.hash.length>1) {
+    let param = decodeURIComponent(location.hash.slice(1));
+    mapParam.markerName = param;
+    location.hash='';
+  }
+
   document.addEventListener('click', (e) => {
     const el = e.target.closest('.copyable');
     if (el) {
+      // Don't prevent default if Ctrl/Cmd key is held (allow navigation)
+      if (e.ctrlKey || e.metaKey) {
+        return;
+      }
       e.preventDefault();
-      const text = el.textContent.trim();
+      let text;
+      if (el.tagName === 'A' && el.href) {
+        text = el.href;
+      } else {
+        text = el.textContent.trim();
+      }
       if (text) {
         copyToClipboard(text);
       }
