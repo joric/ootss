@@ -909,11 +909,14 @@ function drawMap() {
 
       marker.on('popupclose', () => {
         currentOpenMarker = null;
+        location.hash = '';
       })
 
       marker.on('click', () => {
         const props = marker.feature.properties;
         const name = props.name;
+
+        location.hash = name;
 
         const buildWrapper = (bodyHTML) => {
           const wrapper = document.createElement('div');
@@ -1012,7 +1015,6 @@ function drawMap() {
     if (name) {
       focusMarkerByName(name);
     }
-
 
   })
 
@@ -1146,7 +1148,6 @@ window.onload = function() {
   if (location.hash.length>1) {
     let param = decodeURIComponent(location.hash.slice(1));
     mapParam.markerName = param;
-    location.hash='';
   }
 
   document.addEventListener('click', (e) => {
