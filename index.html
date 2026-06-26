@@ -687,6 +687,13 @@ function getBaseURL() {
 
 function getMapURL(id) { return getBaseURL() + '#' + encodeURIComponent(id); }
 
+
+unpackSolution = s => s.replace(/([A-Z])(\d)/g, (_,l,n)=>l.repeat(+n))
+getMovesCount = s => unpackSolution(s).length;
+convertSolution = s => unpackSolution(s).toLowerCase().match(/.{1,5}/g)?.join(' ')||'';
+
+convertSolution = s => s
+
 function drawMap() {
   // old map was 1920x1080 and the grid was almost precisely 10 pixels
   // center was at 860, 740
@@ -894,7 +901,9 @@ function drawMap() {
         let name = marker.feature.properties.name;
         let lines = [`<b>${name}</b> / ${marker.feature.properties.area} (${getCoordinates(marker)})`];
         let s = (solutions[name]||'');
-        if (s) lines.push(`Soution: ${s.length}`);
+        if (s) {
+          lines.push(`Soution: ${getMovesCount(s)} moves`);
+        }
         return lines.join('<br/>');
       };
 
@@ -926,8 +935,7 @@ function drawMap() {
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
-            const t = s;
-            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${s.length}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${t}</span></span>`;
+            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
           }
           wrapper.innerHTML = html;
           return wrapper;
