@@ -922,13 +922,13 @@ function drawMap() {
         const buildWrapper = (bodyHTML) => {
           const wrapper = document.createElement('div');
           wrapper.className = 'image-wrapper';
-          let backlink = `<a class="copyable" href="${getMapURL(props.name)}"><i class="fa fa-link"></i></a>`;
-          let html = `<b class="copyable">${props.name}</b></a> / ${props.area} (${getCoordinates(marker)}) ${backlink}`;
+          let backlink = `<a class="copyable" href="${getMapURL(props.name)}" title="Copy to clipboard"><i class="fa fa-link"></i></a>`;
+          let html = `<b class="copyable" title="Copy to clipboard">${props.name}</b></a> / ${props.area} (${getCoordinates(marker)}) ${backlink}`;
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
             const t = s;
-            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${s.length}):&nbsp<span class="copyable">${t}</span></span>`;
+            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${s.length}):&nbsp<span class="copyable" title="Copy to clipboard">${t}</span></span>`;
           }
           wrapper.innerHTML = html;
           return wrapper;
