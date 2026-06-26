@@ -452,7 +452,7 @@ function focusMarkerByName(name) {
   found.fire('click');
   found.closeTooltip();
 
-  map.flyTo(found.getLatLng(), map.getZoom(), { duration: 0.2 })
+  map.setView(found.getLatLng(), map.getZoom(), {animate: false});
 }
 
 
