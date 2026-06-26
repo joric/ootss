@@ -449,11 +449,10 @@ function focusMarkerByName(name) {
 
   if (found==currentOpenMarker) return; // do nothing if already selected
 
+  found.fire('click');
+  found.closeTooltip();
+
   map.flyTo(found.getLatLng(), map.getZoom(), { duration: 0.2 })
-  map.once('moveend', () => {
-    found.fire('click');
-    found.closeTooltip();
-  })
 }
 
 
