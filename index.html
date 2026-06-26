@@ -992,10 +992,11 @@ function drawMap() {
 
     // update overlay names to include count
     var overlaysWithCounts = Object.fromEntries(
-      Object.entries(layers).map(([name, layer]) => [
-        `${name}${typeof layer.getLayers === 'function' ? ' ('+layer.getLayers().length+')' : ''}`,
-        layer
-      ])
+      Object.entries(layers).map(([name, layer]) => {
+        const hasMarkers = layer.getLayers ? layer.getLayers().some(l => l instanceof L.Marker) : layer instanceof L.Marker;
+        const count = layer.getLayers ? layer.getLayers().filter(l => l instanceof L.Marker).length : (layer instanceof L.Marker ? 1 : 0);
+        return [`${name}${hasMarkers ? ' ('+count+')' : ''}`, layer];
+      })
     );
 
     let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: false, position: 'topright'}).addTo(map);
