@@ -905,6 +905,7 @@ function drawMap() {
 
       marker.on('popupopen', () => {
         currentOpenMarker = marker;
+        location.hash = marker.feature.properties.name;
       })
 
       marker.on('popupclose', () => {
@@ -915,8 +916,6 @@ function drawMap() {
       marker.on('click', () => {
         const props = marker.feature.properties;
         const name = props.name;
-
-        location.hash = name;
 
         const buildWrapper = (bodyHTML) => {
           const wrapper = document.createElement('div');
