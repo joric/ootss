@@ -415,7 +415,7 @@ RecordSolution(*) {
 ^!e:: OpenGui()           ; Ctrl+Alt+E: Open GUI
 ^+e:: PlayCurrent(true)   ; Ctrl+Shift+E: Play + select next level
 !e::  PlayCurrent(false)  ; Alt+ E: Play only
-^e:: RecordSolution()     ; Ctrl+E: record solution
+^e::  RecordSolution()    ; Ctrl+E: record solution
 
 ~Esc:: {
     global stopFlag
