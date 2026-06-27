@@ -60,7 +60,7 @@ const convertSolution = s => unpackSolution(s).toLowerCase();
 function updateControls(levelName) {
   stopSolution();
   name = levelName;
-  select.value = name;
+  document.getElementById('levelSelect').value = name;
 }
 
 function extractLevelNames(sourceText) {
