@@ -283,6 +283,13 @@ transparent green
 11101
 11111
 
+Jail
+#989898 #C8C8C8 black
+22222
+22222
+22222
+22222
+22222
 
 MirrorUL
 #909090 #4e5159 #4e5159
@@ -452,6 +459,10 @@ P = Priest
 2 = SThief
 3 = SWizard
 4 = SPriest
+5 = Jail and SFighter
+6 = Jail and SThief
+7 = Goal and Thief
+8 = Goal and SWizard
 ~ = NormalCrate
 * = ReflectableCrate
 G = Goal
@@ -468,9 +479,6 @@ M = MonsterDoor
 
 WaterAnim = WaterAnim1 or WaterAnim2
 _ = Hole and WaterAnim1
-
-Z = Goal and Thief
-X = Goal and SWizard
 
 =======
 SOUNDS
@@ -495,6 +503,7 @@ Background
 Warpball, Dying
 Goal, Switch, OpenDoor, ShadowDoor, Hole
 HasReflection, Hint
+Jail
 ClosedDoor, Hero, Crate, Wall, Monster, Corpse, Bush, Mirror
 RFireball, Saved, DidNotMove
 LFireball, HasSaved
@@ -829,7 +838,7 @@ LEVELS
 (level heroes1_18)
 
 #############
-#...#Z.X#...#
+#...#7.8#...#
 #.*.#.1.#.G.#
 #...#...#...#
 ##]###.###]##
@@ -839,17 +848,19 @@ LEVELS
 #############
 
 
-(level heroes1_19_jail)
+(--level heroes1_19_jail)
 
-(TODO thief needs to be selected second and level needs barriers)
+(TODO thief needs to be selected second, also jail support)
 
+(
 #######
 ##*#*##
 #..W..#
 #.GGG.#
 #.....#
-#2###1#
+#6###5#
 #######
+)
 
 (level heroes1_21_v3)
 
@@ -864,6 +875,77 @@ LEVELS
 ######..#######
 ######.**######
 ###############
+
+(level heroes2_2b)
+
+#############
+##.........O#
+#...........#
+#F....O..#.G#
+#...........#
+##.........O#
+#############
+
+
+(level heroes2_2)
+
+#############
+#F.O.......O#
+#...O.......#
+#.......O...#
+#O..........#
+#....O......#
+#O.......O..#
+#.O.....O.G.#
+#############
+
+
+(level heroes2_thief_goblin)
+
+###############
+#G.O..........#
+#.]...........#
+#.....O.O.....#
+#O............#
+#.............#
+#..O.......O..#
+#......O......#
+#..}.....T*...#
+#.............#
+#...O.......###
+#........######
+#........######
+###############
+
+
+(level heroes2_3_v2)
+
+##############
+#W.#O###O#####
+#...*****...O#
+#...*****....#
+######O###O..#
+#####O##O#...#
+#O..*****....#
+#...**.**....#
+#..O##O#######
+#..###########
+#....O.O....G#
+##..O.O..O...#
+##############
+
+(level heroes2_5_altE)
+
+#############
+##G.........#
+##..........#
+#R..........#
+##.....#....#
+##.....#....#
+##.....##O###
+##.....#.*..#
+####U###...F#
+#############
 
 
 (level surrounded)
@@ -889,9 +971,9 @@ ____.O.O.GO.O..____
 ____...........____
 
 
-(level mirror_1)
+(--level mirror_1)
 
-_____________
+(_____________
 __..____...__
 _....__....._
 _....._..`.._
@@ -906,4 +988,4 @@ __........___
 ___........__
 _____.....___
 _____________
-
+)
