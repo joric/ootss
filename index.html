@@ -935,7 +935,7 @@ function drawMap() {
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
-            html += `<span class="wrap"><a href="https://github.com/joric/ootss/wiki#solutions" target=_blank>Solution</a>&nbsp(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
+            html += `<span class="wrap"><a href="scripts/index.html#${props.name}" target=_blank>Solution</a>&nbsp(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
           }
           wrapper.innerHTML = html;
           return wrapper;
