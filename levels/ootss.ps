@@ -95,13 +95,21 @@ SPriest
 .000.
 00000
 
-Crate 
+NormalCrate
 Orange #552200
 .111.
 10001
 10001
 10001
 .111.
+
+ReflectableCrate
+Orange Brown Brown
+.000.
+01210
+02220
+01210
+.000.
 
 YellowSwitch
 Yellow Black
@@ -267,12 +275,136 @@ lightblue transparent
 11101
 11111
 
+Bush
+transparent green
+11111
+10111
+11111
+11101
+11111
+
+
+MirrorUL
+#909090 #4e5159 #4e5159
+....0
+...01
+..011
+.0111
+01112
+
+MirrorUR
+#909090 #4e5159 #4e5159
+0....
+10...
+110..
+1110.
+21110
+
+MirrorDL
+#909090 #4e5159 #4e5159
+01112
+.0111
+..011
+...01
+....0
+
+MirrorDR
+#909090 #4e5159 #4e5159
+21110
+1110.
+110..
+10...
+0....
+
+LOS
+Orange
+.....
+.....
+..0..
+.....
+.....
+
+00
+transparent
+
+01
+transparent
+
+02
+transparent
+
+03
+transparent
+
+04
+transparent
+
+05
+transparent
+
+06
+transparent
+
+07
+transparent
+
+08
+transparent
+
+09
+transparent
+
+Hint
+transparent
+
+HasReflection
+transparent
+
+West
+transparent
+
+East
+transparent
+
+North
+transparent
+
+South
+transparent
+
+
+CantMove
+LightRed Red DarkRed
+..0..
+.111.
+01110
+02220
+.2.2.
+
+Reflection
+LightGrey Grey DarkGrey
+..0..
+.111.
+01110
+02220
+.2.2.
+
+CrateReflection
+Grey DarkGrey LightGrey
+.000.
+01110
+01110
+01110
+.000.
+
 
 
 =======
 LEGEND
 =======
 
+Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
+Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09
 Dragon = DragonLeft or DragonRight or DragonUp or DragonDown
 Player = Fighter or Wizard or Thief or Priest
 SPlayer = Swizard or Sthief or SFighter or SPriest
@@ -282,12 +414,33 @@ ClosedDoor = PurpleDoor or YellowDoor or MonsterDoor
 OpenDoor = YellowOpen or PurpleOpen
 Switch = PurpleSwitch or YellowSwitch
 Monster = Dragon or Goblin
-Moveable = Crate or SPlayer or Monster
+
+
+Crate = NormalCrate or ReflectableCrate
+
+Pushable = Mirror or Crate
+
+Solid = Player or Wall or Crate or Mirror
+
+Reflectable = Player or ReflectableCrate
+
+
+Moveable = Crate or SPlayer or Monster or Mirror
 Static = Wall or ClosedDoor
 Weighing = Crate or Hero or Monster
 Vulnerable = Hero or Monster
 Invulnerable = Crate or Static
 Fireball = LFireball or RFireball or UFireball or DFireball
+DirectionCounter = North or South or East or West
+
+
+/ = MirrorUL
+\ = MirrorUR
+` = MirrorDL
+' = MirrorDR
+
+
+@ = Bush
 
 . = Background
 # = Wall
@@ -299,10 +452,11 @@ P = Priest
 2 = SThief
 3 = SWizard
 4 = SPriest
-* = Crate
+~ = NormalCrate
+* = ReflectableCrate
 G = Goal
-Y = YellowDoor
-E = PurpleDoor
+[ = YellowDoor
+] = PurpleDoor
 { = YellowSwitch
 } = PurpleSwitch
 L = DragonLeft
@@ -314,6 +468,7 @@ M = MonsterDoor
 
 WaterAnim = WaterAnim1 or WaterAnim2
 _ = Hole and WaterAnim1
+
 
 =======
 SOUNDS
@@ -337,12 +492,16 @@ COLLISIONLAYERS
 Background
 Warpball, Dying
 Goal, Switch, OpenDoor, ShadowDoor, Hole
-ClosedDoor, Hero, Crate, Wall, Monster, Corpse
+HasReflection, Hint
+ClosedDoor, Hero, Crate, Wall, Monster, Corpse, Bush, Mirror
 RFireball, Saved, DidNotMove
 LFireball, HasSaved
 UFireball
 DFireball
-Wateranim
+LOS
+Counter
+DirectionCounter, WaterAnim
+Reflection, CantMove, CrateReflection
 
 ======
 RULES     
@@ -441,6 +600,10 @@ late [Wall HasSaved] [Healer] -> [Wall] [Healer HasSaved]
 late [Saved] [Healer no HasSaved] -> [Saved sfx4] [Healer]
 late [HasSaved] -> []
 
+
+
+
+
 ==============
 WINCONDITIONS
 ==============
@@ -475,6 +638,84 @@ LEVELS
 #############
 
 
+(level heroes1_3)
+
+#############
+#...#...#...#
+#F{...*.#.G.#
+#...#...[...#
+#############
+
+
+(level heroes1_4)
+
+#########
+#.....#G#
+#.F*..#[#
+#.**....#
+#...@...#
+#@{.{.{.#
+#.......#
+#########
+
+
+(level heroes1_4.5)
+
+#############
+#...#...*...#
+#.T.#...#.G.#
+#...*...#...#
+#############
+
+
+(level heroes1_5_v2)
+
+#############
+#...#*..#...#
+#T..*...#.*.#
+#...#..*....#
+##########.##
+#..**...#...#
+#.G.#...#.{.#
+#...#...[.*.#
+#############
+
+
+(level heroes1_7_v2)
+
+###################
+##########*..######
+#...#........[...##
+#...#....#...#.G.##
+##..#....#####...##
+##..####.#..####[##
+##.......#..T{....#
+##..##...#...##...#
+######...##.#######
+######.###..##...##
+####.............##
+####...############
+###################
+
+(level mirror_1)
+
+_____________
+__..____...__
+_....__....._
+_....._..`.._
+_.....__...._
+__..______.__
+_____....____
+_____..F...__
+__..__.....__
+_....___..___
+_..G...______
+__........___
+___........__
+_____.....___
+_____________
+
+
 (level surrounded)
 
 _____........._____
@@ -496,5 +737,4 @@ _________M_________
 ____...........____
 ____.O.O.GO.O..____
 ____...........____
-
 

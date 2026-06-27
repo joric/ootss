@@ -21,7 +21,7 @@ body { padding: 0; margin: 0; }
 
 <body>
 
-<title>Press P or [ ] keys to play solution</title>
+<title>Joric's OOthSS: Puzzlescript</title>
 
 <div class="controls">
   <select id="levelSelect" onchange="loadLevel(this.value)">
@@ -44,16 +44,40 @@ let name = 'heroes1_1';
 let timer = null;
 let previousRef = -1;
 let pos = 0;
-let playDelay = 150;
+let playDelay = 100;
 let levelRanges = {};
 
-const unpackSolution = s => s.replace(/([A-Z])(\d)/g, (_,l,n)=>l.repeat(+n));
+const unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n));
 const convertSolution = s => unpackSolution(s).toLowerCase();
+
+function pauseSolution() {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+    console.log('Paused.');
+  }
+}
+
+function stopSolution() {
+  pauseSolution();
+  pos = 0;
+  console.log('Stopped and rewound.');
+}
+
+function playSolution() {
+  if (!timer) {
+    const canvas = document.getElementById('gameCanvas');
+    canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+    timer = setInterval(sendNextMove, playDelay);
+  }
+}
 
 function updateControls(levelName) {
   stopSolution();
+  pos = 0;
   name = levelName;
   document.getElementById('levelSelect').value = name;
+  location.hash = name;
 }
 
 function extractLevelNames(sourceText) {
@@ -106,6 +130,15 @@ function loadLevel(levelName) {
   puzzleScript.puzzleScript.compile(['loadLevel', levelNumber], cleanedData);
   name = levelName;
   pos = 0;
+  location.hash = name;
+}
+
+function nextLevel(step) {
+  let levelNames = levelRanges.map(r => r.name);
+  let i = levelNames.indexOf(name) + step;
+  if (i<0) return;
+  if (i>=levelNames.length) return;
+  loadLevel(levelNames[i]);
 }
 
 const keyCodes = {
@@ -140,7 +173,7 @@ function sendNextMove() {
   if (pos < solution.length) {
     const ch = solution[pos].toLowerCase();
         
-    //console.log('sending', ch, 'of', solution, 'at', pos, 'from', name);
+    //console.log('playing', ch, 'of', solution.slice(pos), 'at', pos, 'from', name);
 
     const code = keyCodes[ch];
     if (code !== undefined) {
@@ -154,26 +187,7 @@ function sendNextMove() {
   } else {
     console.log('Solution complete.');
     stopSolution();
-  }
-}
-
-function stopSolution() {
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-    console.log('stopped and cleared');
-  }
-  pos = 0;
-}
-
-function playSolution() {
-  pos = 0;
-  if (!timer) {
-
-    const canvas = document.getElementById('gameCanvas');
-    canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-
-    timer = setInterval(sendNextMove, playDelay);
+    pos = 0;
   }
 }
 
@@ -203,13 +217,22 @@ window.onload = () => {
           console.log('Rewound to start.');
         }
       }
-      else if (e.code == 'KeyP') {
-        // autoplay solution
-        e.preventDefault();
-        playSolution();
+      else if (e.code === 'KeyZ') {
+        if (e.shiftKey) {
+          nextLevel(-1);
+        }
       }
-      else if (e.key == 'Escape') {
-        stopSolution();
+      else if (e.code === 'KeyX') {
+        if (e.shiftKey) {
+          nextLevel(1);
+        }
+      }
+      else if (e.code == 'Space') {
+        if (!timer) {
+          playSolution();
+        } else {
+          pauseSolution();
+        }
       }
     });
 
@@ -242,13 +265,20 @@ window.onload = () => {
     });
 
     setInterval(monitorLevelUpdate, 250);
+    
+    let levelName = levelNames[0];
 
-    loadLevel(levelNames[0]);
+    if (location.hash) {
+      levelName = location.hash.slice(1);
+    }
+
+    loadLevel(levelName);
 
     // send mute
     dispatchFakeKey('keydown', 77); // 77 = 'M'
     dispatchFakeKey('keyup', 77);
 
+    console.log('Press Space to play solution');
 
   });
 

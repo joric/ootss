@@ -688,7 +688,7 @@ function getBaseURL() {
 function getMapURL(id) { return getBaseURL() + '#' + encodeURIComponent(id); }
 
 
-unpackSolution = s => s.replace(/([A-Z])(\d)/g, (_,l,n)=>l.repeat(+n))
+unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n))
 getMovesCount = s => unpackSolution(s).length;
 convertSolution = s => unpackSolution(s).toLowerCase().match(/.{1,5}/g)?.join(' ')||'';
 
