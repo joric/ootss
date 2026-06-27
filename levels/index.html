@@ -213,7 +213,7 @@ function sendNextMove() {
   if (pos < solution.length) {
     const ch = solution[pos].toLowerCase();
         
-    //console.log('playing', ch, 'of', solution.slice(pos), 'at', pos, 'from', name);
+    //console.log('sending', ch, 'of', solution.slice(pos), 'at', pos, 'from', name);
 
     const code = keyCodes[ch];
     if (code !== undefined) {
