@@ -27,10 +27,10 @@ body { padding: 0; margin: 0; }
 <div class="controls">
   <select id="levelSelect" onchange="loadLevel(this.value)">
   </select>
-  <button id="undo" onclick="undoMove()" tabindex=-1>Undo ( [ )</button>
-  <button id="next" onclick="nextMove()" tabindex=-1>Next Move ( ] )</button>
-  <button id="reset" onclick="reset()" tabindex=-1>Reset ( R )</button>
-  <button id="play" onclick="toggleSolution()" tabindex=-1>Play ( Space )</button>
+  <button id="undo" onclick="undoMove()" tabindex=-1>Undo ([)</button>
+  <button id="next" onclick="nextMove()" tabindex=-1>Next Move (])</button>
+  <button id="reset" onclick="reset()" tabindex=-1>Reset (R)</button>
+  <button id="play" onclick="toggleSolution()" tabindex=-1>Play (E)</button>
 </div>
 
 <div id="gameContainer">
@@ -74,7 +74,7 @@ function undoMove() {
 function playSolution() {
   if (!timer) {
     timer = setInterval(sendNextMove, playDelay);
-    document.getElementById('play').textContent = 'Pause (Space)';
+    document.getElementById('play').textContent = 'Pause (E)';
   }
 }
 
@@ -83,7 +83,7 @@ function pauseSolution() {
     clearInterval(timer);
     timer = null;
     console.log('Paused.');
-    document.getElementById('play').textContent = 'Play (Space)';
+    document.getElementById('play').textContent = 'Play (E)';
   }
 }
 
@@ -265,7 +265,7 @@ window.onload = () => {
           nextLevel(1);
         }
       }
-      else if (e.code == 'Space') {
+      else if (e.code == 'KeyE') {
         e.preventDefault();
         toggleSolution();
       }
