@@ -184,17 +184,17 @@ window.onload = () => {
     document.addEventListener('keydown', function (e) {
       if (e.repeat) return;
 
-      if (e.key === ']') {
+      if (e.code === 'BracketRight') {
         e.preventDefault();
         sendNextMove()
-      } else if (e.key === '[') {
+      } else if (e.code === 'BracketLeft') {
         e.preventDefault();
         sendMove(90); // Z = undo
         if (pos > 0) {
           pos--;
         }
       }
-      else if (e.key === 'r') {
+      else if (e.code === 'KeyR') {
         if (e.ctrlKey || e.metaKey) {
           e.preventDefault();
           location.reload();
@@ -203,7 +203,7 @@ window.onload = () => {
           console.log('Rewound to start.');
         }
       }
-      else if (e.key == 'p') {
+      else if (e.code == 'KeyP') {
         // autoplay solution
         e.preventDefault();
         playSolution();
