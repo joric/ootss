@@ -52,27 +52,65 @@ let timer = null;
 let previousRef = -1;
 let pos = 0;
 let playDelay = 150;
-let levelLookup = {};
+let levelRanges = {};
 
 const unpackSolution = s => s.replace(/([A-Z])(\d)/g, (_,l,n)=>l.repeat(+n));
 const convertSolution = s => unpackSolution(s).toLowerCase();
 
+function updateControls(levelName) {
+  stopSolution();
+  name = levelName;
+  pos = 0;
+  const select = document.getElementById('levelSelect');
+  select.value = name;
+}
+
 function extractLevelNames(sourceText) {
   const lines = sourceText.split('\n');
-  const nameByLineNumber = {};
+  const labels = [];
+
   for (let i = 0; i < lines.length; i++) {
-    const match = lines[i].match(/^\s*\(level\s*(.+?)\)\s*$/);
+    const match = lines[i].match(/^\s*\(level\s*(.+?)\)\s*$/i);
     if (match) {
-      let j = i + 1;
-      while (j < lines.length && /^\s*\(.*\)\s*$/.test(lines[j])) j++; // skip more comments
-      nameByLineNumber[j+2] = match[1]; // +1 because PS line numbers are 1-indexed
+      labels.push({ line: i + 1, name: match[1] }); // 1-indexed to match PS lineNumber convention
     }
   }
-  return nameByLineNumber;
+
+  // sort just in case labels weren't strictly in source order
+  labels.sort((a, b) => a.line - b.line);
+
+  // build ranges: [thisLabel.line, nextLabel.line) -> name
+  const ranges = labels.map((label, idx) => {
+    const nextLine = idx + 1 < labels.length ? labels[idx + 1].line : Infinity;
+    return { start: label.line, end: nextLine, name: label.name };
+  });
+
+  return ranges;
+}
+
+function lookupLevelName(ranges, lineNumber) {
+  for (const r of ranges) {
+    if (lineNumber >= r.start && lineNumber < r.end) {
+      return r.name;
+    }
+  }
+  return undefined;
+}
+
+function monitorLevelUpdate() {
+  if (window.level.lineNumber !== previousRef) {
+    previousRef = window.level.lineNumber;
+    const levelName = lookupLevelName(levelRanges, previousRef);
+    console.log(`New level event, line ${previousRef}, possibly "${levelName}".`);
+    if (levelName) {
+      updateControls(levelName);
+    }
+  }
 }
 
 function loadLevel(levelName) {
-  let levelNumber = Object.values(levelLookup).indexOf(levelName);
+  let levelNames = levelRanges.map(r => r.name);
+  let levelNumber = levelNames.indexOf(levelName);
   console.log('Loading level', levelNumber, levelName);
   puzzleScript.puzzleScript.compile(['loadLevel', levelNumber], cleanedData);
   name = levelName;
@@ -102,25 +140,6 @@ function dispatchFakeKey(type, code) {
 function sendMove(code) {
   dispatchFakeKey('keydown', code);
   dispatchFakeKey('keyup', code);
-}
-
-function monitorLevelUpdate() {
-  if (window.level.lineNumber!=previousRef) {
-    previousRef = window.level.lineNumber;
-    let levelName = levelLookup[previousRef];
-
-    console.log(`New level event, line ${previousRef}, possibly "${levelName}".`);
-
-    if (levelName) {
-      stopSolution();
-      name = levelName;
-      //loadLevel(levelName);
-      pos = 0;
-      const select = document.getElementById('levelSelect');
-      select.value = name;
-    }
-
-  }
 }
 
 function sendNextMove() {
@@ -218,27 +237,23 @@ window.onload = () => {
     puzzleScript = new PuzzleScript();
     //puzzleScript.compile(cleanedData);
 
-    levelLookup = extractLevelNames(cleanedData);
-
-    //console.log(levelLookup);
+    levelRanges = extractLevelNames(cleanedData);
 
     const select = document.getElementById('levelSelect');
-
-    // Clear existing options
     select.innerHTML = '';
 
-    // Populate from object
-    Object.entries(levelLookup).forEach(([value, text]) => {
+    let levelNames = levelRanges.map(r => r.name);
+    levelNames.forEach( name => {
         const option = document.createElement('option');
-        option.value = text;
-        option.textContent = text;
+        option.value = name;
+        option.textContent = name;
         select.appendChild(option);
     });
 
     setInterval(monitorLevelUpdate, 250);
 
-    loadLevel(Object.values(levelLookup)[0]);
-    
+    loadLevel(levelNames[0]);
+
     // send mute
     dispatchFakeKey('keydown', 77); // 77 = 'M'
     dispatchFakeKey('keyup', 77);
