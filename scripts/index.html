@@ -115,9 +115,9 @@ body { padding: 0; margin: 0; }
 </div>
 
 <div class="controls top-left">
-  <button class="btn btnFn" id="prevLevel" title="prev level">1</button>
+  <button class="btn btnFn" id="firstLevel" title="first level">1</button>
   <button class="btn btnFn" id="nextLevel" title="next level">2</button>
-  <button class="btn btnFn" id="firstLevel" title="first level">3</button>
+  <button class="btn btnFn" id="prevLevel" title="prev level">3</button>
 </div>
 
 <div class="controls top-left-up">
@@ -434,9 +434,9 @@ window.onload = () => {
         case 'KeyE':
           solve();
           break;
-        case 'Digit1': prevLevel(); break;
+        case 'Digit1': firstLevel(); break;
         case 'Digit2': nextLevel(); break;
-        case 'Digit3': firstLevel(); break;
+        case 'Digit3': prevLevel(); break;
           
         default:
           break;
