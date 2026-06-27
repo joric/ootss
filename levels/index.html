@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+
+<style>
+body {  }
+
+#gameCanvas { height: 512px; }
+
+.controls {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+}
+
+
+.wrapper: { height: 800px; width: 800px; background: red; }
+
+</style>
+
+<body>
+
+<title>Press P or [ ] keys to play solution</title>
+
+<div>
+
+  <div class="controls">
+    <select id="levelSelect" onchange="loadLevel(this.value)">
+    </select>
+
+    <button onclick="playSolution()" tabindex=-1>Play Solution</button>
+  </div>
+
+  <div class="canvasContainer">
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+</div>
+
+<!--
+<script src="https://unpkg.com/@super-puzzlescript/puzzlescript@0.1.0/dist/umd/puzzlescript.min.js"></script>
+-->
+
+<script src="../js/lib/puzzlescript/puzzlescript.min.js"></script>
+
+<script>
+
+let puzzleScript = null;
+let solutions = {};
+let cleanedData = null;
+let name = 'heroes1_1';
+let timer = null;
+let previousRef = -1;
+let pos = 0;
+let playDelay = 150;
+let levelLookup = {};
+
+const unpackSolution = s => s.replace(/([A-Z])(\d)/g, (_,l,n)=>l.repeat(+n));
+const convertSolution = s => unpackSolution(s).toLowerCase();
+
+function extractLevelNames(sourceText) {
+  const lines = sourceText.split('\n');
+  const nameByLineNumber = {};
+  for (let i = 0; i < lines.length; i++) {
+    const match = lines[i].match(/^\s*\(level\s*(.+?)\)\s*$/);
+    if (match) {
+      let j = i + 1;
+      while (j < lines.length && /^\s*\(.*\)\s*$/.test(lines[j])) j++; // skip more comments
+      nameByLineNumber[j+2] = match[1]; // +1 because PS line numbers are 1-indexed
+    }
+  }
+  return nameByLineNumber;
+}
+
+function loadLevel(levelName) {
+  let levelNumber = Object.values(levelLookup).indexOf(levelName);
+  console.log('Loading level', levelNumber, levelName);
+  puzzleScript.puzzleScript.compile(['loadLevel', levelNumber], cleanedData);
+  name = levelName;
+  pos = 0;
+}
+
+const keyCodes = {
+  r: 39, // right
+  l: 37, // left
+  u: 38, // up
+  d: 40, // down
+  x: 88, // X
+  c: 67, // C
+  v: 86, // V
+};
+
+function dispatchFakeKey(type, code) {
+  const fakeEvent = new KeyboardEvent(type, {
+    bubbles: true,
+    cancelable: true,
+  });
+  Object.defineProperty(fakeEvent, 'keyCode', { get: () => code });
+  Object.defineProperty(fakeEvent, 'which', { get: () => code });
+  document.dispatchEvent(fakeEvent);
+}
+
+function sendMove(code) {
+  dispatchFakeKey('keydown', code);
+  dispatchFakeKey('keyup', code);
+}
+
+function monitorLevelUpdate() {
+  if (window.level.lineNumber!=previousRef) {
+    previousRef = window.level.lineNumber;
+    let levelName = levelLookup[previousRef];
+
+    console.log(`New level event, line ${previousRef}, possibly "${levelName}".`);
+
+    if (levelName) {
+      stopSolution();
+      name = levelName;
+      //loadLevel(levelName);
+      pos = 0;
+      const select = document.getElementById('levelSelect');
+      select.value = name;
+    }
+
+  }
+}
+
+function sendNextMove() {
+
+  let solution = convertSolution(solutions[name]);
+
+  if (pos < solution.length) {
+    const ch = solution[pos].toLowerCase();
+        
+    //console.log('sending', ch, 'of', solution, 'at', pos, 'from', name);
+
+    const code = keyCodes[ch];
+    if (code !== undefined) {
+      sendMove(code);
+      pos++;
+      //console.log(`[${pos}/${solution.length}] sent '${ch}'`);
+    } else {
+      console.warn(`Unknown symbol '${ch}' at position ${pos}, skipping`);
+      pos++;
+    }
+  } else {
+    console.log('Solution complete.');
+    stopSolution();
+  }
+}
+
+function stopSolution() {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+    console.log('stopped and cleared');
+  }
+  pos = 0;
+}
+
+function playSolution() {
+  pos = 0;
+  if (!timer) {
+
+    const canvas = document.getElementById('gameCanvas');
+    canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+
+    timer = setInterval(sendNextMove, playDelay);
+  }
+}
+
+window.onload = () => {
+
+  (function () {
+
+    document.addEventListener('keydown', function (e) {
+      if (e.repeat) return;
+
+      if (e.key === ']') {
+        e.preventDefault();
+        sendNextMove()
+      } else if (e.key === '[') {
+        e.preventDefault();
+        sendMove(90); // Z = undo
+        if (pos > 0) {
+          pos--;
+        }
+      }
+      else if (e.key === 'r') {
+        if (e.ctrlKey || e.metaKey) {
+          e.preventDefault();
+          location.reload();
+        } else {
+          pos = 0;
+          console.log('Rewound to start.');
+        }
+      }
+      else if (e.key == 'p') {
+        // autoplay solution
+        e.preventDefault();
+        playSolution();
+      }
+      else if (e.key == 'Escape') {
+        stopSolution();
+      }
+    });
+
+  })();
+
+  fetch('../data/solutions.txt').then(r => r.text()).then(data => {
+    solutions = Object.fromEntries(data.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
+    const a = Object.values(solutions).map(s=>s.length);
+    if (a) {
+      console.log(`${a.length} solutions`);
+    }
+  });
+
+  fetch('ootss.ps').then(r => r.text()).then(data => {
+    cleanedData = data.replace(/\r\n/g, '\n');
+    puzzleScript = new PuzzleScript();
+    //puzzleScript.compile(cleanedData);
+
+    levelLookup = extractLevelNames(cleanedData);
+
+    //console.log(levelLookup);
+
+    const select = document.getElementById('levelSelect');
+
+    // Clear existing options
+    select.innerHTML = '';
+
+    // Populate from object
+    Object.entries(levelLookup).forEach(([value, text]) => {
+        const option = document.createElement('option');
+        option.value = text;
+        option.textContent = text;
+        select.appendChild(option);
+    });
+
+    setInterval(monitorLevelUpdate, 250);
+
+    loadLevel(Object.values(levelLookup)[0]);
+    
+    // send mute
+    dispatchFakeKey('keydown', 77); // 77 = 'M'
+    dispatchFakeKey('keyup', 77);
+
+
+  });
+
+}
+
+</script>
+</body>
+</html>
+
