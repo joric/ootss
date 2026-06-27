@@ -60,8 +60,6 @@ const convertSolution = s => unpackSolution(s).toLowerCase();
 function updateControls(levelName) {
   stopSolution();
   name = levelName;
-  pos = 0;
-  const select = document.getElementById('levelSelect');
   select.value = name;
 }
 
@@ -208,7 +206,7 @@ window.onload = () => {
           e.preventDefault();
           location.reload();
         } else {
-          pos = 0;
+          stopSolution();
           console.log('Rewound to start.');
         }
       }
