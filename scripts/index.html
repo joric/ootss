@@ -174,6 +174,9 @@ body { padding: 0; margin: 0; }
   <button class="btn btnFn" id="lastLevel" title="last">3</button>
   <button class="btn btnFn" id="solve" title="solve">E</button>
   <button class="btn btnFn" id="reset" title="reset">R</button>
+  <br>
+  <button class="btn btnFn" id="undo" title="[">[</button>
+  <button class="btn btnFn" id="redo" title="]">]</button>
 </div>
 
 <div class="controls top right pr">
@@ -216,7 +219,7 @@ body { padding: 0; margin: 0; }
   <div class="footer">
 
     <span id="moves">
-      <button class="btn btnFn" id="undo" title="[">[</button><span id="moves-before"></span>[<span id="moves-at"></span>]<span id="moves-after"></span><button class="btn btnFn" id="redo" title="]">]</button>
+      <span id="moves-before"></span>[<span id="moves-at"></span>]<span id="moves-after"></span>
     </span>
 
   </div>
