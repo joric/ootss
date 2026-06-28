@@ -398,6 +398,14 @@ Transparent
 InvDoorMarker
 Transparent
 
+CrateInHole
+Brown DarkBrown Blue
+20002
+01110
+01110
+01110
+20002
+
 =======
 LEGEND
 =======
@@ -489,11 +497,15 @@ COLLISIONLAYERS
 ================
 
 Background
+
 DoorMarker, InvDoorMarker
 Hole
+WaterAnim
+CrateInHole
 Warpball, Dying
 Goal, Switch, OpenDoor, ShadowDoor, HasSavedDoor
 ClosedDoor, Hero, Crate, Wall, Monster, Corpse, Bush, FrozenMonster
+
 Saved
 
 RFireball, DidNotMove
@@ -502,8 +514,6 @@ UFireball
 DFireball
 
 Note
-
-WaterAnim
 
 ======
 RULES     
@@ -632,7 +642,7 @@ Late Down [DFireball | Vulnerable] -> [ | Dying Vulnerable]
 Late DOWN [DFireball | Invulnerable] -> [ | Invulnerable]
 
 [ > Hero | Hole ] -> [ Hero | Hole ]
-late [ Crate Hole ] -> [ Hole ] (temporary until mirror isles)
+late [ Crate Hole ] -> [ CrateInHole ] Sfx3
 late [ Hole Vulnerable ] -> [ Hole Sfx5 ]
 
 (Vulnerable objects that are attacked are designated as "Dying", but heroes can be saved by the Priest. Then the stuff that didn't get saved dies.)
