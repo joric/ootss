@@ -94,7 +94,7 @@ body { padding: 0; margin: 0; }
 <div class="controls top left">
   <button class="btn btnFn" id="firstLevel" title="first">1</button>
   <button class="btn btnFn" id="nextLevel" title="next">2</button>
-  <button class="btn btnFn" id="prevLevel" title="previous">3</button>
+  <button class="btn btnFn" id="lastLevel" title="last">3</button>
   <button class="btn btnFn" id="solve" title="solve">E</button>
   <button class="btn btnFn" id="reset" title="reset">R</button>
 </div>
@@ -436,7 +436,7 @@ window.onload = () => {
           break;
         case 'Digit1': firstLevel(); break;
         case 'Digit2': nextLevel(); break;
-        case 'Digit3': prevLevel(); break;
+        case 'Digit3': lastLevel(); break;
           
         default:
           break;
