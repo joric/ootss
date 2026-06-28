@@ -326,6 +326,13 @@ function showSolution() {
   let before = solution.slice(0, pos);
   let after = solution.slice(pos + 1);
 
+  if (pos>=solution.length) {
+    at = 'solved';
+    before='';
+    after='';
+  }
+
+
   document.getElementById('moves-before').textContent = before;
   document.getElementById('moves-at').textContent = at;
   document.getElementById('moves-after').textContent = after;
@@ -371,7 +378,10 @@ function onLevelLoaded(levelName) {
   pos = 0;
   name = levelName;
 
-  document.getElementById('title').textContent = name;
+  let i = levelNames.indexOf(name);
+  let n = levelNames.length;
+
+  document.getElementById('title').textContent = `(${i+1}/${n}) ${name}`;
 
   let playing = timer != null;
 
