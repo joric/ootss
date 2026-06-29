@@ -210,7 +210,7 @@ Blue #AA7722
 01010
 
 MonsterDoor
-DarkGrey #222222 Red
+transparent #222222 Red
 21002
 22122
 20212
@@ -296,6 +296,14 @@ Yellow
 .....
 .....
 
+HasSaved
+Yellow
+.....
+.....
+.....
+.....
+.....
+
 Corpse
 #CCC
 .000.
@@ -315,6 +323,10 @@ Note
 Hole
 blue
 
+DidNotMove
+Purple
+
+
 WaterAnim1
 lightblue transparent
 11111
@@ -330,17 +342,6 @@ lightblue transparent
 11111
 11101
 11111
-
-DidNotMove
-Purple
-
-HasSaved
-Yellow
-.....
-.....
-.....
-.....
-.....
 
 Bush
 green #008000
@@ -411,6 +412,7 @@ LEGEND
 =======
 
 Dragon = DragonLeft or DragonRight or DragonUp or DragonDown
+Fireball = LFireball or RFireball or UFireball or DFireball
 Player = Fighter or Wizard or Thief or Priest or Bard or Druid
 SPlayer = Swizard or Sthief or SFighter or SPriest or SBard or SDruid
 Hero = Player or Splayer
@@ -498,28 +500,30 @@ COLLISIONLAYERS
 ================
 
 Background
-
+Goal
 DoorMarker, InvDoorMarker
 Hole
 WaterAnim
 CrateInHole
 Warpball, Dying
-Goal, Switch, OpenDoor, ShadowDoor, HasSavedDoor
+Switch, OpenDoor, ShadowDoor, HasSavedDoor
 ClosedDoor, Hero, Crate, Wall, Monster, Corpse, Bush, FrozenMonster
 
 Saved
 
 RFireball, DidNotMove
-LFireball, Saved
+LFireball, HasSaved
 UFireball
 DFireball
 
 Note
 
 ======
-RULES     
+RULES
 ======
-[Saved] [Goal] -> [] [HasSavedDoor] (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
+
+([Saved] [Goal] -> [] [HasSavedDoor]) (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
+(the rule above apparently breaks the compound goal+monsterdoor things in mosh_pit_small, so I commented it out)
 
 [Corpse] -> Restart
 
@@ -682,7 +686,6 @@ late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] 
 late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker] sfx2
 late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] sfx2
 late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] sfx3
-
 
 late [MonsterDoor] -> [ShadowDoor]
 late [ShadowDoor] [Monster] -> [MonsterDoor] [Monster]
