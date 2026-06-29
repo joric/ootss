@@ -643,7 +643,7 @@ window.onload = () => {
 
     levelRanges = extractRanges(cleanedData, 'level');
 
-    todoRanges = extractRanges(cleanedData, 'TODO:', 10);
+    todoRanges = extractRanges(cleanedData, 'TODO', 10);
 
     levelNames = levelRanges.map(r => r.name);
 
