@@ -8,7 +8,272 @@ run_rules_on_level_start
 OBJECTS
 ========
 
-Background 
+(mirror isles stuff)
+
+MirrorBackground
+#dfcc4f yellow
+11111
+01111
+11101
+11111
+10111
+
+Target
+DarkBlue transparent transparent
+.111.
+10201
+12021
+10201
+.111.
+
+West
+transparent
+
+East
+transparent
+
+North
+transparent
+
+South
+transparent
+
+00
+transparent
+
+01
+transparent
+
+02
+transparent
+
+03
+transparent
+
+04
+transparent
+
+05
+transparent
+
+06
+transparent
+
+07
+transparent
+
+08
+transparent
+
+09
+transparent
+
+
+MirrorUL
+#909090 #4e5159 #4e5159
+....0
+...01
+..011
+.0111
+01112
+
+MirrorUR
+#909090 #4e5159 #4e5159
+0....
+10...
+110..
+1110.
+21110
+
+MirrorDL
+#909090 #4e5159 #4e5159
+01112
+.0111
+..011
+...01
+....0
+
+MirrorDR
+#909090 #4e5159 #4e5159
+21110
+1110.
+110..
+10...
+0....
+
+LOS
+Orange
+.....
+.....
+..0..
+.....
+.....
+
+HasReflection
+transparent
+
+Hint
+transparent
+
+MirrorGuy
+DarkRed #493c2b #000000
+..0..
+.111.
+01110
+02220
+.2.2.
+
+Reflection
+LightGrey Grey DarkGrey
+..0..
+.111.
+01110
+02220
+.2.2.
+
+CrateReflection
+Grey DarkGrey LightGrey
+.000.
+01110
+01110
+01110
+.000.
+
+FloatingBody
+DarkBrown #282828 #101010 Blue
+33333
+33333
+31122
+01123
+31122
+
+CantMove
+LightRed Red DarkRed
+..0..
+.111.
+01110
+02220
+.2.2.
+
+NormalCrate
+Orange Brown White
+.000.
+01110
+01110
+01110
+.000.
+
+ReflectableCrate
+Orange Brown Brown
+.000.
+01210
+02220
+01210
+.000.
+
+
+AddLandLUD
+Yellow
+0....
+.....
+.....
+.....
+0....
+
+AddLandLU
+Yellow
+0....
+.....
+.....
+.....
+.....
+
+AddLandLD
+Yellow
+.....
+.....
+.....
+.....
+0....
+
+AddLandRUD
+Yellow
+....0
+.....
+.....
+.....
+....0
+
+AddLandRU
+Yellow
+....0
+.....
+.....
+.....
+.....
+
+AddLandRD
+Yellow
+.....
+.....
+.....
+.....
+....0
+
+RemoveLandLUD
+Blue
+0....
+.....
+.....
+.....
+0....
+
+RemoveLandLU
+Blue
+0....
+.....
+.....
+.....
+.....
+
+RemoveLandLD
+Blue
+.....
+.....
+.....
+.....
+0....
+
+RemoveLandRUD
+Blue
+....0
+.....
+.....
+.....
+....0
+
+RemoveLandRU
+Blue
+....0
+.....
+.....
+.....
+.....
+
+RemoveLandRD
+Blue
+.....
+.....
+.....
+.....
+....0
+
+
+
+(heroes stuff)
+
+
+HeroBackground
 #989898 #C8C8C8
 00000
 00100
@@ -401,7 +666,7 @@ LEGEND
 
 Dragon = DragonLeft or DragonRight or DragonUp or DragonDown
 Fireball = LFireball or RFireball or UFireball or DFireball
-Player = Fighter or Wizard or Thief or Priest or Bard or Druid
+Player = Fighter or Wizard or Thief or Priest or Bard or Druid or MirrorGuy
 SPlayer = Swizard or Sthief or SFighter or SPriest or SBard or SDruid
 Hero = Player or Splayer
 Healer = Priest or SPriest (Unlike the other heroes, priests must function even when inactive. "Healer" is the generic term for an active or inactive priest.)
@@ -415,6 +680,37 @@ Static = Wall or ClosedDoor or Bush
 Weighing = Crate or Hero or Monster or Wall or Bush or FrozenMonster
 Vulnerable = Hero or Monster
 Invulnerable = Crate or Static
+
+(mirror defines)
+
+Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
+Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09
+DirectionCounter = North or South or East or West
+
+MirrorCrate = NormalCrate or ReflectableCrate
+
+Pushable = Mirror or MirrorCrate
+
+Solid = MirrorCrate or Mirror
+
+Reflectable = MirrorGuy or ReflectableCrate
+
+/ = MirrorUL
+\ = MirrorUR
+` = MirrorDL
+' = MirrorDR
+
+WaterHere = Hole or CrateInHole or FloatingBody
+
+AddLandL = AddLandLUD or AddLandLU or AddLandLD
+AddLandR = AddLandRUD or AddLandRU or AddLandRD
+
+RemoveLandL = RemoveLandLUD or RemoveLandLU or RemoveLandLD
+RemoveLandR = RemoveLandRUD or RemoveLandRU or RemoveLandRD
+
+(---)
+
+Background = HeroBackground
 
 . = Background
 # = Wall
@@ -440,7 +736,6 @@ I = Druid
 Q = Goal and MonsterDoor
 Z = Goal and SFighter
 E = Goal and Fighter
-X = Goal and SThief
 Y = YellowSwitch and Bard
 
 L = DragonLeft
@@ -449,6 +744,7 @@ U = DragonUp
 D = DragonDown
 
 * = Crate
+~ = NormalCrate
 G = Goal
 [ = YellowDoor
 ] = PurpleDoor
@@ -465,6 +761,10 @@ K = BlueSwitch
 
 WaterAnim = WaterAnim1 or WaterAnim2
 _ = Hole and WaterAnim1
+
+
+X = MirrorGuy
+
 
 =======
 SOUNDS
@@ -488,6 +788,8 @@ COLLISIONLAYERS
 ================
 
 Background
+
+(heroes layers)
 Goal
 DoorMarker, InvDoorMarker
 Hole
@@ -496,19 +798,183 @@ CrateInHole
 Warpball, Dying
 Switch, OpenDoor, ShadowDoor, HasSavedDoor
 ClosedDoor, Hero, Crate, Wall, Monster, Corpse, Bush, FrozenMonster
-
 Saved
-
 RFireball
 LFireball
 UFireball
 DFireball
-
 Note
+
+(mirror layers)
+Target, FloatingBody
+HasReflection, Hint
+AddLandL, RemoveLandL
+AddLandR, RemoveLandR
+Solid, LOS
+Counter
+DirectionCounter
+Reflection, CantMove, CrateReflection
 
 ======
 RULES
 ======
+
+(mirror rules)
+
+[ > MirrorGuy ] [ Hint ] -> [ > MirrorGuy ] [ action Hint ]
+
+[ CantMove ] -> []
+
+late [ WaterAnim no Hole ] -> []
+
+(Water anim)
+
+([ stationary MirrorGuy ] [ stationary WaterAnim1 ] -> [ MirrorGuy] [ action WaterAnim2 ]
+[ stationary MirrorGuy ] [ stationary WaterAnim2 ] -> [ MirrorGuy] [ action WaterAnim1 ])
+
+(Island border)
+
+(
+left [ WaterHere no AddLandL | no WaterHere ] -> [ WaterHere AddLandLUD | ]
+right [ WaterHere no AddLandR | no WaterHere ] -> [ WaterHere AddLandRUD | ]
+
+up [ AddLandLUD | WaterHere ] -> [ AddLandLD | WaterHere ]
+up [ AddLandRUD | WaterHere ] -> [ AddLandRD | WaterHere ]
+
+down [ AddLandLUD | WaterHere ] -> [ AddLandLU | WaterHere ]
+down [ AddLandRUD | WaterHere ] -> [ AddLandRU | WaterHere ]
+
+down [ AddLandLD | WaterHere ] -> [ | WaterHere ]
+down [ AddLandRD | WaterHere ] -> [ | WaterHere ]
+
+left [ no WaterHere no RemoveLandL | WaterHere ] -> [ RemoveLandLUD | WaterHere ]
+right [ no WaterHere no RemoveLandR | WaterHere ] -> [ RemoveLandRUD | WaterHere ]
+
+up [ RemoveLandLUD | no WaterHere ] -> [ RemoveLandLD | ]
+up [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRD | ]
+
+down [ RemoveLandLUD | no WaterHere ] -> [ RemoveLandLU | ]
+down [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRU | ]
+
+down [ RemoveLandLD | no WaterHere ] -> [ | ]
+down [ RemoveLandRD | no WaterHere ] -> [ | ]
+)
+
+(Prevent teleport)
+
+[ action MirrorGuy ] [ Reflection Hole ] -> [ action MirrorGuy ] [ CantMove Hole ]
+
+[ CantMove ] [ action MirrorGuy ] -> [ CantMove ] [ MirrorGuy ] again
+
+(Swap places)
+[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection ] [ Reflection MirrorGuy ]
+
+[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
+
+[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy ] [ ReflectableCrate ] sfx2
+
+[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy ] []
+
+[ action MirrorGuy HasReflection ] -> [ Reflection ]
+
+(Clear state)
+
+[ LOS ] -> []
+[ HasReflection ] -> []
+[ Reflection ] -> []
+[ CrateReflection ] -> []
+
+[ action MirrorGuy ] -> [ MirrorGuy ]
+
+[ moving MirrorGuy ] -> [ moving MirrorGuy HasReflection ] (testing killing)
+
+(Push things)
+
+[ > MirrorGuy | Hole ] -> [ MirrorGuy | Hole ] sfx4
+
+[ >  MirrorGuy | MirrorCrate | no Solid ] -> [  >  MirrorGuy | > MirrorCrate | ] sfx1
+[ >  MirrorGuy | Mirror | no Hole no Solid ] -> [  >  MirrorGuy | > Mirror | ] sfx1
+
+[ > MirrorGuy | stationary Mirror | Hole ] -> [ MirrorGuy | Mirror | Hole ] sfx4
+
+[ >  MirrorGuy | MirrorCrate | > MirrorGuy ] -> [  >  MirrorGuy | > MirrorCrate | > MirrorGuy ] sfx1
+[ >  MirrorGuy | Mirror | > MirrorGuy ] -> [  >  MirrorGuy | > Mirror | > MirrorGuy ] sfx1
+
+[ > Mirror | Hole ] -> [ Mirror | Hole ] sfx4
+
+[ > Pushable | no Solid ] -> [ | Pushable ]
++ [ > MirrorGuy | no Solid ] -> [ | MirrorGuy ] sfx0
+
+[ > MirrorGuy ] -> [ MirrorGuy ] sfx4
+
+[ MirrorGuy Hole ] -> [ Hole ]
+[ Mirror Hole ] -> cancel
+[ NormalCrate Hole ] -> [ CrateInHole ] sfx3
+[ ReflectableCrate Hole ] -> [ CrateInHole ] sfx3
+
+[ MirrorGuy ] [ HasReflection ] -> [ MirrorGuy ] []
+
+[ HasReflection ] -> cancel (all MirrorGuys dead)
+
+(Make reflections)
+
+
+startloop
+random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
++ [ Reflectable North ] -> [ action Reflectable East right 00 ]
++ [ Reflectable East ] -> [ action Reflectable South up 00 ]
++ [ Reflectable South ] -> [ action Reflectable West down 00 ]
+
+[ > 00 | no Solid ] -> [ | > 01 LOS ]
+[ > 01 | no Solid ] -> [ | > 02 LOS ]
+[ > 02 | no Solid ] -> [ | > 03 LOS ]
+[ > 03 | no Solid ] -> [ | > 04 LOS ]
+[ > 04 | no Solid ] -> [ | > 05 LOS ]
+[ > 05 | no Solid ] -> [ | > 06 LOS ]
+[ > 06 | no Solid ] -> [ | > 07 LOS ]
+[ > 07 | no Solid ] -> [ | > 08 LOS ]
+[ > 08 | no Solid ] -> [ | > 09 LOS ]
+
+[ > Counter | Solid no Mirror ] -> [ | Solid ]
+
+left [ > Counter | MirrorUR ] -> [ | MirrorUR up Counter ]
++ left [ > Counter | MirrorDR ] -> [ | MirrorDR down Counter ]
++ right [ > Counter | MirrorUL ] -> [ | MirrorUL up Counter ]
++ right [ > Counter | MirrorDL ] -> [ | MirrorDL down Counter ]
++ up [ > Counter | MirrorDL ] -> [ | MirrorDL left Counter ]
++ up [ > Counter | MirrorDR ] -> [ | MirrorDR right Counter ]
++ down [ > Counter | MirrorUL ] -> [ | MirrorUL left Counter ]
++ down [ > Counter | MirrorUR ] -> [ | MirrorUR right Counter ]
+
++ [ > 09 | no Solid ] -> [ | > 08 LOS ]
++ [ > 08 | no Solid ] -> [ | > 07 LOS ]
++ [ > 07 | no Solid ] -> [ | > 06 LOS ]
++ [ > 06 | no Solid ] -> [ | > 05 LOS ]
++ [ > 05 | no Solid ] -> [ | > 04 LOS ]
++ [ > 04 | no Solid ] -> [ | > 03 LOS ]
++ [ > 03 | no Solid ] -> [ | > 02 LOS ]
++ [ > 02 | no Solid ] -> [ | > 01 LOS ]
++ [ > 01 | no Solid ] -> [ | > 00 LOS ]
+
+[ > 00 | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
+[ > 00 | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
+
+[ Counter ] -> []
+
+[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
+
+[ LOS ] -> [ action LOS ]
+
+[ action Reflectable ] -> [ Reflectable ]
+endloop
+
+
+[ DirectionCounter ] -> []
+
+[ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ] message Oh the crates can reflect now. That is cool and totally not arbitrary
+
+
+(hero rules)
 
 ([Saved] [Goal] -> [] [HasSavedDoor]) (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
 (the rule above apparently breaks the compound goal+monsterdoor things in mosh_pit_small, so I commented it out)
@@ -530,19 +996,15 @@ RULES
 (Druid does his thing. Warpball gets reused as a placeholder here. That's gonna happen a lot.)
 
 [> Druid | Bush] -> [Druid | Crate Sfx8]
-
 [> Druid | Crate] -> [Druid | Bush Sfx8]
 
 [> Druid | Goblin] -> [Druid | FrozenGoblin Sfx8]
-
 [> Druid | DragonUp] -> [Druid | FrozenDragonUp Sfx8]
 [> Druid | DragonDown] -> [Druid | FrozenDragonDown Sfx8]
 [> Druid | DragonLeft] -> [Druid | FrozenDragonLeft Sfx8]
 [> Druid | DragonRight] -> [Druid | FrozenDragonRight Sfx8]
 
-
 [> Druid | FrozenGoblin] -> [Druid | Goblin Sfx8]
-
 [> Druid | FrozenDragonUp] -> [Druid | DragonUp Sfx8]
 [> Druid | FrozenDragonDown] -> [Druid | DragonDown Sfx8]
 [> Druid | FrozenDragonLeft] -> [Druid | DragonLeft Sfx8]
@@ -648,41 +1110,41 @@ Late [Dying Hero] -> [Corpse Sfx6]
 (Doors opening.)
 
 late [Weighing  YellowSwitch] [YellowDoor] -> [Weighing  YellowSwitch] [ShadowDoor]
-late [YellowSwitch no Weighing] [YellowOpen] -> [YellowSwitch] [YellowDoor sfx2]
+late [YellowSwitch no Weighing] [YellowOpen] -> [YellowSwitch] [YellowDoor Sfx2]
 late [YellowSwitch no Weighing] [ShadowDoor] -> [YellowSwitch] [YellowDoor]
-late [ShadowDoor] -> [YellowOpen sfx3]
+late [ShadowDoor] -> [YellowOpen Sfx3]
 
 (
 late [Weighing PurpleSwitch] [PurpleDoor] -> [Weighing PurpleSwitch] [ShadowDoor]
-late [PurpleSwitch no Weighing] [PurpleOpen] -> [PurpleSwitch] [PurpleDoor sfx2]
+late [PurpleSwitch no Weighing] [PurpleOpen] -> [PurpleSwitch] [PurpleDoor Sfx2]
 late [PurpleSwitch no Weighing] [ShadowDoor] -> [PurpleSwitch] [PurpleDoor]
-late [ShadowDoor] -> [PurpleOpen sfx3]
+late [ShadowDoor] -> [PurpleOpen Sfx3]
 )
 
 
 late [BlueDoor no DoorMarker no InvDoorMarker] -> [BlueDoor DoorMarker]
 late [BlueOpen no DoorMarker no InvDoorMarker] -> [BlueOpen InvDoorMarker]
-late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker] sfx3
-late [BlueSwitch no Weighing] [BlueOpen DoorMarker] -> [BlueSwitch] [BlueDoor DoorMarker] sfx2
-late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker] sfx2
-late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker] sfx3
+late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker] Sfx3
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker] -> [BlueSwitch] [BlueDoor DoorMarker] Sfx2
+late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker] Sfx2
+late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker] Sfx3
 
 
 late [PurpleDoor no DoorMarker no InvDoorMarker] -> [PurpleDoor DoorMarker]
 late [PurpleOpen no DoorMarker no InvDoorMarker] -> [PurpleOpen InvDoorMarker]
-late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker] sfx3
-late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker] sfx2
-late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] sfx2
-late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] sfx3
+late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker] Sfx3
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker] Sfx2
+late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] Sfx2
+late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] Sfx3
 
 late [MonsterDoor] -> [ShadowDoor]
 late [ShadowDoor] [Monster] -> [MonsterDoor] [Monster]
-late [ShadowDoor] -> [sfx3]
+late [ShadowDoor] -> [Sfx3]
 
 (Looks for a HasSavedDoor and, if there is one, puts a warpball on the Priest. Then, if someone was saved this turn, plays the sound only if the Priest doesn't have the warpball. Finally, cleans that up.)
 
 late [HasSavedDoor] [Healer] -> [Goal] [Healer WarpBall]
-late [Saved] [Healer no WarpBall] -> [Saved sfx4] [Healer]
+late [Saved] [Healer no WarpBall] -> [Saved Sfx4] [Healer]
 late [HasSavedDoor] -> [Goal]
 late [WarpBall] -> []
 
@@ -691,27 +1153,29 @@ late [Note no Moveable] -> []
 
 late [Saved no Hero] -> [] (NB! removes cross from non-hero cells. re-check if truly works)
 
+
 ==============
 WINCONDITIONS
 ==============
 
-All Hero on Goal     
+All Hero on Goal
 All Goal on Hero
 
 =======
 LEVELS
 =======
 
-(--level mirror_1)
 
-(_____________
+(level mirror_1)
+
+_____________
 __..____...__
 _....__....._
 _....._..`.._
 _.....__...._
 __..______.__
 _____....____
-_____..F...__
+_____..X...__
 __..__.....__
 _....___..___
 _..G...______
@@ -719,7 +1183,104 @@ __........___
 ___........__
 _____.....___
 _____________
-)
+
+
+
+(level mirror_2)
+
+_____________
+_____....____
+____.X.'..___
+___.......___
+______.._____
+___._____..__
+__...___...._
+__....__..G._
+__....._...._
+_......_...__
+_..'...__.___
+_......______
+__...._______
+___..________
+_____________
+
+
+(level mirror_3)
+
+_________________
+________...._____
+_______...~..____
+__..__.......____
+_....__..~...____
+_....___...______
+_....____________
+__..___..____..._
+__..__....__..G._
+_.'._.....__...._
+_..._..._____..__
+_..._..__..______
+__..____...._____
+_______.~.X..____
+_______....._____
+_________________
+
+
+
+(level mirror_4)
+
+_______________
+__...____...___
+_..._____....__
+_.G.____...~.__
+_...______...._
+_.._______...__
+__.__..__...___
+__._../....____
+____..._.._____
+____.X.________
+_____..________
+_______________
+
+
+
+(level mirror_5)
+
+________________
+_..__.___..X____
+_......__~'.____
+__....._....____
+___....__.._____
+________________
+_______.____..__
+__.____..___..._
+_........___.G._
+__.....~.___..._
+____.~...___..__
+_____..._____.__
+_______.________
+________________
+
+
+
+(level mirror_6_alt)
+
+
+___________________
+___..______________
+_..g.________..____
+__...____....~..___
+________.......~.__
+________..___...x._
+_______________..._
+___________________
+___________________
+________...________
+______......~...___
+_______....\.....__
+_________~...._____
+_________..________
+___________________
+
 
 
 (level heroes1_1)
