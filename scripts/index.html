@@ -194,7 +194,10 @@ body { padding: 0; margin: 0; }
   <br>
   <br>
   <br>
-  <button class="btn btnFn" id="pin" title="pin">&#x1F4CC;</button>
+  <!--button class="btn btnFn" id="pin" title="pin">&#x1F4CC;</button-->
+
+  <a href="../index.html" id="map_link" target=_blank><button class="btn" title="pin">&#x1F4CC;</button></a>
+
 </div>
 
 <div class="controls left middle">
@@ -366,6 +369,16 @@ function stopSolution() {
   console.log('Stopped and rewound.');
 }
 
+function updateTitle(name) {
+  let i = levelNames.indexOf(name);
+  let n = levelNames.length;
+  //document.getElementById('title').textContent = `(${i}/${n}) ${name}`;
+  document.getElementById('title').textContent = `${name}`;
+  //document.getElementById('title').textContent = `(${Math.ceil(i*101/n)}%) ${name}`;
+
+  document.getElementById('map_link').href = `../index.html#${name}`;
+}
+
 function onLevelLoaded(levelName) {
   const select = document.getElementById('levelSelect');
   if (select) select.value = name;
@@ -374,15 +387,7 @@ function onLevelLoaded(levelName) {
   pos = 0;
   name = levelName;
 
-  let i = levelNames.indexOf(name);
-  let n = levelNames.length;
-
-
-  //document.getElementById('title').textContent = `(${i}/${n}) ${name}`;
-
-  document.getElementById('title').textContent = `${name}`;
-
-  //document.getElementById('title').textContent = `(${Math.ceil(i*101/n)}%) ${name}`;
+  updateTitle(name);
 
   let playing = timer != null;
 
