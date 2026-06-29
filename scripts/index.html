@@ -395,7 +395,11 @@ function updateTitle(name) {
   document.getElementById('title').textContent = `${name}`;
   //document.getElementById('title').textContent = `(${Math.ceil(i*101/n)}%) ${name}`;
 
-  document.getElementById('subtitle').textContent = `${todoNote}`;
+  if (todoNote) {
+    document.getElementById('subtitle').textContent = `NOT IMPLEMENTED: ${todoNote}`;
+  } else {
+    document.getElementById('subtitle').textContent = ``;
+  }
 
   document.getElementById('map_link').href = `../index.html#${name}`;
 
@@ -493,13 +497,7 @@ function monitorLevelUpdate() {
   if (window.level.lineNumber !== previousRef) {
     previousRef = window.level.lineNumber;
     const levelName = lookupRange(levelRanges, previousRef);
-
-
     todoNote = lookupRange(todoRanges, previousRef)||'';
-
-    console.log(todoNote);
-
-
     console.log(`New level event, line ${previousRef}, possibly "${levelName}".`);
     if (levelName) {
       onLevelLoaded(levelName);
