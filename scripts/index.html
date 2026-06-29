@@ -502,6 +502,42 @@ function monitorLevelUpdate() {
     const levelName = lookupRange(levelRanges, previousRef);
     todoNote = lookupRange(todoRanges, previousRef)||'';
     console.log(`New level event, line ${previousRef}, possibly "${levelName}".`);
+
+    /*
+    console.log(`Field size: ${window.level.width}x${window.level.height} (you can use it for resizing the canvas)`);
+
+    var fieldWidth = window.level.width;
+    var fieldHeight = window.level.height;
+            
+    // Your desired magnification (e.g., 8x)
+    var scale = 8;
+            
+    // Calculate the exact canvas size
+    var canvasWidth = fieldWidth * scale;
+    var canvasHeight = fieldHeight * scale;
+
+    var fieldWidth = window.level.width;
+    var fieldHeight = window.level.height;
+            
+    // Your desired magnification (e.g., 8x)
+    var scale = 32;
+            
+    // Calculate the exact canvas size
+    var canvasWidth = fieldWidth * scale;
+    var canvasHeight = fieldHeight * scale;
+
+    const canvas = document.getElementById('gameCanvas');
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasHeight + 'px';
+                
+    // Force pixel-perfect rendering
+    canvas.style.imageRendering = 'pixelated';
+    canvas.style.imageRendering = 'crisp-edges';
+    */
+
     if (levelName) {
       onLevelLoaded(levelName);
     }
