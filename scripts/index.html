@@ -199,11 +199,11 @@ body { padding: 0; margin: 0; }
 </div>
 
 <div class="controls left middle">
-  <button class="btn btnFn btn-prev" id="undo" title="prev (press [ )"></button>
+  <button class="btn btnFn btn-prev" id="prevLevel" title="prev"></button>
 </div>
 
 <div class="controls right middle">
-  <button class="btn btnFn btn-next" id="redo" title="next (press ] )"></button>
+  <button class="btn btnFn btn-next" id="nextLevel" title="next"></button>
 </div>
 
 <div class="container">
@@ -211,9 +211,13 @@ body { padding: 0; margin: 0; }
   <canvas id="gameCanvas"></canvas>
   <div class="footer">
 
+  <button class="btn btnFn" id="undo" title="prev">[</button>
+
     <span id="moves">
       <span id="moves-before"></span>[<span id="moves-at"></span>]<span id="moves-after"></span>
     </span>
+
+  <button class="btn btnFn" id="redo" title="prev">]</button>
 
   </div>
 </div>
