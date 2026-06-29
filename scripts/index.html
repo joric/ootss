@@ -85,7 +85,6 @@ body { padding: 0; margin: 0; }
 .controls {
   position: absolute;
   padding: 16px;
-  max-width: 200px;
 }
 
 .btn {
@@ -168,9 +167,10 @@ body { padding: 0; margin: 0; }
 
 <div class="controls top left">
   <button class="btn btnFn" id="firstLevel" title="first">1</button>
-  <button class="btn btnFn" id="nextLevel" title="next">2</button>
-  <button class="btn btnFn" id="lastLevel" title="last">3</button>
-
+  <button class="btn btnFn" id="prevLevel" title="prev">2</button>
+  <button class="btn btnFn" id="nextLevel" title="last">3</button>
+  <button class="btn btnFn" id="lastLevel" title="last">4</button>
+  <br>
   <button class="btn btnFn" id="solve" title="solve">E</button>
   <button class="btn btnFn" id="reset" title="reset">R</button>
 </div>
@@ -616,8 +616,9 @@ window.onload = () => {
 
 
         case 'Digit1': firstLevel(); break;
-        case 'Digit2': nextLevel(); break;
-        case 'Digit3': lastLevel(); break;
+        case 'Digit2': prevLevel(); break;
+        case 'Digit3': nextLevel(); break;
+        case 'Digit4': lastLevel(); break;
           
         default:
           break;
