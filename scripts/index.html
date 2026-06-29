@@ -324,14 +324,14 @@ function undo() {
   if (pos > 0) {
     pos--;
   }
-  showSolution();
+  updateSolution();
 }
 
 function prevMove() {
   undo();
 }
 
-function showSolution() {
+function updateSolution() {
   let solution = (convertSolution(solutions[name]||'')).toUpperCase();
 
   let at = solution[pos] || ' ';
@@ -351,7 +351,7 @@ function showSolution() {
 }
 
 function playSolution() {
-  showSolution();
+  updateSolution();
   if (!timer) {
     timer = setInterval(sendNextMove, playDelay);
     //document.getElementById('play').textContent = 'Pause (E)';
@@ -359,7 +359,7 @@ function playSolution() {
 }
 
 function pauseSolution() {
-  showSolution();
+  updateSolution();
   if (timer) {
     clearInterval(timer);
     timer = null;
@@ -531,7 +531,7 @@ function sendMove(code) {
   const canvas = document.getElementById('gameCanvas');
   canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
 
-  showSolution();
+  updateSolution();
 
   dispatchFakeKey('keydown', code);
   dispatchFakeKey('keyup', code);
@@ -560,7 +560,7 @@ function sendNextMove() {
     pauseSolution();
   }
 
-  showSolution();
+  updateSolution();
 }
 
 window.onload = () => {
@@ -610,8 +610,8 @@ window.onload = () => {
         case 'KeyA': case 'ArrowLeft':
         case 'KeyS': case 'ArrowDown':
         case 'KeyD': case 'ArrowRight':
-          pos+=1;
-          showSolution();
+          //pos+=1;
+          updateSolution();
         break;
 
 
