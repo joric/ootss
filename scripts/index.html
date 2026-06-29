@@ -109,13 +109,11 @@ body { padding: 0; margin: 0; }
 .middle {top: 50%; transform: translateY(-25%); }
 .center {left: 50%; transform: translateX(-50%); }
 .top { top: 0; }
-.right { right: 0; }
+.right { right: 0; text-align: right; }
 .left { left: 0; }
 .bottom { bottom: 0; }
 
 .pr { right: 60px }
-
-
 
 
 
@@ -153,15 +151,6 @@ body { padding: 0; margin: 0; }
 }
 
 
-
-
-
-
-
-
-
-
-
 </style>
 
 <body>
@@ -179,13 +168,11 @@ body { padding: 0; margin: 0; }
   <button class="btn btnFn" id="redo" title="]">]</button>
 </div>
 
-<div class="controls top right pr hidden">
+<div class="controls top right pr">
   <select id="levelSelect" onchange="loadLevel(this.value)"></select>
-</div>
-
-<div class="controls top right hidden">
+  <br>
+  <br>
   <button class="btn btnFn" id="pin" title="pin">&#x1F4CC;</button>
-  <button class="btn btnFn" id="close" title="close">&#x2716;</button>
 </div>
 
 <div class="controls bottom left">
@@ -204,6 +191,11 @@ body { padding: 0; margin: 0; }
   </div>
 </div>
 
+<div class="controls top right hidden">
+  <button class="btn btnFn" id="pin" title="pin">&#x1F4CC;</button>
+  <button class="btn btnFn" id="close" title="close">&#x2716;</button>
+</div>
+
 <div class="controls left middle">
   <button class="btn btnFn btn-prev" id="prevLevel" title="prev"></button>
 </div>
@@ -211,12 +203,6 @@ body { padding: 0; margin: 0; }
 <div class="controls right middle">
   <button class="btn btnFn btn-next" id="nextLevel" title="next"></button>
 </div>
-
-<div class="controls right top pr">
-  <button class="btn btnFn" id="pin" title="pin">&#x1F4CC;</button>
-  <!--button class="btn btnFn" id="close" title="close"> &#10006;</button-->
-</div>
-
 
 <div class="container">
   <div class="header"><span id="title"></span></div>
