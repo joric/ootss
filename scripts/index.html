@@ -328,7 +328,10 @@ function undo() {
 }
 
 function prevMove() {
-  undo();
+  if (pos > 0) {
+    pos--;
+  }
+  updateSolution();
 }
 
 function updateSolution() {
