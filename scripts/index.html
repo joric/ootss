@@ -477,6 +477,10 @@ function monitorLevelUpdate() {
 
 function loadLevel(levelName) {
   let levelNumber = levelNames.indexOf(levelName);
+  if (levelNumber==-1) {
+    levelNumber = 0;
+    levelName = levelNames[levelNumber];
+  }
   console.log('Loading level', levelNumber, levelName);
   puzzleScript.puzzleScript.compile(['loadLevel', levelNumber], cleanedData);
   name = levelName;
