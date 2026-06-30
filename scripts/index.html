@@ -333,10 +333,14 @@ function undo() {
 }
 
 function prevMove() {
+/*
   if (pos > 0) {
     pos--;
   }
   updateSolution();
+*/
+  // just use undo here, too confusing
+  undo();
 }
 
 function updateSolution() {
