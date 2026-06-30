@@ -680,97 +680,83 @@ Static = Wall or ClosedDoor or Bush
 Weighing = Crate or Hero or Monster or Wall or Bush or FrozenMonster
 Vulnerable = Hero or Monster
 Invulnerable = Crate or Static
+WaterAnim = WaterAnim1 or WaterAnim2
+Background = HeroBackground
 
 (mirror defines)
 
 Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
 Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09
 DirectionCounter = North or South or East or West
-
 MirrorCrate = NormalCrate or ReflectableCrate
-
 Pushable = Mirror or MirrorCrate
-
 Solid = MirrorCrate or Mirror or Hero or Wall
-
 Reflectable = MirrorGuy or ReflectableCrate
+WaterHere = Hole or CrateInHole or FloatingBody
+AddLandL = AddLandLUD or AddLandLU or AddLandLD
+AddLandR = AddLandRUD or AddLandRU or AddLandRD
+RemoveLandL = RemoveLandLUD or RemoveLandLU or RemoveLandLD
+RemoveLandR = RemoveLandRUD or RemoveLandRU or RemoveLandRD
 
+(single letter defines for levels)
+
+. = Background
+# = Wall
+_ = Hole and WaterAnim1
+* = Crate
 / = MirrorUL
 \ = MirrorUR
 ` = MirrorDL
 ' = MirrorDR
+& = YellowSwitch and Fighter (heroes3_5)
+$ = YellowSwitch and SBard    (heroes3_5)
+@ = Bush
+~ = NormalCrate
+! = ReflectableCrate
+[ = YellowDoor
+] = PurpleDoor
+{ = YellowSwitch
+} = PurpleSwitch
 
-WaterHere = Hole or CrateInHole or FloatingBody
+(% + , - : ; = ? ^ |)
 
-AddLandL = AddLandLUD or AddLandLU or AddLandLD
-AddLandR = AddLandRUD or AddLandRU or AddLandRD
-
-RemoveLandL = RemoveLandLUD or RemoveLandLU or RemoveLandLD
-RemoveLandR = RemoveLandRUD or RemoveLandRU or RemoveLandRD
-
-(---)
-
-Background = HeroBackground
-
-. = Background
-# = Wall
-F = Fighter
-W = Wizard
-T = Thief
-P = Priest
-B = Bard
-I = Druid
 1 = SFighter
 2 = SThief
 3 = SWizard
 4 = SPriest
 5 = SBard
 6 = SDruid
+7 = Goal and Thief (heroes1_18)
+8 = Goal and SWizard (heroes1_18)
+9 = PurpleSwitch and Goblin (heroes2_10.5)
+0 = YellowSwitch and Goblin (one_fire_v2)
 
-@ = Bush
-
-7 = Goal and Thief
-8 = Goal and SWizard
-9 = PurpleSwitch and Goblin
-0 = YellowSwitch and Goblin
-Q = Goal and MonsterDoor
-Z = Goal and SFighter
-E = Goal and Fighter
-
-
-Y = YellowSwitch and Bard
-
-& = YellowSwitch and Fighter (heroes3_5)
-$ = YellowSwitch and SBard    (heroes3_5)
-
-L = DragonLeft
-R = DragonRight
-U = DragonUp
-D = DragonDown
-
-* = Crate
-~ = NormalCrate
-! = ReflectableCrate
-G = Goal
-[ = YellowDoor
-] = PurpleDoor
-{ = YellowSwitch
-} = PurpleSwitch
-O = Goblin
-M = MonsterDoor
-
+(A =)
+B = Bard
 C = PurpleOpen
+D = DragonDown
+E = Goal and Fighter (easy_situation_v2)
+F = Fighter
+G = Goal
 H = BlueDoor
+I = Druid
 J = BlueOpen
 K = BlueSwitch
-
-
-WaterAnim = WaterAnim1 or WaterAnim2
-_ = Hole and WaterAnim1
-
-
+L = DragonLeft
+M = MonsterDoor
+(N =)
+O = Goblin
+P = Priest
+Q = Goal and MonsterDoor (mosh_pit_small)
+R = DragonRight
+(S =)
+T = Thief
+U = DragonUp
+(V =)
+W = Wizard
 X = MirrorGuy
-
+Y = YellowSwitch and Bard (heroes3_2_v4)
+(Z =)
 
 =======
 SOUNDS
