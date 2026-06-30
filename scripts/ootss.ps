@@ -474,6 +474,31 @@ Blue #AA7722
 10001
 01010
 
+GreenSwitch
+Green Black
+.....
+.111.
+.101.
+.111.
+.....
+
+GreenOpen
+Green
+0...0
+.....
+.....
+.....
+0...0
+
+GreenDoor
+Green #AA7722
+01010
+10001
+00000
+10001
+01010
+
+
 MonsterDoor
 transparent #222222 Red
 21002
@@ -670,9 +695,9 @@ Player = Fighter or Wizard or Thief or Priest or Bard or Druid or MirrorGuy
 SPlayer = Swizard or Sthief or SFighter or SPriest or SBard or SDruid
 Hero = Player or Splayer
 Healer = Priest or SPriest (Unlike the other heroes, priests must function even when inactive. "Healer" is the generic term for an active or inactive priest.)
-ClosedDoor = PurpleDoor or YellowDoor or BlueDoor or MonsterDoor
-OpenDoor = YellowOpen or PurpleOpen or BlueOpen
-Switch = PurpleSwitch or YellowSwitch or BlueSwitch
+ClosedDoor = PurpleDoor or YellowDoor or BlueDoor or GreenDoor or MonsterDoor
+OpenDoor = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
+Switch = PurpleSwitch or YellowSwitch or BlueSwitch or GreenSwitch
 Monster =  Dragon or Goblin
 FrozenMonster = FrozenGoblin or FrozenDragonUp or FrozenDragonLeft or FrozenDragonRight or FrozenDragonDown
 Moveable = Crate or SPlayer or Monster or FrozenMonster
@@ -708,17 +733,31 @@ _ = Hole and WaterAnim1
 \ = MirrorUR
 ` = MirrorDL
 ' = MirrorDR
-& = YellowSwitch and Fighter (heroes3_5)
-$ = YellowSwitch and SBard    (heroes3_5)
 @ = Bush
 ~ = NormalCrate
 ! = ReflectableCrate
-[ = YellowDoor
-] = PurpleDoor
-{ = YellowSwitch
-} = PurpleSwitch
 
-(% + , - : ; = ? ^ < > |)
+(open doors are used in dipping_your_toes_in and dont_push_the_button)
+
+[ = YellowDoor
+{ = YellowSwitch
+& = YellowOpen
+
+] = PurpleDoor
+} = PurpleSwitch
+? = PurpleOpen
+
+; = BlueDoor
+, = BlueSwitch
+: = BlueOpen
+
+% = GreenDoor
++ = GreenSwitch
+- = GreenOpen
+
+($ = )
+
+(no more characters left - |,<>,[] - give warnings)
 
 (S-prefixed defines mean currently inactive characters to switch to)
 
@@ -733,32 +772,32 @@ $ = YellowSwitch and SBard    (heroes3_5)
 9 = PurpleSwitch and Goblin (heroes2_10.5)
 0 = YellowSwitch and Goblin (one_fire_v2)
 
-(A =)
+(A = )
 B = Bard
-C = PurpleOpen
+(C = PurpleOpen, now ?)
 D = DragonDown
 E = Goal and Fighter (easy_situation_v2)
 F = Fighter
 G = Goal
-H = BlueDoor
+(H = BlueDoor, now ; )
 I = Druid
-J = BlueOpen
-K = BlueSwitch
+J = YellowSwitch and SBard    (heroes3_5)
+K = YellowSwitch and Fighter (heroes3_5)
 L = DragonLeft
 M = MonsterDoor
-(N =)
+(N = )
 O = Goblin
 P = Priest
 Q = Goal and MonsterDoor (mosh_pit_small)
 R = DragonRight
-(S =)
+(S = )
 T = Thief
 U = DragonUp
-(V = better used with ^ < > v as a directional entity)
+(V = better used with ^ < > v as a directional entity, though warnings)
 W = Wizard
 X = MirrorGuy
 Y = YellowSwitch and Bard (heroes3_2_v4)
-(Z =)
+Z = BlueSwitch and DragonLeft (detonator)
 
 =======
 SOUNDS
@@ -1104,10 +1143,12 @@ Late [Dying Hero] -> [Corpse Sfx6]
 
 (Doors opening.)
 
+(
 late [Weighing  YellowSwitch] [YellowDoor] -> [Weighing  YellowSwitch] [ShadowDoor]
 late [YellowSwitch no Weighing] [YellowOpen] -> [YellowSwitch] [YellowDoor Sfx2]
 late [YellowSwitch no Weighing] [ShadowDoor] -> [YellowSwitch] [YellowDoor]
 late [ShadowDoor] -> [YellowOpen Sfx3]
+)
 
 (
 late [Weighing PurpleSwitch] [PurpleDoor] -> [Weighing PurpleSwitch] [ShadowDoor]
@@ -1115,6 +1156,13 @@ late [PurpleSwitch no Weighing] [PurpleOpen] -> [PurpleSwitch] [PurpleDoor Sfx2]
 late [PurpleSwitch no Weighing] [ShadowDoor] -> [PurpleSwitch] [PurpleDoor]
 late [ShadowDoor] -> [PurpleOpen Sfx3]
 )
+
+late [YellowDoor no DoorMarker no InvDoorMarker] -> [YellowDoor DoorMarker]
+late [YellowOpen no DoorMarker no InvDoorMarker] -> [YellowOpen InvDoorMarker]
+late [Weighing YellowSwitch] [YellowDoor DoorMarker] -> [Weighing YellowSwitch] [YellowOpen DoorMarker] Sfx3
+late [YellowSwitch no Weighing] [YellowOpen DoorMarker] -> [YellowSwitch] [YellowDoor DoorMarker] Sfx2
+late [Weighing YellowSwitch] [YellowOpen InvDoorMarker] -> [Weighing YellowSwitch] [YellowDoor InvDoorMarker] Sfx2
+late [YellowSwitch no Weighing] [YellowDoor InvDoorMarker] -> [YellowSwitch] [YellowOpen InvDoorMarker] Sfx3
 
 
 late [BlueDoor no DoorMarker no InvDoorMarker] -> [BlueDoor DoorMarker]
@@ -1131,6 +1179,15 @@ late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] 
 late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker] Sfx2
 late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] Sfx2
 late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] Sfx3
+
+
+late [GreenDoor no DoorMarker no InvDoorMarker] -> [GreenDoor DoorMarker]
+late [GreenOpen no DoorMarker no InvDoorMarker] -> [GreenOpen InvDoorMarker]
+late [Weighing GreenSwitch] [GreenDoor DoorMarker] -> [Weighing GreenSwitch] [GreenOpen DoorMarker] Sfx3
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker] -> [GreenSwitch] [GreenDoor DoorMarker] Sfx2
+late [Weighing GreenSwitch] [GreenOpen InvDoorMarker] -> [Weighing GreenSwitch] [GreenDoor InvDoorMarker] Sfx2
+late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [GreenOpen InvDoorMarker] Sfx3
+
 
 late [MonsterDoor] -> [ShadowDoor]
 late [ShadowDoor] [Monster] -> [MonsterDoor] [Monster]
@@ -2417,9 +2474,9 @@ _____________________
 (level heroes3_5)
 
 ############
-#.O..&...#G#
+#.O..J...#G#
 #........[.#
-#.O..$...#G#
+#.O..K...#G#
 ############
 
 
@@ -2449,11 +2506,11 @@ __________________________
 
 ____________________
 ___###.###__##______
-___###....K__#_##___
+___###....,__#_##___
 _#####._.....#______
-_#..CH.*.....__...__
-_#.*CH.._._..J]G.#__
-_#..CH...__..J]..#__
+_#..?;.*.....__...__
+_#.*?;.._._..:]G.#__
+_#..?;...__..:]..#__
 _#####...F__.#####__
 _#####..}....#####__
 _____###__####______
@@ -2499,9 +2556,9 @@ _________
 _T.3_G.G_
 _.}._..._
 _..._..._
-_[[[_HHH_
+_[[[_;;;_
 _...]..._
-_.K.].{._
+_.,.].{._
 _*..]..._
 _________
 
@@ -2509,11 +2566,12 @@ _________
 (level quadrants_follow_up)
 
 (TODO needs 2 thiefs, needs crates sinkable in doors)
+
 ____________________
-_....._..K..__....._
-_..T..].....HH..G.*_
-_}....].....HH....._
-_..2..].....HH..G.*_
+_....._..,..__....._
+_..T..].....;;..G.*_
+_}....].....;;....._
+_..2..].....;;..G.*_
 _....._.....__....._
 ____________________
 
@@ -2563,15 +2621,15 @@ ____...........____
 
 (level dont_push_the_button)
 
-(TODO: green doors)
+(TODO: level 0 doors)
 
 ___________________
 _..___________..___
 _.*__.......__.._._
-_..__._..._..jj._g_
-_......}k{_..cc._._
-_.._f.._...k.[[._._
-_..__...._...jj._._
+_..__._..._..--._g_
+_......},{_..??._._
+_.._f.._...+.&&._._
+_..__...._...::._._
 _.*__.......__.._._
 _..___________l.___
 ___________________
@@ -2579,24 +2637,21 @@ ___________________
 
 (level detonator)
 
-(TODO: green doors)
-
 _______________________
 _.....___....._________
 _.....___.*..._________
-_..k..jjj....._________
+_..+..:::....._________
 _.....___....f_________
 _..2..___....._________
-___________j___________
-___________j___________
-___________j___________
+___________%___________
+___________%___________
+___________%___________
 _________.....___....._
 _________.....___....._
-_________..l..jjj.g.g._
+_________..z..---.g.g._
 _________.....___....._
 _________.....___..d.._
 _______________________
-
 
 
 (level a_wiz_out_of_water)

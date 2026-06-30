@@ -8,6 +8,7 @@ RIGHT := "d"
 PRIMARY_ACTION := "x"
 SWITCH_CHARACTERS := "c"
 SECONDARY_ACTION := "v"
+UNDO := "z"
 
 ; Record/play codes
 CODE_UP := "U"
@@ -415,11 +416,71 @@ RecordSolution(*) {
     }
 }
 
+global stepIndex := 0
+global stepSequence := ""
+global stepActive := false
+
+StartStepPlayback() {
+    global stepIndex, stepSequence, stepActive, solMap, solIndex, solNames, ddl
+    name := GetActiveLevelName()
+    if (name = "") {
+        ToolTip("No level selected")
+        SetTimer(() => ToolTip(), -1200)
+        return
+    }
+    stepSequence := Decode(solMap[name])
+    if (stepSequence = "") {
+        ToolTip("No solution recorded")
+        SetTimer(() => ToolTip(), -1200)
+        return
+    }
+    stepIndex := 0
+    stepActive := true
+    WinActivate("ahk_exe sinking_star.exe")
+    ToolTip("Step mode: Press ] for next move")
+    SetTimer(() => ToolTip(), -1500)
+}
+
+StepNextMove() {
+    global stepIndex, stepSequence, stepActive
+    if !stepActive {
+        StartStepPlayback()
+        return
+    }
+    if (stepIndex >= StrLen(stepSequence)) {
+        ToolTip("End of solution!")
+        SetTimer(() => ToolTip(), -1200)
+        stepActive := false
+        return
+    }
+    stepIndex++
+    SendCode(SubStr(stepSequence, stepIndex, 1))
+    ToolTip("Move " stepIndex "/" StrLen(stepSequence))
+    SetTimer(() => ToolTip(), -800)
+}
+
+
+RewindSteps() {
+    global stepIndex, stepActive, stepSequence
+    if stepActive {
+        stepIndex := 0
+        ToolTip("Rewound to start (0/" StrLen(stepSequence) ")")
+        SetTimer(() => ToolTip(), -1200)
+    } else {
+        ToolTip("No step mode active")
+        SetTimer(() => ToolTip(), -800)
+    }
+}
+
 ; ---------- Hotkeys ----------
 ^!e:: OpenGui()           ; Ctrl+Alt+E: Open GUI
 ^+e:: PlayCurrent(true)   ; Ctrl+Shift+E: Play + select next level
 !e::  PlayCurrent(false)  ; Alt+ E: Play only
 ^e::  RecordSolution()    ; Ctrl+E: record solution
+
+~![::Send(UNDO)           ; Alt + [: undo
+~!]::StepNextMove()       ; Alt + ]: step forward
+~r::RewindSteps()         ; R: rewind steps
 
 ~Esc:: {
     global stopFlag
