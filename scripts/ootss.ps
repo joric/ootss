@@ -1013,6 +1013,77 @@ endloop
 [ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ] message Oh the crates can reflect now. That is cool and totally not arbitrary
 
 
+(TODO long reflections with dimming, commented out for now, need to account for 2 mirrors)
+
+(
+startloop
+random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
++ [ Reflectable North ] -> [ action Reflectable East right 00 ]
++ [ Reflectable East ] -> [ action Reflectable South up 00 ]
++ [ Reflectable South ] -> [ action Reflectable West down 00 ]
+
+[ > 00 | no Solid ] -> [ | > 01 LOS ]
+[ > 01 | no Solid ] -> [ | > 02 LOS ]
+[ > 02 | no Solid ] -> [ | > 03 LOS ]
+[ > 03 | no Solid ] -> [ | > 04 LOS ]
+[ > 04 | no Solid ] -> [ | > 05 LOS ]
+[ > 05 | no Solid ] -> [ | > 06 LOS ]
+[ > 06 | no Solid ] -> [ | > 07 LOS ]
+[ > 07 | no Solid ] -> [ | > 08 LOS ]
+[ > 08 | no Solid ] -> [ | > 09 LOS ]
+[ > 09 | no Solid ] -> [ | > 10 LOS ]
+[ > 10 | no Solid ] -> [ | > 11 LOS ]
+[ > 11 | no Solid ] -> [ | > 12 LOS ]
+[ > 12 | no Solid ] -> [ | > 13 LOS ]
+[ > 13 | no Solid ] -> [ | > 14 LOS ]
+[ > 14 | no Solid ] -> [ | > 15 LOS ]
+[ > 15 | no Solid ] -> [ | > 16 LOS ]
+[ > 16 | no Solid ] -> [ | > 17 LOS ]
+[ > 17 | no Solid ] -> [ | > 18 LOS ]
+[ > 18 | no Solid ] -> [ | > 19 LOS ]
+
+left [ > Counter | MirrorUR ] -> [ | MirrorUR up Counter ]
++ left [ > Counter | MirrorDR ] -> [ | MirrorDR down Counter ]
++ right [ > Counter | MirrorUL ] -> [ | MirrorUL up Counter ]
++ right [ > Counter | MirrorDL ] -> [ | MirrorDL down Counter ]
++ up [ > Counter | MirrorDL ] -> [ | MirrorDL left Counter ]
++ up [ > Counter | MirrorDR ] -> [ | MirrorDR right Counter ]
++ down [ > Counter | MirrorUL ] -> [ | MirrorUL left Counter ]
++ down [ > Counter | MirrorUR ] -> [ | MirrorUR right Counter ]
+
++ [ > 19 | no Solid ] -> [ | > 18 LOS ]
++ [ > 18 | no Solid ] -> [ | > 17 LOS ]
++ [ > 17 | no Solid ] -> [ | > 16 LOS ]
++ [ > 16 | no Solid ] -> [ | > 15 LOS ]
++ [ > 15 | no Solid ] -> [ | > 14 LOS ]
++ [ > 14 | no Solid ] -> [ | > 13 LOS ]
++ [ > 13 | no Solid ] -> [ | > 12 LOS ]
++ [ > 12 | no Solid ] -> [ | > 11 LOS ]
++ [ > 11 | no Solid ] -> [ | > 10 LOS ]
++ [ > 10 | no Solid ] -> [ | > 09 LOS ]
++ [ > 09 | no Solid ] -> [ | > 08 LOS ]
++ [ > 08 | no Solid ] -> [ | > 07 LOS ]
++ [ > 07 | no Solid ] -> [ | > 06 LOS ]
++ [ > 06 | no Solid ] -> [ | > 05 LOS ]
++ [ > 05 | no Solid ] -> [ | > 04 LOS ]
++ [ > 04 | no Solid ] -> [ | > 03 LOS ]
++ [ > 03 | no Solid ] -> [ | > 02 LOS ]
++ [ > 02 | no Solid ] -> [ | > 01 LOS ]
+
+[ > 01 | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
+[ > 01 | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
+
+[ Counter ] -> []
+[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
+[ LOS ] -> [ action LOS ]
+[ action Reflectable ] -> [ Reflectable ]
+endloop
+[ DirectionCounter ] -> []
+[ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ])
+
+)
+
+
 (hero rules)
 
 ([Saved] [Goal] -> [] [HasSavedDoor]) (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
