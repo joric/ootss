@@ -421,6 +421,8 @@ function updateTitle(name) {
   updateState('#firstLevel', i!=0);
   updateState('#lastLevel', i!=n-1);
 
+  document.title = `Solution Player - ${name}`;
+
   // need to update that in moves
   //let solution = convertSolution(solutions[name]||'');
   //updateState('#prevMove', pos!=0);
