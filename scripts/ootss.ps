@@ -13,6 +13,9 @@ OBJECTS
 Teleported
 transparent
 
+Switched
+transparent
+
 MirrorBackground
 #dfcc4f yellow
 11111
@@ -849,6 +852,7 @@ Hole
 WaterAnim
 CrateInHole
 Warpball, Dying
+Switched
 Switch, OpenDoor, ShadowDoor, HasSavedDoor
 Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
 Saved
@@ -872,7 +876,6 @@ Reflection, CantMove, CrateReflection
 ======
 RULES
 ======
-
 (mirror rules)
 
 [ > MirrorGuy ] [ Hint ] -> [ > MirrorGuy ] [ action Hint ]
@@ -1170,8 +1173,10 @@ endloop
 [WarpBall] -> Cancel
 [Note] -> []
 
+
 (The following mess is for changing characters. But at least it's less messy than before. Thanks to Stephen for spotting my silly redundancies.)
-[ Action Fighter] [SThief] -> [SFighter] [Thief Sfx1]
+
+[ Action Fighter] [SThief] -> [SFighter Switched] [Thief Sfx1]
 [ Action Thief] [SWizard] -> [SThief] [Wizard Sfx1]
 [ Action Wizard] [SPriest] -> [SWizard] [Priest Sfx1]
 [ Action Priest] [SBard] -> [SPriest] [Bard Sfx1]
@@ -1200,15 +1205,13 @@ endloop
 [ Action Druid] [SPriest] -> [SDruid] [Priest Sfx1]
 
 [ Action Fighter] [SDruid] -> [SFighter] [Druid Sfx1]
-[ Action Thief] [SFighter] -> [SThief] [Fighter Sfx1]
+[ Action Thief] [SFighter] -> [SThief Switched] [Fighter Sfx1]
 [ Action Wizard] [SThief] -> [SWizard] [Thief Sfx1]
 [ Action Priest] [SWizard] -> [SPriest] [Wizard Sfx1]
 [ Action Bard] [SPriest] -> [SBard] [Priest Sfx1]
 [ Action Druid] [SBard] -> [SDruid] [Bard Sfx1]
 
-
 [ Action Thief] [SThief] -> [SThief] [Thief Sfx1] (quadrants_follow_up)
-
 
 (Bard plays music. This is my favorite part of the code, btw. Yes, you can make square area effects with just one object!)
 [no Note | no Note | Bard] -> [^ Note | ^ Note | Bard]
@@ -1223,7 +1226,10 @@ Late [Goblin | Vulnerable] -> [Goblin | Dying Vulnerable]
 
 (Custom block about dragons and holes)
 
-Late [DragonLeft] -> [LFireball DragonLeft]
+[ Switched ] [ DragonLeft ]  -> [ Switched ] [ DragonLeft Switched ]
+
+Late [DragonLeft no Switched ] -> [LFireball DragonLeft]
+
 Late [DragonRight] -> [RFireball DragonRight]
 Late RIGHT [RFireball | No Vulnerable no Invulnerable] -> [ | RFireball]
 Late LEFT [LFireball | No Vulnerable no Invulnerable] -> [ | LFireball]
@@ -1297,9 +1303,10 @@ late [WarpBall] -> []
 
 late [Note no Moveable] -> []
 
-
 late [Saved no Hero] -> [] (NB! removes cross from non-hero cells. re-check if truly works)
 
+
+late [Switched] -> []
 
 ==============
 WINCONDITIONS
@@ -2291,8 +2298,6 @@ _____________________
 
 
 (level one_fire_v2)
-
-(TODO do not kill goblin on character switching)
 
 ############
 #GG..#}..*##
