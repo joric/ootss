@@ -695,12 +695,12 @@ Player = Fighter or Wizard or Thief or Priest or Bard or Druid or MirrorGuy
 SPlayer = Swizard or Sthief or SFighter or SPriest or SBard or SDruid
 Hero = Player or Splayer
 Healer = Priest or SPriest (Unlike the other heroes, priests must function even when inactive. "Healer" is the generic term for an active or inactive priest.)
-ClosedDoor = PurpleDoor or YellowDoor or BlueDoor or GreenDoor or MonsterDoor
-OpenDoor = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
-Switch = PurpleSwitch or YellowSwitch or BlueSwitch or GreenSwitch
 Monster =  Dragon or Goblin
 FrozenMonster = FrozenGoblin or FrozenDragonUp or FrozenDragonLeft or FrozenDragonRight or FrozenDragonDown
 Moveable = Crate or SPlayer or Monster or FrozenMonster
+ClosedDoor = PurpleDoor or YellowDoor or BlueDoor or GreenDoor or MonsterDoor
+OpenDoor = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
+Switch = PurpleSwitch or YellowSwitch or BlueSwitch or GreenSwitch
 Static = Wall or ClosedDoor or Bush
 Weighing = Crate or Hero or Monster or Wall or Bush or FrozenMonster
 Vulnerable = Hero or Monster
@@ -722,6 +722,11 @@ AddLandL = AddLandLUD or AddLandLU or AddLandLD
 AddLandR = AddLandRUD or AddLandRU or AddLandRD
 RemoveLandL = RemoveLandLUD or RemoveLandLU or RemoveLandLD
 RemoveLandR = RemoveLandRUD or RemoveLandRU or RemoveLandRD
+
+ColorDoor   = YellowDoor   or BlueDoor   or PurpleDoor   or GreenDoor
+ColorOpen   = YellowOpen   or BlueOpen   or PurpleOpen   or GreenOpen
+ColorSwitch = YellowSwitch or BlueSwitch or PurpleSwitch or GreenSwitch
+
 
 (single letter defines for levels)
 
@@ -1143,51 +1148,30 @@ Late [Dying Hero] -> [Corpse Sfx6]
 
 (Doors opening.)
 
-(
-late [Weighing  YellowSwitch] [YellowDoor] -> [Weighing  YellowSwitch] [ShadowDoor]
-late [YellowSwitch no Weighing] [YellowOpen] -> [YellowSwitch] [YellowDoor Sfx2]
-late [YellowSwitch no Weighing] [ShadowDoor] -> [YellowSwitch] [YellowDoor]
-late [ShadowDoor] -> [YellowOpen Sfx3]
-)
+late [ColorDoor no DoorMarker no InvDoorMarker] -> [ColorDoor DoorMarker]
+late [ColorOpen no DoorMarker no InvDoorMarker] -> [ColorOpen InvDoorMarker]
 
-(
-late [Weighing PurpleSwitch] [PurpleDoor] -> [Weighing PurpleSwitch] [ShadowDoor]
-late [PurpleSwitch no Weighing] [PurpleOpen] -> [PurpleSwitch] [PurpleDoor Sfx2]
-late [PurpleSwitch no Weighing] [ShadowDoor] -> [PurpleSwitch] [PurpleDoor]
-late [ShadowDoor] -> [PurpleOpen Sfx3]
-)
-
-late [YellowDoor no DoorMarker no InvDoorMarker] -> [YellowDoor DoorMarker]
-late [YellowOpen no DoorMarker no InvDoorMarker] -> [YellowOpen InvDoorMarker]
 late [Weighing YellowSwitch] [YellowDoor DoorMarker] -> [Weighing YellowSwitch] [YellowOpen DoorMarker] Sfx3
 late [YellowSwitch no Weighing] [YellowOpen DoorMarker] -> [YellowSwitch] [YellowDoor DoorMarker] Sfx2
 late [Weighing YellowSwitch] [YellowOpen InvDoorMarker] -> [Weighing YellowSwitch] [YellowDoor InvDoorMarker] Sfx2
 late [YellowSwitch no Weighing] [YellowDoor InvDoorMarker] -> [YellowSwitch] [YellowOpen InvDoorMarker] Sfx3
 
-
-late [BlueDoor no DoorMarker no InvDoorMarker] -> [BlueDoor DoorMarker]
-late [BlueOpen no DoorMarker no InvDoorMarker] -> [BlueOpen InvDoorMarker]
 late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker] Sfx3
 late [BlueSwitch no Weighing] [BlueOpen DoorMarker] -> [BlueSwitch] [BlueDoor DoorMarker] Sfx2
 late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker] Sfx2
 late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker] Sfx3
 
-
-late [PurpleDoor no DoorMarker no InvDoorMarker] -> [PurpleDoor DoorMarker]
-late [PurpleOpen no DoorMarker no InvDoorMarker] -> [PurpleOpen InvDoorMarker]
 late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker] Sfx3
 late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker] Sfx2
 late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] Sfx2
 late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] Sfx3
 
-
-late [GreenDoor no DoorMarker no InvDoorMarker] -> [GreenDoor DoorMarker]
-late [GreenOpen no DoorMarker no InvDoorMarker] -> [GreenOpen InvDoorMarker]
 late [Weighing GreenSwitch] [GreenDoor DoorMarker] -> [Weighing GreenSwitch] [GreenOpen DoorMarker] Sfx3
 late [GreenSwitch no Weighing] [GreenOpen DoorMarker] -> [GreenSwitch] [GreenDoor DoorMarker] Sfx2
 late [Weighing GreenSwitch] [GreenOpen InvDoorMarker] -> [Weighing GreenSwitch] [GreenDoor InvDoorMarker] Sfx2
 late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [GreenOpen InvDoorMarker] Sfx3
 
+(monster door)
 
 late [MonsterDoor] -> [ShadowDoor]
 late [ShadowDoor] [Monster] -> [MonsterDoor] [Monster]

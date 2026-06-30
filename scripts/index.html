@@ -9,32 +9,42 @@
 
 <style>
 
-body { padding: 0; margin: 0; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 
 .container {
   width: 100%;
   height: 100vh;
   background: black;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   font-size: 32px;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
-
-#gameCanvas { width: 80%; height: 80%; display: block; }
 
 .header {
   width: 80%;
-  height: 10%;
+  height: 100px;
+  min-height: 100px;
+  max-height: 100px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 16px;
+  flex-shrink: 0;
 }
 
 #subtitle {
@@ -42,14 +52,25 @@ body { padding: 0; margin: 0; }
   font-size: 16px;
 }
 
+#gameCanvas {
+  flex: 1 1 auto;
+  width: 80%;
+  display: block;
+  background: #1a1a1a;
+  min-height: 0;
+}
+
 .footer {
   width: 50%;
-  height: 10%;
+  height: 100px;
+  min-height: 100px;
+  max-height: 100px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   color: #888;
   padding: 16px;
+  flex-shrink: 0;
 }
 
 
@@ -219,8 +240,12 @@ body { padding: 0; margin: 0; }
 </div>
 
 <div class="container">
+
   <div class="header"><div id="title"></div><div id="subtitle"></div></div>
+
   <canvas id="gameCanvas"></canvas>
+
+
   <div class="footer">
     <button class="btn btnFn" id="reset" title="reset">R</button>
     <button class="btn btnFn" id="prevMove" title="prev">[</button>
@@ -719,11 +744,11 @@ window.onload = () => {
       levelName = location.hash.slice(1);
     }
 
-    loadLevel(levelName);
-
     // send mute
     dispatchFakeKey('keydown', 77); // 77 = 'M'
     dispatchFakeKey('keyup', 77);
+
+    loadLevel(levelName);
 
   });
 
