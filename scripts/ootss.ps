@@ -10,6 +10,9 @@ OBJECTS
 
 (mirror isles stuff)
 
+Teleported
+transparent
+
 MirrorBackground
 #dfcc4f yellow
 11111
@@ -856,6 +859,7 @@ Note
 (mirror layers)
 Target, FloatingBody
 HasReflection, Hint
+Teleported
 AddLandL, RemoveLandL
 AddLandR, RemoveLandR
 LOS
@@ -915,15 +919,31 @@ down [ RemoveLandRD | no WaterHere ] -> [ | ]
 [ CantMove ] [ action MirrorGuy ] -> [ CantMove ] [ MirrorGuy ] again
 
 (Swap places)
+
+(
 [ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection ] [ Reflection MirrorGuy ]
-
 [ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
-
 [ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy ] [ ReflectableCrate ] sfx2
-
 [ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy ] []
-
 [ action MirrorGuy HasReflection ] -> [ Reflection ]
+)
+
+[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection Teleported ] [ Reflection MirrorGuy ]
+[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
+[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy Teleported ] [ ReflectableCrate ] sfx2
+[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy Teleported ] []
+[ action MirrorGuy HasReflection ] -> [ Reflection ]
+
+(character switch only if NO teleport this tick)
+
+[ Action MirrorGuy no Teleported ] [ SWizard ] -> [ SMirrorGuy ] [ Wizard Sfx1 ]
+[ Action Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy Sfx1 ]
+
+[ Action MirrorGuy no Teleported ] [ SMirrorGuy ] -> [ SMirrorGuy ] [ MirrorGuy Sfx1 ]
+
+(cleanup)
+[ Teleported ] -> []
+
 
 (Clear state)
 
@@ -2562,7 +2582,7 @@ _###......._______________
 _###......._______________
 _##########____.__________
 _______________________.g_
-______________________!.._
+______________________*.._
 __________________________
 
 (level dipping_your_toes_in)
