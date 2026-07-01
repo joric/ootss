@@ -19,6 +19,9 @@ transparent
 WaterSeed
 transparent
 
+Basement
+blue
+
 RayU
 transparent
 
@@ -431,6 +434,30 @@ Orange #552200
 10001
 .111.
 
+YellowDoor
+transparent
+
+PurpleDoor
+transparent
+
+BlueDoor
+transparent
+
+GreenDoor
+transparent
+
+YellowOpen
+transparent
+
+BlueOpen
+transparent
+
+PurpleOpen
+transparent
+
+GreenOpen
+transparent
+
 YellowSwitch
 Yellow Black
 .....
@@ -439,7 +466,7 @@ Yellow Black
 .111.
 .....
 
-YellowOpen
+YellowOpenA
 Yellow
 0...0
 .....
@@ -447,8 +474,8 @@ Yellow
 .....
 0...0
 
-YellowDoor
-Yellow #AA7722
+YellowDoorA
+Yellow transparent
 01010
 10001
 00000
@@ -463,15 +490,7 @@ PurpleSwitch
 .111.
 .....
 
-PurpleDoor
-#E225C1 #220088
-01010
-10001
-00000
-10001
-01010
-
-PurpleOpen
+PurpleOpenA
 #E225C1
 0...0
 .....
@@ -479,6 +498,13 @@ PurpleOpen
 .....
 0...0
 
+PurpleDoorA
+#E225C1 transparent
+01010
+10001
+00000
+10001
+01010
 
 BlueSwitch
 Blue Black
@@ -488,7 +514,7 @@ Blue Black
 .111.
 .....
 
-BlueOpen
+BlueOpenA
 LightBlue
 0...0
 .....
@@ -496,8 +522,8 @@ LightBlue
 .....
 0...0
 
-BlueDoor
-LightBlue Blue
+BlueDoorA
+LightBlue transparent
 01010
 10001
 00000
@@ -512,7 +538,7 @@ Green Black
 .111.
 .....
 
-GreenOpen
+GreenOpenA
 Green
 0...0
 .....
@@ -520,14 +546,13 @@ Green
 .....
 0...0
 
-GreenDoor
-LightGreen Green
+GreenDoorA
+LightGreen transparent
 01010
 10001
 00000
 10001
 01010
-
 
 MonsterDoor
 transparent #222222 Red
@@ -728,7 +753,7 @@ Healer = Priest or SPriest (Unlike the other heroes, priests must function even 
 Monster =  Dragon or Goblin
 FrozenMonster = FrozenGoblin or FrozenDragonUp or FrozenDragonLeft or FrozenDragonRight or FrozenDragonDown
 Moveable = Crate or SPlayer or Monster or FrozenMonster
-ClosedDoor = PurpleDoor or YellowDoor or BlueDoor or GreenDoor or MonsterDoor
+ClosedDoor = YellowDoor or PurpleDoor or BlueDoor or GreenDoor or MonsterDoor
 OpenDoor = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
 Switch = PurpleSwitch or YellowSwitch or BlueSwitch or GreenSwitch
 Static = Wall or ClosedDoor or Bush
@@ -738,8 +763,7 @@ Invulnerable = Crate or Static
 WaterAnim = WaterAnim1 or WaterAnim2
 Background = HeroBackground
 
-OpenTrap = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
-ClosedTrap = PurpleDoor or YellowDoor or BlueDoor or GreenDoor
+DoorSprite = YellowOpenA or PurpleOpenA or BlueOpenA or GreenOpenA or PurpleDoorA or YellowDoorA or BlueDoorA or GreenDoorA
 
 (mirror defines)
 
@@ -759,6 +783,8 @@ RemoveLandR = RemoveLandRUD or RemoveLandRU or RemoveLandRD
 ColorDoor   = YellowDoor   or BlueDoor   or PurpleDoor   or GreenDoor
 ColorOpen   = YellowOpen   or BlueOpen   or PurpleOpen   or GreenOpen
 ColorSwitch = YellowSwitch or BlueSwitch or PurpleSwitch or GreenSwitch
+
+WarpStop = Wall or Bush or MonsterDoor
 
 
 (single letter defines for levels)
@@ -871,8 +897,10 @@ RayR
 (heroes layers)
 Goal
 DoorMarker, InvDoorMarker
+Basement
 Hole
 WaterAnim
+DoorSprite
 CrateInHole
 Warpball, Dying
 Switched
@@ -902,12 +930,12 @@ RULES
 
 (paint water cross from waterseed for trapdoors)
 
-[ WaterSeed ] -> [ Hole WaterAnim1 RayU RayD RayL RayR ]
+[ WaterSeed ] -> [ Basement RayU RayD RayL RayR ]
 
-up    [ RayU | ] -> [ RayU | Hole WaterAnim1 RayU ]
-down  [ RayD | ] -> [ RayD | Hole WaterAnim1 RayD ]
-left  [ RayL | ] -> [ RayL | Hole WaterAnim1 RayL ]
-right [ RayR | ] -> [ RayR | Hole WaterAnim1 RayR ]
+up    [ RayU | ] -> [ RayU | Basement RayU ]
+down  [ RayD | ] -> [ RayD | Basement RayD ]
+left  [ RayL | ] -> [ RayL | Basement RayL ]
+right [ RayR | ] -> [ RayR | Basement RayR ]
 
 [ RayU ] -> [ RayU ] again
 [ RayD ] -> [ RayD ] again
@@ -1091,78 +1119,6 @@ endloop
 
 [ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ] message Oh the crates can reflect now. That is cool and totally not arbitrary
 
-
-(TODO long reflections with dimming, commented out for now, need to account for 2 mirrors)
-
-(
-startloop
-random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
-+ [ Reflectable North ] -> [ action Reflectable East right 00 ]
-+ [ Reflectable East ] -> [ action Reflectable South up 00 ]
-+ [ Reflectable South ] -> [ action Reflectable West down 00 ]
-
-[ > 00 | no Solid ] -> [ | > 01 LOS ]
-[ > 01 | no Solid ] -> [ | > 02 LOS ]
-[ > 02 | no Solid ] -> [ | > 03 LOS ]
-[ > 03 | no Solid ] -> [ | > 04 LOS ]
-[ > 04 | no Solid ] -> [ | > 05 LOS ]
-[ > 05 | no Solid ] -> [ | > 06 LOS ]
-[ > 06 | no Solid ] -> [ | > 07 LOS ]
-[ > 07 | no Solid ] -> [ | > 08 LOS ]
-[ > 08 | no Solid ] -> [ | > 09 LOS ]
-[ > 09 | no Solid ] -> [ | > 10 LOS ]
-[ > 10 | no Solid ] -> [ | > 11 LOS ]
-[ > 11 | no Solid ] -> [ | > 12 LOS ]
-[ > 12 | no Solid ] -> [ | > 13 LOS ]
-[ > 13 | no Solid ] -> [ | > 14 LOS ]
-[ > 14 | no Solid ] -> [ | > 15 LOS ]
-[ > 15 | no Solid ] -> [ | > 16 LOS ]
-[ > 16 | no Solid ] -> [ | > 17 LOS ]
-[ > 17 | no Solid ] -> [ | > 18 LOS ]
-[ > 18 | no Solid ] -> [ | > 19 LOS ]
-
-left [ > Counter | MirrorUR ] -> [ | MirrorUR up Counter ]
-+ left [ > Counter | MirrorDR ] -> [ | MirrorDR down Counter ]
-+ right [ > Counter | MirrorUL ] -> [ | MirrorUL up Counter ]
-+ right [ > Counter | MirrorDL ] -> [ | MirrorDL down Counter ]
-+ up [ > Counter | MirrorDL ] -> [ | MirrorDL left Counter ]
-+ up [ > Counter | MirrorDR ] -> [ | MirrorDR right Counter ]
-+ down [ > Counter | MirrorUL ] -> [ | MirrorUL left Counter ]
-+ down [ > Counter | MirrorUR ] -> [ | MirrorUR right Counter ]
-
-+ [ > 19 | no Solid ] -> [ | > 18 LOS ]
-+ [ > 18 | no Solid ] -> [ | > 17 LOS ]
-+ [ > 17 | no Solid ] -> [ | > 16 LOS ]
-+ [ > 16 | no Solid ] -> [ | > 15 LOS ]
-+ [ > 15 | no Solid ] -> [ | > 14 LOS ]
-+ [ > 14 | no Solid ] -> [ | > 13 LOS ]
-+ [ > 13 | no Solid ] -> [ | > 12 LOS ]
-+ [ > 12 | no Solid ] -> [ | > 11 LOS ]
-+ [ > 11 | no Solid ] -> [ | > 10 LOS ]
-+ [ > 10 | no Solid ] -> [ | > 09 LOS ]
-+ [ > 09 | no Solid ] -> [ | > 08 LOS ]
-+ [ > 08 | no Solid ] -> [ | > 07 LOS ]
-+ [ > 07 | no Solid ] -> [ | > 06 LOS ]
-+ [ > 06 | no Solid ] -> [ | > 05 LOS ]
-+ [ > 05 | no Solid ] -> [ | > 04 LOS ]
-+ [ > 04 | no Solid ] -> [ | > 03 LOS ]
-+ [ > 03 | no Solid ] -> [ | > 02 LOS ]
-+ [ > 02 | no Solid ] -> [ | > 01 LOS ]
-
-[ > 01 | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
-[ > 01 | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
-
-[ Counter ] -> []
-[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
-[ LOS ] -> [ action LOS ]
-[ action Reflectable ] -> [ Reflectable ]
-endloop
-[ DirectionCounter ] -> []
-[ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ])
-
-)
-
-
 (hero rules)
 
 ([Saved] [Goal] -> [] [HasSavedDoor]) (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
@@ -1170,14 +1126,32 @@ endloop
 
 [Corpse] -> Restart
 
-[ >  Fighter | Moveable ] -> [  >  Fighter | > Moveable  ]     
+
+[ > Fighter | Crate | PurpleDoor Basement ] -> [ > Fighter | | Basement CrateInHole] sfx3
+
+
+[ >  Fighter | Moveable ] -> [  >  Fighter | > Moveable  ]
+
 [ > Moveable | Moveable ] [ Fighter] -> [ > Moveable | > Moveable ] [ Fighter] (Fighters push.)
 
 [ < Thief | Moveable ] -> [ < Thief | < Moveable ] (Thieves pull.)
 
 [ > Wizard ] -> [ Wizard > Warpball]
-[ > Warpball | no Moveable no Static] -> [ | > Warpball]
+
+([ > Warpball | no Moveable no Static] -> [ | > Warpball])
+
+
+[ > Warpball | ClosedDoor Basement ] -> [ | ClosedDoor Basement > Warpball ]
+[ > Warpball | OpenDoor Basement ]   -> [ | OpenDoor Basement > Warpball ]
+
+[ > Warpball | ClosedDoor no Basement ] [ Wizard ] -> [ | ClosedDoor ] [ > Wizard ]
+[ > Warpball | OpenDoor   no Basement ] [ Wizard ] -> [ | OpenDoor ] [ > Wizard ]
+
+[ > Warpball | no Moveable no WarpStop ] -> [ | > Warpball ]
+
+
 [ > Warpball | Static] [Wizard] -> [ | Static ] [> Wizard]
+
 [ > Warpball | Moveable ] [Wizard] -> [ | Wizard Sfx0] [Moveable]
 [ > Warpball] [Wizard] -> [] [> Wizard]
 (Wizards telexport. What they really do is shoot a "warpball", which causes them to move normally if it hits a wall or the edge of the screen and warp if it hits something they can warp with.)
@@ -1349,6 +1323,38 @@ late [Saved no Hero] -> [] (NB! removes cross from non-hero cells. re-check if t
 
 
 late [Switched] -> []
+
+
+(very late rules, assign sprites to doors, swap visual representation for basement doors)
+
+late [ Basement no WaterAnim1 ] -> [ Basement WaterAnim1]
+
+
+late [ YellowDoor Basement ] -> [ YellowDoor YellowOpenA Basement ]
+late [ YellowOpen Basement ] -> [ YellowOpen YellowDoorA Basement ]
+
+late [ PurpleDoor Basement ] -> [ PurpleDoor PurpleOpenA Basement ]
+late [ PurpleOpen Basement ] -> [ PurpleOpen PurpleDoorA Basement ]
+
+
+late [ BlueDoor Basement ] -> [ BlueDoor BlueOpenA Basement ]
+late [ BlueOpen Basement ] -> [ BlueOpen BlueDoorA Basement ]
+
+late [ GreenDoor Basement ] -> [ GreenDoor GreenOpenA Basement ]
+late [ GreenOpen Basement ] -> [ GreenOpen GreenDoorA Basement ]
+
+
+late [ YellowDoor no Basement ] -> [ YellowDoor YellowDoorA ]
+late [ YellowOpen no Basement ] -> [ YellowOpen YellowOpenA ]
+
+late [ PurpleDoor no Basement ] -> [ PurpleDoor PurpleDoorA ]
+late [ PurpleOpen no Basement ] -> [ PurpleOpen PurpleOpenA ]
+
+late [ BlueDoor no Basement ] -> [ BlueDoor BlueDoorA ]
+late [ BlueOpen no Basement ] -> [ BlueOpen BlueOpenA ]
+
+late [ GreenDoor no Basement ] -> [ GreenDoor GreenDoorA ]
+late [ GreenOpen no Basement ] -> [ GreenOpen GreenOpenA ]
 
 ==============
 WINCONDITIONS
@@ -2692,21 +2698,20 @@ _____________
 
 (level quadrants)
 
-(TODO trapdoors for wizard to swap through)
 _________
 _T.3_G.G_
 _.}._..._
 _..._..._
-_&&&%:::_
-_...?..._
-_.,.?.{._
-_*..?..._
+_[[[%;;;_
+_...]..._
+_.,.].{._
+_*..]..._
 _________
 
 
 (level quadrants_follow_up)
 
-____________________
+______%_____%%______
 _....._..,..__....._
 _..T..].....;;..G.*_
 _}....]....*;;....._
@@ -2761,15 +2766,15 @@ ____...........____
 
 (level dont_push_the_button)
 
-(TODO: trapdoors)
+(TODO: crushing the crate)
 
-___________________
+_____________%_____
 _..___________..___
 _.*__.......__.._._
-_..__._..._..::._g_
-_......},{_..??._._
-_.._f.._...+.&&._._
-_..__...._...--._._
+_..__._..._..;:._g_
+_......},{_..]?._._
+_.._f.._...+.[&._._
+_..__...._...$-._._
 _.*__.......__.._._
 _..___________l.___
 ___________________
@@ -2777,21 +2782,21 @@ ___________________
 
 (level detonator)
 
-_______________________
+______%%%______________
 _.....___....._________
 _.....___.*..._________
 _..+..:::....._________
 _.....___....f_________
 _..2..___....._________
-___________$___________
-___________$___________
-___________$___________
+___________$__________%
+___________$__________%
+___________$__________%
 _________.....___....._
 _________.....___....._
 _________..z..---.g.g._
 _________.....___....._
 _________.....___..d.._
-_______________________
+______________%%%______
 
 
 (level a_wiz_out_of_water)
@@ -2839,9 +2844,7 @@ _______________________
 
 (level dunk_tank_alt)
 
-(TODO: trapdoors for wizard to swap through)
-
-____________________
+______%_____________
 ________....________
 _.....].....___...._
 _w...___....___..g._
