@@ -525,7 +525,7 @@ function monitorLevelUpdate() {
     previousRef = window.level.lineNumber;
     const levelName = lookupRange(levelRanges, previousRef);
     todoNote = lookupRange(todoRanges, previousRef)||'';
-    console.log(`New level event, line ${previousRef}, possibly "${levelName}".`);
+    console.log(`Level change, line ${previousRef}, possibly "${levelName}".`);
 
     /*
     console.log(`Field size: ${window.level.width}x${window.level.height} (you can use it for resizing the canvas)`);
