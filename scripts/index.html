@@ -275,7 +275,7 @@ let playDelay = 150;
 let levelRanges = {};
 let levelNames = {};
 let todoRanges = {};
-let paused = false;
+let playing = false;
 
 const unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n));
 const convertSolution = s => unpackSolution(s).toLowerCase();
@@ -452,8 +452,6 @@ function onLevelLoaded(levelName) {
 
   updateTitle(name);
 
-  let playing = timer != null;
-
   stopSolution();
 
   if (playing) {
@@ -619,6 +617,8 @@ function sendNextMove() {
     }
 
     if (pos==solution.length-1) console.log('Solution complete.');
+
+    playing = timer != null;
 
   } else {
     pauseSolution();
