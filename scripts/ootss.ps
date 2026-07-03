@@ -1,0 +1,2908 @@
+title Order of the Sinking Star Demo: Puzzlescript
+author Joric
+text_color yellow
+key_repeat_interval 0.25
+run_rules_on_level_start
+
+========
+OBJECTS
+========
+
+(mirror isles stuff)
+
+Teleported
+transparent
+
+Switched
+transparent
+
+WaterSeed
+transparent
+
+Basement
+blue
+
+RayU
+transparent
+
+RayD
+transparent
+
+RayL
+transparent
+
+RayR
+transparent
+
+MirrorBackground
+#dfcc4f yellow
+11111
+01111
+11101
+11111
+10111
+
+Target
+DarkBlue transparent transparent
+.111.
+10201
+12021
+10201
+.111.
+
+West
+transparent
+
+East
+transparent
+
+North
+transparent
+
+South
+transparent
+
+00
+transparent
+
+01
+transparent
+
+02
+transparent
+
+03
+transparent
+
+04
+transparent
+
+05
+transparent
+
+06
+transparent
+
+07
+transparent
+
+08
+transparent
+
+09
+transparent
+
+
+MirrorUL
+#909090 #4e5159 #4e5159
+....0
+...01
+..011
+.0111
+01112
+
+MirrorUR
+#909090 #4e5159 #4e5159
+0....
+10...
+110..
+1110.
+21110
+
+MirrorDL
+#909090 #4e5159 #4e5159
+01112
+.0111
+..011
+...01
+....0
+
+MirrorDR
+#909090 #4e5159 #4e5159
+21110
+1110.
+110..
+10...
+0....
+
+LOS
+Orange
+.....
+.....
+..0..
+.....
+.....
+
+HasReflection
+transparent
+
+Hint
+transparent
+
+MirrorGuy
+DarkRed #493c2b #000000
+..0..
+.111.
+01110
+02220
+.2.2.
+
+SMirrorGuy
+Brown #493c2b #000000
+..0..
+.111.
+01110
+02220
+.2.2.
+
+
+Reflection
+LightGrey Grey DarkGrey
+..0..
+.111.
+01110
+02220
+.2.2.
+
+CrateReflection
+Grey DarkGrey LightGrey
+.000.
+01110
+01110
+01110
+.000.
+
+FloatingBody
+DarkBrown #282828 #101010 Blue
+33333
+33333
+31122
+01123
+31122
+
+CantMove
+LightRed Red DarkRed
+..0..
+.111.
+01110
+02220
+.2.2.
+
+NormalCrate
+Orange Brown White
+.000.
+01110
+01110
+01110
+.000.
+
+ReflectableCrate
+Red Pink Pink
+.000.
+01210
+02220
+01210
+.000.
+
+
+AddLandLUD
+Yellow
+0....
+.....
+.....
+.....
+0....
+
+AddLandLU
+Yellow
+0....
+.....
+.....
+.....
+.....
+
+AddLandLD
+Yellow
+.....
+.....
+.....
+.....
+0....
+
+AddLandRUD
+Yellow
+....0
+.....
+.....
+.....
+....0
+
+AddLandRU
+Yellow
+....0
+.....
+.....
+.....
+.....
+
+AddLandRD
+Yellow
+.....
+.....
+.....
+.....
+....0
+
+RemoveLandLUD
+Blue
+0....
+.....
+.....
+.....
+0....
+
+RemoveLandLU
+Blue
+0....
+.....
+.....
+.....
+.....
+
+RemoveLandLD
+Blue
+.....
+.....
+.....
+.....
+0....
+
+RemoveLandRUD
+Blue
+....0
+.....
+.....
+.....
+....0
+
+RemoveLandRU
+Blue
+....0
+.....
+.....
+.....
+.....
+
+RemoveLandRD
+Blue
+.....
+.....
+.....
+.....
+....0
+
+
+
+(heroes stuff)
+
+
+HeroBackground
+#989898 #C8C8C8
+00000
+00100
+00000
+00010
+00000
+
+Goal 
+Brown Yellow
+.000.
+00000
+00010
+00000
+00000
+
+Wall
+Darkgrey #222222
+01000
+11111
+00010
+00010
+11111
+
+Fighter (Warrior sounds better in-game, but I want different abbreviations for the classes in the editor.)
+#FF4444 Pink DarkBrown
+.000.
+.111.
+00000
+.000.
+.2.2.
+
+Wizard
+#2266FF Pink
+.000.
+.010.
+00000
+.000.
+00000
+
+Thief
+#66DD66 Pink DarkBrown
+.000.
+.010.
+00000
+.0.0.
+.0.0.
+
+Priest
+#FFFFAA Pink
+.000.
+.111.
+00000
+.000.
+00000
+
+Bard
+#8800FF #884400 #444444
+.222.
+.111.
+00000
+.000.
+.0.0.
+
+Druid
+#FF8800 Pink DarkBrown
+.212.
+.111.
+00000
+.000.
+00000
+
+SFighter 
+#880000 Pink DarkBrown
+.000.
+.111.
+00000
+.000.
+.2.2.
+
+SWizard
+#000088 Pink
+.000.
+.010.
+00000
+.000.
+00000
+
+SThief
+#006600 Pink DarkBrown
+.000.
+.010.
+00000
+.0.0.
+.0.0.
+
+SPriest
+#B8B800 Pink
+.000.
+.111.
+00000
+.000.
+00000
+
+SBard
+#440088 #884400 #444444
+.222.
+.111.
+00000
+.000.
+.0.0.
+
+SDruid
+#884400 Pink DarkBrown
+.212.
+.111.
+00000
+.000.
+00000
+
+Crate 
+Orange #552200
+.111.
+10001
+10001
+10001
+.111.
+
+YellowDoor
+transparent
+
+PurpleDoor
+transparent
+
+BlueDoor
+transparent
+
+GreenDoor
+transparent
+
+YellowOpen
+transparent
+
+BlueOpen
+transparent
+
+PurpleOpen
+transparent
+
+GreenOpen
+transparent
+
+YellowSwitch
+Yellow Black
+.....
+.111.
+.101.
+.111.
+.....
+
+YellowOpenA
+Yellow
+0...0
+.....
+.....
+.....
+0...0
+
+YellowDoorA
+Yellow transparent
+01010
+10001
+00000
+10001
+01010
+
+PurpleSwitch
+#E225C1 Black
+.....
+.111.
+.101.
+.111.
+.....
+
+PurpleOpenA
+#E225C1
+0...0
+.....
+.....
+.....
+0...0
+
+PurpleDoorA
+#E225C1 transparent
+01010
+10001
+00000
+10001
+01010
+
+BlueSwitch
+Blue Black
+.....
+.111.
+.101.
+.111.
+.....
+
+BlueOpenA
+LightBlue
+0...0
+.....
+.....
+.....
+0...0
+
+BlueDoorA
+LightBlue transparent
+01010
+10001
+00000
+10001
+01010
+
+GreenSwitch
+Green Black
+.....
+.111.
+.101.
+.111.
+.....
+
+GreenOpenA
+Green
+0...0
+.....
+.....
+.....
+0...0
+
+GreenDoorA
+LightGreen transparent
+01010
+10001
+00000
+10001
+01010
+
+MonsterDoor
+transparent #222222 Red
+20002
+22022
+20202
+20002
+20002
+
+Warpball
+Blue
+
+ShadowDoor
+Purple
+
+DragonLeft
+Green Red Orange Yellow DarkGreen
+.....
+1100.
+3210.
+1100.
+...4.
+
+DragonRight
+Green Red Orange Yellow DarkGreen
+.....
+.0011
+.0123
+.0011
+.4...
+
+DragonUp
+Green Red Orange Yellow DarkGreen
+.131.
+.121.
+.000.
+..0..
+..4..
+
+DragonDown
+Green Red Orange Yellow DarkGreen
+..4..
+..0..
+.000.
+.121.
+.131.
+
+
+LFireball
+transparent
+
+RFireball
+transparent
+
+UFireball
+transparent
+
+DFireball
+transparent
+
+
+Goblin
+Green DarkBrown DarkGreen
+0.2.0
+00000
+..0..
+.111.
+.1.1.
+
+Dying
+White
+
+Saved
+#D8D800
+..0..
+.000.
+..0..
+..0..
+.....
+
+HasSavedDoor
+Yellow
+.....
+.....
+.....
+.....
+.....
+
+Corpse
+#CCC
+.000.
+.000.
+00000
+.0.0.
+.0.0.
+
+Note
+#8800FF
+.....
+..00.
+.00..
+.00..
+.....
+
+Hole
+blue
+
+WaterAnim1
+lightblue transparent
+11111
+11101
+11111
+10111
+11111
+
+WaterAnim2
+lightblue transparent
+11111
+10111
+11111
+11101
+11111
+
+Bush
+green #008000
+01000
+11111
+00010
+00010
+11111
+
+
+FrozenGoblin
+Green DarkBrown DarkGreen Blue
+03230
+00000
+33033
+31113
+31313
+
+FrozenDragonLeft
+Green Red Orange Yellow DarkGreen Blue
+55555
+11005
+32105
+11005
+55545
+
+FrozenDragonRight
+Green Red Orange Yellow DarkGreen Blue
+55555
+50011
+50123
+50011
+54555
+
+FrozenDragonUp
+Green Red Orange Yellow DarkGreen Blue
+51315
+51215
+50005
+55055
+55455
+
+FrozenDragonDown
+White Red Orange Yellow DarkGreen Blue
+55455
+55055
+50005
+51215
+51315
+
+
+DoorMarker
+Transparent
+
+InvDoorMarker
+Transparent
+
+CrateInHole
+Brown DarkBrown Blue
+20002
+01110
+01110
+01110
+20002
+
+=======
+LEGEND
+=======
+
+Dragon = DragonLeft or DragonRight or DragonUp or DragonDown
+Fireball = LFireball or RFireball or UFireball or DFireball
+Player = Fighter or Wizard or Thief or Priest or Bard or Druid or MirrorGuy
+SPlayer = Swizard or Sthief or SFighter or SPriest or SBard or SDruid or SMirrorGuy
+Hero = Player or Splayer
+Healer = Priest or SPriest (Unlike the other heroes, priests must function even when inactive. "Healer" is the generic term for an active or inactive priest.)
+Monster =  Dragon or Goblin
+FrozenMonster = FrozenGoblin or FrozenDragonUp or FrozenDragonLeft or FrozenDragonRight or FrozenDragonDown
+Moveable = Crate or SPlayer or Monster or FrozenMonster
+ClosedDoor = YellowDoor or PurpleDoor or BlueDoor or GreenDoor or MonsterDoor
+OpenDoor = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
+Switch = PurpleSwitch or YellowSwitch or BlueSwitch or GreenSwitch
+Static = Wall or ClosedDoor or Bush
+Weighing = Crate or Hero or Monster or Wall or Bush or FrozenMonster
+Vulnerable = Hero or Monster
+Invulnerable = Crate or Static
+WaterAnim = WaterAnim1 or WaterAnim2
+Background = HeroBackground
+
+DoorSprite = YellowOpenA or PurpleOpenA or BlueOpenA or GreenOpenA or PurpleDoorA or YellowDoorA or BlueDoorA or GreenDoorA
+
+(mirror defines)
+
+Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
+Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09
+DirectionCounter = North or South or East or West
+MirrorCrate = NormalCrate or ReflectableCrate
+Pushable = Mirror or MirrorCrate
+Solid = MirrorCrate or Mirror or Hero or Wall
+Reflectable = MirrorGuy or ReflectableCrate
+WaterHere = Hole or CrateInHole or FloatingBody
+AddLandL = AddLandLUD or AddLandLU or AddLandLD
+AddLandR = AddLandRUD or AddLandRU or AddLandRD
+RemoveLandL = RemoveLandLUD or RemoveLandLU or RemoveLandLD
+RemoveLandR = RemoveLandRUD or RemoveLandRU or RemoveLandRD
+
+ColorDoor   = YellowDoor   or BlueDoor   or PurpleDoor   or GreenDoor
+ColorOpen   = YellowOpen   or BlueOpen   or PurpleOpen   or GreenOpen
+ColorSwitch = YellowSwitch or BlueSwitch or PurpleSwitch or GreenSwitch
+
+(single letter defines for levels)
+
+. = Background
+# = Wall
+_ = Hole and WaterAnim1
+* = Crate
+/ = MirrorUL
+\ = MirrorUR
+` = MirrorDL
+' = MirrorDR
+@ = Bush
+~ = NormalCrate
+! = ReflectableCrate
+
+(open doors are used in dipping_your_toes_in and dont_push_the_button)
+
+
+; = BlueDoor
+: = BlueOpen
+, = BlueSwitch
+
+] = PurpleDoor
+? = PurpleOpen
+} = PurpleSwitch
+
+[ = YellowDoor
+& = YellowOpen
+{ = YellowSwitch
+
+$ = GreenDoor
+- = GreenOpen
++ = GreenSwitch
+
+% = WaterSeed
+
+(no more characters left - |,<>,[] - give warnings)
+
+(S-prefixed defines mean currently inactive characters to switch to)
+
+0 = SMirrorGuy
+1 = SFighter
+2 = SThief
+3 = SWizard
+4 = SPriest
+5 = SBard
+6 = SDruid
+7 = Goal and Thief (heroes1_18)
+8 = Goal and SWizard (heroes1_18)
+9 = PurpleSwitch and Goblin (heroes2_10.5)
+
+A = MirrorGuy
+B = Bard
+(C = )
+D = DragonDown
+E = Goal and Fighter (easy_situation_v2)
+F = Fighter
+G = Goal
+(H = )
+I = Druid
+J = YellowSwitch and SBard    (heroes3_5)
+K = YellowSwitch and Fighter (heroes3_5)
+L = DragonLeft
+M = MonsterDoor
+(N = )
+O = Goblin
+P = Priest
+Q = Goal and MonsterDoor (mosh_pit_small)
+R = DragonRight
+S = YellowSwitch and Goblin (one_fire_v2)
+T = Thief
+U = DragonUp
+(V = better used with ^ < > v as a directional entity, though warnings)
+W = Wizard
+(X = )
+Y = YellowSwitch and Bard (heroes3_2_v4)
+Z = BlueSwitch and DragonLeft (detonator)
+
+=======
+SOUNDS
+=======
+
+Moveable move 82056307
+Sfx0 21221308 (teleport)
+Endlevel 36315908
+Sfx1 66399906 (switch player)
+Sfx2 92172900 (close door)
+Sfx3 15129100 (open door)
+Sfx4 69860105 (saved)
+Sfx5 63194902 (kill enemy)
+Sfx6 81996702 (dying player)
+Sfx7 20187909 (Bard leading)
+Sfx8 93615108 (Transmutation)
+EndGame 86793500
+
+================
+COLLISIONLAYERS
+================
+
+Background
+MirrorBackground
+
+WaterSeed
+RayU
+RayD
+RayL
+RayR
+
+(heroes layers)
+Goal
+DoorMarker, InvDoorMarker
+Basement
+Hole
+WaterAnim
+DoorSprite
+CrateInHole
+Warpball, Dying
+Switched
+Switch, OpenDoor, ShadowDoor, HasSavedDoor
+Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
+Saved
+RFireball
+LFireball
+UFireball
+DFireball
+Note
+
+(mirror layers)
+Target, FloatingBody
+HasReflection, Hint
+Teleported
+AddLandL, RemoveLandL
+AddLandR, RemoveLandR
+LOS
+Counter
+DirectionCounter
+Reflection, CantMove, CrateReflection
+
+======
+RULES
+======
+
+(paint water cross from waterseed for trapdoors)
+
+[ WaterSeed ] -> [ Basement RayU RayD RayL RayR ]
+
+up    [ RayU | ] -> [ RayU | Basement RayU ]
+down  [ RayD | ] -> [ RayD | Basement RayD ]
+left  [ RayL | ] -> [ RayL | Basement RayL ]
+right [ RayR | ] -> [ RayR | Basement RayR ]
+
+[ RayU ] -> [ RayU ] again
+[ RayD ] -> [ RayD ] again
+[ RayL ] -> [ RayL ] again
+[ RayR ] -> [ RayR ] again
+
+late [ RayU ] -> []
+late [ RayD ] -> []
+late [ RayL ] -> []
+late [ RayR ] -> []
+late [ WaterSeed ] -> []
+
+
+(mirror rules)
+
+[ > MirrorGuy ] [ Hint ] -> [ > MirrorGuy ] [ action Hint ]
+
+[ CantMove ] -> []
+
+late [ WaterAnim no Hole ] -> []
+
+(Water anim)
+
+([ stationary MirrorGuy ] [ stationary WaterAnim1 ] -> [ MirrorGuy] [ action WaterAnim2 ]
+[ stationary MirrorGuy ] [ stationary WaterAnim2 ] -> [ MirrorGuy] [ action WaterAnim1 ])
+
+(Island border)
+
+(
+left [ WaterHere no AddLandL | no WaterHere ] -> [ WaterHere AddLandLUD | ]
+right [ WaterHere no AddLandR | no WaterHere ] -> [ WaterHere AddLandRUD | ]
+
+up [ AddLandLUD | WaterHere ] -> [ AddLandLD | WaterHere ]
+up [ AddLandRUD | WaterHere ] -> [ AddLandRD | WaterHere ]
+
+down [ AddLandLUD | WaterHere ] -> [ AddLandLU | WaterHere ]
+down [ AddLandRUD | WaterHere ] -> [ AddLandRU | WaterHere ]
+
+down [ AddLandLD | WaterHere ] -> [ | WaterHere ]
+down [ AddLandRD | WaterHere ] -> [ | WaterHere ]
+
+left [ no WaterHere no RemoveLandL | WaterHere ] -> [ RemoveLandLUD | WaterHere ]
+right [ no WaterHere no RemoveLandR | WaterHere ] -> [ RemoveLandRUD | WaterHere ]
+
+up [ RemoveLandLUD | no WaterHere ] -> [ RemoveLandLD | ]
+up [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRD | ]
+
+down [ RemoveLandLUD | no WaterHere ] -> [ RemoveLandLU | ]
+down [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRU | ]
+
+down [ RemoveLandLD | no WaterHere ] -> [ | ]
+down [ RemoveLandRD | no WaterHere ] -> [ | ]
+)
+
+(Prevent teleport)
+
+[ action MirrorGuy ] [ Reflection Hole ] -> [ action MirrorGuy ] [ CantMove Hole ]
+
+[ CantMove ] [ action MirrorGuy ] -> [ CantMove ] [ MirrorGuy ] again
+
+(Swap places)
+
+(
+[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection ] [ Reflection MirrorGuy ]
+[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
+[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy ] [ ReflectableCrate ] sfx2
+[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy ] []
+[ action MirrorGuy HasReflection ] -> [ Reflection ]
+)
+
+[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection Teleported ] [ Reflection MirrorGuy ]
+[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
+[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy Teleported ] [ ReflectableCrate ] sfx2
+[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy Teleported ] []
+[ action MirrorGuy HasReflection ] -> [ Reflection ]
+
+(character switch only if NO teleport this tick)
+
+[ Action MirrorGuy no Teleported ] [ SWizard ] -> [ SMirrorGuy ] [ Wizard Sfx1 ]
+[ Action Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy Sfx1 ]
+
+[ Action MirrorGuy no Teleported ] [ SMirrorGuy ] -> [ SMirrorGuy ] [ MirrorGuy Sfx1 ]
+
+(cleanup)
+[ Teleported ] -> []
+
+
+(Clear state)
+
+[ LOS ] -> []
+[ HasReflection ] -> []
+[ Reflection ] -> []
+[ CrateReflection ] -> []
+
+[ action MirrorGuy ] -> [ MirrorGuy ]
+
+[ moving MirrorGuy ] -> [ moving MirrorGuy HasReflection ] (testing killing)
+
+(Push things)
+
+[ > MirrorGuy | Hole ] -> [ MirrorGuy | Hole ] sfx4
+
+[ >  MirrorGuy | MirrorCrate | no Solid ] -> [  >  MirrorGuy | > MirrorCrate | ] sfx1
+[ >  MirrorGuy | Mirror | no Hole no Solid ] -> [  >  MirrorGuy | > Mirror | ] sfx1
+
+[ > MirrorGuy | stationary Mirror | Hole ] -> [ MirrorGuy | Mirror | Hole ] sfx4
+
+[ >  MirrorGuy | MirrorCrate | > MirrorGuy ] -> [  >  MirrorGuy | > MirrorCrate | > MirrorGuy ] sfx1
+[ >  MirrorGuy | Mirror | > MirrorGuy ] -> [  >  MirrorGuy | > Mirror | > MirrorGuy ] sfx1
+
+[ > Mirror | Hole ] -> [ Mirror | Hole ] sfx4
+
+[ > Pushable | no Solid ] -> [ | Pushable ]
++ [ > MirrorGuy | no Solid ] -> [ | MirrorGuy ] sfx0
+
+[ > MirrorGuy ] -> [ MirrorGuy ] sfx4
+
+[ MirrorGuy Hole ] -> [ Hole ]
+[ Mirror Hole ] -> cancel
+[ NormalCrate Hole ] -> [ CrateInHole ] sfx3
+[ ReflectableCrate Hole ] -> [ CrateInHole ] sfx3
+
+[ MirrorGuy ] [ HasReflection ] -> [ MirrorGuy ] []
+
+[ HasReflection ] -> cancel (all MirrorGuys dead)
+
+(Make reflections)
+
+
+startloop
+random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
++ [ Reflectable North ] -> [ action Reflectable East right 00 ]
++ [ Reflectable East ] -> [ action Reflectable South up 00 ]
++ [ Reflectable South ] -> [ action Reflectable West down 00 ]
+
+[ > 00 | no Solid ] -> [ | > 01 LOS ]
+[ > 01 | no Solid ] -> [ | > 02 LOS ]
+[ > 02 | no Solid ] -> [ | > 03 LOS ]
+[ > 03 | no Solid ] -> [ | > 04 LOS ]
+[ > 04 | no Solid ] -> [ | > 05 LOS ]
+[ > 05 | no Solid ] -> [ | > 06 LOS ]
+[ > 06 | no Solid ] -> [ | > 07 LOS ]
+[ > 07 | no Solid ] -> [ | > 08 LOS ]
+[ > 08 | no Solid ] -> [ | > 09 LOS ]
+
+[ > Counter | Solid no Mirror ] -> [ | Solid ]
+
+left [ > Counter | MirrorUR ] -> [ | MirrorUR up Counter ]
++ left [ > Counter | MirrorDR ] -> [ | MirrorDR down Counter ]
++ right [ > Counter | MirrorUL ] -> [ | MirrorUL up Counter ]
++ right [ > Counter | MirrorDL ] -> [ | MirrorDL down Counter ]
++ up [ > Counter | MirrorDL ] -> [ | MirrorDL left Counter ]
++ up [ > Counter | MirrorDR ] -> [ | MirrorDR right Counter ]
++ down [ > Counter | MirrorUL ] -> [ | MirrorUL left Counter ]
++ down [ > Counter | MirrorUR ] -> [ | MirrorUR right Counter ]
+
++ [ > 09 | no Solid ] -> [ | > 08 LOS ]
++ [ > 08 | no Solid ] -> [ | > 07 LOS ]
++ [ > 07 | no Solid ] -> [ | > 06 LOS ]
++ [ > 06 | no Solid ] -> [ | > 05 LOS ]
++ [ > 05 | no Solid ] -> [ | > 04 LOS ]
++ [ > 04 | no Solid ] -> [ | > 03 LOS ]
++ [ > 03 | no Solid ] -> [ | > 02 LOS ]
++ [ > 02 | no Solid ] -> [ | > 01 LOS ]
++ [ > 01 | no Solid ] -> [ | > 00 LOS ]
+
+[ > 00 | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
+[ > 00 | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
+
+[ Counter ] -> []
+
+[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
+
+[ LOS ] -> [ action LOS ]
+
+[ action Reflectable ] -> [ Reflectable ]
+endloop
+
+
+[ DirectionCounter ] -> []
+
+[ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ] message Oh the crates can reflect now. That is cool and totally not arbitrary
+
+(hero rules)
+
+([Saved] [Goal] -> [] [HasSavedDoor]) (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
+(the rule above apparently breaks the compound goal+monsterdoor things in mosh_pit_small, so I commented it out)
+
+[Corpse] -> Restart
+
+
+[ > Fighter | Crate | PurpleDoor Basement ] -> [ > Fighter | | Basement CrateInHole] sfx3
+
+
+[ >  Fighter | Moveable ] -> [  >  Fighter | > Moveable  ]
+
+[ > Moveable | Moveable ] [ Fighter] -> [ > Moveable | > Moveable ] [ Fighter] (Fighters push.)
+
+[ < Thief | Moveable ] -> [ < Thief | < Moveable ] (Thieves pull.)
+
+[ > Wizard ] -> [ Wizard > Warpball]
+
+(basement door rule added. check carefully. should work both with heroes1_21_v3 and dunk_tank_alt)
+
+[ > Warpball | ClosedDoor Basement ] -> [ | ClosedDoor Basement > Warpball ]
++ [ > Warpball | no Moveable no Static ] -> [ | > Warpball ]
+
+(continue wizard rules as usual)
+
+[ > Warpball | Static] [Wizard] -> [ | Static ] [> Wizard]
+[ > Warpball | Moveable ] [Wizard] -> [ | Wizard Sfx0] [Moveable]
+[ > Warpball] [Wizard] -> [] [> Wizard]
+(Wizards telexport. What they really do is shoot a "warpball", which causes them to move normally if it hits a wall or the edge of the screen and warp if it hits something they can warp with.)
+
+(Druid does his thing. Warpball gets reused as a placeholder here. That's gonna happen a lot.)
+
+[> Druid | Bush] -> [Druid | Crate Sfx8]
+[> Druid | Crate] -> [Druid | Bush Sfx8]
+
+[> Druid | Goblin] -> [Druid | FrozenGoblin Sfx8]
+[> Druid | DragonUp] -> [Druid | FrozenDragonUp Sfx8]
+[> Druid | DragonDown] -> [Druid | FrozenDragonDown Sfx8]
+[> Druid | DragonLeft] -> [Druid | FrozenDragonLeft Sfx8]
+[> Druid | DragonRight] -> [Druid | FrozenDragonRight Sfx8]
+
+[> Druid | FrozenGoblin] -> [Druid | Goblin Sfx8]
+[> Druid | FrozenDragonUp] -> [Druid | DragonUp Sfx8]
+[> Druid | FrozenDragonDown] -> [Druid | DragonDown Sfx8]
+[> Druid | FrozenDragonLeft] -> [Druid | DragonLeft Sfx8]
+[> Druid | FrozenDragonRight] -> [Druid | DragonRight Sfx8]
+
+[> Druid | Healer] -> [Druid | Healer Saved]
+[> Druid | Hero] -> [Druid | Hero Warpball]
+[Warpball | Healer] -> [Saved | Healer]
+[Warpball Hero] -> [Wall Sfx8]
+(What strategic purpose could it serve for healers to protect against petrification? None, but it's fun.)
+
+(I mean, theoretically you could write some horrid dragon breath timing puzzle where the ability to delay an extra turn without moving or switching characters is necessary in order to let you move someone else at the correct moment, but even if dragons still existed, that sounds like a really gross level.)
+
+(Bard moves stuff. Reusing "WarpBall" for totally different purpose, so we can cancel the move if he doesn't move.)
+[> Bard no Note] -> [> Note > Bard WarpBall]
+[> Note] [Note] -> [> Note] [> Note]
+[> Note Moveable | no Static no Moveable no Bard] -> [| Moveable Sfx7]
++[> Note Bard WarpBall| no Static no Moveable no Bard] -> [| Bard]
+
+(Why are we doing this pseudo-movement instead of using the built-in version? Because using movement directions makes the note-adding stuff way easier below, and you can't use movement directions in the LATE phase, so the actual moving has to be done before then.)
+
+[WarpBall] -> Cancel
+[Note] -> []
+
+
+(The following mess is for changing characters. But at least it's less messy than before. Thanks to Stephen for spotting my silly redundancies.)
+
+[ Action Fighter] [SThief] -> [SFighter Switched] [Thief Sfx1]
+[ Action Thief] [SWizard] -> [SThief] [Wizard Sfx1]
+[ Action Wizard] [SPriest] -> [SWizard] [Priest Sfx1]
+[ Action Priest] [SBard] -> [SPriest] [Bard Sfx1]
+[ Action Bard] [SDruid] -> [SBard] [Druid Sfx1]
+[ Action Druid] [SFighter] -> [SDruid] [Fighter Sfx1]
+
+[ Action Fighter] [SWizard] -> [SFighter] [Wizard Sfx1]
+[ Action Thief] [SPriest] -> [SThief] [Priest Sfx1]
+[ Action Wizard] [SBard] -> [SWizard] [Bard Sfx1]
+[ Action Priest] [SDruid] -> [SPriest] [Druid Sfx1]
+[ Action Bard] [SFighter] -> [SBard] [Fighter Sfx1]
+[ Action Druid] [SThief] -> [SDruid] [Thief Sfx1]
+
+[ Action Fighter] [SPriest] -> [SFighter] [Priest Sfx1]
+[ Action Thief] [SBard] -> [SThief] [Bard Sfx1]
+[ Action Wizard] [SDruid] -> [SWizard] [Druid Sfx1]
+[ Action Priest] [SFighter] -> [SPriest] [Fighter Sfx1]
+[ Action Bard] [SThief] -> [SBard] [Thief Sfx1]
+[ Action Druid] [SWizard] -> [SDruid] [Wizard Sfx1]
+
+[ Action Fighter] [SBard] -> [SFighter] [Bard Sfx1]
+[ Action Thief] [SDruid] -> [SThief] [Druid Sfx1]
+[ Action Wizard] [SFighter] -> [SWizard] [Fighter Sfx1]
+[ Action Priest] [SThief] -> [SPriest] [Thief Sfx1]
+[ Action Bard] [SWizard] -> [SBard] [Wizard Sfx1]
+[ Action Druid] [SPriest] -> [SDruid] [Priest Sfx1]
+
+[ Action Fighter] [SDruid] -> [SFighter] [Druid Sfx1]
+[ Action Thief] [SFighter] -> [SThief Switched] [Fighter Sfx1]
+[ Action Wizard] [SThief] -> [SWizard] [Thief Sfx1]
+[ Action Priest] [SWizard] -> [SPriest] [Wizard Sfx1]
+[ Action Bard] [SPriest] -> [SBard] [Priest Sfx1]
+[ Action Druid] [SBard] -> [SDruid] [Bard Sfx1]
+
+[ Action Thief] [SThief] -> [SThief] [Thief Sfx1] (quadrants_follow_up)
+
+(Bard plays music. This is my favorite part of the code, btw. Yes, you can make square area effects with just one object!)
+[no Note | no Note | Bard] -> [^ Note | ^ Note | Bard]
+[no Note | Bard] -> [^ Note | Bard]
+[> Note | no Note | no Note] -> [Note | Note | Note]
+[> Note | no Note] -> [Note | Note]
+[> Note] -> [Note]
+
+(Now enemies attack. Yeah, there's only one kind of enemy now.)
+
+Late [Goblin | Vulnerable] -> [Goblin | Dying Vulnerable]
+
+(Custom block about dragons and holes)
+
+[ Switched ] [ DragonLeft ]  -> [ Switched ] [ DragonLeft Switched ]
+Late [DragonLeft no Switched ] -> [LFireball DragonLeft] (prevent frying up the goblin in one_fire_v2 after character switching)
+Late [DragonRight] -> [RFireball DragonRight]
+Late RIGHT [RFireball | No Vulnerable no Invulnerable] -> [ | RFireball]
+Late LEFT [LFireball | No Vulnerable no Invulnerable] -> [ | LFireball]
+Late RIGHT [RFireball | Vulnerable] -> [ | Dying Vulnerable]
+Late Right [RFireball | Invulnerable] -> [ | Invulnerable] 
+Late Left [LFireball | Vulnerable] -> [ | Dying Vulnerable]
+Late LEFT [LFireball | Invulnerable] -> [ | Invulnerable]
+
+Late [DragonUp] -> [UFireball DragonUp]
+Late [DragonDown] -> [DFireball DragonDown]
+Late UP [UFireball | No Vulnerable no Invulnerable] -> [ | UFireball]
+Late DOWN [DFireball | No Vulnerable no Invulnerable] -> [ | DFireball]
+Late UP [UFireball | Vulnerable] -> [ | Dying Vulnerable]
+Late Up [UFireball | Invulnerable] -> [ | Invulnerable] 
+Late Down [DFireball | Vulnerable] -> [ | Dying Vulnerable]
+Late DOWN [DFireball | Invulnerable] -> [ | Invulnerable]
+
+[ > Hero | Hole ] -> [ Hero | Hole ]
+late [ Crate Hole ] -> [ CrateInHole ] Sfx3
+late [ Hole Vulnerable ] -> [ Hole Sfx5 ]
+
+(Vulnerable objects that are attacked are designated as "Dying", but heroes can be saved by the Priest. Then the stuff that didn't get saved dies.)
+
+Late [Dying Healer] -> [Saved Healer]
+Late [Healer | Dying Hero] -> [Healer | Saved Hero]
+Late [Dying Monster] -> [Sfx5]
+Late [Dying Hero] -> [Corpse Sfx6]
+
+(Doors opening.)
+
+late [ColorDoor no DoorMarker no InvDoorMarker] -> [ColorDoor DoorMarker]
+late [ColorOpen no DoorMarker no InvDoorMarker] -> [ColorOpen InvDoorMarker]
+
+late [Weighing YellowSwitch] [YellowDoor DoorMarker] -> [Weighing YellowSwitch] [YellowOpen DoorMarker] Sfx3
+late [YellowSwitch no Weighing] [YellowOpen DoorMarker] -> [YellowSwitch] [YellowDoor DoorMarker] Sfx2
+late [Weighing YellowSwitch] [YellowOpen InvDoorMarker] -> [Weighing YellowSwitch] [YellowDoor InvDoorMarker] Sfx2
+late [YellowSwitch no Weighing] [YellowDoor InvDoorMarker] -> [YellowSwitch] [YellowOpen InvDoorMarker] Sfx3
+
+late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker] Sfx3
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker Crate] -> [BlueSwitch] [CrateInHole DoorMarker]
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker no Crate] -> [BlueSwitch] [BlueDoor DoorMarker] Sfx2
+late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker] Sfx2
+late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker] Sfx3
+
+late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker] Sfx3
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker Crate] -> [PurpleSwitch] [CrateInHole DoorMarker]
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker no Crate] -> [PurpleSwitch] [PurpleDoor DoorMarker] Sfx2
+late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] Sfx2
+late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] Sfx3
+
+late [Weighing GreenSwitch] [GreenDoor DoorMarker] -> [Weighing GreenSwitch] [GreenOpen DoorMarker] Sfx3
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker Crate] -> [GreenSwitch] [CrateInHole DoorMarker]
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker no Crate] -> [GreenSwitch] [GreenDoor DoorMarker] Sfx2
+late [Weighing GreenSwitch] [GreenOpen InvDoorMarker] -> [Weighing GreenSwitch] [GreenDoor InvDoorMarker] Sfx2
+late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [GreenOpen InvDoorMarker] Sfx3
+
+
+(monster door)
+
+late [MonsterDoor] -> [ShadowDoor]
+late [ShadowDoor] [Monster] -> [MonsterDoor] [Monster]
+late [ShadowDoor] -> [Sfx3]
+
+(Looks for a HasSavedDoor and, if there is one, puts a warpball on the Priest. Then, if someone was saved this turn, plays the sound only if the Priest doesn't have the warpball. Finally, cleans that up.)
+
+late [HasSavedDoor] [Healer] -> [Goal] [Healer WarpBall]
+late [Saved] [Healer no WarpBall] -> [Saved Sfx4] [Healer]
+late [HasSavedDoor] -> [Goal]
+late [WarpBall] -> []
+
+late [Note no Moveable] -> []
+
+late [Saved no Hero] -> [] (NB! removes cross from non-hero cells. re-check if truly works)
+
+
+late [Switched] -> []
+
+
+(very late rules, assign sprites to doors, swap visual representation for basement doors)
+
+late [ Basement no WaterAnim1 ] -> [ Basement WaterAnim1]
+
+
+late [ YellowDoor Basement ] -> [ YellowDoor YellowOpenA Basement ]
+late [ YellowOpen Basement ] -> [ YellowOpen YellowDoorA Basement ]
+
+late [ PurpleDoor Basement ] -> [ PurpleDoor PurpleOpenA Basement ]
+late [ PurpleOpen Basement ] -> [ PurpleOpen PurpleDoorA Basement ]
+
+
+late [ BlueDoor Basement ] -> [ BlueDoor BlueOpenA Basement ]
+late [ BlueOpen Basement ] -> [ BlueOpen BlueDoorA Basement ]
+
+late [ GreenDoor Basement ] -> [ GreenDoor GreenOpenA Basement ]
+late [ GreenOpen Basement ] -> [ GreenOpen GreenDoorA Basement ]
+
+
+late [ YellowDoor no Basement ] -> [ YellowDoor YellowDoorA ]
+late [ YellowOpen no Basement ] -> [ YellowOpen YellowOpenA ]
+
+late [ PurpleDoor no Basement ] -> [ PurpleDoor PurpleDoorA ]
+late [ PurpleOpen no Basement ] -> [ PurpleOpen PurpleOpenA ]
+
+late [ BlueDoor no Basement ] -> [ BlueDoor BlueDoorA ]
+late [ BlueOpen no Basement ] -> [ BlueOpen BlueOpenA ]
+
+late [ GreenDoor no Basement ] -> [ GreenDoor GreenDoorA ]
+late [ GreenOpen no Basement ] -> [ GreenOpen GreenOpenA ]
+
+==============
+WINCONDITIONS
+==============
+
+All Hero on Goal
+All Goal on Hero
+
+=======
+LEVELS
+=======
+
+
+(level mirror_1)
+
+_____________
+__..____...__
+_....__....._
+_....._..`.._
+_.....__...._
+__..______.__
+_____....____
+_____..a...__
+__..__.....__
+_....___..___
+_..g...______
+__........___
+___........__
+_____.....___
+_____________
+
+
+
+(level mirror_2)
+
+_____________
+_____....____
+____.a.'..___
+___.......___
+______.._____
+___._____..__
+__...___...._
+__....__..g._
+__....._...._
+_......_...__
+_..'...__.___
+_......______
+__...._______
+___..________
+_____________
+
+
+(level mirror_3)
+
+_________________
+________...._____
+_______...~..____
+__..__.......____
+_....__..~...____
+_....___...______
+_....____________
+__..___..____..._
+__..__....__..g._
+_.'._.....__...._
+_..._..._____..__
+_..._..__..______
+__..____...._____
+_______.~.a..____
+_______....._____
+_________________
+
+
+
+(level mirror_4)
+
+_______________
+__...____...___
+_..._____....__
+_.g.____...~.__
+_...______...._
+_.._______...__
+__.__..__...___
+__._../....____
+____..._.._____
+____.a.________
+_____..________
+_______________
+
+
+
+(level mirror_5)
+
+________________
+_..__.___..a____
+_......__~'.____
+__....._....____
+___....__.._____
+________________
+_______.____..__
+__.____..___..._
+_........___.g._
+__.....~.___..._
+____.~...___..__
+_____..._____.__
+_______.________
+________________
+
+
+
+(level mirror_6_alt)
+
+
+___________________
+___..______________
+_..g.________..____
+__...____....~..___
+________.......~.__
+________..___...a._
+_______________..._
+___________________
+___________________
+________...________
+______......~...___
+_______....\.....__
+_________~...._____
+_________..________
+___________________
+
+
+(level mirror_7)
+
+
+____________
+___...______
+_...~.._____
+_.'...._____
+_.....______
+__..________
+________..._
+_....._..g._
+__~.a.__..__
+__..____.___
+____________
+
+
+(level mirror_8_v5)
+
+____________________
+____.....___________
+____.~...._______.__
+_____.._..___.~.'.._
+_______...___......_
+_______.......a...__
+____________________
+__..._______________
+_.g.._______________
+___.._______________
+____________________
+
+
+
+(level mirror_11)
+
+______________
+______________
+___..__...____
+__......'...__
+__.........a._
+__...___..`.__
+_________...__
+___.__________
+_....__.._____
+_..g.__....___
+__...__..g..__
+________...___
+______________
+
+
+(level mirror_12)
+
+______________
+__..__________
+_..'....______
+_.....a.....__
+__........`.._
+_________...._
+__________..__
+_____...._____
+___.........._
+___..g.g.g..._
+____........__
+______________
+
+
+(level mirror_13)
+
+
+_______________
+______...._____
+_____........__
+_____...g..g.._
+_______......._
+__..___________
+__.a._____.____
+_....'.__....__
+__.`...._..~.._
+__......__._.._
+___....__..____
+_____..__...___
+_______________
+
+
+(level mirror_14)
+
+
+_________________
+___._____..._____
+__...____.`..____
+__.a..__.......__
+_....___........_
+_..a.__........._
+_....__....g...._
+__..____........_
+________...\...__
+_________......__
+__________...____
+_________________
+
+
+(level mirror_15)
+
+___________________
+_________....______
+________......_____
+___..__..!...._____
+__....__......_____
+__....___..._______
+__...._____________
+___..___..____...__
+___..__....__..g.__
+__.'._.....__....__
+__..._..._____..___
+__..._..__.._______
+___..____....______
+________.~.a.._____
+________.....______
+___________________
+
+
+
+(level mirror_19)
+
+_____________
+__...________
+_...g.___..__
+___...__...__
+________...._
+__..___!...._
+_....__....._
+__....__../__
+__.a..___..__
+___._________
+_____________
+
+
+(level mirror_17)
+
+__________________
+__....____________
+_..........___..__
+_.!.'.#...._....._
+_.........___..g._
+___...________..._
+__.a..__________._
+__..._____________
+___.._____________
+__________________
+
+
+(level mirror_sink)
+
+_______________
+_________...___
+_______...g..__
+____._.......__
+__..._#..._____
+_..!.__#_______
+_...a__________
+_.\..._________
+__.........____
+____......_____
+_______..______
+_______________
+
+
+(level mirror_20)
+
+_______________
+___..__________
+__..!._________
+__......_______
+__....._____a._
+_________..`.._
+________......_
+_________.!..__
+____...___..___
+___..g.________
+____.....______
+_____..._______
+_______________
+
+
+(level mirror_18)
+
+________________
+_________...____
+________...!.___
+________.!....__
+____._._......__
+__..a___...__.__
+_..!..__________
+_.'...__________
+_...____________
+__._____....____
+_______..g...___
+_______.....____
+________________
+
+
+(level mirror_21)
+
+__________________
+__.#_________..___
+_...#______...!___
+_.g..______.!...__
+_...#______....a__
+_#.________..`!.__
+____________!...__
+____________..____
+____________._____
+____________#_____
+__________________
+
+
+(level mirror_22_v2)
+
+_________________
+______________.._
+_____________..._
+_________......._
+_________.___.`._
+___.......___..._
+___...__._____.._
+__..._________.__
+__.!.___.________
+__..a___.._______
+__.!.___.g_______
+__...____________
+__.._____________
+_________________
+_________________
+
+
+(level mirror_factory_v2)
+
+________________
+_________...____
+______......____
+______......____
+_.a____.#!._____
+_..____...._____
+_.'.__.'..______
+_...__...____.._
+__..__..____.g._
+__._________..._
+________________
+
+(level mirror_pals)
+
+(TODO: secondary action)
+
+__________________
+__________________
+__________________
+__________________
+__________________
+__g________.....__
+_________..`.ag.__
+_______.........__
+_____......!.0..__
+_____...........__
+__________________
+__________________
+__________________
+__________________
+__________________
+__________________
+
+
+(level walk_it_over)
+
+(TODO: long range, secondary action)
+
+________________________________
+__..._______________________..._
+__.g._______________________.g._
+__..._______________________..._
+____________________________..._
+_______________________........_
+_______________________........_
+_______________________........_
+_______________________...._____
+______________________....______
+___________________.......______
+___________________.......______
+___________________..!....______
+___________________.a!..._______
+___________________.`!..________
+___________________..!..________
+___________________..0..________
+___________________...__________
+____________________..__________
+________________________________
+________________________________
+________________________________
+________________________________
+________________________________
+
+
+(level mirror_10_alt2)
+
+(TODO: shorten path by 1 on secondary reflection)
+
+____________________
+___________...._____
+___________....__.._
+__________..'____.._
+_________...._._.g._
+__.___________....__
+_...___...____....__
+_........_____....__
+_____...a______...__
+______./..__________
+______....__________
+____....____________
+_____...____________
+____________________
+
+
+(level mundane_mirror)
+
+(TODO: mundane mirror)
+
+___________________
+_____________...___
+____________..`~___
+___________________
+___________......__
+__.._____........._
+_...._____........_
+_..g._______..a..._
+__..________....___
+____________.'..___
+____________.....__
+________./_......__
+_______...~___..___
+_______....________
+___________________
+
+
+(level mirror_10_b_v2)
+
+(TODO: reflection path should be longer by 5)
+
+______________________
+____..__..______....__
+____.......___......._
+__.........___......._
+__........___...______
+__...._______.._______
+_..'.__.......__....__
+_....__......___.g.___
+_....___....._________
+__.\___.....___...____
+__..____..____..a.____
+__._____________._____
+______________________
+
+
+(level mirror_10_d)
+
+(TODO: reduce reflection path by 1)
+
+_____________________
+___________..________
+___________..._______
+__________..\..______
+__________.a...______
+__________.....______
+__..______...`.______
+_...._____.....______
+_....._____..._______
+__..!.___________..__
+___......._______.g._
+_____........________
+_______......._______
+___________..._______
+_____________________
+
+
+
+(level heroes1_1)
+
+#############
+#...#...*...#
+#.F.#...#.G.#
+#...*...#...#
+#############
+
+
+(level heroes1_2_v2)
+
+#############
+#...#...#...#
+#F..**....**#
+#...#...#...#
+##########*##
+#...#...#...#
+#.G*..****..#
+#...#...#...#
+#############
+
+
+(level heroes1_3)
+
+#############
+#...#...#...#
+#F{...*.#.G.#
+#...#...[...#
+#############
+
+
+(level heroes1_4)
+
+#########
+#.....#G#
+#.F*..#[#
+#.**....#
+#...#...#
+##{.{.{.#
+#.......#
+#########
+
+
+(level heroes1_4.5)
+
+#############
+#...#...*...#
+#.T.#...#.G.#
+#...*...#...#
+#############
+
+
+(level heroes1_5_v2)
+
+#############
+#...#*..#...#
+#T..*...#.*.#
+#...#..*....#
+##########.##
+#..**...#...#
+#.G.#...#.{.#
+#...#...[.*.#
+#############
+
+
+(level heroes1_7_v2)
+
+###################
+##########*..######
+#...#........[...##
+#...#....#...#.G.##
+##..#....#####...##
+##..####.#..####[##
+##.......#..T{....#
+##..##...#...##...#
+######...##.#######
+######.###..##...##
+####.............##
+####...############
+###################
+
+
+(level heroes1_6)
+
+#########
+#.....#G#
+#.T*..#[#
+#.**....#
+#.#...#.#
+#.{.{.{.#
+#...#...#
+#########
+
+(level heroes1_7.5)
+
+#############
+#...#...*...#
+#.W.#...#.G.#
+#...*...#...#
+#############
+
+(level heroes1_8_v2)
+
+#############
+#.......#...#
+#W*.#.......#
+#.......#...#
+######.###.##
+#...#...#...#
+#.G.[.......#
+#...#...#..{#
+#############
+
+(level heroes1_10_inv_v4_b)
+
+#############
+#.....W.#...#
+#.*.*.*.[.G*#
+#.......#...#
+#.*.*.*.#####
+#.......#####
+#.{.*.*.#####
+#.......#####
+#############
+
+
+(level heroes1_9)
+
+#########
+#.....#G#
+#.W*..#[#
+#.**....#
+#...#...#
+#.{.{.{.#
+#...#...#
+#########
+
+
+(level heroes1_11_v2)
+
+#########
+#...#...#
+#*#...{.#
+#G#F#...#
+######[##
+#*#3#...#
+#G#...{.#
+#...#...#
+#########
+
+
+(level heroes1_13_v2)
+
+############
+#...###G..##
+#.F.*.###[##
+#...#.#.{..#
+#####..*...#
+#...#.#.{..#
+#.2...###[##
+#...###G..##
+############
+
+
+(level heroes1_12_v2_alt)
+
+#############
+#####W...*###
+#######.#####
+#G.#........#
+#..[2{....#{#
+#G.#........#
+######..#####
+#######.*####
+#############
+
+
+(level heroes1_15)
+
+#############
+#...##F##.G##
+#.{.....[..*#
+#...##3##.G##
+#############
+
+
+(level heroes1_16_v3)
+
+###########
+#*..GG...*#
+#.#######.#
+#[#G.#..#[#
+#.#.{.{.#*#
+#2#W.#.*#1#
+###########
+
+
+(level heroes1_17)
+
+#########
+#*......#
+#######.#
+#F23.[#.#
+#..##G#.#
+#..#GG#.#
+##.####.#
+#.......#
+##{####.#
+#########
+
+
+(level heroes1_18)
+
+#############
+#...#7.8#...#
+#.*.#.1.#.G.#
+#...#...#...#
+##]###.###]##
+#...#...#...#
+#.}...}...}.#
+#...#...#...#
+#############
+
+
+(level heroes1_19_jail)
+
+(TODO thief needs to be selected second, also jail support)
+
+
+#######
+##*#*##
+#..W..#
+#.GGG.#
+#.....#
+#2###1#
+#######
+
+
+(level heroes1_21_v3)
+
+###############
+#F..{#*2{#.{.3#
+#..*.#{..#.*..#
+#{...#...#...{#
+###[###[###[###
+#...........###
+#.....GGG...###
+#..........*###
+######..#######
+######.**######
+###############
+
+(level heroes2_2b)
+
+#############
+##.........O#
+#...........#
+#F....O..#.G#
+#...........#
+##.........O#
+#############
+
+
+(level heroes2_2)
+
+#############
+#F.O.......O#
+#...O.......#
+#.......O...#
+#O..........#
+#....O......#
+#O.......O..#
+#.O.....O.G.#
+#############
+
+
+(level heroes2_thief_goblin)
+
+###############
+#G.O..........#
+#.]...........#
+#.....O.O.....#
+#O............#
+#.............#
+#..O.......O..#
+#......O......#
+#..}.....T*...#
+#.............#
+#...O.......###
+#........######
+#........######
+###############
+
+
+(level heroes2_3_v2)
+
+##############
+#W.#O###O#####
+#...*****...O#
+#...*****....#
+######O###O..#
+#####O##O#...#
+#O..*****....#
+#...**.**....#
+#..O##O#######
+#..###########
+#....O.O....G#
+##..O.O..O...#
+##############
+
+(level heroes2_5_altE)
+
+#############
+##G.........#
+##..........#
+#R..........#
+##.....#....#
+##.....#....#
+##.....##O###
+##.....#.*..#
+####U###...F#
+#############
+
+(level heroes2_5_no_crystal)
+
+
+##############
+##.T..########
+##...........#
+##.G.......L.#
+##...........#
+##..R........#
+##...........#
+##.........L.#
+#............#
+#...#######..#
+##############
+
+
+(level heroes2_5.5v5)
+
+#########
+#T.D#...#
+#.*.....#
+#...#R..#
+######..#
+##DD....#
+#G......#
+##......#
+#########
+
+
+(level heroes2_6_v3)
+
+############
+##G.########
+##..########
+##..D....###
+##.......###
+##U......###
+########D###
+#..........#
+#T..#...*..#
+##.....U...#
+############
+
+
+(level heroes2_9)
+
+###########
+#######D###
+#F.......G#
+#2......G*#
+#3.......G#
+###U#######
+###########
+
+
+(level heroes2_10a_intro)
+
+#############
+#.......#####
+#.......#...#
+#.......#.G.#
+#..#....#...#
+#..##...##M##
+#F.#....O..##
+#..#.....**.#
+#O.#........#
+#############
+
+
+(level heroes2_10a)
+
+#############
+#.......#...#
+#.......#.G.#
+#.F*.O..#...#
+#....*..##M##
+#O.........##
+#############
+
+
+(level heroes2_3monster)
+
+##############
+#........#####
+#........#####
+#.O......#...#
+#..F.O.*.M.G.#
+#........#...#
+#....*...#####
+#O.......#####
+##############
+
+
+(level heroes2_10)
+
+###########
+#L...R#####
+#.....#...#
+#.....M.G.#
+#.T.*.#...#
+#.....#####
+###########
+
+
+(level heroes2_11_v2_easier)
+
+##############
+#........#####
+#..*.....#####
+#R.......#...#
+#........M.G.#
+#.....O..#...#
+#..F*....#####
+#........#####
+##############
+
+
+(level heroes2_12_v2)
+
+#############
+#.......#####
+#.{...[.#...#
+#...*...#...#
+#..W.O..M.G.#
+#...*...#...#
+#.{...{.#####
+#.......#####
+#############
+
+
+(level heroes2_11_v2)
+
+##############
+#....F...#####
+#R.......#...#
+#....O...#...#
+#...O.O..M.G.#
+#..*.....#...#
+#......*.#####
+#........#####
+##############
+
+
+(level heroes2_10.5)
+
+#################
+#.9.......#######
+#...O.....#######
+#.........#######
+#O........#######
+#........O.O.O]L#
+#]]]]#....#######
+#....#....#######
+#..G.#.W..#######
+#################
+
+
+(level one_fire_v2)
+
+############
+#GG..#}..*##
+####]#....##
+####.#.2F..#
+####[#...#L#
+#S.O.......#
+############
+
+
+(level heroes2_13)
+
+###########
+#...#O#O#O#
+#.P.......#
+#*.*O#O#O.#
+#.*G*###*.#
+#R........#
+###########
+
+
+(level heroes2_14)
+
+###########
+#W#######G#
+#.#O#O#O#.#
+#.........#
+#.##O#O##.#
+#.#######.#
+#4#######G#
+###########
+
+
+(level heroes2_15)
+
+############
+#F.4#.O#O###
+#...#......#
+##.##.##O..#
+#O....O#G.G#
+#...#.##.#.#
+############
+
+
+(level heroes2_reprise)
+
+#########
+#.F...#G#
+#4...*#G#
+#...O.#[#
+#..O....#
+#..{{{..#
+#.......#
+#########
+
+
+(level heroes2_16v4)
+
+############
+###..T..#4##
+###.*.}...L#
+#.].......L#
+#G#.*.}...L#
+###.....#G##
+############
+
+
+(level heroes2_18)
+
+###########
+#.T.##O#O##
+#.........#
+#.4.#O#O..#
+########.##
+#G..####.O#
+#G#.O###.##
+###.###O..#
+#O..O#....#
+##.......O#
+###########
+
+
+(level mosh_pit_small)
+
+#######
+#4***L#
+#*****#
+#****W#
+#O***Q#
+#****Q#
+#######
+
+
+(level heroes2_17_intro)
+
+##########
+#O...O####
+#.....#.G#
+#.W.4.M..#
+#.....#.G#
+#O...O####
+##########
+
+
+(level heroes2_17)
+
+##########
+#W...O####
+#.....#.G#
+#..4..M..#
+#.....#.G#
+#O...O####
+##########
+
+
+
+(level heroes2_20)
+
+###########
+##.P#####O#
+#O....O.2.#
+##.3#####.#
+#####O###.#
+#.G..*...O#
+#G.G#O#####
+###########
+
+
+(level heroes2_21b)
+
+#########
+#T[.[.[.#
+##{#{#{.#
+#.......#
+#.3.*.4.#
+#.G.G.G.#
+#########
+
+
+(level heroes2_22_v2)
+
+#############
+#...#...#...#
+#.F.#G.G#.2.#
+#...#...#...#
+##.###M###.##
+#R*L.....R*L#
+#.#.......#.#
+#R*L.....R*L#
+##.###M###.##
+#...#...#...#
+#.3.#G.G#.4.#
+#...#...#...#
+#############
+
+
+(level heroes3_10)
+
+##############
+#.@@@@@@@@@@@#
+#.].}.T.@.6.@#
+#.@@@@@@@@@.@#
+#....G.G..@.@#
+##########@@@#
+##############
+
+
+(level heroes3_11_v2)
+
+############
+#...@@..{{{#
+#.I.@@.#####
+#...@#@#####
+#...@..#.G.#
+#.1.@@.[...#
+#...@..#.G.#
+############
+
+
+(level druid_and_dragon)
+
+############
+#.........##
+#..R.......#
+#...@#.....#
+#.F.O##..6.#
+#...##.....#
+##M###.....#
+#G.G##.O..##
+############
+
+
+(level wizard_and_druid_alt_5)
+
+#############
+#####..{.@###
+#####]#######
+#G.#3.###...#
+#..[..#@#...#
+#G.#I.....#}#
+######......#
+#############
+
+
+(level heroes3_15_v4)
+
+##########
+##.#######
+#@@#######
+#@@#######
+#@@#######
+#@@##@@GG#
+#@@@@@@###
+#@@I@3####
+##########
+
+
+(level heroes3_1_v3)
+
+###############
+#...###########
+#.G...........#
+#O..#########.#
+#####......##.#
+###....#.#.##.#
+####.......##O#
+###....###.##.#
+###..B.###.##.#
+###....###....#
+###############
+
+
+(level heroes3_2_v4)
+
+############
+#..........#
+#..........#
+#..........#
+####.####..#
+#..#.#.Y#..#
+#..#.#.##..#
+#..#...#G[O#
+#..######..#
+#..........#
+#..........#
+############
+
+
+(level heroes3_3_v2)
+
+##############
+#..###########
+#B.....*..####
+#..######.####
+#########.####
+#G#######.####
+#...**.......#
+###########..#
+##############
+
+
+(level heroes3_4)
+
+#############
+#O..B..O#####
+#.......#...#
+#...#...M.G.#
+#.......#...#
+#.......#####
+#############
+
+
+(level heroes3_5)
+
+############
+#.O..K...#G#
+#........[.#
+#.O..J...#G#
+############
+
+
+(level worlds_collide_heroes_and_mirrors_v3)
+
+(TODO: wizard and goblin mirroring, mirror sink)
+
+__________________________
+______________..._________
+______________!...`...____
+_##########___........____
+_#g#......#___.._____.____
+_#.#......#__________..___
+_#.#...o..#____._..a______
+_#.#.......___#.__________
+_#.M.3.o.#.____.__________
+_###......._______________
+_###...o..._______________
+_###......._______________
+_###......._______________
+_##########____.__________
+_______________________.g_
+______________________*.._
+__________________________
+
+(level dipping_your_toes_in)
+
+____________________
+___###.###__##______
+___###....,__#_##___
+_#####._.....#______
+_#..?;.*.....__...__
+_#.*?;.._._..:]G.#__
+_#..?;...__..:]..#__
+_#####...F__.#####__
+_#####..}....#####__
+_____###__####______
+____________________
+
+
+(level crystal_bridges)
+
+____________________
+______________#####_
+________####__....#_
+_#####__....__....#_
+_#....__...*__.G..#_
+_#.F..__....__....#_
+_#....__....________
+_#..*.______________
+_________.*.._______
+__#....__...._.**.#_
+__#...*__...._....#_
+__#...*__...._....#_
+__#...._______....#_
+__#####_____________
+____________________
+
+(level push_and_pull_zach)
+
+_____________
+______......_
+______.*****_
+______......_
+___........._
+___._#.T.1.._
+_____.###____
+_G_..._G_____
+_____________
+
+
+(level quadrants)
+
+_________
+_T.3_G.G_
+_.}._..._
+_..._..._
+_[[[%;;;_
+_...]..._
+_.,.].{._
+_*..]..._
+_________
+
+
+(level quadrants_follow_up)
+
+______%_____%%______
+_....._..,..__....._
+_..T..].....;;..G.*_
+_}....]....*;;....._
+_..2..].....;;..G.*_
+_....._.....__....._
+____________________
+
+
+(level drowner)
+
+___________________
+_______###_________
+_______#_#_________
+_______#.#_________
+____####.####______
+____#...O...#______
+____#...*...#______
+_####.......######_
+_#_..O*.._.O.*FMG#_
+_####.......######_
+____#...*...#______
+____#...O...#______
+____####*####______
+_______#.#_________
+_______#_#_________
+_______###_________
+___________________
+
+
+(level surrounded)
+
+_____........._____
+_____.O..O..O._____
+_____........._____
+___________________
+___________________
+...__.........__...
+...__.....F...__...
+.O.__.........__.O.
+...__.......L.__...
+.O.__.D.......__.O.
+...__...U.....__...
+.O.__.........__.O.
+...__...R.....__...
+.O.__.........__...
+_________M_________
+_________M_________
+____...........____
+____.O.O.GO.O..____
+____...........____
+
+
+(level dont_push_the_button)
+
+(TODO: crushing the submerged crate)
+
+_____________%_____
+_..___________..___
+_.*__.......__.._._
+_..__._..._..;:._g_
+_......},{_..]?._._
+_.._f.._...+.[&._._
+_..__...._...$-._._
+_.*__.......__.._._
+_..___________l.___
+___________________
+
+
+(level detonator)
+
+______%%%______________
+_.....___....._________
+_.....___.*..._________
+_..+..:::....._________
+_.....___....f_________
+_..2..___....._________
+___________$__________%
+___________$__________%
+___________$__________%
+_________.....___....._
+_________.....___....._
+_________..z..---.g.g._
+_________.....___....._
+_________.....___..d.._
+______________%%%______
+
+
+(level a_wiz_out_of_water)
+
+__________________
+_____________...*_
+_____________...._
+_____________...._
+_______.........._
+__...._...._______
+__...._..W._______
+__...._.....______
+__...}..___.______
+__________....____
+__________....____
+__________]]]]____
+__________..G.____
+__________________
+
+
+
+(level island_hopping)
+
+_______________________
+____..F._______________
+____...._______________
+____...._______......._
+_______________.....*._
+_______________......*_
+__________...._......._
+__________*..._________
+__________...._________
+__________.GG._________
+_.*....___...._________
+_*.....________________
+_...3.._________....___
+_......_________....___
+________________..*.___
+________________....___
+____________........___
+____________...._______
+____________*..._______
+_______________________
+
+
+(level dunk_tank_alt)
+
+______%_____________
+________....________
+_.....].....___...._
+_w...___....___..g._
+_2...___....___..g._
+_....___....dm....._
+________.}..________
+____________________
+
+
+
+(level gully_alt)
+
+(TODO: charmed crates vs water)
+
+#################
+###_____#_____g##
+####___________##
+#..._#.........##
+#.##_....##.#####
+#..._#_______####
+##.._#.*..#.__###
+#..._#.#..#.._###
+#..#_...b##.._.##
+####_____#..._..#
+#######.______..#
+#####......#....#
+######.##..#....#
+#################
+
+
+
+
+
+(level easy_situation_v2)
+
+(TODO charmed crates vs water)
+
+__________
+________G_
+__*.....__
+__......__
+__...5..__
+__......__
+__......__
+__.....*__
+_E________
+__________
+
+
+(level one_vs_three)
+
+(TODO charmed crates vs water)
+
+____________________
+_____*______________
+_____.______________
+_____.______________
+____..._____________
+___.....____________
+___.....____________
+__....w.____________
+__.....________..___
+_g..._________..._g_
+__.._________....___
+___________......___
+__________.......___
+__________.......___
+_________..5....____
+_________......_____
+____________________
