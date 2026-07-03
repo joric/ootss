@@ -784,9 +784,6 @@ ColorDoor   = YellowDoor   or BlueDoor   or PurpleDoor   or GreenDoor
 ColorOpen   = YellowOpen   or BlueOpen   or PurpleOpen   or GreenOpen
 ColorSwitch = YellowSwitch or BlueSwitch or PurpleSwitch or GreenSwitch
 
-WarpStop = Wall or Bush or MonsterDoor
-
-
 (single letter defines for levels)
 
 . = Background
@@ -1138,20 +1135,14 @@ endloop
 
 [ > Wizard ] -> [ Wizard > Warpball]
 
-([ > Warpball | no Moveable no Static] -> [ | > Warpball])
-
+(basement door rule added. check carefully. should work both with heroes1_21_v3 and dunk_tank_alt)
 
 [ > Warpball | ClosedDoor Basement ] -> [ | ClosedDoor Basement > Warpball ]
-[ > Warpball | OpenDoor Basement ]   -> [ | OpenDoor Basement > Warpball ]
++ [ > Warpball | no Moveable no Static ] -> [ | > Warpball ]
 
-[ > Warpball | ClosedDoor no Basement ] [ Wizard ] -> [ | ClosedDoor ] [ > Wizard ]
-[ > Warpball | OpenDoor   no Basement ] [ Wizard ] -> [ | OpenDoor ] [ > Wizard ]
-
-[ > Warpball | no Moveable no WarpStop ] -> [ | > Warpball ]
-
+(continue wizard rules as usual)
 
 [ > Warpball | Static] [Wizard] -> [ | Static ] [> Wizard]
-
 [ > Warpball | Moveable ] [Wizard] -> [ | Wizard Sfx0] [Moveable]
 [ > Warpball] [Wizard] -> [] [> Wizard]
 (Wizards telexport. What they really do is shoot a "warpball", which causes them to move normally if it hits a wall or the edge of the screen and warp if it hits something they can warp with.)

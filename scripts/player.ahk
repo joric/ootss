@@ -477,8 +477,8 @@ RewindSteps() {
 !e::  PlayCurrent(false)  ; Alt+ E: Play only
 ^e::  RecordSolution()    ; Ctrl+E: record solution
 
-~![::Send(UNDO)           ; Alt + [: undo
-~!]::StepNextMove()       ; Alt + ]: step forward
+~!SC01A::Send(UNDO)           ; Alt + [: undo
+~!SC01B::StepNextMove()       ; Alt + ]: step forward
 ~r::RewindSteps()         ; R: rewind steps
 
 ~Esc:: {
