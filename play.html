@@ -315,7 +315,7 @@ function move(id) {
 }
 
 function getMapLink(name) {
-  let mapBase = location.protocol === 'file1:' ? 'index.html' : '';
+  let mapBase = location.protocol === 'file:' ? 'index.html' : './';
   return name ? mapBase + '#' + name : mapBase;
 }
 
