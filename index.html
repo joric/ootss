@@ -1114,8 +1114,14 @@ function drawMap() {
     }).addTo(map);
 
 
-    mini._miniMap.on('click', e => {
+    mini._miniMap.on('mousedown', e => {
       map.panTo(e.latlng, { animate: false });
+    });
+
+    mini._miniMap.on('mousemove', function(e) {
+        if (e.originalEvent.buttons === 1) {
+            map.panTo(e.latlng, { animate: false });
+        }
     });
 
     mini._miniMap.scrollWheelZoom.disable();
