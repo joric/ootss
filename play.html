@@ -331,6 +331,7 @@ function close() {
 }
 
 function nextMove() {
+  showSolution();
   sendNextMove()
 }
 
@@ -356,6 +357,7 @@ function undo() {
 }
 
 function prevMove() {
+  showSolution();
 /*
   if (pos > 0) {
     pos--;
@@ -402,6 +404,7 @@ function pauseSolution() {
 }
 
 function play() {
+  showSolution();
   if (!timer) {
     playSolution();
   } else {
@@ -645,12 +648,10 @@ window.onload = () => {
 
       switch (e.code) {
         case 'BracketRight':
-          showSolution();
           e.preventDefault();
           nextMove();
           break;
         case 'BracketLeft':
-          showSolution();
           e.preventDefault();
           prevMove();
           break;
@@ -678,7 +679,6 @@ window.onload = () => {
           break;
 
         case 'KeyE':
-          showSolution();
           play();
           break;
 
