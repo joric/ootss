@@ -466,7 +466,6 @@ function focusMarkerByName(name) {
   //console.log('looking for', name);
 
   map.eachLayer((layer) => {
-
     if (layer instanceof L.Marker) {
       if (layer.feature.properties.name === name) found = layer;
     }
@@ -860,7 +859,7 @@ function drawMap() {
 
         //console.log(c);
 
-        L.marker([c[1],c[0]], {
+        let marker = L.marker([c[1],c[0]], {
             icon: L.divIcon({
                 className: 'region-label',
                 html: feature.properties.title,
@@ -869,6 +868,8 @@ function drawMap() {
             }),
             zIndexOffset: 1000,
         }).addTo(regionLayer);
+
+        marker.feature = feature;
 
       },
   });//.addTo(map);
@@ -1115,7 +1116,6 @@ function drawMap() {
 
       //minimized: true,
     }).addTo(map);
-
 
     mini._miniMap.on('mousedown', e => {
       map.panTo(e.latlng, { animate: false });
