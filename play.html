@@ -523,7 +523,7 @@ function extractRanges(sourceText, prefix, limit = Infinity) {
 function lookupRange(ranges, lineNumber) {
   for (const r of ranges) {
     if (lineNumber >= r.start && lineNumber < r.end) {
-      return r.name;
+      return r.name.replace(':','').trim();
     }
   }
   return undefined;
@@ -711,7 +711,6 @@ window.onload = () => {
     //puzzleScript.compile(cleanedData);
 
     levelRanges = extractRanges(cleanedData, 'level');
-
     todoRanges = extractRanges(cleanedData, 'TODO', 10);
 
     levelNames = levelRanges.map(r => r.name);
@@ -720,13 +719,23 @@ window.onload = () => {
 
     //console.log(levelNames);
 
+//    console.log('-------', levelRanges);
+//    console.log('-------', todoRanges);
+
+
+    levelLines = Object.fromEntries(levelRanges.map(range => [range.name, range.start]));
+
+//    console.log(levelLines);
+
     const select = document.getElementById('levelSelect');
     if (select) {
       select.innerHTML = '';
       levelNames.forEach( name => {
           const option = document.createElement('option');
           option.value = name;
-          option.textContent = name;
+          let line = levelLines[name];
+          let todoNote = lookupRange(todoRanges, line+10)||'';
+          option.textContent = todoNote ? name + ' *' : name;
           select.appendChild(option);
       });
     }
