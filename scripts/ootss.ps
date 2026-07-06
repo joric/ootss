@@ -891,10 +891,8 @@ EndGame 86793500
 COLLISIONLAYERS
 ================
 
-Background
 MirrorBackground
 HeroBackground
-
 WaterSeed
 RayU
 RayD
@@ -976,34 +974,32 @@ late [ WaterAnim no Hole ] -> []
 
 late [ Mirror ] [ HeroBackground ] -> [ Mirror ] [ MirrorBackground ]
 
-
-
 (Island border)
 
 
-left [ WaterHere no AddLandL | no WaterHere ] -> [ WaterHere AddLandLUD | ]
-right [ WaterHere no AddLandR | no WaterHere ] -> [ WaterHere AddLandRUD | ]
+left  [ Mirror ] [ WaterHere no AddLandL | no WaterHere ] -> [ Mirror ] [ WaterHere AddLandLUD | ]
+right [ Mirror ] [ WaterHere no AddLandR | no WaterHere ] -> [ Mirror ] [ WaterHere AddLandRUD | ]
 
-up [ AddLandLUD | WaterHere ] -> [ AddLandLD | WaterHere ]
-up [ AddLandRUD | WaterHere ] -> [ AddLandRD | WaterHere ]
+up    [ Mirror ] [ AddLandLUD | WaterHere ] -> [ Mirror ] [ AddLandLD | WaterHere ]
+up    [ Mirror ] [ AddLandRUD | WaterHere ] -> [ Mirror ] [ AddLandRD | WaterHere ]
 
-down [ AddLandLUD | WaterHere ] -> [ AddLandLU | WaterHere ]
-down [ AddLandRUD | WaterHere ] -> [ AddLandRU | WaterHere ]
+down  [ Mirror ] [ AddLandLUD | WaterHere ] -> [ Mirror ] [ AddLandLU | WaterHere ]
+down  [ Mirror ] [ AddLandRUD | WaterHere ] -> [ Mirror ] [ AddLandRU | WaterHere ]
 
-down [ AddLandLD | WaterHere ] -> [ | WaterHere ]
-down [ AddLandRD | WaterHere ] -> [ | WaterHere ]
+down  [ Mirror ] [ AddLandLD | WaterHere ] -> [ Mirror ] [ | WaterHere ]
+down  [ Mirror ] [ AddLandRD | WaterHere ] -> [ Mirror ] [ | WaterHere ]
 
-left [ no WaterHere no RemoveLandL | WaterHere ] -> [ RemoveLandLUD | WaterHere ]
-right [ no WaterHere no RemoveLandR | WaterHere ] -> [ RemoveLandRUD | WaterHere ]
+left  [ Mirror ] [ no WaterHere no RemoveLandL | WaterHere ] -> [ Mirror ] [ RemoveLandLUD | WaterHere ]
+right [ Mirror ] [ no WaterHere no RemoveLandR | WaterHere ] -> [ Mirror ] [ RemoveLandRUD | WaterHere ]
 
-up [ RemoveLandLUD | no WaterHere ] -> [ RemoveLandLD | ]
-up [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRD | ]
+up    [ Mirror ] [ RemoveLandLUD | no WaterHere ] -> [ Mirror ] [ RemoveLandLD | ]
+up    [ Mirror ] [ RemoveLandRUD | no WaterHere ] -> [ Mirror ] [ RemoveLandRD | ]
 
-down [ RemoveLandLUD | no WaterHere ] -> [ RemoveLandLU | ]
-down [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRU | ]
+down  [ Mirror ] [ RemoveLandLUD | no WaterHere ] -> [ Mirror ] [ RemoveLandLU | ]
+down  [ Mirror ] [ RemoveLandRUD | no WaterHere ] -> [ Mirror ] [ RemoveLandRU | ]
 
-down [ RemoveLandLD | no WaterHere ] -> [ | ]
-down [ RemoveLandRD | no WaterHere ] -> [ | ]
+down  [ Mirror ] [ RemoveLandLD | no WaterHere ] -> [ Mirror ] [ | ]
+down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 
 
 (Prevent teleport)
