@@ -893,6 +893,7 @@ COLLISIONLAYERS
 
 Background
 MirrorBackground
+HeroBackground
 
 WaterSeed
 RayU
@@ -965,12 +966,21 @@ late [ WaterAnim no Hole ] -> []
 
 (Water anim)
 
-([ stationary MirrorGuy ] [ stationary WaterAnim1 ] -> [ MirrorGuy] [ action WaterAnim2 ]
-[ stationary MirrorGuy ] [ stationary WaterAnim2 ] -> [ MirrorGuy] [ action WaterAnim1 ])
+(
+[ stationary MirrorGuy ] [ stationary WaterAnim1 ] -> [ MirrorGuy] [ action WaterAnim2 ]
+[ stationary MirrorGuy ] [ stationary WaterAnim2 ] -> [ MirrorGuy] [ action WaterAnim1 ]
+)
+
+
+(if there's a mirror on the map, replace background with mirrorbackground)
+
+late [ Mirror ] [ HeroBackground ] -> [ Mirror ] [ MirrorBackground ]
+
+
 
 (Island border)
 
-(
+
 left [ WaterHere no AddLandL | no WaterHere ] -> [ WaterHere AddLandLUD | ]
 right [ WaterHere no AddLandR | no WaterHere ] -> [ WaterHere AddLandRUD | ]
 
@@ -994,7 +1004,7 @@ down [ RemoveLandRUD | no WaterHere ] -> [ RemoveLandRU | ]
 
 down [ RemoveLandLD | no WaterHere ] -> [ | ]
 down [ RemoveLandRD | no WaterHere ] -> [ | ]
-)
+
 
 (Prevent teleport)
 
@@ -1360,6 +1370,7 @@ late [ BlueOpen no Basement ] -> [ BlueOpen BlueOpenA ]
 
 late [ GreenDoor no Basement ] -> [ GreenDoor GreenDoorA ]
 late [ GreenOpen no Basement ] -> [ GreenOpen GreenOpenA ]
+
 
 ==============
 WINCONDITIONS
