@@ -856,8 +856,7 @@ function drawMap() {
 
         let c = getCentroidRaw2(feature.geometry.coordinates[0]);
 
-
-        console.log(c);
+        //console.log(c);
 
         L.marker([c[1],c[0]], {
             icon: L.divIcon({
@@ -1082,7 +1081,7 @@ function drawMap() {
 
     // mini map
 
-    miniMinZoom = -0.88;
+    let t = 1.25;
 
     var miniMapLayer = L.tileLayer('tiles/{z}/{y}/{x}.webp', {
       minZoom: -5,
@@ -1093,8 +1092,6 @@ function drawMap() {
 
     let bounds = {left:-6, top:143, right: 188, bottom: 35};
     let center = [bounds.left + (bounds.right-bounds.left)/2, bounds.top + (bounds.bottom-bounds.top)/2];
-
-    let t = 1;
 
     var mini = new L.Control.MiniMap(miniMapLayer, {
       toggleDisplay: true,
