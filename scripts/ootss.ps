@@ -1215,14 +1215,16 @@ endloop
 
 [ > Bard | CrateInHole ] -> [ > Bard | CrateInHole ]
 
-[> Note BardMoveable no CrateInHole | no Static no BardMoveable no Bard] -> [| BardMoveable Sfx7]
-+[> Note Bard BardMark| no Static no BardMoveable no Bard] -> [| Bard]
+
+[> Note BardMoveable no CrateInHole | no Static no BardMoveable no Bard ] -> [| BardMoveable Sfx7]
++[> Note Bard BardMark| no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
 [> Note Crate | Hole no Static no BardMoveable no Bard] -> [| CrateInHole Sfx7]
-+[> Note Bard BardMark| no Static no BardMoveable no Bard] -> [| Bard]
++[> Note Bard BardMark| no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
 [> Note CrateInHole | WaterHere no Static no BardMoveable no Bard] -> [Hole WaterAnim1 | CrateInHole Sfx7]
-+[> Note Bard BardMark| no Static no BardMoveable no Bard] -> [| Bard]
++[> Note Bard BardMark| no Static no BardMoveable no Bard no Hole] -> [| Bard]
+
 
 
 (Why are we doing this pseudo-movement instead of using the built-in version? Because using movement directions makes the note-adding stuff way easier below, and you can't use movement directions in the LATE phase, so the actual moving has to be done before then.)
