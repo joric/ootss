@@ -706,7 +706,7 @@ window.onload = () => {
     }
   });
 
-  fetch('scripts/ootss.ps').then(r => r.text()).then(data => {
+  fetch('scripts/ootss.pz').then(r => r.text()).then(data => {
     cleanedData = data.replace(/\r\n/g, '\n');
     puzzleScript = new PuzzleScript();
     //puzzleScript.compile(cleanedData);
