@@ -778,6 +778,7 @@ DoorSprite = YellowOpenA or PurpleOpenA or BlueOpenA or GreenOpenA or PurpleDoor
 
 Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
 Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09
+Rays = RayU or RayD or RayL or RayR
 DirectionCounter = North or South or East or West
 MirrorCrate = NormalCrate or ReflectableCrate
 Pushable = Mirror or MirrorCrate
@@ -945,23 +946,15 @@ RULES
 
 (paint water cross from waterseed for trapdoors)
 
+
 [ WaterSeed ] -> [ Basement RayU RayD RayL RayR ]
-
-up    [ RayU | ] -> [ RayU | Basement RayU ]
-down  [ RayD | ] -> [ RayD | Basement RayD ]
-left  [ RayL | ] -> [ RayL | Basement RayL ]
-right [ RayR | ] -> [ RayR | Basement RayR ]
-
-[ RayU ] -> [ RayU ] again
-[ RayD ] -> [ RayD ] again
-[ RayL ] -> [ RayL ] again
-[ RayR ] -> [ RayR ] again
-
-late [ RayU ] -> []
-late [ RayD ] -> []
-late [ RayL ] -> []
-late [ RayR ] -> []
-late [ WaterSeed ] -> []
+startloop
+up    [ RayU | no Solid ] -> [ RayU | Basement RayU ]
+down  [ RayD | no Solid ] -> [ RayD | Basement RayD ]
+left  [ RayL | no Solid ] -> [ RayL | Basement RayL ]
+right [ RayR | no Solid ] -> [ RayR | Basement RayR ]
+endloop
+late [ Rays ] -> []
 
 
 (mirror rules)
