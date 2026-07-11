@@ -946,13 +946,12 @@ RULES
 
 (paint water cross from waterseed for trapdoors)
 
-
 [ WaterSeed ] -> [ Basement RayU RayD RayL RayR ]
 startloop
-up    [ RayU | no Solid ] -> [ RayU | Basement RayU ]
-down  [ RayD | no Solid ] -> [ RayD | Basement RayD ]
-left  [ RayL | no Solid ] -> [ RayL | Basement RayL ]
-right [ RayR | no Solid ] -> [ RayR | Basement RayR ]
+up    [ RayU | no Solid ] -> [ | RayU Basement ]
+down  [ RayD | no Solid ] -> [ | RayD Basement ]
+left  [ RayL | no Solid ] -> [ | RayL Basement ]
+right [ RayR | no Solid ] -> [ | RayR Basement ]
 endloop
 late [ Rays ] -> []
 
