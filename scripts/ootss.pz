@@ -13,6 +13,12 @@ OBJECTS
 Teleported
 transparent
 
+Returning
+transparent
+
+Secondary
+transparent
+
 Switched
 transparent
 
@@ -92,6 +98,38 @@ transparent
 09
 transparent
 
+10
+transparent
+
+11
+transparent
+
+12
+transparent
+
+13
+transparent
+
+14
+transparent
+
+15
+transparent
+
+16
+transparent
+
+17
+transparent
+
+18
+transparent
+
+19
+transparent
+
+20
+transparent
 
 MirrorUL
 #909090 #4e5159 #4e5159
@@ -134,9 +172,6 @@ Orange
 .....
 
 HasReflection
-transparent
-
-Hint
 transparent
 
 MirrorGuy
@@ -743,9 +778,9 @@ Brown DarkBrown Blue
 MirrorInHole
 #909090 #4e5159 #4e5159 Blue
 33333
-30103
 31013
 30103
+31013
 33333
 
 =======
@@ -777,7 +812,7 @@ DoorSprite = YellowOpenA or PurpleOpenA or BlueOpenA or GreenOpenA or PurpleDoor
 (mirror defines)
 
 Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
-Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09
+Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20
 Rays = RayU or RayD or RayL or RayR
 DirectionCounter = North or South or East or West
 MirrorCrate = NormalCrate or ReflectableCrate
@@ -931,11 +966,13 @@ Note
 
 (mirror layers)
 Target, FloatingBody
-HasReflection, Hint
+HasReflection
 Teleported
 AddLandL, RemoveLandL
 AddLandR, RemoveLandR
 LOS
+Returning
+Secondary
 Counter
 DirectionCounter
 Reflection, CantMove, CrateReflection
@@ -957,8 +994,6 @@ late [ Rays ] -> []
 
 
 (mirror rules)
-
-[ > MirrorGuy ] [ Hint ] -> [ > MirrorGuy ] [ action Hint ]
 
 [ CantMove ] -> []
 
@@ -1083,15 +1118,16 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 
 [ HasReflection ] -> cancel (all MirrorGuys dead)
 
-(Make reflections)
 
+(Handle reflections)
 
 startloop
 random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
 + [ Reflectable North ] -> [ action Reflectable East right 00 ]
 + [ Reflectable East ] -> [ action Reflectable South up 00 ]
 + [ Reflectable South ] -> [ action Reflectable West down 00 ]
-
+ 
+(outbound: count up until a mirror or a wall is hit)
 [ > 00 | no Solid ] -> [ | > 01 LOS ]
 [ > 01 | no Solid ] -> [ | > 02 LOS ]
 [ > 02 | no Solid ] -> [ | > 03 LOS ]
@@ -1101,44 +1137,102 @@ random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00
 [ > 06 | no Solid ] -> [ | > 07 LOS ]
 [ > 07 | no Solid ] -> [ | > 08 LOS ]
 [ > 08 | no Solid ] -> [ | > 09 LOS ]
+[ > 09 | no Solid ] -> [ | > 10 LOS ]
+[ > 10 | no Solid ] -> [ | > 11 LOS ]
+[ > 11 | no Solid ] -> [ | > 12 LOS ]
+[ > 12 | no Solid ] -> [ | > 13 LOS ]
+[ > 13 | no Solid ] -> [ | > 14 LOS ]
+[ > 14 | no Solid ] -> [ | > 15 LOS ]
+[ > 15 | no Solid ] -> [ | > 16 LOS ]
+[ > 16 | no Solid ] -> [ | > 17 LOS ]
+[ > 17 | no Solid ] -> [ | > 18 LOS ]
+[ > 18 | no Solid ] -> [ | > 19 LOS ]
+[ > 19 | no Solid ] -> [ | > 20 LOS ]
 
+(hit a wall / crate / hero that ISN'T a mirror: the ray is blocked, no reflection)
 [ > Counter | Solid no Mirror ] -> [ | Solid ]
+ 
+(first mirror hit: bounce, and switch permanently into Returning mode)
+left    [ > Counter no Returning | MirrorUR ] -> [ LOS | MirrorUR up    Counter Returning LOS ]
++ left  [ > Counter no Returning | MirrorDR ] -> [ LOS | MirrorDR down  Counter Returning LOS ]
++ right [ > Counter no Returning | MirrorUL ] -> [ LOS | MirrorUL up    Counter Returning LOS ]
++ right [ > Counter no Returning | MirrorDL ] -> [ LOS | MirrorDL down  Counter Returning LOS ]
++ up    [ > Counter no Returning | MirrorDL ] -> [ LOS | MirrorDL left  Counter Returning LOS ]
++ up    [ > Counter no Returning | MirrorDR ] -> [ LOS | MirrorDR right Counter Returning LOS ]
++ down  [ > Counter no Returning | MirrorUL ] -> [ LOS | MirrorUL left  Counter Returning LOS ]
++ down  [ > Counter no Returning | MirrorUR ] -> [ LOS | MirrorUR right Counter Returning LOS ]
+ 
+(any LATER mirror hit while returning: bounce again, still counting down - this is what gives you free secondary/tertiary reflections)
++ left  [ > Counter Returning | MirrorUR ] -> [ LOS | MirrorUR up    Counter Returning Secondary LOS ]
++ left  [ > Counter Returning | MirrorDR ] -> [ LOS | MirrorDR down  Counter Returning Secondary LOS ]
++ right [ > Counter Returning | MirrorUL ] -> [ LOS | MirrorUL up    Counter Returning Secondary LOS ]
++ right [ > Counter Returning | MirrorDL ] -> [ LOS | MirrorDL down  Counter Returning Secondary LOS ]
++ up    [ > Counter Returning | MirrorDL ] -> [ LOS | MirrorDL left  Counter Returning Secondary LOS ]
++ up    [ > Counter Returning | MirrorDR ] -> [ LOS | MirrorDR right Counter Returning Secondary LOS ]
++ down  [ > Counter Returning | MirrorUL ] -> [ LOS | MirrorUL left  Counter Returning Secondary LOS ]
++ down  [ > Counter Returning | MirrorUR ] -> [ LOS | MirrorUR right Counter Returning Secondary LOS ]
+ 
+(returning: count back down)
++ [ > 20 Returning no Secondary | no Solid ] -> [ | > 19 Returning LOS ]
++ [ > 19 Returning no Secondary | no Solid ] -> [ | > 18 Returning LOS ]
++ [ > 18 Returning no Secondary | no Solid ] -> [ | > 17 Returning LOS ]
++ [ > 17 Returning no Secondary | no Solid ] -> [ | > 16 Returning LOS ]
++ [ > 16 Returning no Secondary | no Solid ] -> [ | > 15 Returning LOS ]
++ [ > 15 Returning no Secondary | no Solid ] -> [ | > 14 Returning LOS ]
++ [ > 14 Returning no Secondary | no Solid ] -> [ | > 13 Returning LOS ]
++ [ > 13 Returning no Secondary | no Solid ] -> [ | > 12 Returning LOS ]
++ [ > 12 Returning no Secondary | no Solid ] -> [ | > 11 Returning LOS ]
++ [ > 11 Returning no Secondary | no Solid ] -> [ | > 10 Returning LOS ]
++ [ > 10 Returning no Secondary | no Solid ] -> [ | > 09 Returning LOS ]
++ [ > 09 Returning no Secondary | no Solid ] -> [ | > 08 Returning LOS ]
++ [ > 08 Returning no Secondary | no Solid ] -> [ | > 07 Returning LOS ]
++ [ > 07 Returning no Secondary | no Solid ] -> [ | > 06 Returning LOS ]
++ [ > 06 Returning no Secondary | no Solid ] -> [ | > 05 Returning LOS ]
++ [ > 05 Returning no Secondary | no Solid ] -> [ | > 04 Returning LOS ]
++ [ > 04 Returning no Secondary | no Solid ] -> [ | > 03 Returning LOS ]
++ [ > 03 Returning no Secondary | no Solid ] -> [ | > 02 Returning LOS ]
++ [ > 02 Returning no Secondary | no Solid ] -> [ | > 01 Returning LOS ]
++ [ > 01 Returning no Secondary | no Solid ] -> [ | > 00 Returning LOS ]
 
-left [ > Counter | MirrorUR ] -> [ | MirrorUR up Counter ]
-+ left [ > Counter | MirrorDR ] -> [ | MirrorDR down Counter ]
-+ right [ > Counter | MirrorUL ] -> [ | MirrorUL up Counter ]
-+ right [ > Counter | MirrorDL ] -> [ | MirrorDL down Counter ]
-+ up [ > Counter | MirrorDL ] -> [ | MirrorDL left Counter ]
-+ up [ > Counter | MirrorDR ] -> [ | MirrorDR right Counter ]
-+ down [ > Counter | MirrorUL ] -> [ | MirrorUL left Counter ]
-+ down [ > Counter | MirrorUR ] -> [ | MirrorUR right Counter ]
+[ > 00 Returning no Secondary | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
+[ > 00 Returning no Secondary | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
 
-+ [ > 09 | no Solid ] -> [ | > 08 LOS ]
-+ [ > 08 | no Solid ] -> [ | > 07 LOS ]
-+ [ > 07 | no Solid ] -> [ | > 06 LOS ]
-+ [ > 06 | no Solid ] -> [ | > 05 LOS ]
-+ [ > 05 | no Solid ] -> [ | > 04 LOS ]
-+ [ > 04 | no Solid ] -> [ | > 03 LOS ]
-+ [ > 03 | no Solid ] -> [ | > 02 LOS ]
-+ [ > 02 | no Solid ] -> [ | > 01 LOS ]
-+ [ > 01 | no Solid ] -> [ | > 00 LOS ]
++ [ > 20 Returning Secondary | no Solid ] -> [ | > 19 Returning Secondary LOS ]
++ [ > 19 Returning Secondary | no Solid ] -> [ | > 18 Returning Secondary LOS ]
++ [ > 18 Returning Secondary | no Solid ] -> [ | > 17 Returning Secondary LOS ]
++ [ > 17 Returning Secondary | no Solid ] -> [ | > 16 Returning Secondary LOS ]
++ [ > 16 Returning Secondary | no Solid ] -> [ | > 15 Returning Secondary LOS ]
++ [ > 15 Returning Secondary | no Solid ] -> [ | > 14 Returning Secondary LOS ]
++ [ > 14 Returning Secondary | no Solid ] -> [ | > 13 Returning Secondary LOS ]
++ [ > 13 Returning Secondary | no Solid ] -> [ | > 12 Returning Secondary LOS ]
++ [ > 12 Returning Secondary | no Solid ] -> [ | > 11 Returning Secondary LOS ]
++ [ > 11 Returning Secondary | no Solid ] -> [ | > 10 Returning Secondary LOS ]
++ [ > 10 Returning Secondary | no Solid ] -> [ | > 09 Returning Secondary LOS ]
++ [ > 09 Returning Secondary | no Solid ] -> [ | > 08 Returning Secondary LOS ]
++ [ > 08 Returning Secondary | no Solid ] -> [ | > 07 Returning Secondary LOS ]
++ [ > 07 Returning Secondary | no Solid ] -> [ | > 06 Returning Secondary LOS ]
++ [ > 06 Returning Secondary | no Solid ] -> [ | > 05 Returning Secondary LOS ]
++ [ > 05 Returning Secondary | no Solid ] -> [ | > 04 Returning Secondary LOS ]
++ [ > 04 Returning Secondary | no Solid ] -> [ | > 03 Returning Secondary LOS ]
++ [ > 03 Returning Secondary | no Solid ] -> [ | > 02 Returning Secondary LOS ]
++ [ > 02 Returning Secondary | no Solid ] -> [ | > 01 Returning Secondary LOS ]
 
-[ > 00 | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
-[ > 00 | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
+[ > 01 Returning Secondary | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
+[ > 01 Returning Secondary | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
+
 
 [ Counter ] -> []
-
+[ Returning ] -> []
+ 
 [ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
-
+ 
 [ LOS ] -> [ action LOS ]
-
+ 
 [ action Reflectable ] -> [ Reflectable ]
 endloop
-
-
+ 
 [ DirectionCounter ] -> []
 
-[ stationary Hint ] [ ReflectableCrate HasReflection ] -> [] [ ReflectableCrate HasReflection ] message Oh the crates can reflect now. That is cool and totally not arbitrary
 
 (hero rules)
 
@@ -1865,10 +1959,11 @@ ___________________
 (TODO: reflection path should be longer by 5)
 
 ______________________
-____..__..______....__
-____.......___......._
-__.........___......._
-__........___...______
+___..___________....__
+___....__..___......._
+___.........__......._
+__..........__......._
+__.........__...______
 __...._______.._______
 _..'.__.......__....__
 _....__......___.g.___
