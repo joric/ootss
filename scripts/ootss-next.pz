@@ -2345,6 +2345,8 @@ section heroes1_18
 
 section heroes1_19_jail
 
+(TODO: implement jail, implement swap order)
+
 #######
 ##*#*##
 #..W..#
@@ -2875,6 +2877,9 @@ section heroes3_5
 ############
 
 section worlds_collide_heroes_and_mirrors_v3
+
+(TODO: implement goblin and wizard teleporting)
+
 __________________________
 ______________..._________
 ______________!...`...____
