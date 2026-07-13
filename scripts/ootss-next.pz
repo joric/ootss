@@ -1030,11 +1030,13 @@ Switch
 
 Dying
 
-Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
-
 DoorSprite
 
 OpenDoor
+
+
+Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
+
 
 
 LOS
