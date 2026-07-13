@@ -301,8 +301,9 @@ a {
 
 .btn {
   display: inline-flex;
-  padding-top: 2px;
-  margin-top: 2px;
+
+  margin: 3px 0px;
+
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -362,6 +363,11 @@ a {
 <div class="controls bottom left">
   <button class="btn btnFn" id="prevMove" title="Previous Move">[</button>
   <button class="btn btnFn" id="nextMove" title="Next Move">]</button>
+  <button class="btn btnKey" id="KeyR" title="reset">R</button>
+  <br>
+  <button class="btn btnKey" id="KeyZ" title="undo">Z</button>
+  <button class="btn btnKey" id="KeyX" title="action">X</button>
+  <button class="btn btnKey" id="KeyC" title="swap">C</button>
   <br>
 </div>
 
@@ -416,6 +422,12 @@ const keyCodes = {
   digit1: 49,
   digit2: 50,
   digit3: 51,
+
+  // for btnKey
+  KeyR: 82, // R
+  KeyX: 88, // X
+  KeyC: 67, // C
+  KeyZ: 90, // Z
 };
 
 function getMapLink(name) {
@@ -587,8 +599,8 @@ function move(id) {
 }
 
 function initPlayer() {
-
   document.querySelectorAll('.btnKey').forEach(c=>{ c.onclick = e=> { sendKey(e.target.id); } });
+
   document.querySelectorAll('.btnFn').forEach(c=>{ c.onclick = e=> { 
     //console.log(typeof window[e.target.id]);
     if (typeof window[e.target.id] === 'function') window[e.target.id](); }
@@ -598,7 +610,6 @@ function initPlayer() {
     c.onmousedown = c.ontouchstart = e=>{ e.preventDefault(); move(e.target.id); };
     c.onmouseup = c.onmouseout = c.ontouchend = ()=>pressed={};
   });
-
 
   document.getElementById('muteButton').addEventListener('click', ()=>{ localStorage.mute = true; });
   document.getElementById('unMuteButton').addEventListener('click', () => { localStorage.removeItem('mute'); });
