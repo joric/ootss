@@ -1093,7 +1093,7 @@ late [ WaterAnim no Hole ] -> []
 once [ Mirror ] [ Background no Hole no Goal no Target no CrateInHole ] -> [ Mirror ] [ Background MirrorBackground ]
 once [ Mirror ] [ Background Goal ] -> [ Mirror ] [ Background Target ]
 
-once [ no Mirror ] [ Background no Hole no Goal no Target no CrateInHole no MirrorBackground ] -> [ ] [ Background HeroBackground ])
+once [ no Mirror ] [ Background no Hole no Goal no Target no CrateInHole no MirrorBackground ] -> [ ] [ Background HeroBackground ]
 
 
 (Island border)
