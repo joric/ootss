@@ -208,7 +208,7 @@ MirrorDR
 0....
 
 LOS
-orange
+grey
 .....
 .....
 ..0..
@@ -236,12 +236,20 @@ Brown #493c2b #000000
 
 
 Reflection
-LightGrey Grey DarkGrey
+LightGrey grey DarkGrey
+.....
+..1..
+.111.
+..1..
+.....
+
+(
 ..0..
 .111.
 01110
 02220
 .2.2.
+)
 
 CrateReflection
 LightGrey Grey LightGrey
@@ -258,14 +266,6 @@ DarkBrown #282828 #101010 Blue
 31122
 01123
 31122
-
-CantMove
-LightRed Red DarkRed
-..0..
-.111.
-01110
-02220
-.2.2.
 
 NormalCrate
 Orange Brown White
@@ -701,7 +701,13 @@ Green DarkBrown DarkGreen
 .1.1.
 
 Dying
-White
+#CCC
+.000.
+.000.
+00000
+.0.0.
+.0.0.
+
 
 Saved
 #D8D800
@@ -1016,6 +1022,8 @@ CrateInHole, MirrorInHole
 
 Switch
 
+Dying
+
 Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
 
 DoorSprite
@@ -1024,7 +1032,7 @@ OpenDoor
 
 
 LOS
-Reflection, CantMove, CrateReflection
+Reflection, CrateReflection
 Note
 
 
@@ -1049,7 +1057,7 @@ Counter
 DirectionCounter
 DoorMarker, InvDoorMarker
 Basement
-Warpball, Dying
+Warpball
 Switched
 
 CharacterSwap
@@ -1073,8 +1081,6 @@ late [ Rays ] -> []
 
 
 (mirror rules)
-
-[ CantMove ] -> []
 
 late [ WaterAnim no Hole ] -> []
 
@@ -1125,48 +1131,17 @@ down  [ Mirror ] [ RemoveLandLD | no WaterHere ] -> [ Mirror ] [ | ]
 down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 )
 
-(Prevent teleport)
 
-[ action MirrorGuy ] [ Reflection Hole ] -> [ action MirrorGuy ] [ CantMove Hole ]
+( make all possible copies )
+[ action Player ] [ Reflectable HasReflection ] [ Reflection ] -> [ action Player ] [ Reflectable HasReflection ] [ Reflection Reflectable ] sfx5
 
-[ CantMove ] [ action MirrorGuy ] -> [ CantMove ] [ MirrorGuy ] again
-
-(Swap places)
-
-(
-[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection ] [ Reflection MirrorGuy ]
-[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
-[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy ] [ ReflectableCrate ] sfx2
-[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy ] []
-[ action MirrorGuy HasReflection ] -> [ Reflection ]
-)
-
-
-
-
-[ action MirrorGuy ] [ MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy ] [ MirrorGuy HasReflection ] [ Reflection MirrorGuy ]
-[ action MirrorGuy ] [ SMirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy ] [ SMirrorGuy HasReflection ] [ Reflection SMirrorGuy ]
-
-[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
-[ Reflection SMirrorGuy ] -> [ SMirrorGuy ] sfx2
-
-[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy Teleported ] [ ReflectableCrate ] sfx2
-
-
-
-[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy ] []
-[ action MirrorGuy HasReflection ] -> [ Reflection ]
-[ action MirrorGuy] [ SMirrorGuy HasReflection ] -> [ MirrorGuy ] [ Reflection ]
-
+( kill the original )
+[ action Player ] [ Reflectable HasReflection ] -> [ action Player ] [ ]
 
 
 [ CharacterSwap MirrorGuy ] [ SWizard ] -> [ SMirrorGuy] [ Wizard sfx1 ]
 [ CharacterSwap MirrorGuy ] [ SMirrorGuy] -> [ SMirrorGuy] [ MirrorGuy ] 
 [ CharacterSwap Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy sfx1 ]
-
-
-(cleanup)
-[ Teleported ] -> []
 
 
 (Clear state)
@@ -1179,6 +1154,10 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 [ action MirrorGuy ] -> [ MirrorGuy ]
 
 [ moving MirrorGuy ] -> [ moving MirrorGuy HasReflection ] (testing killing)
+
+
+[ Hole Vulnerable ] -> [ Hole Vulnerable Dying ]
+
 
 (Push things)
 
@@ -1213,155 +1192,6 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 [ MirrorGuy ] [ HasReflection ] -> [ MirrorGuy ] []
 
 [ HasReflection ] -> cancel (all MirrorGuys dead)
-
-
-(Handle reflections)
-
-startloop
-random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
-+ [ Reflectable North ] -> [ action Reflectable East right 00 ]
-+ [ Reflectable East ] -> [ action Reflectable South up 00 ]
-+ [ Reflectable South ] -> [ action Reflectable West down 00 ]
- 
-(outbound: count up until a mirror or a wall is hit)
-[ > 00 no Returning | no Solid ] -> [ | > 01 LOS ]
-[ > 01 no Returning | no Solid ] -> [ | > 02 LOS ]
-[ > 02 no Returning | no Solid ] -> [ | > 03 LOS ]
-[ > 03 no Returning | no Solid ] -> [ | > 04 LOS ]
-[ > 04 no Returning | no Solid ] -> [ | > 05 LOS ]
-[ > 05 no Returning | no Solid ] -> [ | > 06 LOS ]
-[ > 06 no Returning | no Solid ] -> [ | > 07 LOS ]
-[ > 07 no Returning | no Solid ] -> [ | > 08 LOS ]
-[ > 08 no Returning | no Solid ] -> [ | > 09 LOS ]
-[ > 09 no Returning | no Solid ] -> [ | > 10 LOS ]
-[ > 10 no Returning | no Solid ] -> [ | > 11 LOS ]
-[ > 11 no Returning | no Solid ] -> [ | > 12 LOS ]
-[ > 12 no Returning | no Solid ] -> [ | > 13 LOS ]
-[ > 13 no Returning | no Solid ] -> [ | > 14 LOS ]
-[ > 14 no Returning | no Solid ] -> [ | > 15 LOS ]
-[ > 15 no Returning | no Solid ] -> [ | > 16 LOS ]
-[ > 16 no Returning | no Solid ] -> [ | > 17 LOS ]
-[ > 17 no Returning | no Solid ] -> [ | > 18 LOS ]
-[ > 18 no Returning | no Solid ] -> [ | > 19 LOS ]
-[ > 19 no Returning | no Solid ] -> [ | > 20 LOS ]
-[ > 20 no Returning | no Solid ] -> [ | > 21 LOS ]
-[ > 21 no Returning | no Solid ] -> [ | > 22 LOS ]
-[ > 22 no Returning | no Solid ] -> [ | > 23 LOS ]
-[ > 23 no Returning | no Solid ] -> [ | > 24 LOS ]
-[ > 24 no Returning | no Solid ] -> [ | > 25 LOS ]
-[ > 25 no Returning | no Solid ] -> [ | > 26 LOS ]
-[ > 26 no Returning | no Solid ] -> [ | > 27 LOS ]
-[ > 27 no Returning | no Solid ] -> [ | > 28 LOS ]
-[ > 28 no Returning | no Solid ] -> [ | > 29 LOS ]
-[ > 29 no Returning | no Solid ] -> [ | > 30 LOS ]
-
-(hit a wall / crate / hero that ISN'T a mirror: the ray is blocked, no reflection)
-[ > Counter | Solid no Mirror ] -> [ | Solid ]
- 
-(first mirror hit: bounce, and switch permanently into Returning mode)
-left    [ > Counter no Returning | MirrorUR ] -> [ | MirrorUR up    Counter Returning ]
-+ left  [ > Counter no Returning | MirrorDR ] -> [ | MirrorDR down  Counter Returning ]
-+ right [ > Counter no Returning | MirrorUL ] -> [ | MirrorUL up    Counter Returning ]
-+ right [ > Counter no Returning | MirrorDL ] -> [ | MirrorDL down  Counter Returning ]
-+ up    [ > Counter no Returning | MirrorDL ] -> [ | MirrorDL left  Counter Returning ]
-+ up    [ > Counter no Returning | MirrorDR ] -> [ | MirrorDR right Counter Returning ]
-+ down  [ > Counter no Returning | MirrorUL ] -> [ | MirrorUL left  Counter Returning ]
-+ down  [ > Counter no Returning | MirrorUR ] -> [ | MirrorUR right Counter Returning ]
- 
-(any LATER mirror hit while returning: bounce again, still counting down - this is what gives you free secondary/tertiary reflections)
-+ left  [ > Counter Returning | MirrorUR ] -> [ | MirrorUR up    Counter Returning Secondary ]
-+ left  [ > Counter Returning | MirrorDR ] -> [ | MirrorDR down  Counter Returning Secondary ]
-+ right [ > Counter Returning | MirrorUL ] -> [ | MirrorUL up    Counter Returning Secondary ]
-+ right [ > Counter Returning | MirrorDL ] -> [ | MirrorDL down  Counter Returning Secondary ]
-+ up    [ > Counter Returning | MirrorDL ] -> [ | MirrorDL left  Counter Returning Secondary ]
-+ up    [ > Counter Returning | MirrorDR ] -> [ | MirrorDR right Counter Returning Secondary ]
-+ down  [ > Counter Returning | MirrorUL ] -> [ | MirrorUL left  Counter Returning Secondary ]
-+ down  [ > Counter Returning | MirrorUR ] -> [ | MirrorUR right Counter Returning Secondary ]
- 
-(returning: count back down)
-+ [ > 30 Returning no Secondary | no Solid ] -> [ | > 29 Returning LOS ]
-+ [ > 29 Returning no Secondary | no Solid ] -> [ | > 28 Returning LOS ]
-+ [ > 28 Returning no Secondary | no Solid ] -> [ | > 27 Returning LOS ]
-+ [ > 27 Returning no Secondary | no Solid ] -> [ | > 26 Returning LOS ]
-+ [ > 26 Returning no Secondary | no Solid ] -> [ | > 25 Returning LOS ]
-+ [ > 25 Returning no Secondary | no Solid ] -> [ | > 24 Returning LOS ]
-+ [ > 24 Returning no Secondary | no Solid ] -> [ | > 23 Returning LOS ]
-+ [ > 23 Returning no Secondary | no Solid ] -> [ | > 22 Returning LOS ]
-+ [ > 22 Returning no Secondary | no Solid ] -> [ | > 21 Returning LOS ]
-+ [ > 21 Returning no Secondary | no Solid ] -> [ | > 20 Returning LOS ]
-+ [ > 20 Returning no Secondary | no Solid ] -> [ | > 19 Returning LOS ]
-+ [ > 19 Returning no Secondary | no Solid ] -> [ | > 18 Returning LOS ]
-+ [ > 18 Returning no Secondary | no Solid ] -> [ | > 17 Returning LOS ]
-+ [ > 17 Returning no Secondary | no Solid ] -> [ | > 16 Returning LOS ]
-+ [ > 16 Returning no Secondary | no Solid ] -> [ | > 15 Returning LOS ]
-+ [ > 15 Returning no Secondary | no Solid ] -> [ | > 14 Returning LOS ]
-+ [ > 14 Returning no Secondary | no Solid ] -> [ | > 13 Returning LOS ]
-+ [ > 13 Returning no Secondary | no Solid ] -> [ | > 12 Returning LOS ]
-+ [ > 12 Returning no Secondary | no Solid ] -> [ | > 11 Returning LOS ]
-+ [ > 11 Returning no Secondary | no Solid ] -> [ | > 10 Returning LOS ]
-+ [ > 10 Returning no Secondary | no Solid ] -> [ | > 09 Returning LOS ]
-+ [ > 09 Returning no Secondary | no Solid ] -> [ | > 08 Returning LOS ]
-+ [ > 08 Returning no Secondary | no Solid ] -> [ | > 07 Returning LOS ]
-+ [ > 07 Returning no Secondary | no Solid ] -> [ | > 06 Returning LOS ]
-+ [ > 06 Returning no Secondary | no Solid ] -> [ | > 05 Returning LOS ]
-+ [ > 05 Returning no Secondary | no Solid ] -> [ | > 04 Returning LOS ]
-+ [ > 04 Returning no Secondary | no Solid ] -> [ | > 03 Returning LOS ]
-+ [ > 03 Returning no Secondary | no Solid ] -> [ | > 02 Returning LOS ]
-+ [ > 02 Returning no Secondary | no Solid ] -> [ | > 01 Returning LOS ]
-+ [ > 01 Returning no Secondary | no Solid ] -> [ | > 00 Returning LOS ]
-
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action SMirrorGuy ] -> [ | Reflection ] [ SMirrorGuy HasReflection ]
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
-
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action Goblin ] -> [ | Reflection ] [ Goblin HasReflection ]
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action Wizard ] -> [ | Reflection ] [ Wizard HasReflection ]
-
-+ [ > 30 Returning Secondary | no Solid ] -> [ | > 29 Returning Secondary LOS ]
-+ [ > 29 Returning Secondary | no Solid ] -> [ | > 28 Returning Secondary LOS ]
-+ [ > 28 Returning Secondary | no Solid ] -> [ | > 27 Returning Secondary LOS ]
-+ [ > 27 Returning Secondary | no Solid ] -> [ | > 26 Returning Secondary LOS ]
-+ [ > 26 Returning Secondary | no Solid ] -> [ | > 25 Returning Secondary LOS ]
-+ [ > 25 Returning Secondary | no Solid ] -> [ | > 24 Returning Secondary LOS ]
-+ [ > 24 Returning Secondary | no Solid ] -> [ | > 23 Returning Secondary LOS ]
-+ [ > 23 Returning Secondary | no Solid ] -> [ | > 22 Returning Secondary LOS ]
-+ [ > 22 Returning Secondary | no Solid ] -> [ | > 21 Returning Secondary LOS ]
-+ [ > 21 Returning Secondary | no Solid ] -> [ | > 20 Returning Secondary LOS ]
-+ [ > 20 Returning Secondary | no Solid ] -> [ | > 19 Returning Secondary LOS ]
-+ [ > 19 Returning Secondary | no Solid ] -> [ | > 18 Returning Secondary LOS ]
-+ [ > 18 Returning Secondary | no Solid ] -> [ | > 17 Returning Secondary LOS ]
-+ [ > 17 Returning Secondary | no Solid ] -> [ | > 16 Returning Secondary LOS ]
-+ [ > 16 Returning Secondary | no Solid ] -> [ | > 15 Returning Secondary LOS ]
-+ [ > 15 Returning Secondary | no Solid ] -> [ | > 14 Returning Secondary LOS ]
-+ [ > 14 Returning Secondary | no Solid ] -> [ | > 13 Returning Secondary LOS ]
-+ [ > 13 Returning Secondary | no Solid ] -> [ | > 12 Returning Secondary LOS ]
-+ [ > 12 Returning Secondary | no Solid ] -> [ | > 11 Returning Secondary LOS ]
-+ [ > 11 Returning Secondary | no Solid ] -> [ | > 10 Returning Secondary LOS ]
-+ [ > 10 Returning Secondary | no Solid ] -> [ | > 09 Returning Secondary LOS ]
-+ [ > 09 Returning Secondary | no Solid ] -> [ | > 08 Returning Secondary LOS ]
-+ [ > 08 Returning Secondary | no Solid ] -> [ | > 07 Returning Secondary LOS ]
-+ [ > 07 Returning Secondary | no Solid ] -> [ | > 06 Returning Secondary LOS ]
-+ [ > 06 Returning Secondary | no Solid ] -> [ | > 05 Returning Secondary LOS ]
-+ [ > 05 Returning Secondary | no Solid ] -> [ | > 04 Returning Secondary LOS ]
-+ [ > 04 Returning Secondary | no Solid ] -> [ | > 03 Returning Secondary LOS ]
-+ [ > 03 Returning Secondary | no Solid ] -> [ | > 02 Returning Secondary LOS ]
-+ [ > 02 Returning Secondary | no Solid ] -> [ | > 01 Returning Secondary LOS ]
-
-[ > 01 Returning Secondary | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
-[ > 01 Returning Secondary | no Solid no CantMove ] [ action SMirrorGuy ] -> [ | Reflection ] [ SMirrorGuy HasReflection ]
-[ > 01 Returning Secondary | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
-
-[ Counter ] -> []
-[ Returning ] -> []
- 
-[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
- 
-[ LOS ] -> [ action LOS ]
- 
-[ action Reflectable ] -> [ Reflectable ]
-endloop
- 
-[ DirectionCounter ] -> []
 
 
 (hero rules)
@@ -1613,6 +1443,149 @@ late [ BlueOpen no Basement ] -> [ BlueOpen BlueOpenA ]
 
 late [ GreenDoor no Basement ] -> [ GreenDoor GreenDoorA ]
 late [ GreenOpen no Basement ] -> [ GreenOpen GreenOpenA ]
+
+
+(Handle reflections)
+
+startloop
+random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
++ [ Reflectable North ] -> [ action Reflectable East right 00 ]
++ [ Reflectable East ] -> [ action Reflectable South up 00 ]
++ [ Reflectable South ] -> [ action Reflectable West down 00 ]
+ 
+(outbound: count up until a mirror or a wall is hit)
+[ > 00 no Returning | no Solid ] -> [ | > 01 LOS ]
+[ > 01 no Returning | no Solid ] -> [ | > 02 LOS ]
+[ > 02 no Returning | no Solid ] -> [ | > 03 LOS ]
+[ > 03 no Returning | no Solid ] -> [ | > 04 LOS ]
+[ > 04 no Returning | no Solid ] -> [ | > 05 LOS ]
+[ > 05 no Returning | no Solid ] -> [ | > 06 LOS ]
+[ > 06 no Returning | no Solid ] -> [ | > 07 LOS ]
+[ > 07 no Returning | no Solid ] -> [ | > 08 LOS ]
+[ > 08 no Returning | no Solid ] -> [ | > 09 LOS ]
+[ > 09 no Returning | no Solid ] -> [ | > 10 LOS ]
+[ > 10 no Returning | no Solid ] -> [ | > 11 LOS ]
+[ > 11 no Returning | no Solid ] -> [ | > 12 LOS ]
+[ > 12 no Returning | no Solid ] -> [ | > 13 LOS ]
+[ > 13 no Returning | no Solid ] -> [ | > 14 LOS ]
+[ > 14 no Returning | no Solid ] -> [ | > 15 LOS ]
+[ > 15 no Returning | no Solid ] -> [ | > 16 LOS ]
+[ > 16 no Returning | no Solid ] -> [ | > 17 LOS ]
+[ > 17 no Returning | no Solid ] -> [ | > 18 LOS ]
+[ > 18 no Returning | no Solid ] -> [ | > 19 LOS ]
+[ > 19 no Returning | no Solid ] -> [ | > 20 LOS ]
+[ > 20 no Returning | no Solid ] -> [ | > 21 LOS ]
+[ > 21 no Returning | no Solid ] -> [ | > 22 LOS ]
+[ > 22 no Returning | no Solid ] -> [ | > 23 LOS ]
+[ > 23 no Returning | no Solid ] -> [ | > 24 LOS ]
+[ > 24 no Returning | no Solid ] -> [ | > 25 LOS ]
+[ > 25 no Returning | no Solid ] -> [ | > 26 LOS ]
+[ > 26 no Returning | no Solid ] -> [ | > 27 LOS ]
+[ > 27 no Returning | no Solid ] -> [ | > 28 LOS ]
+[ > 28 no Returning | no Solid ] -> [ | > 29 LOS ]
+[ > 29 no Returning | no Solid ] -> [ | > 30 LOS ]
+
+(hit a wall / crate / hero that ISN'T a mirror: the ray is blocked, no reflection)
+[ > Counter | Solid no Mirror ] -> [ | Solid ]
+ 
+(first mirror hit: bounce, and switch permanently into Returning mode)
+left    [ > Counter no Returning | MirrorUR ] -> [ | MirrorUR up    Counter Returning ]
++ left  [ > Counter no Returning | MirrorDR ] -> [ | MirrorDR down  Counter Returning ]
++ right [ > Counter no Returning | MirrorUL ] -> [ | MirrorUL up    Counter Returning ]
++ right [ > Counter no Returning | MirrorDL ] -> [ | MirrorDL down  Counter Returning ]
++ up    [ > Counter no Returning | MirrorDL ] -> [ | MirrorDL left  Counter Returning ]
++ up    [ > Counter no Returning | MirrorDR ] -> [ | MirrorDR right Counter Returning ]
++ down  [ > Counter no Returning | MirrorUL ] -> [ | MirrorUL left  Counter Returning ]
++ down  [ > Counter no Returning | MirrorUR ] -> [ | MirrorUR right Counter Returning ]
+ 
+(any LATER mirror hit while returning: bounce again, still counting down - this is what gives you free secondary/tertiary reflections)
++ left  [ > Counter Returning | MirrorUR ] -> [ | MirrorUR up    Counter Returning Secondary ]
++ left  [ > Counter Returning | MirrorDR ] -> [ | MirrorDR down  Counter Returning Secondary ]
++ right [ > Counter Returning | MirrorUL ] -> [ | MirrorUL up    Counter Returning Secondary ]
++ right [ > Counter Returning | MirrorDL ] -> [ | MirrorDL down  Counter Returning Secondary ]
++ up    [ > Counter Returning | MirrorDL ] -> [ | MirrorDL left  Counter Returning Secondary ]
++ up    [ > Counter Returning | MirrorDR ] -> [ | MirrorDR right Counter Returning Secondary ]
++ down  [ > Counter Returning | MirrorUL ] -> [ | MirrorUL left  Counter Returning Secondary ]
++ down  [ > Counter Returning | MirrorUR ] -> [ | MirrorUR right Counter Returning Secondary ]
+ 
+(returning: count back down)
++ [ > 30 Returning no Secondary | no Solid ] -> [ | > 29 Returning LOS ]
++ [ > 29 Returning no Secondary | no Solid ] -> [ | > 28 Returning LOS ]
++ [ > 28 Returning no Secondary | no Solid ] -> [ | > 27 Returning LOS ]
++ [ > 27 Returning no Secondary | no Solid ] -> [ | > 26 Returning LOS ]
++ [ > 26 Returning no Secondary | no Solid ] -> [ | > 25 Returning LOS ]
++ [ > 25 Returning no Secondary | no Solid ] -> [ | > 24 Returning LOS ]
++ [ > 24 Returning no Secondary | no Solid ] -> [ | > 23 Returning LOS ]
++ [ > 23 Returning no Secondary | no Solid ] -> [ | > 22 Returning LOS ]
++ [ > 22 Returning no Secondary | no Solid ] -> [ | > 21 Returning LOS ]
++ [ > 21 Returning no Secondary | no Solid ] -> [ | > 20 Returning LOS ]
++ [ > 20 Returning no Secondary | no Solid ] -> [ | > 19 Returning LOS ]
++ [ > 19 Returning no Secondary | no Solid ] -> [ | > 18 Returning LOS ]
++ [ > 18 Returning no Secondary | no Solid ] -> [ | > 17 Returning LOS ]
++ [ > 17 Returning no Secondary | no Solid ] -> [ | > 16 Returning LOS ]
++ [ > 16 Returning no Secondary | no Solid ] -> [ | > 15 Returning LOS ]
++ [ > 15 Returning no Secondary | no Solid ] -> [ | > 14 Returning LOS ]
++ [ > 14 Returning no Secondary | no Solid ] -> [ | > 13 Returning LOS ]
++ [ > 13 Returning no Secondary | no Solid ] -> [ | > 12 Returning LOS ]
++ [ > 12 Returning no Secondary | no Solid ] -> [ | > 11 Returning LOS ]
++ [ > 11 Returning no Secondary | no Solid ] -> [ | > 10 Returning LOS ]
++ [ > 10 Returning no Secondary | no Solid ] -> [ | > 09 Returning LOS ]
++ [ > 09 Returning no Secondary | no Solid ] -> [ | > 08 Returning LOS ]
++ [ > 08 Returning no Secondary | no Solid ] -> [ | > 07 Returning LOS ]
++ [ > 07 Returning no Secondary | no Solid ] -> [ | > 06 Returning LOS ]
++ [ > 06 Returning no Secondary | no Solid ] -> [ | > 05 Returning LOS ]
++ [ > 05 Returning no Secondary | no Solid ] -> [ | > 04 Returning LOS ]
++ [ > 04 Returning no Secondary | no Solid ] -> [ | > 03 Returning LOS ]
++ [ > 03 Returning no Secondary | no Solid ] -> [ | > 02 Returning LOS ]
++ [ > 02 Returning no Secondary | no Solid ] -> [ | > 01 Returning LOS ]
++ [ > 01 Returning no Secondary | no Solid ] -> [ | > 00 Returning LOS ]
+
+[ > 00 Returning no Secondary | no Solid ] [ action Reflectable ] -> [ | Reflection ] [ Reflectable HasReflection ]
+
++ [ > 30 Returning Secondary | no Solid ] -> [ | > 29 Returning Secondary LOS ]
++ [ > 29 Returning Secondary | no Solid ] -> [ | > 28 Returning Secondary LOS ]
++ [ > 28 Returning Secondary | no Solid ] -> [ | > 27 Returning Secondary LOS ]
++ [ > 27 Returning Secondary | no Solid ] -> [ | > 26 Returning Secondary LOS ]
++ [ > 26 Returning Secondary | no Solid ] -> [ | > 25 Returning Secondary LOS ]
++ [ > 25 Returning Secondary | no Solid ] -> [ | > 24 Returning Secondary LOS ]
++ [ > 24 Returning Secondary | no Solid ] -> [ | > 23 Returning Secondary LOS ]
++ [ > 23 Returning Secondary | no Solid ] -> [ | > 22 Returning Secondary LOS ]
++ [ > 22 Returning Secondary | no Solid ] -> [ | > 21 Returning Secondary LOS ]
++ [ > 21 Returning Secondary | no Solid ] -> [ | > 20 Returning Secondary LOS ]
++ [ > 20 Returning Secondary | no Solid ] -> [ | > 19 Returning Secondary LOS ]
++ [ > 19 Returning Secondary | no Solid ] -> [ | > 18 Returning Secondary LOS ]
++ [ > 18 Returning Secondary | no Solid ] -> [ | > 17 Returning Secondary LOS ]
++ [ > 17 Returning Secondary | no Solid ] -> [ | > 16 Returning Secondary LOS ]
++ [ > 16 Returning Secondary | no Solid ] -> [ | > 15 Returning Secondary LOS ]
++ [ > 15 Returning Secondary | no Solid ] -> [ | > 14 Returning Secondary LOS ]
++ [ > 14 Returning Secondary | no Solid ] -> [ | > 13 Returning Secondary LOS ]
++ [ > 13 Returning Secondary | no Solid ] -> [ | > 12 Returning Secondary LOS ]
++ [ > 12 Returning Secondary | no Solid ] -> [ | > 11 Returning Secondary LOS ]
++ [ > 11 Returning Secondary | no Solid ] -> [ | > 10 Returning Secondary LOS ]
++ [ > 10 Returning Secondary | no Solid ] -> [ | > 09 Returning Secondary LOS ]
++ [ > 09 Returning Secondary | no Solid ] -> [ | > 08 Returning Secondary LOS ]
++ [ > 08 Returning Secondary | no Solid ] -> [ | > 07 Returning Secondary LOS ]
++ [ > 07 Returning Secondary | no Solid ] -> [ | > 06 Returning Secondary LOS ]
++ [ > 06 Returning Secondary | no Solid ] -> [ | > 05 Returning Secondary LOS ]
++ [ > 05 Returning Secondary | no Solid ] -> [ | > 04 Returning Secondary LOS ]
++ [ > 04 Returning Secondary | no Solid ] -> [ | > 03 Returning Secondary LOS ]
++ [ > 03 Returning Secondary | no Solid ] -> [ | > 02 Returning Secondary LOS ]
++ [ > 02 Returning Secondary | no Solid ] -> [ | > 01 Returning Secondary LOS ]
+
+[ > 01 Returning Secondary | no Solid ] [ action Reflectable ] -> [ | Reflection ] [ Reflectable HasReflection ]
+
+[ Counter ] -> []
+[ Returning ] -> []
+
+[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
+
+[ LOS ] -> [ action LOS ]
+
+[ action Reflectable ] -> [ Reflectable ]
+
+endloop
+
+[ DirectionCounter ] -> []
 
 
 ==============
