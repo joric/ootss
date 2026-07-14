@@ -1067,6 +1067,8 @@ HeroBackground, MirrorBackground
 
 DoorSpriteOpen, DoorSpriteClosed
 
+CrateInHole, MirrorInHole
+
 Target, Goal
 
 FloatingBody
@@ -1078,16 +1080,15 @@ Water
 AddLandL, RemoveLandL
 AddLandR, RemoveLandR
 
-CrateInHole, MirrorInHole
-
 Switch
 
 Dying
 
 Jail
 
-Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
+Crate, Monster, Corpse, Bush, FrozenMonster, Solid
 
+ClosedDoor
 
 LOS
 Reflection, CrateReflection
@@ -1135,6 +1136,13 @@ RayR
 ======
 RULES
 ======
+
+(since there's no ClosedDoor in layers to prevent player-door conflict and door destruction, add a rule to stop at doors)
+
+[ > Player | ClosedDoor no CrateInHole ] -> [ Player | ClosedDoor ]
+
+(this is needed for dont_push_the_button and other levels too, pushes crate into open basement)
+[ > Fighter | Crate | Background Basement ClosedDoor ] -> [ > Fighter | | Basement CrateInHole ClosedDoor ] sfx1
 
 (paint water cross from waterseed for trapdoors)
 [ WaterSeed ] -> [ Basement RayU RayD RayL RayR Water]
@@ -1250,9 +1258,6 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 (the rule above apparently breaks the compound goal+monsterdoor things in mosh_pit_small, so I commented it out)
 
 [Corpse] -> Restart
-
-
-[ > Fighter | Crate | PurpleDoor Basement ] -> [ > Fighter | | Basement CrateInHole] sfx3
 
 [ >  Fighter | Moveable ] -> [  >  Fighter | > Moveable  ]
 
@@ -1434,27 +1439,52 @@ late [ColorDoor no DoorMarker no InvDoorMarker] -> [ColorDoor DoorMarker]
 late [ColorOpen no DoorMarker no InvDoorMarker] -> [ColorOpen InvDoorMarker]
 
 
-(yellow door doesn't have crate rule because of heroes1_16_v3, no crateinhole, it destroys crates instead)
+(yellow door didn't have crate rule because of heroes1_16_v3, no crateinhole, it destroys crates instead)
+
+
+late [YellowSwitch Weighing] [YellowDoor DoorMarker CrateInHole Basement] -> [YellowSwitch Weighing] [HeroBackground YellowOpen DoorMarker Basement] sfx5
+late [YellowSwitch Weighing] [YellowOpen InvDoorMarker CrateInHole Basement] -> [YellowSwitch Weighing] [HeroBackground YellowDoor InvDoorMarker Basement] sfx5
+late [YellowSwitch no Weighing] [Background YellowOpen DoorMarker Crate Basement] -> [YellowSwitch] [CrateInHole YellowDoor DoorMarker Basement] sfx5
+late [YellowSwitch Weighing ] [YellowOpen InvDoorMarker Moveable Basement ] -> [YellowSwitch Weighing] [YellowDoor InvDoorMarker Basement] sfx5
+late [YellowSwitch no Weighing] [YellowOpen DoorMarker Moveable] -> [YellowSwitch] [YellowDoor DoorMarker] sfx5
+
+late [PurpleSwitch Weighing] [PurpleDoor DoorMarker CrateInHole Basement] -> [PurpleSwitch Weighing] [HeroBackground PurpleOpen DoorMarker Basement] sfx5
+late [PurpleSwitch Weighing] [PurpleOpen InvDoorMarker CrateInHole Basement] -> [PurpleSwitch Weighing] [HeroBackground PurpleDoor InvDoorMarker Basement] sfx5
+late [PurpleSwitch no Weighing] [Background PurpleOpen DoorMarker Crate Basement] -> [PurpleSwitch] [CrateInHole PurpleDoor DoorMarker Basement] sfx5
+late [PurpleSwitch Weighing ] [PurpleOpen InvDoorMarker Moveable Basement ] -> [PurpleSwitch Weighing] [PurpleDoor InvDoorMarker Basement] sfx5
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker Moveable] -> [PurpleSwitch] [PurpleDoor DoorMarker] sfx5
+
+late [BlueSwitch Weighing] [BlueDoor DoorMarker CrateInHole Basement] -> [BlueSwitch Weighing] [HeroBackground BlueOpen DoorMarker Basement] sfx5
+late [BlueSwitch Weighing] [BlueOpen InvDoorMarker CrateInHole Basement] -> [BlueSwitch Weighing] [HeroBackground BlueDoor InvDoorMarker Basement] sfx5
+late [BlueSwitch no Weighing] [Background BlueOpen DoorMarker Crate Basement] -> [BlueSwitch] [CrateInHole BlueDoor DoorMarker Basement] sfx5
+late [BlueSwitch Weighing ] [BlueOpen InvDoorMarker Moveable Basement ] -> [BlueSwitch Weighing] [BlueDoor InvDoorMarker Basement] sfx5
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker Moveable] -> [BlueSwitch] [BlueDoor DoorMarker] sfx5
+
+late [GreenSwitch Weighing] [GreenDoor DoorMarker CrateInHole Basement] -> [GreenSwitch Weighing] [HeroBackground GreenOpen DoorMarker Basement] sfx5
+late [GreenSwitch Weighing] [GreenOpen InvDoorMarker CrateInHole Basement] -> [GreenSwitch Weighing] [HeroBackground GreenDoor InvDoorMarker Basement] sfx5
+late [GreenSwitch no Weighing] [Background GreenOpen DoorMarker Crate Basement] -> [GreenSwitch] [CrateInHole GreenDoor DoorMarker Basement] sfx5
+late [GreenSwitch Weighing ] [GreenOpen InvDoorMarker Moveable Basement ] -> [GreenSwitch Weighing] [GreenDoor InvDoorMarker Basement] sfx5
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker Moveable] -> [GreenSwitch] [GreenDoor DoorMarker] sfx5
+
+
+
 late [Weighing YellowSwitch] [YellowDoor DoorMarker] -> [Weighing YellowSwitch] [YellowOpen DoorMarker]
 late [YellowSwitch no Weighing] [YellowOpen DoorMarker] -> [YellowSwitch] [YellowDoor DoorMarker]
 late [Weighing YellowSwitch] [YellowOpen InvDoorMarker] -> [Weighing YellowSwitch] [YellowDoor InvDoorMarker]
 late [YellowSwitch no Weighing] [YellowDoor InvDoorMarker] -> [YellowSwitch] [YellowOpen InvDoorMarker]
 
-late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker]
-late [BlueSwitch no Weighing] [Background BlueOpen DoorMarker Crate] -> [BlueSwitch] [CrateInHole DoorMarker]
-late [BlueSwitch no Weighing] [BlueOpen DoorMarker no Crate] -> [BlueSwitch] [BlueDoor DoorMarker]
-late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker]
-late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker]
-
 late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker]
-late [PurpleSwitch no Weighing] [Background PurpleOpen DoorMarker Crate] -> [PurpleSwitch] [CrateInHole DoorMarker]
-late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker no Crate] -> [PurpleSwitch] [PurpleDoor DoorMarker]
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker]
 late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker]
 late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker]
 
+late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker]
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker] -> [BlueSwitch] [BlueDoor DoorMarker]
+late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker]
+late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker]
+
 late [Weighing GreenSwitch] [GreenDoor DoorMarker] -> [Weighing GreenSwitch] [GreenOpen DoorMarker]
-late [GreenSwitch no Weighing] [Background GreenOpen DoorMarker Crate] -> [GreenSwitch] [CrateInHole DoorMarker]
-late [GreenSwitch no Weighing] [GreenOpen DoorMarker no Crate] -> [GreenSwitch] [GreenDoor DoorMarker]
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker] -> [GreenSwitch] [GreenDoor DoorMarker]
 late [Weighing GreenSwitch] [GreenOpen InvDoorMarker] -> [Weighing GreenSwitch] [GreenDoor InvDoorMarker]
 late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [GreenOpen InvDoorMarker]
 

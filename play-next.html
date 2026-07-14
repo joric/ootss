@@ -473,7 +473,7 @@ function monitorLevelUpdate() {
   if (curLevelNo != prevLevelNo) {
     prevLevelNo = curLevelNo;
     levelName = state.levels[curLevelNo].section;
-    console.log(`Level change, possibly "${levelName}".`);
+    console.log(`level change ${levelName}`);
     pos = 0;
     updateControls();
   }
