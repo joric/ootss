@@ -1119,12 +1119,9 @@ late [ WaterAnim no Hole ] -> []
 
 (if there's a mirror on the map, replace background with mirrorbackground)
 
-once [ MundaneSeed ] [ MirrorDL ] -> [ Mundane ] [ MirrorDL Mundane ]
-once [ MundaneSeed ] [ MirrorDR ] -> [ Mundane ] [ MirrorDR Mundane ]
-
-once [ MundaneSeed ] -> []
-
-
+[ MundaneSeed ] [ MirrorDL ] -> [ Mundane ] [ MirrorDL Mundane ]
+[ MundaneSeed ] [ MirrorDR ] -> [ Mundane ] [ MirrorDR Mundane ]
+[ MundaneSeed ] -> []
 
 once [ Mirror ] [ Background no Hole no Goal no Target no CrateInHole ] -> [ Mirror ] [ Background MirrorBackground ]
 once [ Mirror ] [ Background Goal ] -> [ Mirror ] [ Background Target ]
