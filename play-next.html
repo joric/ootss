@@ -597,7 +597,7 @@ function move(id) {
   }
 }
 
-function initPlayer() {
+function init() {
   document.querySelectorAll('.btnKey').forEach(c=>{ c.onclick = e=> { sendKey(e.target.id); } });
 
   document.querySelectorAll('.btnFn').forEach(c=>{ c.onclick = e=> { 
@@ -644,7 +644,7 @@ function postLoading() {
     if (a) {
       console.log(`${a.length} solutions`);
     }
-    initPlayer();
+    init();
   });
 }
 
