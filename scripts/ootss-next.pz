@@ -36,6 +36,9 @@ transparent
 Tertiary
 transparent
 
+Ready
+transparent
+
 Switched
 transparent
 
@@ -1095,6 +1098,8 @@ ShadowDoor, HasSavedDoor
 JailSeed
 Jail
 
+Ready
+
 ======
 RULES
 ======
@@ -1128,10 +1133,10 @@ late [ WaterAnim no Hole ] -> []
 [ MundaneSeed ] [ MirrorDR ] -> [ Mundane ] [ MirrorDR Mundane ]
 [ MundaneSeed ] -> [ ]
 
-once [ Mirror ] [ Background no Hole no Goal no Target no CrateInHole ] -> [ Mirror ] [ Background MirrorBackground ]
-once [ Mirror ] [ Background Goal ] -> [ Mirror ] [ Background Target ]
+[ Mirror ] [ Background no Hole no Goal no Target no CrateInHole ] -> [ Mirror ] [ Background MirrorBackground ]
+[ Mirror ] [ Background Goal ] -> [ Mirror ] [ Background Target ]
 
-once [ no Mirror ] [ Background no Hole no Goal no Target no CrateInHole no MirrorBackground ] -> [ ] [ Background HeroBackground ]
+[ no Mirror ] [ Background no Hole no Goal no Target no CrateInHole no MirrorBackground ] -> [ ] [ Background HeroBackground ]
 
 
 (Island border)
