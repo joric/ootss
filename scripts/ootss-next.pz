@@ -1634,6 +1634,7 @@ left    [ > Counter no Returning | MirrorUR no Mundane ] -> [ | MirrorUR up    C
 + [ > 00 Returning | no Solid ] [ action Reflectable ] -> [ | Reflection ] [ Reflectable HasReflection ]
 
 [ Counter ] -> []
+[ Returning ] -> []
 
 (cleanup: dead-end sweep back through unresolved LOS. Crossing cells lose only their Crossing tag first pass, get deleted for real on a later pass once uncontested)
 [ action Reflectable ] [ stationary LOS Crossing ] -> [ action Reflectable ] [ LOS ]
@@ -1646,7 +1647,6 @@ left    [ > Counter no Returning | MirrorUR no Mundane ] -> [ | MirrorUR up    C
 endloop
 
 [ DirectionCounter ] -> []
-[ Returning ] -> []
 [ Crossing ] -> []
 
 ==============
