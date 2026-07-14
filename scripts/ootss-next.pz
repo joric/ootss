@@ -833,7 +833,7 @@ lightgreen green
 
 
 FrozenGoblin
-Green DarkBrown DarkGreen Blue
+Green DarkBrown DarkGreen lightBlue
 03230
 00000
 33033
@@ -841,7 +841,7 @@ Green DarkBrown DarkGreen Blue
 31313
 
 FrozenDragonLeft
-Green Red Orange Yellow DarkGreen Blue
+Green Red Orange Yellow DarkGreen lightBlue
 55555
 11005
 32105
@@ -849,7 +849,7 @@ Green Red Orange Yellow DarkGreen Blue
 55545
 
 FrozenDragonRight
-Green Red Orange Yellow DarkGreen Blue
+Green Red Orange Yellow DarkGreen lightBlue
 55555
 50011
 50123
@@ -857,7 +857,7 @@ Green Red Orange Yellow DarkGreen Blue
 54555
 
 FrozenDragonUp
-Green Red Orange Yellow DarkGreen Blue
+Green Red Orange Yellow DarkGreen lightBlue
 51315
 51215
 50005
@@ -865,7 +865,7 @@ Green Red Orange Yellow DarkGreen Blue
 55455
 
 FrozenDragonDown
-White Red Orange Yellow DarkGreen Blue
+White Red Orange Yellow DarkGreen lightBlue
 55455
 55055
 50005
