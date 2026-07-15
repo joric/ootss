@@ -6,6 +6,7 @@ run_rules_on_level_start
 
 (TODO: this is still unfinished, need CharacterSwap binding on C or action menu)
 (See PuzzleScript Next, xxuurruuii fork https://github.com/xxuurruuii/PuzzleScriptNext)
+(moved towards this fork, see https://joric.github.io/ootss/play-next.html)
 (actionkey c CharacterSwap)
 
 ========
