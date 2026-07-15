@@ -410,13 +410,13 @@ grey lightgrey
 00010
 00000
 
-Goal
-yellow yellow grey brown
-23332
-30003
-30103
-30003
-23332
+Goal 
+Brown Yellow grey
+20002
+00000
+00010
+00000
+00000
 
 Wall
 Darkgrey #222222
@@ -555,7 +555,7 @@ GreenOpen
 transparent
 
 YellowSwitch
-black yellow grey lightgrey
+black yellow grey grey
 23332
 30003
 30103
@@ -587,7 +587,7 @@ Yellow transparent
 01010
 
 PurpleSwitch
-black #E225C1 grey lightgrey (#F192E0)
+black #E225C1 grey grey (#F192E0)
 23332
 30003
 30103
@@ -619,7 +619,7 @@ PurpleDoorA
 01010
 
 BlueSwitch
-black blue grey lightgrey
+black blue grey grey
 23332
 30003
 30103
@@ -651,7 +651,7 @@ LightBlue transparent
 01010
 
 GreenSwitch
-black green grey lightgrey
+black green grey grey
 23332
 30003
 30103
