@@ -1,8 +1,10 @@
-title Order of the Sinking Star Demo: Puzzlescript
+title Order of the Sinking Star Demo: PuzzleScript
 author Joric
 text_color yellow
-key_repeat_interval 0.25
+key_repeat_interval 0.20
 run_rules_on_level_start
+
+(TODO: this is still unfinished, need CharacterSwap binding on C or action menu)
 
 ========
 OBJECTS
@@ -10,13 +12,25 @@ OBJECTS
 
 (mirror isles stuff)
 
-Teleported
+Bedrock
 transparent
 
-Returning
+Spacer
+transparent
+
+CharacterSwap
+transparent
+
+Crossing
+transparent
+
+Primary
 transparent
 
 Secondary
+transparent
+
+Tertiary
 transparent
 
 Switched
@@ -25,8 +39,20 @@ transparent
 WaterSeed
 transparent
 
+MundaneSeed
+transparent
+
+JailSeed
+transparent
+
+Jail
+black
+
+Mundane
+transparent
+
 Basement
-blue
+transparent
 
 RayU
 transparent
@@ -49,12 +75,12 @@ MirrorBackground
 10111
 
 Target
-DarkBlue transparent transparent
-.111.
-10201
-12021
-10201
-.111.
+yellow darkblue
+00000
+01010
+00100
+01010
+00000
 
 West
 transparent
@@ -131,6 +157,36 @@ transparent
 20
 transparent
 
+21
+transparent
+
+22
+transparent
+
+23
+transparent
+
+24
+transparent
+
+25
+transparent
+
+26
+transparent
+
+27
+transparent
+
+28
+transparent
+
+29
+transparent
+
+30
+transparent
+
 MirrorUL
 #909090 #4e5159 #4e5159
 ....0
@@ -164,7 +220,7 @@ MirrorDR
 0....
 
 LOS
-Orange
+grey
 .....
 .....
 ..0..
@@ -192,12 +248,20 @@ Brown #493c2b #000000
 
 
 Reflection
-LightGrey Grey DarkGrey
+LightGrey grey DarkGrey
+.....
+..1..
+.111.
+..1..
+.....
+
+(
 ..0..
 .111.
 01110
 02220
 .2.2.
+)
 
 CrateReflection
 LightGrey Grey LightGrey
@@ -214,14 +278,6 @@ DarkBrown #282828 #101010 Blue
 31122
 01123
 31122
-
-CantMove
-LightRed Red DarkRed
-..0..
-.111.
-01110
-02220
-.2.2.
 
 NormalCrate
 Orange Brown White
@@ -340,18 +396,17 @@ Blue
 
 (heroes stuff)
 
-
 HeroBackground
-#989898 #C8C8C8
+grey lightgrey
 00000
 00100
 00000
 00010
 00000
 
-Goal
-Brown Yellow
-.000.
+Goal 
+Brown Yellow grey
+20002
 00000
 00010
 00000
@@ -462,7 +517,7 @@ SDruid
 00000
 
 Crate 
-Orange #552200
+Orange brown
 .111.
 10001
 10001
@@ -494,20 +549,28 @@ GreenOpen
 transparent
 
 YellowSwitch
-Yellow Black
-.....
-.111.
-.101.
-.111.
-.....
+black yellow grey grey
+23332
+30003
+30103
+30003
+23332
 
 YellowOpenA
-Yellow
-0...0
-.....
-.....
-.....
-0...0
+grey lightgrey yellow
+20002
+00100
+00000
+00010
+20002
+
+YellowOpenW
+lightblue blue yellow
+21112
+11101
+11111
+10111
+21112
 
 YellowDoorA
 Yellow transparent
@@ -518,20 +581,28 @@ Yellow transparent
 01010
 
 PurpleSwitch
-#E225C1 Black
-.....
-.111.
-.101.
-.111.
-.....
+black #E225C1 grey grey (#F192E0)
+23332
+30003
+30103
+30003
+23332
 
 PurpleOpenA
-#E225C1
-0...0
-.....
-.....
-.....
-0...0
+grey lightgrey #E225C1
+20002
+00100
+00000
+00010
+20002
+
+PurpleOpenW
+lightblue blue #E225C1
+21112
+11101
+11111
+10111
+21112
 
 PurpleDoorA
 #E225C1 transparent
@@ -542,20 +613,28 @@ PurpleDoorA
 01010
 
 BlueSwitch
-Blue Black
-.....
-.111.
-.101.
-.111.
-.....
+black blue grey grey
+23332
+30003
+30103
+30003
+23332
 
 BlueOpenA
-LightBlue
-0...0
-.....
-.....
-.....
-0...0
+grey lightgrey lightblue
+20002
+00100
+00000
+00010
+20002
+
+BlueOpenW
+lightblue blue lightblue
+21112
+11101
+11111
+10111
+21112
 
 BlueDoorA
 LightBlue transparent
@@ -566,20 +645,28 @@ LightBlue transparent
 01010
 
 GreenSwitch
-Green Black
-.....
-.111.
-.101.
-.111.
-.....
+black green grey grey
+23332
+30003
+30103
+30003
+23332
 
 GreenOpenA
-LightGreen
-0...0
-.....
-.....
-.....
-0...0
+grey lightgrey lightgreen
+20002
+00100
+00000
+00010
+20002
+
+GreenOpenW
+lightblue blue lightgreen
+21112
+11101
+11111
+10111
+21112
 
 GreenDoorA
 LightGreen transparent
@@ -590,12 +677,12 @@ LightGreen transparent
 01010
 
 MonsterDoor
-transparent #222222 Red
-20002
-22022
-20202
-20002
-20002
+Red
+0.0.0
+.000.
+00000
+.000.
+0.0.0
 
 Warpball
 Blue
@@ -658,7 +745,13 @@ Green DarkBrown DarkGreen
 .1.1.
 
 Dying
-White
+#CCC
+.000.
+.000.
+00000
+.0.0.
+.0.0.
+
 
 Saved
 #D8D800
@@ -693,7 +786,20 @@ Note
 .....
 
 Hole
-blue
+lightblue blue 
+11111
+11101
+11111
+10111
+11111
+
+Water
+lightblue blue 
+11111
+11101
+11111
+10111
+11111
 
 WaterAnim1
 lightblue transparent
@@ -712,16 +818,16 @@ lightblue transparent
 11111
 
 Bush
-green #008000
-01000
-11111
-00010
-00010
-11111
+lightgreen green
+.111.
+10001
+10001
+10001
+.111.
 
 
 FrozenGoblin
-Green DarkBrown DarkGreen Blue
+Green DarkBrown DarkGreen lightBlue
 03230
 00000
 33033
@@ -729,7 +835,7 @@ Green DarkBrown DarkGreen Blue
 31313
 
 FrozenDragonLeft
-Green Red Orange Yellow DarkGreen Blue
+Green Red Orange Yellow DarkGreen lightBlue
 55555
 11005
 32105
@@ -737,7 +843,7 @@ Green Red Orange Yellow DarkGreen Blue
 55545
 
 FrozenDragonRight
-Green Red Orange Yellow DarkGreen Blue
+Green Red Orange Yellow DarkGreen lightBlue
 55555
 50011
 50123
@@ -745,7 +851,7 @@ Green Red Orange Yellow DarkGreen Blue
 54555
 
 FrozenDragonUp
-Green Red Orange Yellow DarkGreen Blue
+Green Red Orange Yellow DarkGreen lightBlue
 51315
 51215
 50005
@@ -753,7 +859,7 @@ Green Red Orange Yellow DarkGreen Blue
 55455
 
 FrozenDragonDown
-White Red Orange Yellow DarkGreen Blue
+White Red Orange Yellow DarkGreen lightBlue
 55455
 55055
 50005
@@ -768,7 +874,7 @@ InvDoorMarker
 Transparent
 
 CrateInHole
-Brown DarkBrown Blue
+brown darkbrown Blue
 20002
 01110
 01110
@@ -777,11 +883,11 @@ Brown DarkBrown Blue
 
 MirrorInHole
 #909090 #4e5159 #4e5159 Blue
-33333
-31013
-30103
-31013
-33333
+32223
+21012
+20102
+21012
+32223
 
 =======
 LEGEND
@@ -805,20 +911,23 @@ Weighing = Crate or Hero or Monster or Wall or Bush or FrozenMonster
 Vulnerable = Hero or Monster
 Invulnerable = Crate or Static
 WaterAnim = WaterAnim1 or WaterAnim2
-Background = HeroBackground
 
-DoorSprite = YellowOpenA or PurpleOpenA or BlueOpenA or GreenOpenA or PurpleDoorA or YellowDoorA or BlueDoorA or GreenDoorA
+Returning = Primary or Secondary or Tertiary
+
+DoorSpriteOpen = YellowOpenA or PurpleOpenA or BlueOpenA or GreenOpenA or YellowOpenW or PurpleOpenW or BlueOpenW or GreenOpenW
+
+DoorSpriteClosed = PurpleDoorA or YellowDoorA or BlueDoorA or GreenDoorA
 
 (mirror defines)
 
 Mirror = MirrorUL or MirrorUR or MirrorDL or MirrorDR
-Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20
+Counter = 00 or 01 or 02 or 03 or 04 or 05 or 06 or 07 or 08 or 09 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20 or 21 or 22 or 23 or 24 or 25 or 26 or 27 or 28 or 29 or 30
 Rays = RayU or RayD or RayL or RayR
 DirectionCounter = North or South or East or West
 MirrorCrate = NormalCrate or ReflectableCrate
 Pushable = Mirror or MirrorCrate
 Solid = MirrorCrate or Mirror or Hero or Wall
-Reflectable = MirrorGuy or ReflectableCrate
+Reflectable = MirrorGuy or ReflectableCrate or SMirrorGuy or Goblin
 WaterHere = Hole or CrateInHole or FloatingBody or MirrorInHole
 AddLandL = AddLandLUD or AddLandLU or AddLandLD
 AddLandR = AddLandRUD or AddLandRU or AddLandRD
@@ -831,26 +940,29 @@ ColorSwitch = YellowSwitch or BlueSwitch or PurpleSwitch or GreenSwitch
 
 Exit = Goal or Target
 
+Background = HeroBackground or MirrorBackground
+
 (single letter defines for levels)
 
-. = Background
-# = Wall
-_ = Hole and WaterAnim1
-* = Crate
-/ = MirrorUL
-\ = MirrorUR
-` = MirrorDL
-' = MirrorDR
-@ = Bush
-~ = NormalCrate
-! = ReflectableCrate
+. = Bedrock and HeroBackground
+, = Bedrock and MirrorBackground
+# = Bedrock and Wall
+_ = Hole
+* = Bedrock and Crate
+/ = Bedrock and MirrorUL
+\ = Bedrock and MirrorUR
+` = Bedrock and MirrorDL
+' = Bedrock and MirrorDR
+@ = Bedrock and Bush
+~ = Bedrock and NormalCrate
+! = Bedrock and ReflectableCrate
 
 (open doors are used in dipping_your_toes_in and dont_push_the_button)
 
 
 ; = BlueDoor
 : = BlueOpen
-, = BlueSwitch
+" = BlueSwitch
 
 ] = PurpleDoor
 ? = PurpleOpen
@@ -870,41 +982,41 @@ $ = GreenDoor
 
 (S-prefixed defines mean currently inactive characters to switch to)
 
-0 = SMirrorGuy
-1 = SFighter
-2 = SThief
-3 = SWizard
-4 = SPriest
-5 = SBard
-6 = SDruid
+0 = Bedrock and SMirrorGuy
+1 = Bedrock and SFighter
+2 = Bedrock and SThief
+3 = Bedrock and SWizard
+4 = Bedrock and SPriest
+5 = Bedrock and SBard
+6 = Bedrock and SDruid
 7 = Goal and Thief (heroes1_18)
 8 = Goal and SWizard (heroes1_18)
 9 = PurpleSwitch and Goblin (heroes2_10.5)
 
-A = MirrorGuy
-B = Bard
+A = Bedrock and MirrorGuy
+B = Bedrock and Bard
 (C = )
-D = DragonDown
+D = Bedrock and DragonDown
 E = Goal and Fighter (easy_situation_v2)
-F = Fighter
+F = Bedrock and Fighter
 G = Goal
-(H = )
-I = Druid
+H = Bedrock and MundaneSeed
+I = Bedrock and Druid
 J = YellowSwitch and SBard    (heroes3_5)
 K = YellowSwitch and Fighter (heroes3_5)
-L = DragonLeft
-M = MonsterDoor
-(N = )
-O = Goblin
-P = Priest
+L = Bedrock and DragonLeft
+M = Bedrock and MonsterDoor
+N = Bedrock and JailSeed
+O = Bedrock and Goblin
+P = Bedrock and Priest
 Q = Goal and MonsterDoor (mosh_pit_small)
-R = DragonRight
+R = Bedrock and DragonRight
 S = YellowSwitch and Goblin (one_fire_v2)
-T = Thief
-U = DragonUp
-(V = better used with ^ < > v as a directional entity, though warnings)
-W = Wizard
-(X = )
+T = Bedrock and Thief
+U = Bedrock and DragonUp
+(V = reserved, unavailable because of ^ < > v )
+W = Bedrock and Wizard
+X = Target
 Y = YellowSwitch and Bard (heroes3_2_v4)
 Z = BlueSwitch and DragonLeft (detonator)
 
@@ -917,73 +1029,119 @@ Endlevel 36315908
 
 sfx0 72252907 (player move)
 sfx1 22154307 (push)
-sfx2 99784702 (swap)
-sfx3 55205302 (crate in water)
+(sfx2 99784702) (swap)
+(sfx3 55205302) (crate in water)
 sfx4 71749307 (can't go into water)
 
 
 (Sfx0 21221308) (teleport)
 (Sfx1 66399906) (switch player)
-(Sfx2 92172900) (close door)
-(Sfx3 15129100) (open door)
+Sfx2 92172900 (close door)
+Sfx3 15129100 (open door)
 (Sfx4 69860105) (saved)
 Sfx5 63194902 (kill enemy)
 Sfx6 81996702 (dying player)
 Sfx7 20187909 (Bard leading)
 Sfx8 93615108 (Transmutation)
+
+
+
+
 EndGame 86793500
 
 ================
 COLLISIONLAYERS
 ================
 
-MirrorBackground
-HeroBackground
+Spacer
+
+Bedrock
+
+HeroBackground, MirrorBackground
+
+DoorSpriteOpen, DoorSpriteClosed
+
+CrateInHole, MirrorInHole
+
+Target, Goal
+
+FloatingBody
+
+Hole
+WaterAnim
+Water
+
+AddLandL, RemoveLandL
+AddLandR, RemoveLandR
+
+Switch
+
+Dying
+
+Jail
+
+Crate, Monster, Corpse, Bush, FrozenMonster, Solid
+
+ClosedDoor
+
+LOS
+Reflection, CrateReflection
+Note
+
+MundaneSeed
+Mundane
+
+Saved
+RFireball
+LFireball
+UFireball
+DFireball
+
+(mirror layers)
+HasReflection
+Crossing
+Primary
+Secondary
+Tertiary
+Counter
+DirectionCounter
+Basement
+Warpball
+Switched
+
+CharacterSwap
+
+ShadowDoor, HasSavedDoor
+
+JailSeed
+
+DoorMarker
+
+InvDoorMarker
+
+OpenDoor
+
 WaterSeed
 RayU
 RayD
 RayL
 RayR
 
-(heroes layers)
-Goal
-DoorMarker, InvDoorMarker
-Basement
-Hole
-WaterAnim
-DoorSprite
-Warpball, Dying
-CrateInHole, MirrorInHole
-Switched
-Switch, OpenDoor, ShadowDoor, HasSavedDoor
-Crate, ClosedDoor, Monster, Corpse, Bush, FrozenMonster, Solid
-Saved
-RFireball
-LFireball
-UFireball
-DFireball
-Note
-
-(mirror layers)
-Target, FloatingBody
-HasReflection
-Teleported
-AddLandL, RemoveLandL
-AddLandR, RemoveLandR
-LOS
-Returning
-Secondary
-Counter
-DirectionCounter
-Reflection, CantMove, CrateReflection
-
 ======
 RULES
 ======
 
-(paint water cross from waterseed for trapdoors)
+[ action Player ] -> [ action Player CharacterSwap ]
 
-[ WaterSeed ] -> [ Basement RayU RayD RayL RayR ]
+(since there's no ClosedDoor in layers to prevent player-door conflict and door destruction, add a rule to stop at doors)
+
+[ > Player | ClosedDoor no CrateInHole ] -> [ Player | ClosedDoor ]
+
+(this is needed for dont_push_the_button and other levels too, pushes crate into open basement)
+[ > Fighter | Crate | Background Basement ClosedDoor ] -> [ > Fighter | | Basement CrateInHole ClosedDoor ] sfx1
+
+(paint water cross from waterseed for trapdoors)
+[ WaterSeed ] -> [ Basement RayU RayD RayL RayR Water]
 startloop
 up    [ RayU | no Solid ] -> [ | RayU Basement ]
 down  [ RayD | no Solid ] -> [ | RayD Basement ]
@@ -992,30 +1150,16 @@ right [ RayR | no Solid ] -> [ | RayR Basement ]
 endloop
 late [ Rays ] -> []
 
+[ MundaneSeed ] [ MirrorDL ] -> [ Mundane ] [ MirrorDL Mundane ]
+[ MundaneSeed ] [ MirrorDR ] -> [ Mundane ] [ MirrorDR Mundane ]
+[ MundaneSeed ] -> [ ]
 
-(mirror rules)
-
-[ CantMove ] -> []
-
-late [ WaterAnim no Hole ] -> []
-
-(Water anim)
-
-(
-[ stationary MirrorGuy ] [ stationary WaterAnim1 ] -> [ MirrorGuy] [ action WaterAnim2 ]
-[ stationary MirrorGuy ] [ stationary WaterAnim2 ] -> [ MirrorGuy] [ action WaterAnim1 ]
-)
-
-
-(if there's a mirror on the map, replace background with mirrorbackground)
-
-late [ Mirror ] [ HeroBackground ] -> [ Mirror ] [ MirrorBackground ]
-
-late [ Mirror ] [ Goal ] -> [ Mirror ] [ Target ]
+(paint neighbour undertiles into mirror background, for worlds_collide)
+[ MirrorBackground | HeroBackground | Hole ] -> [ MirrorBackground | MirrorBackground | Hole ]
 
 (Island border)
 
-
+(
 left  [ Mirror ] [ WaterHere no AddLandL | no WaterHere ] -> [ Mirror ] [ WaterHere AddLandLUD | ]
 right [ Mirror ] [ WaterHere no AddLandR | no WaterHere ] -> [ Mirror ] [ WaterHere AddLandRUD | ]
 
@@ -1039,39 +1183,19 @@ down  [ Mirror ] [ RemoveLandRUD | no WaterHere ] -> [ Mirror ] [ RemoveLandRU |
 
 down  [ Mirror ] [ RemoveLandLD | no WaterHere ] -> [ Mirror ] [ | ]
 down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
-
-
-(Prevent teleport)
-
-[ action MirrorGuy ] [ Reflection Hole ] -> [ action MirrorGuy ] [ CantMove Hole ]
-
-[ CantMove ] [ action MirrorGuy ] -> [ CantMove ] [ MirrorGuy ] again
-
-(Swap places)
-
-(
-[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection ] [ Reflection MirrorGuy ]
-[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
-[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy ] [ ReflectableCrate ] sfx2
-[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy ] []
-[ action MirrorGuy HasReflection ] -> [ Reflection ]
 )
 
-[ action MirrorGuy HasReflection ] [ Reflection ] -> [ action MirrorGuy HasReflection Teleported ] [ Reflection MirrorGuy ]
-[ Reflection MirrorGuy ] -> [ MirrorGuy ] sfx2
-[ action MirrorGuy ] [ CrateReflection ] -> [ action MirrorGuy Teleported ] [ ReflectableCrate ] sfx2
-[ action MirrorGuy ] [ ReflectableCrate HasReflection ] -> [ action MirrorGuy Teleported ] []
-[ action MirrorGuy HasReflection ] -> [ Reflection ]
 
-(character switch only if NO teleport this tick)
+( make all possible copies )
+[ action Player ] [ Reflectable HasReflection ] [ Reflection ] -> [ action Player ] [ Reflectable HasReflection ] [ Reflection Reflectable ] sfx5
 
-[ Action MirrorGuy no Teleported ] [ SWizard ] -> [ SMirrorGuy ] [ Wizard Sfx1 ]
-[ Action Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy Sfx1 ]
+( kill the original )
+[ action Player ] [ Reflectable HasReflection ] -> [ action Player ] [ ]
 
-[ Action MirrorGuy no Teleported ] [ SMirrorGuy ] -> [ SMirrorGuy ] [ MirrorGuy Sfx1 ]
 
-(cleanup)
-[ Teleported ] -> []
+[ CharacterSwap MirrorGuy ] [ SWizard ] -> [ SMirrorGuy] [ Wizard sfx1 ]
+[ CharacterSwap MirrorGuy ] [ SMirrorGuy] -> [ SMirrorGuy] [ MirrorGuy ] 
+[ CharacterSwap Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy sfx1 ]
 
 
 (Clear state)
@@ -1084,6 +1208,10 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 [ action MirrorGuy ] -> [ MirrorGuy ]
 
 [ moving MirrorGuy ] -> [ moving MirrorGuy HasReflection ] (testing killing)
+
+
+[ Hole Vulnerable ] -> [ Hole Vulnerable Dying ]
+
 
 (Push things)
 
@@ -1110,6 +1238,7 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 
 ([ Mirror Hole ] -> cancel)
 
+
 [ NormalCrate Hole ] -> [ CrateInHole ] sfx3
 [ ReflectableCrate Hole ] -> [ CrateInHole ] sfx3
 [ Mirror Hole ] -> [ MirrorInHole ] sfx3
@@ -1119,121 +1248,6 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 [ HasReflection ] -> cancel (all MirrorGuys dead)
 
 
-(Handle reflections)
-
-startloop
-random [ Reflectable no DirectionCounter ] -> [ action Reflectable North left 00 ]
-+ [ Reflectable North ] -> [ action Reflectable East right 00 ]
-+ [ Reflectable East ] -> [ action Reflectable South up 00 ]
-+ [ Reflectable South ] -> [ action Reflectable West down 00 ]
- 
-(outbound: count up until a mirror or a wall is hit)
-[ > 00 no Returning | no Solid ] -> [ | > 01 LOS ]
-[ > 01 no Returning | no Solid ] -> [ | > 02 LOS ]
-[ > 02 no Returning | no Solid ] -> [ | > 03 LOS ]
-[ > 03 no Returning | no Solid ] -> [ | > 04 LOS ]
-[ > 04 no Returning | no Solid ] -> [ | > 05 LOS ]
-[ > 05 no Returning | no Solid ] -> [ | > 06 LOS ]
-[ > 06 no Returning | no Solid ] -> [ | > 07 LOS ]
-[ > 07 no Returning | no Solid ] -> [ | > 08 LOS ]
-[ > 08 no Returning | no Solid ] -> [ | > 09 LOS ]
-[ > 09 no Returning | no Solid ] -> [ | > 10 LOS ]
-[ > 10 no Returning | no Solid ] -> [ | > 11 LOS ]
-[ > 11 no Returning | no Solid ] -> [ | > 12 LOS ]
-[ > 12 no Returning | no Solid ] -> [ | > 13 LOS ]
-[ > 13 no Returning | no Solid ] -> [ | > 14 LOS ]
-[ > 14 no Returning | no Solid ] -> [ | > 15 LOS ]
-[ > 15 no Returning | no Solid ] -> [ | > 16 LOS ]
-[ > 16 no Returning | no Solid ] -> [ | > 17 LOS ]
-[ > 17 no Returning | no Solid ] -> [ | > 18 LOS ]
-[ > 18 no Returning | no Solid ] -> [ | > 19 LOS ]
-[ > 19 no Returning | no Solid ] -> [ | > 20 LOS ]
-
-(hit a wall / crate / hero that ISN'T a mirror: the ray is blocked, no reflection)
-[ > Counter | Solid no Mirror ] -> [ | Solid ]
- 
-(first mirror hit: bounce, and switch permanently into Returning mode)
-left    [ > Counter no Returning | MirrorUR ] -> [ LOS | MirrorUR up    Counter Returning LOS ]
-+ left  [ > Counter no Returning | MirrorDR ] -> [ LOS | MirrorDR down  Counter Returning LOS ]
-+ right [ > Counter no Returning | MirrorUL ] -> [ LOS | MirrorUL up    Counter Returning LOS ]
-+ right [ > Counter no Returning | MirrorDL ] -> [ LOS | MirrorDL down  Counter Returning LOS ]
-+ up    [ > Counter no Returning | MirrorDL ] -> [ LOS | MirrorDL left  Counter Returning LOS ]
-+ up    [ > Counter no Returning | MirrorDR ] -> [ LOS | MirrorDR right Counter Returning LOS ]
-+ down  [ > Counter no Returning | MirrorUL ] -> [ LOS | MirrorUL left  Counter Returning LOS ]
-+ down  [ > Counter no Returning | MirrorUR ] -> [ LOS | MirrorUR right Counter Returning LOS ]
- 
-(any LATER mirror hit while returning: bounce again, still counting down - this is what gives you free secondary/tertiary reflections)
-+ left  [ > Counter Returning | MirrorUR ] -> [ LOS | MirrorUR up    Counter Returning Secondary LOS ]
-+ left  [ > Counter Returning | MirrorDR ] -> [ LOS | MirrorDR down  Counter Returning Secondary LOS ]
-+ right [ > Counter Returning | MirrorUL ] -> [ LOS | MirrorUL up    Counter Returning Secondary LOS ]
-+ right [ > Counter Returning | MirrorDL ] -> [ LOS | MirrorDL down  Counter Returning Secondary LOS ]
-+ up    [ > Counter Returning | MirrorDL ] -> [ LOS | MirrorDL left  Counter Returning Secondary LOS ]
-+ up    [ > Counter Returning | MirrorDR ] -> [ LOS | MirrorDR right Counter Returning Secondary LOS ]
-+ down  [ > Counter Returning | MirrorUL ] -> [ LOS | MirrorUL left  Counter Returning Secondary LOS ]
-+ down  [ > Counter Returning | MirrorUR ] -> [ LOS | MirrorUR right Counter Returning Secondary LOS ]
- 
-(returning: count back down)
-+ [ > 20 Returning no Secondary | no Solid ] -> [ | > 19 Returning LOS ]
-+ [ > 19 Returning no Secondary | no Solid ] -> [ | > 18 Returning LOS ]
-+ [ > 18 Returning no Secondary | no Solid ] -> [ | > 17 Returning LOS ]
-+ [ > 17 Returning no Secondary | no Solid ] -> [ | > 16 Returning LOS ]
-+ [ > 16 Returning no Secondary | no Solid ] -> [ | > 15 Returning LOS ]
-+ [ > 15 Returning no Secondary | no Solid ] -> [ | > 14 Returning LOS ]
-+ [ > 14 Returning no Secondary | no Solid ] -> [ | > 13 Returning LOS ]
-+ [ > 13 Returning no Secondary | no Solid ] -> [ | > 12 Returning LOS ]
-+ [ > 12 Returning no Secondary | no Solid ] -> [ | > 11 Returning LOS ]
-+ [ > 11 Returning no Secondary | no Solid ] -> [ | > 10 Returning LOS ]
-+ [ > 10 Returning no Secondary | no Solid ] -> [ | > 09 Returning LOS ]
-+ [ > 09 Returning no Secondary | no Solid ] -> [ | > 08 Returning LOS ]
-+ [ > 08 Returning no Secondary | no Solid ] -> [ | > 07 Returning LOS ]
-+ [ > 07 Returning no Secondary | no Solid ] -> [ | > 06 Returning LOS ]
-+ [ > 06 Returning no Secondary | no Solid ] -> [ | > 05 Returning LOS ]
-+ [ > 05 Returning no Secondary | no Solid ] -> [ | > 04 Returning LOS ]
-+ [ > 04 Returning no Secondary | no Solid ] -> [ | > 03 Returning LOS ]
-+ [ > 03 Returning no Secondary | no Solid ] -> [ | > 02 Returning LOS ]
-+ [ > 02 Returning no Secondary | no Solid ] -> [ | > 01 Returning LOS ]
-+ [ > 01 Returning no Secondary | no Solid ] -> [ | > 00 Returning LOS ]
-
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
-[ > 00 Returning no Secondary | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
-
-+ [ > 20 Returning Secondary | no Solid ] -> [ | > 19 Returning Secondary LOS ]
-+ [ > 19 Returning Secondary | no Solid ] -> [ | > 18 Returning Secondary LOS ]
-+ [ > 18 Returning Secondary | no Solid ] -> [ | > 17 Returning Secondary LOS ]
-+ [ > 17 Returning Secondary | no Solid ] -> [ | > 16 Returning Secondary LOS ]
-+ [ > 16 Returning Secondary | no Solid ] -> [ | > 15 Returning Secondary LOS ]
-+ [ > 15 Returning Secondary | no Solid ] -> [ | > 14 Returning Secondary LOS ]
-+ [ > 14 Returning Secondary | no Solid ] -> [ | > 13 Returning Secondary LOS ]
-+ [ > 13 Returning Secondary | no Solid ] -> [ | > 12 Returning Secondary LOS ]
-+ [ > 12 Returning Secondary | no Solid ] -> [ | > 11 Returning Secondary LOS ]
-+ [ > 11 Returning Secondary | no Solid ] -> [ | > 10 Returning Secondary LOS ]
-+ [ > 10 Returning Secondary | no Solid ] -> [ | > 09 Returning Secondary LOS ]
-+ [ > 09 Returning Secondary | no Solid ] -> [ | > 08 Returning Secondary LOS ]
-+ [ > 08 Returning Secondary | no Solid ] -> [ | > 07 Returning Secondary LOS ]
-+ [ > 07 Returning Secondary | no Solid ] -> [ | > 06 Returning Secondary LOS ]
-+ [ > 06 Returning Secondary | no Solid ] -> [ | > 05 Returning Secondary LOS ]
-+ [ > 05 Returning Secondary | no Solid ] -> [ | > 04 Returning Secondary LOS ]
-+ [ > 04 Returning Secondary | no Solid ] -> [ | > 03 Returning Secondary LOS ]
-+ [ > 03 Returning Secondary | no Solid ] -> [ | > 02 Returning Secondary LOS ]
-+ [ > 02 Returning Secondary | no Solid ] -> [ | > 01 Returning Secondary LOS ]
-
-[ > 01 Returning Secondary | no Solid no CantMove ] [ action MirrorGuy ] -> [ | Reflection ] [ MirrorGuy HasReflection ]
-[ > 01 Returning Secondary | no Solid no CantMove ] [ action ReflectableCrate ] -> [ | CrateReflection ] [ ReflectableCrate HasReflection ]
-
-
-[ Counter ] -> []
-[ Returning ] -> []
- 
-[ action Reflectable ] [ stationary LOS ] -> [ action Reflectable ] []
- 
-[ LOS ] -> [ action LOS ]
- 
-[ action Reflectable ] -> [ Reflectable ]
-endloop
- 
-[ DirectionCounter ] -> []
-
-
 (hero rules)
 
 ([Saved] [Goal] -> [] [HasSavedDoor]) (Remembering whether we saved someone last round by temporarily changing some door to a HasSavedDoor. This is purely for sound effects purposes.)
@@ -1241,13 +1255,10 @@ endloop
 
 [Corpse] -> Restart
 
-
-[ > Fighter | Crate | PurpleDoor Basement ] -> [ > Fighter | | Basement CrateInHole] sfx3
-
-
 [ >  Fighter | Moveable ] -> [  >  Fighter | > Moveable  ]
 
 [ > Moveable | Moveable ] [ Fighter] -> [ > Moveable | > Moveable ] [ Fighter] (Fighters push.)
+
 
 [ < Thief | Moveable ] -> [ < Thief | < Moveable ] (Thieves pull.)
 
@@ -1310,7 +1321,7 @@ endloop
 [> Note Crate | Hole no Static no BardMoveable no Bard] -> [| CrateInHole Sfx7]
 +[> Note Bard WarpBall| no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
-[> Note CrateInHole | WaterHere no Static no BardMoveable no Bard] -> [Hole WaterAnim1 | CrateInHole Sfx7]
+[> Note CrateInHole | WaterHere no Static no BardMoveable no Bard] -> [Hole | CrateInHole Sfx7]
 +[> Note Bard WarpBall | no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
 [ > Bard | CrateInHole ] -> [ > Bard | CrateInHole ]
@@ -1321,44 +1332,59 @@ endloop
 [WarpBall] -> Cancel
 [Note] -> []
 
+
+(Special Swap and rules order for Jail)
+
+[ JailSeed ] [ Background SThief ] -> [ JailSeed ] [ Jail SThief ]
+[ JailSeed ] [ Background SFighter ] -> [ JailSeed ] [ Jail SFighter ]
+
+[ JailSeed ] -> []
+
+[ Jail ] [ CharacterSwap Wizard ] [ SThief ] -> [ Jail ] [ SWizard ] [ Thief Sfx1 ]
+[ Jail ] [ CharacterSwap Thief ] [ SFighter ] -> [ Jail ] [ SThief ] [ Fighter Sfx1]
+[ Jail ] [ CharacterSwap Fighter ] [ SWizard ] -> [ Jail ] [ SFighter ] [ Wizard Sfx1]
+
+[ > Hero Jail ] -> [ Hero Jail ]
+
+
 (The following mess is for changing characters. But at least it's less messy than before. Thanks to Stephen for spotting my silly redundancies.)
 
-[ Action Fighter] [SThief] -> [SFighter Switched] [Thief Sfx1]
-[ Action Thief] [SWizard] -> [SThief] [Wizard Sfx1]
-[ Action Wizard] [SPriest] -> [SWizard] [Priest Sfx1]
-[ Action Priest] [SBard] -> [SPriest] [Bard Sfx1]
-[ Action Bard] [SDruid] -> [SBard] [Druid Sfx1]
-[ Action Druid] [SFighter] -> [SDruid] [Fighter Sfx1]
+[ CharacterSwap Fighter] [SThief] -> [SFighter Switched] [Thief Sfx1]
+[ CharacterSwap Thief] [SWizard] -> [SThief] [Wizard Sfx1]
+[ CharacterSwap Wizard] [SPriest] -> [SWizard] [Priest Sfx1]
+[ CharacterSwap Priest] [SBard] -> [SPriest] [Bard Sfx1]
+[ CharacterSwap Bard] [SDruid] -> [SBard] [Druid Sfx1]
+[ CharacterSwap Druid] [SFighter] -> [SDruid] [Fighter Sfx1]
 
-[ Action Fighter] [SWizard] -> [SFighter] [Wizard Sfx1]
-[ Action Thief] [SPriest] -> [SThief] [Priest Sfx1]
-[ Action Wizard] [SBard] -> [SWizard] [Bard Sfx1]
-[ Action Priest] [SDruid] -> [SPriest] [Druid Sfx1]
-[ Action Bard] [SFighter] -> [SBard] [Fighter Sfx1]
-[ Action Druid] [SThief] -> [SDruid] [Thief Sfx1]
+[ CharacterSwap Fighter] [SWizard] -> [SFighter] [Wizard Sfx1]
+[ CharacterSwap Thief] [SPriest] -> [SThief] [Priest Sfx1]
+[ CharacterSwap Wizard] [SBard] -> [SWizard] [Bard Sfx1]
+[ CharacterSwap Priest] [SDruid] -> [SPriest] [Druid Sfx1]
+[ CharacterSwap Bard] [SFighter] -> [SBard] [Fighter Sfx1]
+[ CharacterSwap Druid] [SThief] -> [SDruid] [Thief Sfx1]
 
-[ Action Fighter] [SPriest] -> [SFighter] [Priest Sfx1]
-[ Action Thief] [SBard] -> [SThief] [Bard Sfx1]
-[ Action Wizard] [SDruid] -> [SWizard] [Druid Sfx1]
-[ Action Priest] [SFighter] -> [SPriest] [Fighter Sfx1]
-[ Action Bard] [SThief] -> [SBard] [Thief Sfx1]
-[ Action Druid] [SWizard] -> [SDruid] [Wizard Sfx1]
+[ CharacterSwap Fighter] [SPriest] -> [SFighter] [Priest Sfx1]
+[ CharacterSwap Thief] [SBard] -> [SThief] [Bard Sfx1]
+[ CharacterSwap Wizard] [SDruid] -> [SWizard] [Druid Sfx1]
+[ CharacterSwap Priest] [SFighter] -> [SPriest] [Fighter Sfx1]
+[ CharacterSwap Bard] [SThief] -> [SBard] [Thief Sfx1]
+[ CharacterSwap Druid] [SWizard] -> [SDruid] [Wizard Sfx1]
 
-[ Action Fighter] [SBard] -> [SFighter] [Bard Sfx1]
-[ Action Thief] [SDruid] -> [SThief] [Druid Sfx1]
-[ Action Wizard] [SFighter] -> [SWizard] [Fighter Sfx1]
-[ Action Priest] [SThief] -> [SPriest] [Thief Sfx1]
-[ Action Bard] [SWizard] -> [SBard] [Wizard Sfx1]
-[ Action Druid] [SPriest] -> [SDruid] [Priest Sfx1]
+[ CharacterSwap Fighter] [SBard] -> [SFighter] [Bard Sfx1]
+[ CharacterSwap Thief] [SDruid] -> [SThief] [Druid Sfx1]
+[ CharacterSwap Wizard] [SFighter] -> [SWizard] [Fighter Sfx1]
+[ CharacterSwap Priest] [SThief] -> [SPriest] [Thief Sfx1]
+[ CharacterSwap Bard] [SWizard] -> [SBard] [Wizard Sfx1]
+[ CharacterSwap Druid] [SPriest] -> [SDruid] [Priest Sfx1]
 
-[ Action Fighter] [SDruid] -> [SFighter] [Druid Sfx1]
-[ Action Thief] [SFighter] -> [SThief Switched] [Fighter Sfx1]
-[ Action Wizard] [SThief] -> [SWizard] [Thief Sfx1]
-[ Action Priest] [SWizard] -> [SPriest] [Wizard Sfx1]
-[ Action Bard] [SPriest] -> [SBard] [Priest Sfx1]
-[ Action Druid] [SBard] -> [SDruid] [Bard Sfx1]
+[ CharacterSwap Fighter] [SDruid] -> [SFighter] [Druid Sfx1]
+[ CharacterSwap Thief] [SFighter] -> [SThief Switched] [Fighter Sfx1]
+[ CharacterSwap Wizard] [SThief] -> [SWizard] [Thief Sfx1]
+[ CharacterSwap Priest] [SWizard] -> [SPriest] [Wizard Sfx1]
+[ CharacterSwap Bard] [SPriest] -> [SBard] [Priest Sfx1]
+[ CharacterSwap Druid] [SBard] -> [SDruid] [Bard Sfx1]
 
-[ Action Thief] [SThief] -> [SThief] [Thief Sfx1] (quadrants_follow_up)
+[ CharacterSwap Thief] [SThief] -> [SThief] [Thief Sfx1] (quadrants_follow_up)
 
 (Bard plays music. This is my favorite part of the code, btw. Yes, you can make square area effects with just one object!)
 [no Note | no Note | Bard] -> [^ Note | ^ Note | Bard]
@@ -1408,28 +1434,55 @@ Late [Dying Hero] -> [Corpse Sfx6]
 late [ColorDoor no DoorMarker no InvDoorMarker] -> [ColorDoor DoorMarker]
 late [ColorOpen no DoorMarker no InvDoorMarker] -> [ColorOpen InvDoorMarker]
 
-late [Weighing YellowSwitch] [YellowDoor DoorMarker] -> [Weighing YellowSwitch] [YellowOpen DoorMarker] Sfx3
-late [YellowSwitch no Weighing] [YellowOpen DoorMarker] -> [YellowSwitch] [YellowDoor DoorMarker] Sfx2
-late [Weighing YellowSwitch] [YellowOpen InvDoorMarker] -> [Weighing YellowSwitch] [YellowDoor InvDoorMarker] Sfx2
-late [YellowSwitch no Weighing] [YellowDoor InvDoorMarker] -> [YellowSwitch] [YellowOpen InvDoorMarker] Sfx3
 
-late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker] Sfx3
-late [BlueSwitch no Weighing] [BlueOpen DoorMarker Crate] -> [BlueSwitch] [CrateInHole DoorMarker]
-late [BlueSwitch no Weighing] [BlueOpen DoorMarker no Crate] -> [BlueSwitch] [BlueDoor DoorMarker] Sfx2
-late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker] Sfx2
-late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker] Sfx3
+(yellow door didn't have crate rule because of heroes1_16_v3, no crateinhole, it destroys crates instead)
 
-late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker] Sfx3
-late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker Crate] -> [PurpleSwitch] [CrateInHole DoorMarker]
-late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker no Crate] -> [PurpleSwitch] [PurpleDoor DoorMarker] Sfx2
-late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker] Sfx2
-late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker] Sfx3
 
-late [Weighing GreenSwitch] [GreenDoor DoorMarker] -> [Weighing GreenSwitch] [GreenOpen DoorMarker] Sfx3
-late [GreenSwitch no Weighing] [GreenOpen DoorMarker Crate] -> [GreenSwitch] [CrateInHole DoorMarker]
-late [GreenSwitch no Weighing] [GreenOpen DoorMarker no Crate] -> [GreenSwitch] [GreenDoor DoorMarker] Sfx2
-late [Weighing GreenSwitch] [GreenOpen InvDoorMarker] -> [Weighing GreenSwitch] [GreenDoor InvDoorMarker] Sfx2
-late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [GreenOpen InvDoorMarker] Sfx3
+late [YellowSwitch Weighing] [YellowDoor DoorMarker CrateInHole Basement] -> [YellowSwitch Weighing] [HeroBackground YellowOpen DoorMarker Basement] sfx5
+late [YellowSwitch Weighing] [YellowOpen InvDoorMarker CrateInHole Basement] -> [YellowSwitch Weighing] [HeroBackground YellowDoor InvDoorMarker Basement] sfx5
+late [YellowSwitch no Weighing] [Background YellowOpen DoorMarker Crate Basement] -> [YellowSwitch] [CrateInHole YellowDoor DoorMarker Basement] sfx5
+late [YellowSwitch Weighing ] [YellowOpen InvDoorMarker Moveable Basement ] -> [YellowSwitch Weighing] [YellowDoor InvDoorMarker Basement] sfx5
+late [YellowSwitch no Weighing] [YellowOpen DoorMarker Moveable] -> [YellowSwitch] [YellowDoor DoorMarker] sfx5
+
+late [PurpleSwitch Weighing] [PurpleDoor DoorMarker CrateInHole Basement] -> [PurpleSwitch Weighing] [HeroBackground PurpleOpen DoorMarker Basement] sfx5
+late [PurpleSwitch Weighing] [PurpleOpen InvDoorMarker CrateInHole Basement] -> [PurpleSwitch Weighing] [HeroBackground PurpleDoor InvDoorMarker Basement] sfx5
+late [PurpleSwitch no Weighing] [Background PurpleOpen DoorMarker Crate Basement] -> [PurpleSwitch] [CrateInHole PurpleDoor DoorMarker Basement] sfx5
+late [PurpleSwitch Weighing ] [PurpleOpen InvDoorMarker Moveable Basement ] -> [PurpleSwitch Weighing] [PurpleDoor InvDoorMarker Basement] sfx5
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker Moveable] -> [PurpleSwitch] [PurpleDoor DoorMarker] sfx5
+
+late [BlueSwitch Weighing] [BlueDoor DoorMarker CrateInHole Basement] -> [BlueSwitch Weighing] [HeroBackground BlueOpen DoorMarker Basement] sfx5
+late [BlueSwitch Weighing] [BlueOpen InvDoorMarker CrateInHole Basement] -> [BlueSwitch Weighing] [HeroBackground BlueDoor InvDoorMarker Basement] sfx5
+late [BlueSwitch no Weighing] [Background BlueOpen DoorMarker Crate Basement] -> [BlueSwitch] [CrateInHole BlueDoor DoorMarker Basement] sfx5
+late [BlueSwitch Weighing ] [BlueOpen InvDoorMarker Moveable Basement ] -> [BlueSwitch Weighing] [BlueDoor InvDoorMarker Basement] sfx5
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker Moveable] -> [BlueSwitch] [BlueDoor DoorMarker] sfx5
+
+late [GreenSwitch Weighing] [GreenDoor DoorMarker CrateInHole Basement] -> [GreenSwitch Weighing] [HeroBackground GreenOpen DoorMarker Basement] sfx5
+late [GreenSwitch Weighing] [GreenOpen InvDoorMarker CrateInHole Basement] -> [GreenSwitch Weighing] [HeroBackground GreenDoor InvDoorMarker Basement] sfx5
+late [GreenSwitch no Weighing] [Background GreenOpen DoorMarker Crate Basement] -> [GreenSwitch] [CrateInHole GreenDoor DoorMarker Basement] sfx5
+late [GreenSwitch Weighing ] [GreenOpen InvDoorMarker Moveable Basement ] -> [GreenSwitch Weighing] [GreenDoor InvDoorMarker Basement] sfx5
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker Moveable] -> [GreenSwitch] [GreenDoor DoorMarker] sfx5
+
+
+
+late [Weighing YellowSwitch] [YellowDoor DoorMarker] -> [Weighing YellowSwitch] [YellowOpen DoorMarker]
+late [YellowSwitch no Weighing] [YellowOpen DoorMarker] -> [YellowSwitch] [YellowDoor DoorMarker]
+late [Weighing YellowSwitch] [YellowOpen InvDoorMarker] -> [Weighing YellowSwitch] [YellowDoor InvDoorMarker]
+late [YellowSwitch no Weighing] [YellowDoor InvDoorMarker] -> [YellowSwitch] [YellowOpen InvDoorMarker]
+
+late [Weighing PurpleSwitch] [PurpleDoor DoorMarker] -> [Weighing PurpleSwitch] [PurpleOpen DoorMarker]
+late [PurpleSwitch no Weighing] [PurpleOpen DoorMarker] -> [PurpleSwitch] [PurpleDoor DoorMarker]
+late [Weighing PurpleSwitch] [PurpleOpen InvDoorMarker] -> [Weighing PurpleSwitch] [PurpleDoor InvDoorMarker]
+late [PurpleSwitch no Weighing] [PurpleDoor InvDoorMarker] -> [PurpleSwitch] [PurpleOpen InvDoorMarker]
+
+late [Weighing BlueSwitch] [BlueDoor DoorMarker] -> [Weighing BlueSwitch] [BlueOpen DoorMarker]
+late [BlueSwitch no Weighing] [BlueOpen DoorMarker] -> [BlueSwitch] [BlueDoor DoorMarker]
+late [Weighing BlueSwitch] [BlueOpen InvDoorMarker] -> [Weighing BlueSwitch] [BlueDoor InvDoorMarker]
+late [BlueSwitch no Weighing] [BlueDoor InvDoorMarker] -> [BlueSwitch] [BlueOpen InvDoorMarker]
+
+late [Weighing GreenSwitch] [GreenDoor DoorMarker] -> [Weighing GreenSwitch] [GreenOpen DoorMarker]
+late [GreenSwitch no Weighing] [GreenOpen DoorMarker] -> [GreenSwitch] [GreenDoor DoorMarker]
+late [Weighing GreenSwitch] [GreenOpen InvDoorMarker] -> [Weighing GreenSwitch] [GreenDoor InvDoorMarker]
+late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [GreenOpen InvDoorMarker]
 
 
 (monster door)
@@ -1455,35 +1508,195 @@ late [Switched] -> []
 
 (very late rules, assign sprites to doors, swap visual representation for basement doors)
 
-late [ Basement no WaterAnim1 ] -> [ Basement WaterAnim1]
+(late [ Basement no WaterAnim1 ] -> [ Basement WaterAnim1])
 
 
-late [ YellowDoor Basement ] -> [ YellowDoor YellowOpenA Basement ]
+late [ YellowDoor Basement ] -> [ YellowDoor YellowOpenW Basement ]
 late [ YellowOpen Basement ] -> [ YellowOpen YellowDoorA Basement ]
 
-late [ PurpleDoor Basement ] -> [ PurpleDoor PurpleOpenA Basement ]
+late [ PurpleDoor Basement ] -> [ PurpleDoor PurpleOpenW Basement ]
 late [ PurpleOpen Basement ] -> [ PurpleOpen PurpleDoorA Basement ]
 
-
-late [ BlueDoor Basement ] -> [ BlueDoor BlueOpenA Basement ]
+late [ BlueDoor Basement ] -> [ BlueDoor BlueOpenW Basement ]
 late [ BlueOpen Basement ] -> [ BlueOpen BlueDoorA Basement ]
 
-late [ GreenDoor Basement ] -> [ GreenDoor GreenOpenA Basement ]
+late [ GreenDoor Basement ] -> [ GreenDoor GreenOpenW Basement ]
 late [ GreenOpen Basement ] -> [ GreenOpen GreenDoorA Basement ]
 
 
-late [ YellowDoor no Basement ] -> [ YellowDoor YellowDoorA ]
-late [ YellowOpen no Basement ] -> [ YellowOpen YellowOpenA ]
+late [ YellowDoor no Basement ] -> [ Spacer YellowDoorA YellowDoor ]
+late [ Spacer YellowOpen no Basement ] -> [ YellowOpenA YellowOpen ]
+late [ YellowOpen no Basement ] -> [ YellowOpenA YellowOpen ]
 
-late [ PurpleDoor no Basement ] -> [ PurpleDoor PurpleDoorA ]
+late [ PurpleDoor no Basement ] -> [ Spacer PurpleDoor PurpleDoorA ]
+late [ Spacer PurpleOpen no Basement ] -> [ PurpleOpen PurpleOpenA ]
 late [ PurpleOpen no Basement ] -> [ PurpleOpen PurpleOpenA ]
 
-late [ BlueDoor no Basement ] -> [ BlueDoor BlueDoorA ]
+late [ BlueDoor no Basement ] -> [ Spacer BlueDoor BlueDoorA ]
+late [ Spacer BlueOpen no Basement ] -> [ BlueOpen BlueOpenA ]
 late [ BlueOpen no Basement ] -> [ BlueOpen BlueOpenA ]
 
-late [ GreenDoor no Basement ] -> [ GreenDoor GreenDoorA ]
+late [ GreenDoor no Basement ] -> [ Spacer GreenDoor GreenDoorA ]
+late [ Spacer GreenOpen no Basement ] -> [ GreenOpen GreenOpenA ]
 late [ GreenOpen no Basement ] -> [ GreenOpen GreenOpenA ]
 
+
+(Handle reflections)
+
+startloop
+
+(!NB not adding [ Mirror ] here blocks fighter from moving 2 movables on level "drowner", investigate)
+
+random [ Mirror ] [ Reflectable no DirectionCounter ] -> [ Mirror ] [ action Reflectable North left 00 ]
++ [ Mirror ] [ Reflectable North ] -> [ Mirror ] [ action Reflectable East right 00 ]
++ [ Mirror ] [ Reflectable East ] ->  [ Mirror ] [ action Reflectable South up 00 ]
++ [ Mirror ] [ Reflectable South ] -> [ Mirror ] [ action Reflectable West down 00 ]
+
+(outbound: count up until a mirror or a wall is hit)
+[ > 00 no Returning | no Solid no LOS ] -> [ | > 01 LOS ]
++ [ > 00 no Returning | no Solid LOS no Crossing ] -> [ | > 01 LOS Crossing ]
++ [ > 01 no Returning | no Solid no LOS ] -> [ | > 02 LOS ]
++ [ > 01 no Returning | no Solid LOS no Crossing ] -> [ | > 02 LOS Crossing ]
++ [ > 02 no Returning | no Solid no LOS ] -> [ | > 03 LOS ]
++ [ > 02 no Returning | no Solid LOS no Crossing ] -> [ | > 03 LOS Crossing ]
++ [ > 03 no Returning | no Solid no LOS ] -> [ | > 04 LOS ]
++ [ > 03 no Returning | no Solid LOS no Crossing ] -> [ | > 04 LOS Crossing ]
++ [ > 04 no Returning | no Solid no LOS ] -> [ | > 05 LOS ]
++ [ > 04 no Returning | no Solid LOS no Crossing ] -> [ | > 05 LOS Crossing ]
++ [ > 05 no Returning | no Solid no LOS ] -> [ | > 06 LOS ]
++ [ > 05 no Returning | no Solid LOS no Crossing ] -> [ | > 06 LOS Crossing ]
++ [ > 06 no Returning | no Solid no LOS ] -> [ | > 07 LOS ]
++ [ > 06 no Returning | no Solid LOS no Crossing ] -> [ | > 07 LOS Crossing ]
++ [ > 07 no Returning | no Solid no LOS ] -> [ | > 08 LOS ]
++ [ > 07 no Returning | no Solid LOS no Crossing ] -> [ | > 08 LOS Crossing ]
++ [ > 08 no Returning | no Solid no LOS ] -> [ | > 09 LOS ]
++ [ > 08 no Returning | no Solid LOS no Crossing ] -> [ | > 09 LOS Crossing ]
++ [ > 09 no Returning | no Solid no LOS ] -> [ | > 10 LOS ]
++ [ > 09 no Returning | no Solid LOS no Crossing ] -> [ | > 10 LOS Crossing ]
++ [ > 10 no Returning | no Solid no LOS ] -> [ | > 11 LOS ]
++ [ > 10 no Returning | no Solid LOS no Crossing ] -> [ | > 11 LOS Crossing ]
++ [ > 11 no Returning | no Solid no LOS ] -> [ | > 12 LOS ]
++ [ > 11 no Returning | no Solid LOS no Crossing ] -> [ | > 12 LOS Crossing ]
++ [ > 12 no Returning | no Solid no LOS ] -> [ | > 13 LOS ]
++ [ > 12 no Returning | no Solid LOS no Crossing ] -> [ | > 13 LOS Crossing ]
++ [ > 13 no Returning | no Solid no LOS ] -> [ | > 14 LOS ]
++ [ > 13 no Returning | no Solid LOS no Crossing ] -> [ | > 14 LOS Crossing ]
++ [ > 14 no Returning | no Solid no LOS ] -> [ | > 15 LOS ]
++ [ > 14 no Returning | no Solid LOS no Crossing ] -> [ | > 15 LOS Crossing ]
++ [ > 15 no Returning | no Solid no LOS ] -> [ | > 16 LOS ]
++ [ > 15 no Returning | no Solid LOS no Crossing ] -> [ | > 16 LOS Crossing ]
++ [ > 16 no Returning | no Solid no LOS ] -> [ | > 17 LOS ]
++ [ > 16 no Returning | no Solid LOS no Crossing ] -> [ | > 17 LOS Crossing ]
++ [ > 17 no Returning | no Solid no LOS ] -> [ | > 18 LOS ]
++ [ > 17 no Returning | no Solid LOS no Crossing ] -> [ | > 18 LOS Crossing ]
++ [ > 18 no Returning | no Solid no LOS ] -> [ | > 19 LOS ]
++ [ > 18 no Returning | no Solid LOS no Crossing ] -> [ | > 19 LOS Crossing ]
++ [ > 19 no Returning | no Solid no LOS ] -> [ | > 20 LOS ]
++ [ > 19 no Returning | no Solid LOS no Crossing ] -> [ | > 20 LOS Crossing ]
++ [ > 20 no Returning | no Solid no LOS ] -> [ | > 21 LOS ]
++ [ > 20 no Returning | no Solid LOS no Crossing ] -> [ | > 21 LOS Crossing ]
++ [ > 21 no Returning | no Solid no LOS ] -> [ | > 22 LOS ]
++ [ > 21 no Returning | no Solid LOS no Crossing ] -> [ | > 22 LOS Crossing ]
++ [ > 22 no Returning | no Solid no LOS ] -> [ | > 23 LOS ]
++ [ > 22 no Returning | no Solid LOS no Crossing ] -> [ | > 23 LOS Crossing ]
++ [ > 23 no Returning | no Solid no LOS ] -> [ | > 24 LOS ]
++ [ > 23 no Returning | no Solid LOS no Crossing ] -> [ | > 24 LOS Crossing ]
++ [ > 24 no Returning | no Solid no LOS ] -> [ | > 25 LOS ]
++ [ > 24 no Returning | no Solid LOS no Crossing ] -> [ | > 25 LOS Crossing ]
++ [ > 25 no Returning | no Solid no LOS ] -> [ | > 26 LOS ]
++ [ > 25 no Returning | no Solid LOS no Crossing ] -> [ | > 26 LOS Crossing ]
++ [ > 26 no Returning | no Solid no LOS ] -> [ | > 27 LOS ]
++ [ > 26 no Returning | no Solid LOS no Crossing ] -> [ | > 27 LOS Crossing ]
++ [ > 27 no Returning | no Solid no LOS ] -> [ | > 28 LOS ]
++ [ > 27 no Returning | no Solid LOS no Crossing ] -> [ | > 28 LOS Crossing ]
++ [ > 28 no Returning | no Solid no LOS ] -> [ | > 29 LOS ]
++ [ > 28 no Returning | no Solid LOS no Crossing ] -> [ | > 29 LOS Crossing ]
++ [ > 29 no Returning | no Solid no LOS ] -> [ | > 30 LOS ]
++ [ > 29 no Returning | no Solid LOS no Crossing ] -> [ | > 30 LOS Crossing ]
+
+(hit a wall / crate / hero that ISN'T a mirror: the ray is blocked, no reflection)
+[ > Counter | Solid no Mirror ] -> [ | Solid ]
+
+(first mirror hit: bounce, and switch permanently into Returning mode. Mundane only does secondary/tertiary reflections)
+left    [ > Counter no Returning | MirrorUR no Mundane ] -> [ | MirrorUR up    Counter Primary   ]
++ left  [ > Counter no Returning | MirrorDR no Mundane ] -> [ | MirrorDR down  Counter Primary   ]
++ right [ > Counter no Returning | MirrorUL no Mundane ] -> [ | MirrorUL up    Counter Primary   ]
++ right [ > Counter no Returning | MirrorDL no Mundane ] -> [ | MirrorDL down  Counter Primary   ]
++ up    [ > Counter no Returning | MirrorDL no Mundane ] -> [ | MirrorDL left  Counter Primary   ]
++ up    [ > Counter no Returning | MirrorDR no Mundane ] -> [ | MirrorDR right Counter Primary   ]
++ down  [ > Counter no Returning | MirrorUL no Mundane ] -> [ | MirrorUL left  Counter Primary   ]
++ down  [ > Counter no Returning | MirrorUR no Mundane ] -> [ | MirrorUR right Counter Primary   ]
+
+(Secondary reflection)
++ left  [ > Counter Primary      | MirrorUR            ] -> [ | MirrorUR up    Counter Secondary ]
++ left  [ > Counter Primary      | MirrorDR            ] -> [ | MirrorDR down  Counter Secondary ]
++ right [ > Counter Primary      | MirrorUL            ] -> [ | MirrorUL up    Counter Secondary ]
++ right [ > Counter Primary      | MirrorDL            ] -> [ | MirrorDL down  Counter Secondary ]
++ up    [ > Counter Primary      | MirrorDL            ] -> [ | MirrorDL left  Counter Secondary ]
++ up    [ > Counter Primary      | MirrorDR            ] -> [ | MirrorDR right Counter Secondary ]
++ down  [ > Counter Primary      | MirrorUL            ] -> [ | MirrorUL left  Counter Secondary ]
++ down  [ > Counter Primary      | MirrorUR            ] -> [ | MirrorUR right Counter Secondary ]
+
+(Tertiary reflection)
++ left  [ > Counter Secondary    | MirrorUR            ] -> [ | MirrorUR up    Counter Tertiary  ]
++ left  [ > Counter Secondary    | MirrorDR            ] -> [ | MirrorDR down  Counter Tertiary  ]
++ right [ > Counter Secondary    | MirrorUL            ] -> [ | MirrorUL up    Counter Tertiary  ]
++ right [ > Counter Secondary    | MirrorDL            ] -> [ | MirrorDL down  Counter Tertiary  ]
++ up    [ > Counter Secondary    | MirrorDL            ] -> [ | MirrorDL left  Counter Tertiary  ]
++ up    [ > Counter Secondary    | MirrorDR            ] -> [ | MirrorDR right Counter Tertiary  ]
++ down  [ > Counter Secondary    | MirrorUL            ] -> [ | MirrorUL left  Counter Tertiary  ]
++ down  [ > Counter Secondary    | MirrorUR            ] -> [ | MirrorUR right Counter Tertiary  ]
+
+(Returning: count back down)
++ [ > 30 Returning | no Solid ] -> [ | > 29 Returning LOS ]
++ [ > 29 Returning | no Solid ] -> [ | > 28 Returning LOS ]
++ [ > 28 Returning | no Solid ] -> [ | > 27 Returning LOS ]
++ [ > 27 Returning | no Solid ] -> [ | > 26 Returning LOS ]
++ [ > 26 Returning | no Solid ] -> [ | > 25 Returning LOS ]
++ [ > 25 Returning | no Solid ] -> [ | > 24 Returning LOS ]
++ [ > 24 Returning | no Solid ] -> [ | > 23 Returning LOS ]
++ [ > 23 Returning | no Solid ] -> [ | > 22 Returning LOS ]
++ [ > 22 Returning | no Solid ] -> [ | > 21 Returning LOS ]
++ [ > 21 Returning | no Solid ] -> [ | > 20 Returning LOS ]
++ [ > 20 Returning | no Solid ] -> [ | > 19 Returning LOS ]
++ [ > 19 Returning | no Solid ] -> [ | > 18 Returning LOS ]
++ [ > 18 Returning | no Solid ] -> [ | > 17 Returning LOS ]
++ [ > 17 Returning | no Solid ] -> [ | > 16 Returning LOS ]
++ [ > 16 Returning | no Solid ] -> [ | > 15 Returning LOS ]
++ [ > 15 Returning | no Solid ] -> [ | > 14 Returning LOS ]
++ [ > 14 Returning | no Solid ] -> [ | > 13 Returning LOS ]
++ [ > 13 Returning | no Solid ] -> [ | > 12 Returning LOS ]
++ [ > 12 Returning | no Solid ] -> [ | > 11 Returning LOS ]
++ [ > 11 Returning | no Solid ] -> [ | > 10 Returning LOS ]
++ [ > 10 Returning | no Solid ] -> [ | > 09 Returning LOS ]
++ [ > 09 Returning | no Solid ] -> [ | > 08 Returning LOS ]
++ [ > 08 Returning | no Solid ] -> [ | > 07 Returning LOS ]
++ [ > 07 Returning | no Solid ] -> [ | > 06 Returning LOS ]
++ [ > 06 Returning | no Solid ] -> [ | > 05 Returning LOS ]
++ [ > 05 Returning | no Solid ] -> [ | > 04 Returning LOS ]
++ [ > 04 Returning | no Solid ] -> [ | > 03 Returning LOS ]
++ [ > 03 Returning | no Solid ] -> [ | > 02 Returning LOS ]
++ [ > 02 Tertiary  | no Solid ] [ action Reflectable ] -> [ | Reflection ] [ Reflectable HasReflection ]
++ [ > 02 Returning | no Solid ] -> [ | > 01 Returning LOS ]
++ [ > 01 Secondary | no Solid ] [ action Reflectable ] -> [ | Reflection ] [ Reflectable HasReflection ]
++ [ > 01 Returning | no Solid ] -> [ | > 00 Returning LOS ]
++ [ > 00 Returning | no Solid ] [ action Reflectable ] -> [ | Reflection ] [ Reflectable HasReflection ]
+
+[ Counter ] -> []
+[ Returning ] -> []
+
+(cleanup: dead-end sweep back through unresolved LOS. Crossing cells lose only their Crossing tag first pass, get deleted for real on a later pass once uncontested)
+[ action Reflectable ] [ stationary LOS Crossing ] -> [ action Reflectable ] [ LOS ]
+[ action Reflectable ] [ stationary LOS no Crossing ] -> [ action Reflectable ] []
+
+[ LOS ] -> [ action LOS ]
+
+[ action Reflectable ] -> [ Reflectable ]
+
+endloop
+
+[ DirectionCounter ] -> []
+[ Crossing ] -> []
 
 ==============
 WINCONDITIONS
@@ -1500,19 +1713,19 @@ LEVELS
 (level mirror_1)
 
 _____________
-__..____...__
-_....__....._
-_....._..`.._
-_.....__...._
-__..______.__
-_____....____
-_____..a...__
-__..__.....__
-_....___..___
-_..g...______
-__........___
-___........__
-_____.....___
+__,,____,,,__
+_,,,,__,,,,,_
+_,,,,,_,,`,,_
+_,,,,,__,,,,_
+__,,______,__
+_____,,,,____
+_____,,a,,,__
+__,,__,,,,,__
+_,,,,___,,___
+_,,X,,,______
+__,,,,,,,,___
+___,,,,,,,,__
+_____,,,,,___
 _____________
 
 
@@ -1520,39 +1733,40 @@ _____________
 (level mirror_2)
 
 _____________
-_____....____
-____.a.'..___
-___.......___
-______.._____
-___._____..__
-__...___...._
-__....__..g._
-__....._...._
-_......_...__
-_..'...__.___
-_......______
-__...._______
-___..________
+_____,,,,____
+____,a,',,___
+___,,,,,,,___
+______,,_____
+___,_____,,__
+__,,,___,,,,_
+__,,,,__,,X,_
+__,,,,,_,,,,_
+_,,,,,,_,,,__
+_,,',,,__,___
+_,,,,,,______
+__,,,,_______
+___,,________
 _____________
 
 
 (level mirror_3)
 
 _________________
-________...._____
-_______...~..____
-__..__.......____
-_....__..~...____
-_....___...______
-_....____________
-__..___..____..._
-__..__....__..g._
-_.'._.....__...._
-_..._..._____..__
-_..._..__..______
-__..____...._____
-_______.~.a..____
-_______....._____
+________,,,,_____
+_______,,,~,,____
+__,,__,,,,,,,____
+_,,,,__,,~,,,____
+_,,,,___,,,______
+_,,,,____________
+__,,___,,____,,,_
+__,,__,,,,__,,X,_
+_,',_,,,,,__,,,,_
+_,,,_,,,_____,,__
+_,,,_,,__,,______
+__,,____,,,,_____
+_______,~,a,,____
+_______,,,,,_____
+_________________
 _________________
 
 
@@ -1560,16 +1774,16 @@ _________________
 (level mirror_4)
 
 _______________
-__...____...___
-_..._____....__
-_.g.____...~.__
-_...______...._
-_.._______...__
-__.__..__...___
-__._../....____
-____..._.._____
-____.a.________
-_____..________
+__,,,____,,,___
+_,,,_____,,,,__
+_,X,____,,,~,__
+_,,,______,,,,_
+_,,_______,,,__
+__,__,,__,,,___
+__,_,,/,,,,____
+____,,,_,,_____
+____,a,________
+_____,,________
 _______________
 
 
@@ -1577,18 +1791,18 @@ _______________
 (level mirror_5)
 
 ________________
-_..__.___..a____
-_......__~'.____
-__....._....____
-___....__.._____
+_,,__,___,,a____
+_,,,,,,__~',____
+__,,,,,_,,,,____
+___,,,,__,,_____
 ________________
-_______.____..__
-__.____..___..._
-_........___.g._
-__.....~.___..._
-____.~...___..__
-_____..._____.__
-_______.________
+_______,____,,__
+__,____,,___,,,_
+_,,,,,,,,___,X,_
+__,,,,,~,___,,,_
+____,~,,,___,,__
+_____,,,_____,__
+_______,________
 ________________
 
 
@@ -1597,19 +1811,19 @@ ________________
 
 
 ___________________
-___..______________
-_..g.________..____
-__...____....~..___
-________.......~.__
-________..___...a._
-_______________..._
+___,,______________
+_,,X,________,,____
+__,,,____,,,,~,,___
+________,,,,,,,~,__
+________,,___,,,a,_
+_______________,,,_
 ___________________
 ___________________
-________...________
-______......~...___
-_______....\.....__
-_________~...._____
-_________..________
+________,,,________
+______,,,,,,~,,,___
+_______,,,,\,,,,,__
+_________~,,,,_____
+_________,,________
 ___________________
 
 
@@ -1617,30 +1831,30 @@ ___________________
 
 
 ____________
-___...______
-_...~.._____
-_.'...._____
-_.....______
-__..________
-________..._
-_....._..g._
-__~.a.__..__
-__..____.___
+___,,,______
+_,,,~,,_____
+_,',,,,_____
+_,,,,,______
+__,,________
+________,,,_
+_,,,,,_,,X,_
+__~,a,__,,__
+__,,____,___
 ____________
 
 
 (level mirror_8_v5)
 
 ____________________
-____.....___________
-____.~...._______.__
-_____.._..___.~.'.._
-_______...___......_
-_______.......a...__
+____,,,,,___________
+____,~,,,,_______,__
+_____,,_,,___,~,',,_
+_______,,,___,,,,,,_
+_______,,,,,,,a,,,__
 ____________________
-__..._______________
-_.g.._______________
-___.._______________
+__,,,_______________
+_,X,,_______________
+___,,_______________
 ____________________
 
 
@@ -1649,32 +1863,32 @@ ____________________
 
 ______________
 ______________
-___..__...____
-__......'...__
-__.........a._
-__...___..`.__
-_________...__
-___.__________
-_....__.._____
-_..g.__....___
-__...__..g..__
-________...___
+___,,__,,,____
+__,,,,,,',,,__
+__,,,,,,,,,a,_
+__,,,___,,`,__
+_________,,,__
+___,__________
+_,,,,__,,_____
+_,,X,__,,,,___
+__,,,__,,X,,__
+________,,,___
 ______________
 
 
 (level mirror_12)
 
 ______________
-__..__________
-_..'....______
-_.....a.....__
-__........`.._
-_________...._
-__________..__
-_____...._____
-___.........._
-___..g.g.g..._
-____........__
+__,,__________
+_,,',,,,______
+_,,,,,a,,,,,__
+__,,,,,,,,`,,_
+_________,,,,_
+__________,,__
+_____,,,,_____
+___,,,,,,,,,,_
+___,,X,X,X,,,_
+____,,,,,,,,__
 ______________
 
 
@@ -1682,148 +1896,147 @@ ______________
 
 
 _______________
-______...._____
-_____........__
-_____...g..g.._
-_______......._
-__..___________
-__.a._____.____
-_....'.__....__
-__.`...._..~.._
-__......__._.._
-___....__..____
-_____..__...___
+______,,,,_____
+_____,,,,,,,,__
+_____,,,X,,X,,_
+_______,,,,,,,_
+__,,___________
+__,a,_____,____
+_,,,,',__,,,,__
+__,`,,,,_,,~,,_
+__,,,,,,__,_,,_
+___,,,,__,,____
+_____,,__,,,___
 _______________
 
 
 (level mirror_14)
 
-
 _________________
-___._____..._____
-__...____.`..____
-__.a..__.......__
-_....___........_
-_..a.__........._
-_....__....g...._
-__..____........_
-________...\...__
-_________......__
-__________...____
+___,_____,,,_____
+__,,,____,`,,____
+__,a,,__,,,,,,,__
+_,,,,___,,,,,,,,_
+_,,a,__,,,,,,,,,_
+_,,,,__,,,,X,,,,_
+__,,____,,,,,,,,_
+________,,,\,,,__
+_________,,,,,,__
+__________,,,____
 _________________
 
 
 (level mirror_15)
 
 ___________________
-_________....______
-________......_____
-___..__..!...._____
-__....__......_____
-__....___..._______
-__...._____________
-___..___..____...__
-___..__....__..g.__
-__.'._.....__....__
-__..._..._____..___
-__..._..__.._______
-___..____....______
-________.~.a.._____
-________.....______
+_________,,,,______
+________,,,,,,_____
+___,,__,,!,,,,_____
+__,,,,__,,,,,,_____
+__,,,,___,,,_______
+__,,,,_____________
+___,,___,,____,,,__
+___,,__,,,,__,,X,__
+__,',_,,,,,__,,,,__
+__,,,_,,,_____,,___
+__,,,_,,__,,_______
+___,,____,,,,______
+________,~,a,,_____
+________,,,,,______
 ___________________
-
+___________________
 
 
 (level mirror_19)
 
 _____________
-__...________
-_...g.___..__
-___...__...__
-________...._
-__..___!...._
-_....__....._
-__....__../__
-__.a..___..__
-___._________
+__,,,________
+_,,,X,___,,__
+___,,,__,,,__
+________,,,,_
+__,,___!,,,,_
+_,,,,__,,,,,_
+__,,,,__,,/__
+__,a,,___,,__
+___,_________
 _____________
 
 
 (level mirror_17)
 
 __________________
-__....____________
-_..........___..__
-_.!.'.#...._....._
-_.........___..g._
-___...________..._
-__.a..__________._
-__..._____________
-___.._____________
+__,,,,____________
+_,,,,,,,,,,___,,__
+_,!,',#,,,,_,,,,,_
+_,,,,,,,,,___,,X,_
+___,,,________,,,_
+__,a,,__________,_
+__,,,_____________
+___,,_____________
 __________________
 
 
 (level mirror_sink)
 
 _______________
-_________...___
-_______...g..__
-____._.......__
-__..._#..._____
-_..!.__#_______
-_...a__________
-_.\..._________
-__.........____
-____......_____
-_______..______
+_________,,,___
+_______,,,X,,__
+____,_,,,,,,,__
+__,,,_#,,,_____
+_,,!,__#_______
+_,,,a__________
+_,\,,,_________
+__,,,,,,,,,____
+____,,,,,,_____
+_______,,______
 _______________
 
 
 (level mirror_20)
 
 _______________
-___..__________
-__..!._________
-__......_______
-__....._____a._
-_________..`.._
-________......_
-_________.!..__
-____...___..___
-___..g.________
-____.....______
-_____..._______
+___,,__________
+__,,!,_________
+__,,,,,,_______
+__,,,,,_____a,_
+_________,,`,,_
+________,,,,,,_
+_________,!,,__
+____,,,___,,___
+___,,X,________
+____,,,,,______
+_____,,,_______
 _______________
 
 
 (level mirror_18)
 
 ________________
-_________...____
-________...!.___
-________.!....__
-____._._......__
-__..a___...__.__
-_..!..__________
-_.'...__________
-_...____________
-__._____....____
-_______..g...___
-_______.....____
+_________,,,____
+________,,,!,___
+________,!,,,,__
+____,_,_,,,,,,__
+__,,a___,,,__,__
+_,,!,,__________
+_,',,,__________
+_,,,____________
+__,_____,,,,____
+_______,,X,,,___
+_______,,,,,____
 ________________
 
 
 (level mirror_21)
 
 __________________
-__.#_________..___
-_...#______...!___
-_.g..______.!...__
-_...#______....a__
-_#.________..`!.__
-____________!...__
-____________..____
-____________._____
+__,#_________,,___
+_,,,#______,,,!___
+_,X,,______,!,,,__
+_,,,#______,,,,a__
+_#,________,,`!,__
+____________!,,,__
+____________,,____
+____________,_____
 ____________#_____
 __________________
 
@@ -1831,18 +2044,18 @@ __________________
 (level mirror_22_v2)
 
 _________________
-______________.._
-_____________..._
-_________......._
-_________.___.`._
-___.......___..._
-___...__._____.._
-__..._________.__
-__.!.___.________
-__..a___.._______
-__.!.___.g_______
-__...____________
-__.._____________
+______________,,_
+_____________,,,_
+_________,,,,,,,_
+_________,___,`,_
+___,,,,,,,___,,,_
+___,,,__,_____,,_
+__,,,_________,__
+__,!,___,________
+__,,a___,,_______
+__,!,___,X_______
+__,,,____________
+__,,_____________
 _________________
 _________________
 
@@ -1850,31 +2063,31 @@ _________________
 (level mirror_factory_v2)
 
 ________________
-_________...____
-______......____
-______......____
-_.a____.#!._____
-_..____...._____
-_.'.__.'..______
-_...__...____.._
-__..__..____.g._
-__._________..._
+_________,,,____
+______,,,,,,____
+______,,,,,,____
+_,a____,#!,_____
+_,,____,,,,_____
+_,',__,',,______
+_,,,__,,,____,,_
+__,,__,,____,X,_
+__,_________,,,_
 ________________
 
 (level mirror_pals)
 
-(TODO: secondary action)
-
+__________________
+__________________
+__________________
+__X________,,,,,__
+_________,,`,aX,__
+_______,,,,,,,,,__
+_____,,,,,,!,0,,__
+_____,,,,,,,,,,,__
 __________________
 __________________
 __________________
 __________________
-__________________
-__g________.....__
-_________..`.ag.__
-_______.........__
-_____......!.0..__
-_____...........__
 __________________
 __________________
 __________________
@@ -1885,27 +2098,28 @@ __________________
 
 (level walk_it_over)
 
-(TODO: long range, secondary action)
-
 ________________________________
-__..._______________________..._
-__.g._______________________.g._
-__..._______________________..._
-____________________________..._
-_______________________........_
-_______________________........_
-_______________________........_
-_______________________...._____
-______________________....______
-___________________.......______
-___________________.......______
-___________________..!....______
-___________________.a!..._______
-___________________.`!..________
-___________________..!..________
-___________________..0..________
-___________________...__________
-____________________..__________
+__,,,_______________________,,,_
+__,X,_______________________,X,_
+__,,,_______________________,,,_
+____________________________,,,_
+_______________________,,,,,,,,_
+_______________________,,,,,,,,_
+_______________________,,,,,,,,_
+_______________________,,,,_____
+______________________,,,,______
+___________________,,,,,,,______
+___________________,,,,,,,______
+___________________,,!,,,,______
+___________________,a!,,,_______
+___________________,`!,,________
+___________________,,!,,________
+___________________,,0,,________
+___________________,,,__________
+____________________,,__________
+________________________________
+________________________________
+________________________________
 ________________________________
 ________________________________
 ________________________________
@@ -1916,78 +2130,75 @@ ________________________________
 (level mirror_10_alt2)
 
 ____________________
-___________...._____
-___________....__.._
-__________..'____.._
-_________...._._.g._
-__.___________....__
-_...___...____....__
-_........_____....__
-_____...a______...__
-______./..__________
-______....__________
-____....____________
-_____...____________
+___________,,,,_____
+___________,,,,__,,_
+__________,,'____,,_
+_________,,,,_,_,X,_
+__,___________,,,,__
+_,,,___,,,____,,,,__
+_,,,,,,,,_____,,,,__
+_____,,,a______,,,__
+______,/,,__________
+______,,,,__________
+____,,,,____________
+_____,,,____________
 ____________________
 
 
 (level mundane_mirror)
 
-(TODO: mundane mirror)
-
 ___________________
-_____________...___
-____________..`~___
+_____________,,,___
+____________,,`~___
 ___________________
-___________......__
-__.._____........._
-_...._____........_
-_..g._______..a..._
-__..________....___
-____________.'..___
-____________.....__
-________./_......__
-_______...~___..___
-_______....________
+___________,,,,,,__
+__,,_____,,,,,,,,,_
+_,,,,_____,,,,H,,,_
+_,,X,_______,,a,,,_
+__,,________,,,,___
+____________,',,___
+____________,,,,,__
+________,/_,,,,,,__
+_______,,,~___,,___
+_______,,,,________
 ___________________
 
 
 (level mirror_10_b_v2)
 
 ______________________
-___..___________....__
-___....__..___......._
-___.........__......._
-__..........__......._
-__.........__...______
-__...._______.._______
-_..'.__.......__....__
-_....__......___.g.___
-_....___....._________
-__.\___.....___...____
-__..____..____..a.____
-__._____________._____
+___,,___________,,,,__
+___,,,,__,,___,,,,,,,_
+___,,,,,,,,,__,,,,,,,_
+__,,,,,,,,,,__,,,,,,,_
+__,,,,,,,,,__,,,______
+__,,,,_______,,_______
+_,,',__,,,,,,,__,,,,__
+_,,,,__,,,,,,___,X,___
+_,,,,___,,,,,_________
+__,\___,,,,,___,,,____
+__,,____,,____,,a,____
+__,_____________,_____
 ______________________
 
 
 (level mirror_10_d)
 
 _____________________
-___________..________
-___________..._______
-__________..\..______
-__________.a...______
-__________.....______
-__..______...`.______
-_...._____.....______
-_....._____..._______
-__..!.___________..__
-___......._______.g._
-_____........________
-_______......._______
-___________..._______
+___________,,________
+___________,,,_______
+__________,,\,,______
+__________,a,,,______
+__________,,,,,______
+__,,______,,,`,______
+_,,,,_____,,,,,______
+_,,,,,_____,,,_______
+__,,!,___________,,__
+___,,,,,,,_______,X,_
+_____,,,,,,,,________
+_______,,,,,,,_______
+___________,,,_______
 _____________________
-
 
 
 (level heroes1_1)
@@ -2216,12 +2427,9 @@ _____________________
 
 (level heroes1_19_jail)
 
-(TODO thief needs to be selected second, also jail support)
-
-
 #######
 ##*#*##
-#..W..#
+#N.W..#
 #.GGG.#
 #.....#
 #2###1#
@@ -2313,8 +2521,8 @@ _____________________
 ####U###...F#
 #############
 
-(level heroes2_5_no_crystal)
 
+(level heroes2_5_no_crystal)
 
 ##############
 ##.T..########
@@ -2327,7 +2535,6 @@ _____________________
 #............#
 #...#######..#
 ##############
-
 
 (level heroes2_5.5v5)
 
@@ -2455,7 +2662,6 @@ _____________________
 #........#####
 ##############
 
-
 (level heroes2_10.5)
 
 #################
@@ -2468,7 +2674,6 @@ _____________________
 #....#....#######
 #..G.#.W..#######
 #################
-
 
 (level one_fire_v2)
 
@@ -2751,34 +2956,31 @@ _____________________
 #.O..J...#G#
 ############
 
-
 (level worlds_collide_heroes_and_mirrors_v3)
-
-(TODO: wizard and goblin mirroring)
-
 __________________________
-______________..._________
-______________!...`...____
-_##########___........____
-_#g#......#___.._____.____
-_#.#......#__________..___
-_#.#...o..#____._..a______
-_#.#.......___#.__________
-_#.M.3.o.#.____.__________
+______________,,,_________
+______________!,,,`,,,____
+_##########___,,,,,,,,____
+_#g#......#___,,_____,____
+_#.#......#__________,,___
+_#.#...o..#____,_,,a______
+_#.#.......___#,__________
+_#.M.3.o.#.____,__________
 _###......._______________
 _###...o..._______________
 _###......._______________
 _###......._______________
-_##########____.__________
-_______________________.g_
-______________________*.._
+_##########____,__________
+_______________________,X_
+______________________*,,_
 __________________________
+
 
 (level dipping_your_toes_in)
 
 ____________________
 ___###.###__##______
-___###....,__#_##___
+___###...."__#_##___
 _#####._.....#______
 _#..?;.*.....__...__
 _#.*?;.._._..:]G.#__
@@ -2828,7 +3030,7 @@ _.}._..._
 _..._..._
 _[[[%;;;_
 _...]..._
-_.,.].{._
+_.".].{._
 _*..]..._
 _________
 
@@ -2836,7 +3038,7 @@ _________
 (level quadrants_follow_up)
 
 ______%_____%%______
-_....._..,..__....._
+_....._.."..__....._
 _..T..].....;;..G.*_
 _}....]....*;;....._
 _..2..].....;;..G.*_
@@ -2890,19 +3092,16 @@ ____...........____
 
 (level dont_push_the_button)
 
-(TODO: crushing the submerged crate)
-
 _____________%_____
 _..___________..___
 _.*__.......__.._._
 _..__._..._..;:._g_
-_......},{_..]?._._
+_......}"{_..]?._._
 _.._f.._...+.[&._._
 _..__...._...$-._._
 _.*__.......__.._._
 _..___________l.___
 ___________________
-
 
 (level detonator)
 
