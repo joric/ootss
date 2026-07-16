@@ -7,7 +7,7 @@ run_rules_on_level_start
 (PuzzleScript Plus)
 level_select
 
-(PuzzleScript Next, xxuurruuii fork https://github.com/xxuurruuii/PuzzleScriptNext)
+(PuzzleScript Next, xxuurruuii fork https://xxuurruuii.github.io/PuzzleScriptNext/src/editor.html)
 actionkey c CharacterSwap
 render_height
 default_height 0.5
@@ -1223,9 +1223,9 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 [ action Player ] [ Reflectable HasReflection ] -> [ action Player ] [ ]
 
 
-[ CharacterSwap MirrorGuy ] [ SWizard ] -> [ SMirrorGuy] [ Wizard sfx1 ]
+[ CharacterSwap MirrorGuy ] [ SWizard ] -> [ SMirrorGuy] [ Wizard ] sfx1
 [ CharacterSwap MirrorGuy ] [ SMirrorGuy] -> [ SMirrorGuy] [ MirrorGuy ] 
-[ CharacterSwap Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy sfx1 ]
+[ CharacterSwap Wizard ] [ SMirrorGuy ] -> [ SWizard ] [ MirrorGuy ] sfx1
 
 
 (Clear state)
@@ -1302,31 +1302,31 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 (continue wizard rules as usual)
 
 [ > Warpball | Static] [Wizard] -> [ | Static ] [> Wizard]
-[ > Warpball | Moveable ] [Wizard] -> [ | Wizard Sfx0] [Moveable]
+[ > Warpball | Moveable ] [Wizard] -> [ | Wizard ] [Moveable] sfx0
 [ > Warpball] [Wizard] -> [] [> Wizard]
 (Wizards telexport. What they really do is shoot a "warpball", which causes them to move normally if it hits a wall or the edge of the screen and warp if it hits something they can warp with.)
 
 (Druid does his thing. Warpball gets reused as a placeholder here. That's gonna happen a lot.)
 
-[> Druid | Bush] -> [Druid | Crate Sfx8]
-[> Druid | Crate] -> [Druid | Bush Sfx8]
+[> Druid | Bush] -> [Druid | Crate ] sfx8
+[> Druid | Crate] -> [Druid | Bush ] sfx8
 
-[> Druid | Goblin] -> [Druid | FrozenGoblin Sfx8]
-[> Druid | DragonUp] -> [Druid | FrozenDragonUp Sfx8]
-[> Druid | DragonDown] -> [Druid | FrozenDragonDown Sfx8]
-[> Druid | DragonLeft] -> [Druid | FrozenDragonLeft Sfx8]
-[> Druid | DragonRight] -> [Druid | FrozenDragonRight Sfx8]
+[> Druid | Goblin] -> [Druid | FrozenGoblin ] sfx8
+[> Druid | DragonUp] -> [Druid | FrozenDragonUp ] sfx8
+[> Druid | DragonDown] -> [Druid | FrozenDragonDown ] sfx8
+[> Druid | DragonLeft] -> [Druid | FrozenDragonLeft ] sfx8
+[> Druid | DragonRight] -> [Druid | FrozenDragonRight ] sfx8
 
-[> Druid | FrozenGoblin] -> [Druid | Goblin Sfx8]
-[> Druid | FrozenDragonUp] -> [Druid | DragonUp Sfx8]
-[> Druid | FrozenDragonDown] -> [Druid | DragonDown Sfx8]
-[> Druid | FrozenDragonLeft] -> [Druid | DragonLeft Sfx8]
-[> Druid | FrozenDragonRight] -> [Druid | DragonRight Sfx8]
+[> Druid | FrozenGoblin] -> [Druid | Goblin ] sfx8
+[> Druid | FrozenDragonUp] -> [Druid | DragonUp ] sfx8
+[> Druid | FrozenDragonDown] -> [Druid | DragonDown ] sfx8
+[> Druid | FrozenDragonLeft] -> [Druid | DragonLeft ] sfx8
+[> Druid | FrozenDragonRight] -> [Druid | DragonRight ] sfx8
 
 [> Druid | Healer] -> [Druid | Healer Saved]
 [> Druid | Hero] -> [Druid | Hero Warpball]
 [Warpball | Healer] -> [Saved | Healer]
-[Warpball Hero] -> [Wall Sfx8]
+[Warpball Hero] -> [Wall] sfx8
 (What strategic purpose could it serve for healers to protect against petrification? None, but it's fun.)
 
 (I mean, theoretically you could write some horrid dragon breath timing puzzle where the ability to delay an extra turn without moving or switching characters is necessary in order to let you move someone else at the correct moment, but even if dragons still existed, that sounds like a really gross level.)
@@ -1345,13 +1345,13 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 
 [ > Bard WarpBall | CrateInHole ] -> [ > Bard | CrateInHole ]
 
-[> Note BardMoveable no CrateInHole | no Static no BardMoveable no Bard ] -> [| BardMoveable Sfx7]
+[> Note BardMoveable no CrateInHole | no Static no BardMoveable no Bard ] -> [| BardMoveable] sfx7
 +[> Note Bard WarpBall| no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
-[> Note Crate | Hole no Static no BardMoveable no Bard] -> [| CrateInHole Sfx7]
+[> Note Crate | Hole no Static no BardMoveable no Bard] -> [| CrateInHole ] sfx7
 +[> Note Bard WarpBall| no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
-[> Note CrateInHole | WaterHere no Static no BardMoveable no Bard] -> [Hole | CrateInHole Sfx7]
+[> Note CrateInHole | WaterHere no Static no BardMoveable no Bard] -> [Hole | CrateInHole ] sfx7
 +[> Note Bard WarpBall | no Static no BardMoveable no Bard no Hole] -> [| Bard]
 
 [ > Bard | CrateInHole ] -> [ > Bard | CrateInHole ]
@@ -1370,51 +1370,51 @@ down  [ Mirror ] [ RemoveLandRD | no WaterHere ] -> [ Mirror ] [ | ]
 
 [ JailSeed ] -> []
 
-[ Jail ] [ CharacterSwap Wizard ] [ SThief ] -> [ Jail ] [ SWizard ] [ Thief Sfx1 ]
-[ Jail ] [ CharacterSwap Thief ] [ SFighter ] -> [ Jail ] [ SThief ] [ Fighter Sfx1]
-[ Jail ] [ CharacterSwap Fighter ] [ SWizard ] -> [ Jail ] [ SFighter ] [ Wizard Sfx1]
+[ Jail ] [ CharacterSwap Wizard ] [ SThief ] -> [ Jail ] [ SWizard ] [ Thief ] sfx1
+[ Jail ] [ CharacterSwap Thief ] [ SFighter ] -> [ Jail ] [ SThief ] [ Fighter ] sfx1
+[ Jail ] [ CharacterSwap Fighter ] [ SWizard ] -> [ Jail ] [ SFighter ] [ Wizard ] sfx1
 
 [ > Hero Jail ] -> [ Hero Jail ]
 
 
 (The following mess is for changing characters. But at least it's less messy than before. Thanks to Stephen for spotting my silly redundancies.)
 
-[ CharacterSwap Fighter] [SThief] -> [SFighter Switched] [Thief Sfx1]
-[ CharacterSwap Thief] [SWizard] -> [SThief] [Wizard Sfx1]
-[ CharacterSwap Wizard] [SPriest] -> [SWizard] [Priest Sfx1]
-[ CharacterSwap Priest] [SBard] -> [SPriest] [Bard Sfx1]
-[ CharacterSwap Bard] [SDruid] -> [SBard] [Druid Sfx1]
-[ CharacterSwap Druid] [SFighter] -> [SDruid] [Fighter Sfx1]
+[ CharacterSwap Fighter] [SThief] -> [SFighter Switched] [Thief ] sfx1
+[ CharacterSwap Thief] [SWizard] -> [SThief] [Wizard ] sfx1
+[ CharacterSwap Wizard] [SPriest] -> [SWizard] [Priest ] sfx1
+[ CharacterSwap Priest] [SBard] -> [SPriest] [Bard ] sfx1
+[ CharacterSwap Bard] [SDruid] -> [SBard] [Druid ] sfx1
+[ CharacterSwap Druid] [SFighter] -> [SDruid] [Fighter ] sfx1
 
-[ CharacterSwap Fighter] [SWizard] -> [SFighter] [Wizard Sfx1]
-[ CharacterSwap Thief] [SPriest] -> [SThief] [Priest Sfx1]
-[ CharacterSwap Wizard] [SBard] -> [SWizard] [Bard Sfx1]
-[ CharacterSwap Priest] [SDruid] -> [SPriest] [Druid Sfx1]
-[ CharacterSwap Bard] [SFighter] -> [SBard] [Fighter Sfx1]
-[ CharacterSwap Druid] [SThief] -> [SDruid] [Thief Sfx1]
+[ CharacterSwap Fighter] [SWizard] -> [SFighter] [Wizard ] sfx1
+[ CharacterSwap Thief] [SPriest] -> [SThief] [Priest ] sfx1
+[ CharacterSwap Wizard] [SBard] -> [SWizard] [Bard ] sfx1
+[ CharacterSwap Priest] [SDruid] -> [SPriest] [Druid ] sfx1
+[ CharacterSwap Bard] [SFighter] -> [SBard] [Fighter ] sfx1
+[ CharacterSwap Druid] [SThief] -> [SDruid] [Thief ] sfx1
 
-[ CharacterSwap Fighter] [SPriest] -> [SFighter] [Priest Sfx1]
-[ CharacterSwap Thief] [SBard] -> [SThief] [Bard Sfx1]
-[ CharacterSwap Wizard] [SDruid] -> [SWizard] [Druid Sfx1]
-[ CharacterSwap Priest] [SFighter] -> [SPriest] [Fighter Sfx1]
-[ CharacterSwap Bard] [SThief] -> [SBard] [Thief Sfx1]
-[ CharacterSwap Druid] [SWizard] -> [SDruid] [Wizard Sfx1]
+[ CharacterSwap Fighter] [SPriest] -> [SFighter] [Priest ] sfx1
+[ CharacterSwap Thief] [SBard] -> [SThief] [Bard ] sfx1
+[ CharacterSwap Wizard] [SDruid] -> [SWizard] [Druid ] sfx1
+[ CharacterSwap Priest] [SFighter] -> [SPriest] [Fighter ] sfx1
+[ CharacterSwap Bard] [SThief] -> [SBard] [Thief ] sfx1
+[ CharacterSwap Druid] [SWizard] -> [SDruid] [Wizard ] sfx1
 
-[ CharacterSwap Fighter] [SBard] -> [SFighter] [Bard Sfx1]
-[ CharacterSwap Thief] [SDruid] -> [SThief] [Druid Sfx1]
-[ CharacterSwap Wizard] [SFighter] -> [SWizard] [Fighter Sfx1]
-[ CharacterSwap Priest] [SThief] -> [SPriest] [Thief Sfx1]
-[ CharacterSwap Bard] [SWizard] -> [SBard] [Wizard Sfx1]
-[ CharacterSwap Druid] [SPriest] -> [SDruid] [Priest Sfx1]
+[ CharacterSwap Fighter] [SBard] -> [SFighter] [Bard ] sfx1
+[ CharacterSwap Thief] [SDruid] -> [SThief] [Druid ] sfx1
+[ CharacterSwap Wizard] [SFighter] -> [SWizard] [Fighter ] sfx1
+[ CharacterSwap Priest] [SThief] -> [SPriest] [Thief ] sfx1
+[ CharacterSwap Bard] [SWizard] -> [SBard] [Wizard ] sfx1
+[ CharacterSwap Druid] [SPriest] -> [SDruid] [Priest ] sfx1
 
-[ CharacterSwap Fighter] [SDruid] -> [SFighter] [Druid Sfx1]
-[ CharacterSwap Thief] [SFighter] -> [SThief Switched] [Fighter Sfx1]
-[ CharacterSwap Wizard] [SThief] -> [SWizard] [Thief Sfx1]
-[ CharacterSwap Priest] [SWizard] -> [SPriest] [Wizard Sfx1]
-[ CharacterSwap Bard] [SPriest] -> [SBard] [Priest Sfx1]
-[ CharacterSwap Druid] [SBard] -> [SDruid] [Bard Sfx1]
+[ CharacterSwap Fighter] [SDruid] -> [SFighter] [Druid ] sfx1
+[ CharacterSwap Thief] [SFighter] -> [SThief Switched] [Fighter ] sfx1
+[ CharacterSwap Wizard] [SThief] -> [SWizard] [Thief ] sfx1
+[ CharacterSwap Priest] [SWizard] -> [SPriest] [Wizard ] sfx1
+[ CharacterSwap Bard] [SPriest] -> [SBard] [Priest ] sfx1
+[ CharacterSwap Druid] [SBard] -> [SDruid] [Bard ] sfx1
 
-[ CharacterSwap Thief] [SThief] -> [SThief] [Thief Sfx1] (quadrants_follow_up)
+[ CharacterSwap Thief] [SThief] -> [SThief] [Thief] sfx1 (quadrants_follow_up)
 
 (Bard plays music. This is my favorite part of the code, btw. Yes, you can make square area effects with just one object!)
 [no Note | no Note | Bard] -> [^ Note | ^ Note | Bard]
@@ -1449,15 +1449,15 @@ Late Down [DFireball | Vulnerable] -> [ | Dying Vulnerable]
 Late DOWN [DFireball | Invulnerable] -> [ | Invulnerable]
 
 [ > Hero | Hole ] -> [ Hero | Hole ]
-late [ Crate Hole ] -> [ CrateInHole ] Sfx3
-late [ Hole Vulnerable ] -> [ Hole Sfx5 ]
+late [ Crate Hole ] -> [ CrateInHole ] sfx3
+late [ Hole Vulnerable ] -> [ Hole ] sfx5
 
 (Vulnerable objects that are attacked are designated as "Dying", but heroes can be saved by the Priest. Then the stuff that didn't get saved dies.)
 
 Late [Dying Healer] -> [Saved Healer]
 Late [Healer | Dying Hero] -> [Healer | Saved Hero]
-Late [Dying Monster] -> [Sfx5]
-Late [Dying Hero] -> [Corpse Sfx6]
+Late [Dying Monster] -> [] sfx5
+Late [Dying Hero] -> [Corpse] sfx6
 
 (Doors opening.)
 
@@ -1519,12 +1519,12 @@ late [GreenSwitch no Weighing] [GreenDoor InvDoorMarker] -> [GreenSwitch] [Green
 
 late [MonsterDoor] -> [ShadowDoor]
 late [ShadowDoor] [Monster] -> [MonsterDoor] [Monster]
-late [ShadowDoor] -> [Sfx3]
+late [ShadowDoor] -> [] sfx3
 
 (Looks for a HasSavedDoor and, if there is one, puts a warpball on the Priest. Then, if someone was saved this turn, plays the sound only if the Priest doesn't have the warpball. Finally, cleans that up.)
 
 late [HasSavedDoor] [Healer] -> [Goal] [Healer WarpBall]
-late [Saved] [Healer no WarpBall] -> [Saved Sfx4] [Healer]
+late [Saved] [Healer no WarpBall] -> [Saved] [Healer] sfx4
 late [HasSavedDoor] -> [Goal]
 late [WarpBall] -> []
 
