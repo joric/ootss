@@ -509,7 +509,7 @@ function monitorLevelUpdate() {
   if (curLevelNo != prevLevelNo) {
     prevLevelNo = curLevelNo;
     levelName = state.levels[curLevelNo].section;
-    console.log(`level change ${levelName}`);
+    //console.log(`level change ${levelName}`);
     onLevelChange(levelName);
   }
 }

@@ -226,12 +226,20 @@ MirrorDR
 0....
 
 LOS
-grey
+Orange
 .....
 .....
 ..0..
 .....
 .....
+
+Stone
+Grey DarkGrey LightGrey
+.....
+..00.
+.0001
+.0111
+...1.
 
 HasReflection
 transparent
@@ -928,7 +936,7 @@ BardMoveable = Crate or SPlayer or Monster or FrozenMonster or CrateInHole
 ClosedDoor = YellowDoor or PurpleDoor or BlueDoor or GreenDoor or MonsterDoor
 OpenDoor = YellowOpen or PurpleOpen or BlueOpen or GreenOpen
 Switch = PurpleSwitch or YellowSwitch or BlueSwitch or GreenSwitch
-Static = Wall or ClosedDoor or Bush
+Static = Wall or ClosedDoor or Bush or Stone
 Weighing = Crate or Hero or Monster or Wall or Bush or FrozenMonster
 Vulnerable = Hero or Monster
 Invulnerable = Crate or Static
@@ -948,7 +956,7 @@ Rays = RayU or RayD or RayL or RayR
 DirectionCounter = North or South or East or West
 MirrorCrate = NormalCrate or ReflectableCrate
 Pushable = Mirror or MirrorCrate
-Solid = MirrorCrate or Mirror or Hero or Wall
+Solid = MirrorCrate or Mirror or Hero or Wall or Stone
 Reflectable = MirrorGuy or ReflectableCrate or SMirrorGuy or Goblin
 WaterHere = Hole or CrateInHole or FloatingBody or MirrorInHole
 AddLandL = AddLandLUD or AddLandLU or AddLandLD
@@ -1019,7 +1027,7 @@ $ = GreenDoor
 
 A = Bedrock and MirrorGuy
 B = Bedrock and Bard
-(C = )
+C = Bedrock and Stone
 D = Bedrock and DragonDown
 E = Goal and Fighter (easy_situation_v2)
 F = Bedrock and Fighter
@@ -1995,7 +2003,7 @@ section mirror_17
 __________________
 __,,,,____________
 _,,,,,,,,,,___,,__
-_,!,',#,,,,_,,,,,_
+_,!,',C,,,,_,,,,,_
 _,,,,,,,,,___,,X,_
 ___,,,________,,,_
 __,a,,__________,_
@@ -2010,8 +2018,8 @@ _______________
 _________,,,___
 _______,,,X,,__
 ____,_,,,,,,,__
-__,,,_#,,,_____
-_,,!,__#_______
+__,,,_C,,,_____
+_,,!,__C_______
 _,,,a__________
 _,\,,,_________
 __,,,,,,,,,____
@@ -2057,15 +2065,15 @@ ________________
 section mirror_21
 
 __________________
-__,#_________,,___
-_,,,#______,,,!___
+__,C_________,,___
+_,,,C______,,,!___
 _,X,,______,!,,,__
-_,,,#______,,,,a__
-_#,________,,`!,__
+_,,,C______,,,,a__
+_C,________,,`!,__
 ____________!,,,__
 ____________,,____
 ____________,_____
-____________#_____
+____________C_____
 __________________
 
 
@@ -2094,7 +2102,7 @@ ________________
 _________,,,____
 ______,,,,,,____
 ______,,,,,,____
-_,a____,#!,_____
+_,a____,C!,_____
 _,,____,,,,_____
 _,',__,',,______
 _,,,__,,,____,,_
@@ -2992,7 +3000,7 @@ _##########___,,,,,,,,____
 _#g#......#___,,_____,____
 _#.#......#__________,,___
 _#.#...o..#____,_,,a______
-_#.#.......___#,__________
+_#.#.......___C,__________
 _#.M.3.o.#.____,__________
 _###......._______________
 _###...o..._______________
