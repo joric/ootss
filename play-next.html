@@ -552,7 +552,7 @@ function pauseSolution() {
   if (solutionTimer) {
     clearInterval(solutionTimer);
     solutionTimer = null;
-    console.log('Paused.');
+    //console.log('Paused.');
   }
   //playing = false;
 }
@@ -874,7 +874,6 @@ window.onload = () => {
           location.reload();
         } else {
           stopSolution();
-          console.log('Rewound to start.');
         }
         break;
 
