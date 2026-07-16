@@ -614,7 +614,8 @@ function nextMove() {
 
 
 function reset() {
-  playing = false;
+  sendMove(keyCodes.reset);
+  stopSolution();
 }
 
 function move(id) {
