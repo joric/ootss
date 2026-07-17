@@ -672,7 +672,7 @@ function init() {
 
   if (location.hash) {
     let levelName = location.hash.slice(1);
-    setTimeout(()=>{ loadLevel(levelName); }, 500);
+    setTimeout(()=>{ loadLevel(levelName); }, 250);
   }
 
   const select = document.getElementById('levelSelect');
