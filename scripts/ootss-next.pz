@@ -1448,6 +1448,11 @@ late [ Hole Vulnerable ] -> [ Hole ] sfx5
 
 (Vulnerable objects that are attacked are designated as "Dying", but heroes can be saved by the Priest. Then the stuff that didn't get saved dies.)
 
+(cleanup reflections)
+late [LOS] [Dying Monster] -> [] [ Dying Monster ]
+late [Reflection] [Dying Monster] -> [] [ Dying Monster ]
+
+
 Late [Dying Healer] -> [Saved Healer]
 Late [Healer | Dying Hero] -> [Healer | Saved Hero]
 Late [Dying Monster] -> [] sfx5
