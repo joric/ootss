@@ -635,10 +635,11 @@ function move(id) {
 }
 
 function init() {
-  document.querySelectorAll('.btnKey').forEach(c=>{ c.onclick = e=> { sendKey(e.target.id); } });
+  document.querySelectorAll('.btnKey').forEach(c=>{ c.onclick = e=> { e.preventDefault(); sendKey(e.target.id); } });
 
   document.querySelectorAll('.btnFn').forEach(c=>{ c.onclick = e=> { 
     //console.log(typeof window[e.target.id]);
+    e.preventDefault(); 
     if (typeof window[e.target.id] === 'function') window[e.target.id](); }
   });
 
