@@ -999,7 +999,7 @@ function drawMap() {
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
-            html += `<span class="wrap"><a href="${getSolutionLink(name,true)}" target=_blank>Solution&nbsp;Player</a>&nbsp(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
+            html += `<span class="wrap"><a href="${getSolutionLink(name,true)}">Solution&nbsp;Player</a>&nbsp(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
           }
           wrapper.innerHTML = html;
           return wrapper;
