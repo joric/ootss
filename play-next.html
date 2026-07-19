@@ -413,7 +413,7 @@ let levelName = '';
 let prevLevelNo = -1;
 let solutionTimer = null;
 
-let playDelay = 100;
+let playDelay = 75;
 let playing = false;
 
 const unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n));
@@ -684,7 +684,7 @@ function init() {
 
   if (location.hash) {
     let levelName = location.hash.slice(1);
-    setTimeout(()=>{ loadLevel(levelName); }, 250);
+    setTimeout(()=>{ loadLevel(levelName); }, 500);
   }
 }
 
