@@ -844,7 +844,7 @@ function drawMap() {
 
   markerGroup = L.layerGroup().addTo(map);
 
-  let regionLayer = L.layerGroup();//.addTo(map);
+  let regionLayer = L.layerGroup();
 
   polygonLayer = L.geoJSON(regionData, {
       onEachFeature: (feature, layer) => {
@@ -968,6 +968,8 @@ function drawMap() {
     layers['polygons'] = polygonLayer;
 
     layers['regions'] = regionLayer;
+
+    regionLayer.addTo(map);
 
     images = [];
 
