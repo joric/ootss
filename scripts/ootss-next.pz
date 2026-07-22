@@ -1,7 +1,7 @@
 title Order of the Sinking Star Demo: PuzzleScript
 author Joric
 text_color yellow
-key_repeat_interval 0.20
+key_repeat_interval 0.15
 run_rules_on_level_start
 
 (PuzzleScript Plus)
