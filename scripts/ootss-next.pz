@@ -233,6 +233,14 @@ Orange
 .....
 .....
 
+NoLOS
+Red
+.....
+.0.0.
+..0..
+.0.0.
+.....
+
 Stone
 Grey DarkGrey LightGrey
 .....
@@ -1724,9 +1732,11 @@ left    [ > Counter no Returning | MirrorUR no Mundane ] -> [ | MirrorUR up    C
 + [ > 02 Tertiary  | no Solid ] [ action Reflectable ] -> [ | BaseReflection ] [ Reflectable HasReflection ]
 + [ > 02 Returning | no Solid ] -> [ | > 01 Returning LOS ]
 + [ > 01 Secondary | no Solid ] [ action Reflectable ] -> [ | BaseReflection ] [ Reflectable HasReflection ]
++ [ > 01 Secondary | no Solid ] [ action Reflectable ] -> [ | BaseReflection ] [ Reflectable HasReflection ]
 + [ > 01 Returning | no Solid ] -> [ | > 00 Returning LOS ]
 + [ > 00 Returning | no Solid ] [ action Reflectable ] -> [ | BaseReflection ] [ Reflectable HasReflection ]
 )
+
 
 + [ > 02 Tertiary  | no Solid ] [ action Reflectable ] -> [ | BaseReflection ] [ Reflectable HasReflection ]
 + [ > 02 Returning | no Solid ] -> [ | > 01 Returning LOS ]
@@ -3327,6 +3337,7 @@ _______________
 
 section custom_2
 
+
 _________________________
 _________________________
 _________________________
@@ -3348,6 +3359,31 @@ _________________________
 _________________________
 _________________________
 _________________________
+
+
+(
+_________________________
+_________________________
+_________________________
+_________________________
+_________,_____,_________
+_________,,,a,,,_________
+_______,,,,_!_,,,,,,_____
+_______,__,,,,,____,_____
+______,,,_______`,,,_____
+______,,,_______,,,______
+______,!,_______,,,______
+______,,,_______,,,______
+______,,________/,,______
+_____________x___________
+_________________________
+_________________________
+_________________________
+_________________________
+_________________________
+_________________________
+
+)
 
 
 section custom_3
