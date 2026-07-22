@@ -1751,11 +1751,11 @@ endloop
 [ Crossing ] -> []
 
 (reflections and LOS cannot overlap, cancel the entire thing)
-[ HasReflection ] [ Reflection LOS ] -> [ ] [ Crossing LOS ]
-+[ Crossing ] [ LOS ] -> [ Crossing ] [ ]
-+[ Crossing ] [ Reflection ] -> [ Crossing ] [ ]
-+[ Crossing ] [ HasReflection ] -> [ Crossing ] [ ]
-+[ Crossing ] -> [ ]
+[ HasReflection ] [ Reflection LOS ] -> [ HasReflection ] [ Crossing Reflection LOS ]
+[ Crossing ] [ LOS ] -> [ Crossing ] [ ]
+[ Crossing ] [ Reflection ] -> [ Crossing ] [ ]
+[ Crossing ] [ HasReflection ] -> [ Crossing ] [ ]
+[ Crossing ] -> [ ]
 
 (assign proper reflections)
 [ BaseReflection ] [ MirrorGuy HasReflection ] -> [ MirrorGuyReflection ] [ MirrorGuy HasReflection ]
