@@ -1,3 +1,5 @@
+var SolutionPlayer = function() {
+
 let levelsLoaded = false;
 
 let solutions = {};
@@ -21,7 +23,7 @@ function reset() {
   stopSolution();
 }
 
-function play() {
+function do_play() {
   updateControls();
   if (!solutionTimer) {
     playing = true;
@@ -187,11 +189,11 @@ function nextMove() {
 }
 
 function prevMove() {
-  undo();
+  do_undo();
   updateControls();
 }
 
-function undo() {
+function do_undo() {
   sendMove(keyCodes.undo); // Z
   if (pos > 0) {
     pos--;
@@ -252,18 +254,27 @@ function initPlayer() {
   }});
 
   document.querySelectorAll('.btnFn').forEach(c=>{ c.onclick = e=> { 
-    //console.log(typeof window[e.target.id]);
     e.preventDefault();
     e.stopPropagation();
-    if (typeof window[e.target.id] === 'function') window[e.target.id]();
+
+    try {
+      eval(e.target.id + '()');
+    } catch(err) {
+      console.warn('Function not found');
+    }
+
     return false;
   }});
 
+  if (select) select.onchange = function(e) {
+    loadLevel(e.target.value);
+  }
 }
 
 function onLevelChange(name) {
   pos = 0;
   updateControls();
+
   if (!levelsLoaded) {
     levelsLoaded = true;
     postLoading();
@@ -396,9 +407,9 @@ function load_player() {
       <button class="close" onclick="hidePlayer()">&times;</button>
     </div>
     <div class="body">
-      <select id="levelSelect" onchange="loadLevel(this.value)"></select>
+      <select id="levelSelect"></select>
       <div class="buttons">
-        <button class="btnFn" id="play" title="E to play, [ ] to step">Play</button>
+        <button class="btnFn" id="do_play" title="E to play, [ ] to step">Play</button>
         <!--button class="btnFn" id="record">Record</button-->
         <button class="btnFn" id="pauseSolution" title="E to stop">Stop</button>
         <button class="btnFn" id="reset" title="R to reset">Reset</button>
@@ -535,4 +546,10 @@ function load_player() {
   }, true);
 }
 
-window.addEventListener('load', load_player);
+  window.addEventListener('load', load_player);
+
+}();
+
+
+
+
