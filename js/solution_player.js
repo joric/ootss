@@ -410,8 +410,9 @@ function load_player() {
       <select id="levelSelect"></select>
       <div class="buttons">
         <button class="btnFn" id="do_play" title="E to play, [ ] to step">Play</button>
+        <button class="btnFn" id="nextMove" title="] for next move">Step</button>
         <!--button class="btnFn" id="record">Record</button-->
-        <button class="btnFn" id="pauseSolution" title="E to stop">Stop</button>
+        <button class="btnFn" id="pauseSolution" title="E to stop">Pause</button>
         <button class="btnFn" id="reset" title="R to reset">Reset</button>
         <button class="btnKey" id="KeyC" title="C for secondary action">Action</button>
       </div>
@@ -532,6 +533,10 @@ function load_player() {
 
       case 'KeyE':
         play();
+        break;
+
+      case 'KeyZ':
+        prevMove();
         break;
 
       case 'KeyR':
