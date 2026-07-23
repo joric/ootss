@@ -276,7 +276,7 @@ function onLevelChange(name) {
 }
 
 function monitorLevelUpdate() {
-  if (curLevelNo != prevLevelNo) {
+  if (curLevelNo != prevLevelNo && state && state.levels && state.levels[curLevelNo] && state.levels[curLevelNo].section) {
     prevLevelNo = curLevelNo;
     levelName = state.levels[curLevelNo].section;
     console.log(`level change ${levelName}`);
