@@ -398,7 +398,7 @@ function load_player() {
     <div class="body">
       <select id="levelSelect" onchange="loadLevel(this.value)"></select>
       <div class="buttons">
-        <button class="btnFn" id="play">Play</button>
+        <button class="btnFn" id="play" title="E to play, [ ] to step">Play</button>
         <!--button class="btnFn" id="record">Record</button-->
         <button class="btnFn" id="pauseSolution">Stop</button>
         <button class="btnFn" id="reset">Reset</button>
