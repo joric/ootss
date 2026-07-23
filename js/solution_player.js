@@ -409,7 +409,7 @@ function load_player() {
     <div class="body">
       <select id="levelSelect"></select>
       <div class="buttons">
-        <button class="btnFn" id="do_play" title="E to play, [ ] to step">Play</button>
+        <button class="btnFn" id="do_play" title="E to play, [ and ] to step back and forward">Play</button>
         <button class="btnFn" id="nextMove" title="] for next move">Step</button>
         <!--button class="btnFn" id="record">Record</button-->
         <button class="btnFn" id="pauseSolution" title="E to stop">Pause</button>
