@@ -418,7 +418,7 @@ function load_player() {
 #player {
   position: fixed;
   top: 20px;
-  left: 20px;
+  left: 30px;
   background: #ccc;
   color: #000;
   padding: 0;
