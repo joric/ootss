@@ -32,6 +32,7 @@ function do_load() {
       t.split('\n').forEach(l => { if(l.trim()) { const [k,...v] = l.split(':'); obj[k] = v.join(':'); } });
       Object.assign(solutions, obj);
       console.log('Loaded:', obj);
+      updateControls();
     } catch(e) {
       if(e.name !== 'AbortError') console.error(e);
     }
