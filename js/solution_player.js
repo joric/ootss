@@ -119,7 +119,7 @@ function do_record() {
     if (keylog.length<1) return;
     let s = packSolution(keylog.join(''));
     let t = solutions[recordedLevel];
-    if (confirm(`Overwrite old solution?\n\nLevel: ${recordedLevel}\nNew solution: ${s}\nOld solution: ${t}`)) {
+    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${s}\nOld solution: ${t}\nOverwrite old solution?`)) {
       solutions[recordedLevel] = s;
     }
     updateControls();
@@ -586,6 +586,7 @@ function load_player() {
       Solution Player
       <button class="close" data-fn="hidePlayer">&times;</button>
     </div>
+
     <div class="body">
 
       <div class="selectorDiv">
@@ -593,24 +594,14 @@ function load_player() {
         <button data-fn="pin" id="pin" title="Go to Map">&#x1F4CC;</button>
       </div>
 
-
       <div class="buttons">
-
-        <!--
-        <button id="nextMove" title="] for next move">Step</button>
-        <button id="pauseSolution" title="E to stop">Pause</button>
-        <button id="reset" title="R to reset">Reset</button>
-        <button data-key="KeyC" title="C for secondary action">Action</button>
-        -->
-
-
         <button data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
         <button data-fn="do_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
         <button data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
         <button data-fn="do_save" id="save" title="Save solutions.txt">Save</button>
         <button data-fn="do_load" id="load" title="Load solutions.txt">Load</button>
-
       </div>
+
       <div class="moves">
         <span id="moves-before"></span> [ <span id="moves-at"></span> ] <span id="moves-after"></span>
       </div>
