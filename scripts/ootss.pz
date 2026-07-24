@@ -28,6 +28,9 @@ transparent
 CharacterSwap
 transparent
 
+ActionFlag
+transparent
+
 Crossing
 transparent
 
@@ -1140,6 +1143,8 @@ Switched
 
 CharacterSwap
 
+ActionFlag
+
 ShadowDoor, HasSavedDoor
 
 JailSeed
@@ -1159,6 +1164,10 @@ RayR
 ======
 RULES
 ======
+
+(if no mirror present in scene, set CharacterSwap on primary action)
+[Mirror] [action Player] -> [Mirror] [action Player ActionFlag]
+[action Player no ActionFlag] -> [action Player CharacterSwap]
 
 (since there's no ClosedDoor in layers to prevent player-door conflict and door destruction, add a rule to stop at doors)
 

@@ -565,6 +565,7 @@ function load_player() {
   `;
   document.body.appendChild(overlay);
 
+  /*
   const c1 = document.createElement('div');
   c1.innerHTML = `
     <div class="controls bottom left">
@@ -576,6 +577,7 @@ function load_player() {
     </div>
   `;
   document.body.appendChild(c1);
+  */
 
   const el = document.createElement('div');
   el.id = 'player';
