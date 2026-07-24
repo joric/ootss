@@ -357,25 +357,29 @@ function initPlayer() {
     setTimeout(()=>{ loadLevel(levelName); }, 500);
   }
 
-  document.querySelectorAll('.btnKey').forEach(c=>{ c.onclick = e=> {
+  document.querySelectorAll('[data-key]').forEach(c => { 
+    c.onclick = e => {
       e.preventDefault();
       e.stopPropagation();
       sendKey(e.target.dataset.key);
       return false;
-  }});
+    };
+  });
 
-  document.querySelectorAll('.btnFn').forEach(c=>{ c.onclick = e=> { 
-    e.preventDefault();
-    e.stopPropagation();
+  document.querySelectorAll('[data-fn]').forEach(c => { 
+    c.onclick = e => { 
+      e.preventDefault();
+      e.stopPropagation();
 
-    try {
-      eval(e.target.dataset.fn + '()');
-    } catch(err) {
-      console.warn('Function not found', e.target.dataset.fn);
-    }
+      try {
+        eval(e.target.dataset.fn + '()');
+      } catch(err) {
+        console.warn('Function not found', e.target.dataset.fn);
+      }
 
-    return false;
-  }});
+      return false;
+    };
+  });
 
   if (select) select.onchange = function(e) {
     loadLevel(e.target.value);
@@ -522,31 +526,31 @@ function load_player() {
   el.innerHTML = `
     <div class="header">
       Solution Player
-      <button class="close btnFn" data-fn="hidePlayer">&times;</button>
+      <button class="close" data-fn="hidePlayer">&times;</button>
     </div>
     <div class="body">
 
       <div class="selectorDiv">
         <select id="levelSelect"></select>
-        <button class="btnFn" data-fn="pin" id="pin" title="Go to Map">&#x1F4CC;</button>
+        <button data-fn="pin" id="pin" title="Go to Map">&#x1F4CC;</button>
       </div>
 
 
       <div class="buttons">
 
         <!--
-        <button class="btnFn" id="nextMove" title="] for next move">Step</button>
-        <button class="btnFn" id="pauseSolution" title="E to stop">Pause</button>
-        <button class="btnFn" id="reset" title="R to reset">Reset</button>
-        <button class="btnKey" data-key="KeyC" title="C for secondary action">Action</button>
+        <button id="nextMove" title="] for next move">Step</button>
+        <button id="pauseSolution" title="E to stop">Pause</button>
+        <button id="reset" title="R to reset">Reset</button>
+        <button data-key="KeyC" title="C for secondary action">Action</button>
         -->
 
 
-        <button class="btnKey btnFn" data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
-        <button class="btnKey btnFn" data-fn="do_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
-        <button class="btnKey btnFn" data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
-        <button class="btnFn" data-fn="do_save" id="save" title="Save solutions.txt">Save</button>
-        <button class="btnFn" data-fn="do_load" id="load" title="Load solutions.txt">Load</button>
+        <button data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
+        <button data-fn="do_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
+        <button data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
+        <button data-fn="do_save" id="save" title="Save solutions.txt">Save</button>
+        <button data-fn="do_load" id="load" title="Load solutions.txt">Load</button>
 
       </div>
       <div class="moves">
