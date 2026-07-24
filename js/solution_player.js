@@ -380,6 +380,8 @@ function initPlayer() {
   if (select) select.onchange = function(e) {
     loadLevel(e.target.value);
   }
+
+  updateControls();
 }
 
 function onLevelChange(name) {
