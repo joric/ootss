@@ -417,8 +417,8 @@ function load_player() {
   style.textContent = `
 #player {
   position: fixed;
-  top: 50px;
-  left: 50px;
+  top: 20px;
+  left: 20px;
   background: #ccc;
   color: #000;
   padding: 0;
@@ -426,7 +426,7 @@ function load_player() {
   z-index: 9999;
   font-family: sans-serif;
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  min-width: 200px;
+  width: 330px;
   touch-action: none;
   overflow: hidden;
 }
