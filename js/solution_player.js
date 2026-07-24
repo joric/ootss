@@ -96,7 +96,8 @@ function do_record() {
     recording = false;
     button.disabled = false;
     let s = packSolution(keylog.join(''));
-    if (confirm('Recorded sequence: ' + s + '\nReplace current solution?')) {
+    let t = solutions[levelName];
+    if (confirm(`Recorded sequence: ${s}\nReplace current solution (${t})?`)) {
       solutions[levelName] = s;
     }
   }
