@@ -10,17 +10,96 @@ let solutionTimer = null;
 
 let playDelay = 75;
 let playing = false;
+let recording = false;
+let keylog = [];
 
 const unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n));
 const convertSolution = s => unpackSolution(s).toLowerCase();
+const packSolution = s => s.replace(/(.)\1*/g, (match, char) => char + (match.length > 1 ? match.length : ''));
 
 function hidePlayer() {
   const select = document.getElementById('player').style.visibility='hidden';
 }
 
+function do_save() {
+  const toCSV = obj => Object.entries(obj).map(([k,v]) => `${k}:${v}`).join('\n');
+  let s = toCSV(solutions);
+
+  //console.log(s);
+
+  const saveFile = async (s, n) => {
+    try {
+      const handle = await window.showSaveFilePicker({suggestedName: n});
+      const writable = await handle.createWritable();
+      await writable.write(s);
+      await writable.close();
+      console.log('File saved successfully!');
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        console.log('User cancelled the save dialog');
+      } else {
+        console.error('Error saving file:', err);
+      }
+    }
+  };
+
+  (async () => {
+    await saveFile(s, 'solutions.txt');
+  })();
+}
+
+function do_stop() {
+  reset();
+
+  if (recording) {
+    do_record();
+  }
+}
+
 function reset() {
   sendMove(keyCodes.reset);
   stopSolution();
+}
+
+function recordKey(code) {
+  const keymapping = {
+    'KeyW': 'U',
+    'ArrowUp': 'U',
+    'KeyA': 'L',
+    'ArrowLeft': 'L',
+    'KeyS': 'D',
+    'ArrowDown': 'D',
+    'KeyD': 'R',
+    'ArrowRight': 'R',
+    'KeyX': 'X',
+    'KeyC': 'C',
+  };
+
+  let c = keymapping[code];
+  if (!c) return;
+  //console.log('recorded', c);
+
+  if (recording) keylog.push(c);
+}
+
+function do_record() {
+  const button = document.getElementById('record');
+  if (!button) return;
+
+  if (!recording) {
+    recording = true;
+    button.disabled = true;
+    keylog = [];
+    const canvas = document.getElementById('gameCanvas');
+    canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+  } else {
+    recording = false;
+    button.disabled = false;
+    let s = packSolution(keylog.join(''));
+    if (confirm('Recorded sequence: ' + s + '\nReplace current solution?')) {
+      solutions[levelName] = s;
+    }
+  }
 }
 
 function do_play() {
@@ -249,7 +328,7 @@ function initPlayer() {
   document.querySelectorAll('.btnKey').forEach(c=>{ c.onclick = e=> {
       e.preventDefault();
       e.stopPropagation();
-      sendKey(e.target.id);
+      sendKey(e.target.dataset.key);
       return false;
   }});
 
@@ -258,7 +337,7 @@ function initPlayer() {
     e.stopPropagation();
 
     try {
-      eval(e.target.id + '()');
+      eval(e.target.dataset.fn + '()');
     } catch(err) {
       console.warn('Function not found');
     }
@@ -409,14 +488,21 @@ function load_player() {
     <div class="body">
       <select id="levelSelect"></select>
       <div class="buttons">
-        <button class="btnFn" id="do_play" title="E to play, [ and ] to step back and forward">Play</button>
+
+        <!--
         <button class="btnFn" id="nextMove" title="] for next move">Step</button>
-        <!--button class="btnFn" id="record">Record</button-->
         <button class="btnFn" id="pauseSolution" title="E to stop">Pause</button>
         <button class="btnFn" id="reset" title="R to reset">Reset</button>
-        <button class="btnKey" id="KeyC" title="C for secondary action">Action</button>
-      </div>
+        <button class="btnKey" data-key="KeyC" title="C for secondary action">Action</button>
+        -->
 
+
+        <button class="btnKey btnFn" data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ and ] to step back and forward">Play</button>
+        <button class="btnKey btnFn" data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
+        <button class="btnKey btnFn" data-fn="do_stop" data-key="KeyR" id="stop" title="R or F to stop">Stop</button>
+        <button class="btnFn" data-fn="do_save" id="save" title="">Save</button>
+
+      </div>
       <div class="moves">
         <span id="moves-before"></span> [ <span id="moves-at"></span> ] <span id="moves-after"></span>
       </div>
@@ -520,24 +606,22 @@ function load_player() {
 
   window.addEventListener('keydown', function (e) {
     switch (e.code) {
+
       case 'BracketRight':
         e.preventDefault();
         nextMove();
         break;
+
       case 'BracketLeft':
         e.preventDefault();
         prevMove();
         break;
-      case 'PageUp': prevLevel(); break;
-      case 'PageDown': nextLevel(); break;
 
-      case 'KeyE':
-        play();
-        break;
-
-      case 'KeyZ':
-        prevMove();
-        break;
+      case 'PageUp':    prevLevel(); break;
+      case 'PageDown':  nextLevel(); break;
+      case 'KeyF':      do_record(); break;
+      case 'KeyE':      do_play();   break;
+      case 'KeyZ':      prevMove();  break;
 
       case 'KeyR':
         if (e.ctrlKey || e.metaKey) {
@@ -547,6 +631,15 @@ function load_player() {
           stopSolution();
         }
         break;
+
+      case 'KeyW': case 'ArrowUp':
+      case 'KeyA': case 'ArrowLeft':
+      case 'KeyS': case 'ArrowDown':
+      case 'KeyD': case 'ArrowRight':
+      case 'KeyX': case 'KeyC':
+        recordKey(e.code);
+        break;
+
     }
   }, true);
 }
