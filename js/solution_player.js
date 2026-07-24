@@ -522,7 +522,7 @@ function load_player() {
   el.innerHTML = `
     <div class="header">
       Solution Player
-      <button class="close" onclick="hidePlayer()">&times;</button>
+      <button class="close btnFn" data-fn="hidePlayer">&times;</button>
     </div>
     <div class="body">
 
