@@ -144,16 +144,24 @@ function playSolution() {
   }
 }
 
+function getMapLink(name) {
+  let mapBase = location.protocol === 'file:' ? 'index.html' : './';
+  return name ? mapBase + '#' + name : mapBase;
+}
+
+function pin() {
+  let url = getMapLink(levelName);
+  window.open(url, '_blank');
+}
+
 function updateControls() {
   document.title = `${levelName} - ${state.metadata.title}`;
 
   const select = document.getElementById('levelSelect');
   if (select) select.value = levelName;
 
-  /*
   const pin = document.getElementById('pin');
   if (pin) pin.href = getMapLink(levelName);
-*/
 
   let solution = (convertSolution(solutions[levelName]||'')).toUpperCase();
 
@@ -363,7 +371,7 @@ function initPlayer() {
     try {
       eval(e.target.dataset.fn + '()');
     } catch(err) {
-      console.warn('Function not found');
+      console.warn('Function not found', e.target.dataset.fn);
     }
 
     return false;
@@ -460,7 +468,6 @@ function load_player() {
   overflow: hidden;
   max-width: 300px;
   margin-top: 8px;
-  /*display: none;*/
 }
 
 #moves-before,
@@ -488,6 +495,12 @@ function load_player() {
   color: black;
   font-weight: bold;
 }
+
+.selectorDiv {
+  display: flex;
+  gap: 4px;
+}
+
   `;
   document.head.appendChild(style);
 
@@ -510,7 +523,13 @@ function load_player() {
       <button class="close" onclick="hidePlayer()">&times;</button>
     </div>
     <div class="body">
-      <select id="levelSelect"></select>
+
+      <div class="selectorDiv">
+        <select id="levelSelect"></select>
+        <button class="btnFn" data-fn="pin" id="pin" title="Go to Map">&#x1F4CC;</button>
+      </div>
+
+
       <div class="buttons">
 
         <!--
