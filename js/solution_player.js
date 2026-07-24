@@ -12,6 +12,7 @@ let playDelay = 75;
 let playing = false;
 let recording = false;
 let keylog = [];
+let recordedLevel = '';
 
 const unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n));
 const convertSolution = s => unpackSolution(s).toLowerCase();
@@ -106,15 +107,16 @@ function do_record() {
     recording = true;
     button.disabled = true;
     keylog = [];
+    recordedLevel = levelName;
     const canvas = document.getElementById('gameCanvas');
     canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
   } else {
     recording = false;
     button.disabled = false;
     let s = packSolution(keylog.join(''));
-    let t = solutions[levelName];
+    let t = solutions[recordedLevel];
     if (confirm(`Recorded sequence: ${s}\nReplace current solution (${t})?`)) {
-      solutions[levelName] = s;
+      solutions[recordedLevel] = s;
     }
   }
 }
