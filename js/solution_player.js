@@ -439,7 +439,6 @@ function load_player() {
 #player .header:active { cursor: grabbing; }
 #player .body {
   padding: 16px;
-  padding-bottom: 12px;
   background: #ccc;
 }
 #player .close {
