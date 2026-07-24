@@ -521,7 +521,7 @@ function load_player() {
         -->
 
 
-        <button class="btnKey btnFn" data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ and ] to step back and forward">Play</button>
+        <button class="btnKey btnFn" data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
         <button class="btnKey btnFn" data-fn="do_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
         <button class="btnKey btnFn" data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
         <button class="btnFn" data-fn="do_save" id="save" title="">Save</button>
