@@ -113,6 +113,7 @@ function do_record() {
   } else {
     recording = false;
     button.disabled = false;
+    if (keylog.length<1) return;
     let s = packSolution(keylog.join(''));
     let t = solutions[recordedLevel];
     if (confirm(`Recorded sequence: ${s}\nReplace current solution (${t})?`)) {
