@@ -507,6 +507,50 @@ function load_player() {
   gap: 4px;
 }
 
+
+.btn {
+  display: inline-flex;
+  margin: 3px 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: rgba(128, 128, 128, 0.5);
+  border: none;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+  touch-action: manipulation;
+  overflow: hidden;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  z-index: 1000;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.5;
+}
+
+.controls {
+  position: absolute;
+  padding: 16px;
+}
+
+.middle {top: 50%; transform: translateY(-25%); }
+.center {left: 50%; transform: translateX(-50%); }
+.top { top: 0; }
+.right { right: 0; }
+.left { left: 0; }
+.bottom { bottom: 0; }
+
   `;
   document.head.appendChild(style);
 
@@ -520,6 +564,18 @@ function load_player() {
     background: transparent;
   `;
   document.body.appendChild(overlay);
+
+  const c1 = document.createElement('div');
+  c1.innerHTML = `
+    <div class="controls bottom left">
+      <!--
+      <button class="btn" data-key="KeyZ">Z</button>
+      <button class="btn" data-key="KeyX">X</button>
+      -->
+      <button class="btn" data-key="KeyC">C</button>
+    </div>
+  `;
+  document.body.appendChild(c1);
 
   const el = document.createElement('div');
   el.id = 'player';
