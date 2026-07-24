@@ -100,6 +100,8 @@ function recordKey(code) {
 }
 
 function do_record() {
+  stopSolution();
+
   const button = document.getElementById('record');
   if (!button) return;
 
