@@ -121,6 +121,7 @@ function do_record() {
     if (confirm(`Recorded sequence: ${s}\nReplace current solution (${t})?`)) {
       solutions[recordedLevel] = s;
     }
+    updateControls();
   }
 }
 
@@ -458,7 +459,7 @@ function load_player() {
   overflow: hidden;
   max-width: 300px;
   margin-top: 8px;
-  display: none;
+  /*display: none;*/
 }
 
 #moves-before,
