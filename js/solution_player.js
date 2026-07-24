@@ -21,6 +21,22 @@ function hidePlayer() {
   const select = document.getElementById('player').style.visibility='hidden';
 }
 
+function do_load() {
+  (async () => {
+    try {
+      const [h] = await window.showOpenFilePicker({startIn: 'downloads'});
+      const f = await h.getFile();
+      const t = await f.text();
+      const obj = {};
+      t.split('\n').forEach(l => { if(l.trim()) { const [k,...v] = l.split(':'); obj[k] = v.join(':'); } });
+      Object.assign(solutions, obj);
+      console.log('Loaded:', obj);
+    } catch(e) {
+      if(e.name !== 'AbortError') console.error(e);
+    }
+  })();
+}
+
 function do_save() {
   const toCSV = obj => Object.entries(obj).map(([k,v]) => `${k}:${v}`).join('\n');
   let s = toCSV(solutions);
@@ -29,7 +45,7 @@ function do_save() {
 
   const saveFile = async (s, n) => {
     try {
-      const handle = await window.showSaveFilePicker({suggestedName: n});
+      const handle = await window.showSaveFilePicker({startIn: 'downloads', suggestedName: n});
       const writable = await handle.createWritable();
       await writable.write(s);
       await writable.close();
@@ -502,6 +518,7 @@ function load_player() {
         <button class="btnKey btnFn" data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
         <button class="btnKey btnFn" data-fn="do_stop" data-key="KeyR" id="stop" title="R or F to stop">Stop</button>
         <button class="btnFn" data-fn="do_save" id="save" title="">Save</button>
+        <button class="btnFn" data-fn="do_load" id="load" title="">Load</button>
 
       </div>
       <div class="moves">
