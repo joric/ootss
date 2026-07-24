@@ -119,7 +119,7 @@ function do_record() {
     if (keylog.length<1) return;
     let s = packSolution(keylog.join(''));
     let t = solutions[recordedLevel];
-    if (confirm(`Recorded sequence: ${s}\nReplace current solution (${t})?`)) {
+    if (confirm(`Overwrite old solution?\n\nLevel: ${recordedLevel}\nNew solution: ${s}\nOld solution: ${t}`)) {
       solutions[recordedLevel] = s;
     }
     updateControls();
