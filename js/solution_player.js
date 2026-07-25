@@ -127,7 +127,7 @@ function action_record() {
     console.log(`Recorded solution: ${rec}`);
 
     if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec.length} packed / ${rec_raw.length} unpacked.\nOld solution: ${old.length} packed / ${old_raw.length} unpacked.\nReplace old solution?`)) {
-      solutions[recordedLevel] = s;
+      solutions[recordedLevel] = rec;
     }
     updateControls();
   }
