@@ -126,7 +126,7 @@ function action_record() {
 
     console.log(`Recorded solution: ${rec_packed}`);
 
-    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed.length} packed / ${rec.length} unpacked.\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nReplace old solution?`)) {
+    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed}\nNew solution: ${rec_packed.length} packed / ${rec.length} unpacked.\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nReplace old solution?`)) {
       solutions[recordedLevel] = rec_packed;
     }
     updateControls();
