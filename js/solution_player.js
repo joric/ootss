@@ -22,7 +22,7 @@ function hidePlayer() {
   const select = document.getElementById('player').style.visibility='hidden';
 }
 
-function do_load() {
+function action_load() {
   (async () => {
     try {
       const [h] = await window.showOpenFilePicker({startIn: 'downloads'});
@@ -39,7 +39,7 @@ function do_load() {
   })();
 }
 
-function do_save() {
+function action_save() {
   const toCSV = obj => Object.entries(obj).map(([k,v]) => `${k}:${v}`).join('\n');
   let s = toCSV(solutions);
 
@@ -66,11 +66,11 @@ function do_save() {
   })();
 }
 
-function do_stop() {
+function action_stop() {
   reset();
 
   if (recording) {
-    do_record();
+    action_record();
   }
 }
 
@@ -100,7 +100,7 @@ function recordKey(code) {
   if (recording) keylog.push(c);
 }
 
-function do_record() {
+function action_record() {
   stopSolution();
 
   const button = document.getElementById('record');
@@ -119,14 +119,14 @@ function do_record() {
     if (keylog.length<1) return;
     let s = packSolution(keylog.join(''));
     let t = solutions[recordedLevel];
-    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${s}\nOld solution: ${t}\nOverwrite old solution?`)) {
+    if (confirm(`Level: ${recordedLevel}\nRecorded sequence (${s.length}): ${s}\nOld solution (${t.length}): ${t}\nOverwrite old solution?`)) {
       solutions[recordedLevel] = s;
     }
     updateControls();
   }
 }
 
-function do_play() {
+function action_play() {
   updateControls();
   if (!solutionTimer) {
     playing = true;
@@ -300,16 +300,26 @@ function nextMove() {
 }
 
 function prevMove() {
-  do_undo();
+  action_undo();
+  undo_handler();
   updateControls();
 }
 
-function do_undo() {
-  sendMove(keyCodes.undo); // Z
+function undo_handler() {
   if (pos > 0) {
     pos--;
   }
+  keylog.pop();
   updateControls();
+}
+
+function reset_handler(){
+  keylog = [];
+  stopSolution();
+}
+
+function action_undo() {
+  sendMove(keyCodes.undo); // Z
 }
 
 function loadLevel(name) {
@@ -595,11 +605,11 @@ function load_player() {
       </div>
 
       <div class="buttons">
-        <button data-fn="do_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
-        <button data-fn="do_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
-        <button data-fn="do_record" data-key="KeyF" id="record" title="F to record">Record</button>
-        <button data-fn="do_save" id="save" title="Save solutions.txt">Save</button>
-        <button data-fn="do_load" id="load" title="Load solutions.txt">Load</button>
+        <button data-fn="action_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
+        <button data-fn="action_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
+        <button data-fn="action_record" data-key="KeyF" id="record" title="F to record (supports reset and undo)">Record</button>
+        <button data-fn="action_save" id="save" title="Save solutions.txt">Save</button>
+        <button data-fn="action_load" id="load" title="Load solutions.txt">Load</button>
       </div>
 
       <div class="moves">
@@ -718,17 +728,16 @@ function load_player() {
 
       case 'PageUp':    prevLevel(); break;
       case 'PageDown':  nextLevel(); break;
-      case 'KeyF':      do_record(); break;
-      case 'KeyE':      do_play();   break;
-      case 'KeyZ':      prevMove();  break;
+      case 'KeyF':      action_record(); break;
+      case 'KeyE':      action_play();   break;
+      case 'KeyZ':      undo_handler();  break;
 
       case 'KeyR':
         if (e.ctrlKey || e.metaKey) {
           e.preventDefault();
           location.reload();
         } else {
-          keylog = [];
-          stopSolution();
+          reset_handler();
         }
         break;
 
