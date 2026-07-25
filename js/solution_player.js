@@ -118,16 +118,16 @@ function action_record() {
     button.disabled = false;
     if (keylog.length<1) return;
 
-    let old = solutions[recordedLevel];
-    let old_raw = unpackSolution(old);
+    let old_packed = solutions[recordedLevel];
+    let old = unpackSolution(old_packed);
 
-    let rec_raw = keylog.join('');
-    let rec = packSolution(rec_raw);
+    let rec = keylog.join('');
+    let rec_packed = packSolution(rec);
 
-    console.log(`Recorded solution: ${rec}`);
+    console.log(`Recorded solution: ${rec_packed}`);
 
-    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec.length} packed / ${rec_raw.length} unpacked.\nOld solution: ${old.length} packed / ${old_raw.length} unpacked.\nReplace old solution?`)) {
-      solutions[recordedLevel] = rec;
+    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed.length} packed / ${rec.length} unpacked.\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nReplace old solution?`)) {
+      solutions[recordedLevel] = rec_packed;
     }
     updateControls();
   }
