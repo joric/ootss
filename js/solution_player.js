@@ -117,9 +117,16 @@ function action_record() {
     recording = false;
     button.disabled = false;
     if (keylog.length<1) return;
-    let s = packSolution(keylog.join(''));
-    let t = solutions[recordedLevel];
-    if (confirm(`Level: ${recordedLevel}\nRecorded sequence (${s.length}): ${s}\nOld solution (${t.length}): ${t}\nOverwrite old solution?`)) {
+
+    let old = solutions[recordedLevel];
+    let old_raw = unpackSolution(old);
+
+    let rec_raw = keylog.join('');
+    let rec = packSolution(rec_raw);
+
+    console.log(`Recorded solution: ${rec}`);
+
+    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec.length} packed / ${rec_raw.length} unpacked.\nOld solution: ${old.length} packed / ${old_raw.length} unpacked.\nReplace old solution?`)) {
       solutions[recordedLevel] = s;
     }
     updateControls();
