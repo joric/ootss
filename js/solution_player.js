@@ -613,14 +613,18 @@ function load_player() {
 
       <div class="buttons">
         <button data-fn="action_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
-        <button data-fn="action_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Stop</button>
+        <button data-fn="action_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Reset</button>
         <button data-fn="action_record" data-key="KeyF" id="record" title="F to record (supports reset and undo)">Record</button>
         <button data-fn="action_save" id="save" title="Save solutions.txt">Save</button>
         <button data-fn="action_load" id="load" title="Load solutions.txt">Load</button>
       </div>
 
       <div class="moves">
+        <button data-fn="prevLevel" title="PgUp - previous level">&lt;&lt;</button>
+        <button data-fn="prevMove" title="[ previous move">&lt;</button>
         <span id="moves-before"></span> [ <span id="moves-at"></span> ] <span id="moves-after"></span>
+        <button data-fn="nextMove" title="] next move">&gt;</button>
+        <button data-fn="prevLevel" title="PgDn - next Level">&gt;&gt;</button>
       </div>
 
     </div>
