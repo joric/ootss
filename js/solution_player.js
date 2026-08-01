@@ -613,8 +613,8 @@ function load_player() {
 
       <div class="buttons">
         <button data-fn="action_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
-        <button data-fn="action_stop" data-key="KeyR" id="stop" title="E or R or F to stop">Reset</button>
-        <button data-fn="action_record" data-key="KeyF" id="record" title="F to record (supports reset and undo)">Record</button>
+        <button data-fn="action_stop" data-key="KeyR" id="stop" title="R to reset">Reset</button>
+        <button data-fn="action_record" data-key="KeyF" id="record" title="F to toggle record (supports reset and undo)">Record</button>
         <button data-fn="action_save" id="save" title="Save solutions.txt">Save</button>
         <button data-fn="action_load" id="load" title="Load solutions.txt">Load</button>
       </div>
