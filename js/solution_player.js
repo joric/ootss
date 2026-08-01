@@ -22,48 +22,89 @@ function hidePlayer() {
   const select = document.getElementById('player').style.visibility='hidden';
 }
 
+// Helper function to download file using anchor tag (Firefox fallback)
+function downloadFile(content, filename) {
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function action_load() {
-  (async () => {
-    try {
-      const [h] = await window.showOpenFilePicker({startIn: 'downloads'});
-      const f = await h.getFile();
-      const t = await f.text();
+  // Check if showOpenFilePicker is available (Chrome/Edge)
+  if (window.showOpenFilePicker) {
+    (async () => {
+      try {
+        const [h] = await window.showOpenFilePicker({ startIn: 'downloads' });
+        const f = await h.getFile();
+        const t = await f.text();
+        const obj = {};
+        t.split('\n').forEach(l => { if (l.trim()) { const [k, ...v] = l.split(':'); obj[k] = v.join(':'); } });
+        Object.assign(solutions, obj);
+        console.log('Loaded:', obj);
+        updateControls();
+      } catch (e) {
+        if (e.name !== 'AbortError') console.error(e);
+      }
+    })();
+  } else {
+    // Firefox fallback: Use a hidden file input
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.txt';
+    input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const t = await file.text();
       const obj = {};
-      t.split('\n').forEach(l => { if(l.trim()) { const [k,...v] = l.split(':'); obj[k] = v.join(':'); } });
+      t.split('\n').forEach(l => { if (l.trim()) { const [k, ...v] = l.split(':'); obj[k] = v.join(':'); } });
       Object.assign(solutions, obj);
       console.log('Loaded:', obj);
       updateControls();
-    } catch(e) {
-      if(e.name !== 'AbortError') console.error(e);
-    }
-  })();
+      input.remove();
+    };
+    input.click();
+  }
 }
 
 function action_save() {
-  const toCSV = obj => Object.entries(obj).map(([k,v]) => `${k}:${v}`).join('\n');
-  let s = toCSV(solutions);
+  const toCSV = obj => Object.entries(obj).map(([k, v]) => `${k}:${v}`).join('\n');
+  const s = toCSV(solutions);
+  const filename = 'solutions.txt';
 
-  //console.log(s);
-
-  const saveFile = async (s, n) => {
-    try {
-      const handle = await window.showSaveFilePicker({startIn: 'downloads', suggestedName: n});
-      const writable = await handle.createWritable();
-      await writable.write(s);
-      await writable.close();
-      console.log('File saved successfully!');
-    } catch (err) {
-      if (err.name === 'AbortError') {
-        console.log('User cancelled the save dialog');
-      } else {
-        console.error('Error saving file:', err);
+  // Check if showSaveFilePicker is available (Chrome/Edge)
+  if (window.showSaveFilePicker) {
+    const saveFile = async (content, name) => {
+      try {
+        const handle = await window.showSaveFilePicker({ 
+          startIn: 'downloads', 
+          suggestedName: name 
+        });
+        const writable = await handle.createWritable();
+        await writable.write(content);
+        await writable.close();
+        console.log('File saved successfully!');
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          console.log('User cancelled the save dialog');
+        } else {
+          console.error('Error saving file:', err);
+        }
       }
-    }
-  };
+    };
 
-  (async () => {
-    await saveFile(s, 'solutions.txt');
-  })();
+    (async () => {
+      await saveFile(s, filename);
+    })();
+  } else {
+    // Firefox fallback: Download via anchor tag
+    downloadFile(s, filename);
+  }
 }
 
 function action_stop() {
