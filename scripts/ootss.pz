@@ -442,6 +442,14 @@ Brown Yellow grey
 00000
 00000
 
+Place
+Yellow Grey
+00000
+01110
+01110
+01110
+00000
+
 Wall
 Darkgrey #222222
 01000
@@ -1012,6 +1020,9 @@ $ = GreenDoor
 
 (no more characters left - |,<>,[] - give warnings)
 
+< = Place
+> = Place and Crate
+
 (S-prefixed defines mean currently inactive characters to switch to)
 
 0 = Bedrock and SMirrorGuy
@@ -1095,7 +1106,7 @@ DoorSpriteOpen, DoorSpriteClosed
 
 CrateInHole, MirrorInHole
 
-Target, Goal
+Target, Goal, Place
 
 FloatingBody
 
@@ -1800,6 +1811,7 @@ no Dying
 no Corpse
 All Hero on Exit
 All Exit on Hero
+All Crate on Place
 
 =======
 LEVELS
@@ -3391,4 +3403,25 @@ _,,,,,,___c____
 ______,________
 _________x_____
 _______________
+
+
+section ss_1
+
+(from simple sokoban, https://competor.itch.io/simple-sokoban)
+_______________________
+_______________________
+_______________________
+____###############____
+____#_____________#____
+____#___###_###___#____
+____#__#G..#..<#__#____
+____#__#...#.<.#__#____
+____#__##*.....#__#____
+____#___#.*<>.#___#____
+____#____#.*##____#____
+____#_____#f#_____#____
+____#______#______#____
+____#_____________#____
+____###############____
+_______________________
 
