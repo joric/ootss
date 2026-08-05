@@ -1811,7 +1811,7 @@ no Dying
 no Corpse
 All Hero on Exit
 All Exit on Hero
-All Crate on Place
+All Place on Crate
 
 =======
 LEVELS
