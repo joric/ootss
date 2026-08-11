@@ -662,9 +662,9 @@ function load_player() {
 
       <div class="moves">
         <!--button data-fn="prevLevel" title="PgUp - previous level">&lt;&lt;</button-->
-        <button data-fn="prevMove" title="[ previous move">&lt;</button>
+        <button data-fn="prevMove" title="[ previous move">&larr;</button>
         <span id="moves-before"></span> [ <span id="moves-at"></span> ] <span id="moves-after"></span>
-        <button data-fn="nextMove" title="] next move">&gt;</button>
+        <button data-fn="nextMove" title="] next move">&rarr;</button>
         <!--button data-fn="prevLevel" title="PgDn - next Level">&gt;&gt;</button-->
       </div>
 
