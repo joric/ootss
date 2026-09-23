@@ -657,7 +657,7 @@ function load_player() {
         <button data-fn="action_stop" data-key="KeyR" id="stop" title="R to reset"><u>R</u>eset</button>
         <button data-fn="action_save" id="save" title="Save solutions.txt">Save</button>
         <button data-fn="action_load" id="load" title="Load solutions.txt">Load</button>
-        <button data-fn="action_record" data-key="KeyF" id="record" title="F to toggle record (supports reset and undo)">Record</button>
+        <button data-fn="action_record" data-key="KeyF" id="record" title="F to toggle record (supports reset with R and undo with Z)">Record</button>
       </div>
 
       <div class="moves">
