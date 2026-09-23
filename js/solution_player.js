@@ -647,7 +647,7 @@ function load_player() {
 
     <div class="body">
 
-      <div class="selectorDiv">
+      <div class="selectorDiv" title="Use PgUp / PgDn to change levels">
         <select id="levelSelect"></select>
         <button data-fn="pin" id="pin" title="Go to Map">&#x1F4CC;</button>
       </div>
