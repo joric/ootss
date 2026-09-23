@@ -653,8 +653,8 @@ function load_player() {
       </div>
 
       <div class="buttons">
-        <button data-fn="action_play" data-key="KeyE" id="play" title="E to play, [ ] to step back and forward">Play</button>
-        <button data-fn="action_stop" data-key="KeyR" id="stop" title="R to reset">Reset</button>
+        <button data-fn="action_play" data-key="KeyE" id="play" title="E or P to play, [ ] to step back and forward"><u>P</u>lay</button>
+        <button data-fn="action_stop" data-key="KeyR" id="stop" title="R to reset"><u>R</u>eset</button>
         <button data-fn="action_save" id="save" title="Save solutions.txt">Save</button>
         <button data-fn="action_load" id="load" title="Load solutions.txt">Load</button>
         <button data-fn="action_record" data-key="KeyF" id="record" title="F to toggle record (supports reset and undo)">Record</button>
@@ -662,9 +662,9 @@ function load_player() {
 
       <div class="moves">
         <!--button data-fn="prevLevel" title="PgUp - previous level">&lt;&lt;</button-->
-        <button data-fn="prevMove" title="[ previous move">&larr;</button>
+        <button data-fn="prevMove" title="[ previous move">[</button>
         <span id="moves-before"></span> [ <span id="moves-at"></span> ] <span id="moves-after"></span>
-        <button data-fn="nextMove" title="] next move">&rarr;</button>
+        <button data-fn="nextMove" title="] next move">]</button>
         <!--button data-fn="prevLevel" title="PgDn - next Level">&gt;&gt;</button-->
       </div>
 
@@ -788,7 +788,7 @@ function load_player() {
       case 'PageUp':    prevLevel(); break;
       case 'PageDown':  nextLevel(); break;
       case 'KeyF':      action_record(); break;
-      case 'KeyE':      action_play();   break;
+      case 'KeyE': case 'KeyP':      action_play();   break;
       case 'KeyZ':      undo_handler();  break;
 
       case 'KeyR':

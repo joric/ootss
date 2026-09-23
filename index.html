@@ -502,7 +502,6 @@ function getIconHTML(feature, size=48) {
     options.bg = 'dimgrey';
     options.class = 'fa fa-location';
     title = '';
-
   }
 
 
@@ -789,11 +788,8 @@ function drawMap() {
 
   let m = {
     size: d,
-
     bounds: [[0,0],[192,192]],
-
     center: [90,-89],
-
     flip_y: true,
   }
 
@@ -816,6 +812,9 @@ function drawMap() {
   let [[left,top],[right,bottom]] = m.bounds;
   let bounds = [[top, left], [bottom, right]];
   let center = [(m.flip_y ? -1 : 1) * y, x];
+
+  //console.log('bounds:', JSON.stringify({left: left, top:top, right:right, bottom: bottom}))
+  //console.log('center:', JSON.stringify({left: center[1], top: center[0]}))
 
   // crs.transformation represents an affine transformation:
   let crs = L.CRS.Simple;
