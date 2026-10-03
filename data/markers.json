@@ -1575,6 +1575,21 @@
         "area": "water",
         "name": "one_vs_three"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          69.0
+        ]
+      },
+      "properties": {
+        "type": "helper",
+        "area": "misc",
+        "name": "center"
+      }
     }
   ]
 }
