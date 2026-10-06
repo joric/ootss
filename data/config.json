@@ -20,7 +20,7 @@
             "url": "images/overworld_2160p.jpg",
             "overlay": true,
             "size": [3840, 2160],
-            "image_bounds": { "cellSize": 13.34, "dx": -65, "dy": -5 }
+            "remap": { "cellSize": 13.34, "dx": -65, "dy": -5 }
           }
         ],
         "grid": [
