@@ -1587,7 +1587,7 @@
       },
       "properties": {
         "type": "helper",
-        "area": "misc",
+        "area": "locations",
         "name": "center"
       }
     }
