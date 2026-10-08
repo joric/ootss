@@ -152,18 +152,15 @@ function action_record() {
     canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
   } else {
     recording = false;
-    if (keylog.length<1) return;
-
-    let old_packed = solutions[recordedLevel];
-    let old = unpackSolution(old_packed);
-
-    let rec = keylog.join('');
-    let rec_packed = packSolution(rec);
-
-    console.log(`Recorded solution: ${rec_packed}`);
-
-    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed}\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nNew solution: ${rec_packed.length} packed / ${rec.length} unpacked.\nReplace old solution?`)) {
-      solutions[recordedLevel] = rec_packed;
+    if (keylog.length>=1) {
+      let old_packed = solutions[recordedLevel];
+      let old = unpackSolution(old_packed);
+      let rec = keylog.join('');
+      let rec_packed = packSolution(rec);
+      console.log(`Recorded solution: ${rec_packed}`);
+      if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed}\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nNew solution: ${rec_packed.length} packed / ${rec.length} unpacked.\nReplace old solution?`)) {
+        solutions[recordedLevel] = rec_packed;
+      }
     }
   }
   updateControls();
