@@ -144,19 +144,14 @@ function recordKey(code) {
 function action_record() {
   stopSolution();
 
-  const button = document.getElementById('record');
-  if (!button) return;
-
   if (!recording) {
     recording = true;
-    button.disabled = true;
     keylog = [];
     recordedLevel = levelName;
     const canvas = document.getElementById('gameCanvas');
     canvas.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
   } else {
     recording = false;
-    button.disabled = false;
     if (keylog.length<1) return;
 
     let old_packed = solutions[recordedLevel];
@@ -167,15 +162,14 @@ function action_record() {
 
     console.log(`Recorded solution: ${rec_packed}`);
 
-    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed}\nNew solution: ${rec_packed.length} packed / ${rec.length} unpacked.\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nReplace old solution?`)) {
+    if (confirm(`Level: ${recordedLevel}\nRecorded sequence: ${rec_packed}\nOld solution: ${old_packed.length} packed / ${old.length} unpacked.\nNew solution: ${rec_packed.length} packed / ${rec.length} unpacked.\nReplace old solution?`)) {
       solutions[recordedLevel] = rec_packed;
     }
-    updateControls();
   }
+  updateControls();
 }
 
 function action_play() {
-  updateControls();
   if (!solutionTimer) {
     playing = true;
     playSolution();
@@ -183,6 +177,7 @@ function action_play() {
     playing = false;
     pauseSolution();
   }
+  updateControls();
 }
 
 function playSolution() {
@@ -224,6 +219,9 @@ function updateControls() {
   document.getElementById('moves-before').textContent = before;
   document.getElementById('moves-at').textContent = at;
   document.getElementById('moves-after').textContent = after;
+
+  document.getElementById('record').innerText = recording ? 'Stop' : 'Record';
+  document.getElementById('play').innerText = playing ? 'Stop' : 'Play';
 }
 
 
