@@ -471,15 +471,30 @@ function getSolutionLink(name, solvable) {
 }
 
 function focusMarkerByName(name) {
+  console.log('looking for', name);
+
+  /*
   let found = null
-
-  //console.log('looking for', name);
-
   map.eachLayer((layer) => {
     if (layer instanceof L.Marker) {
       if (layer.feature.properties.name === name) found = layer;
     }
   })
+  */
+
+  let found = null, parent = null;
+  for (const g of Object.values(layers)) {
+    if (!g.eachLayer) continue;
+    g.eachLayer(l => {
+      if (!found && l instanceof L.Marker && l.feature?.properties?.name === name) {
+        found = l;
+        parent = g;
+      }
+    });
+    if (found) break;
+  }
+  if (parent && !map.hasLayer(parent)) parent.addTo(map);
+
 
   if (!found) return;
 
