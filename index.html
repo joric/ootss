@@ -447,6 +447,8 @@ let regionColors = {};
 
 let images = [];
 
+let imagelist = [];
+
 let currentOpenMarker = null;
 
 let polygonLayer = null;
@@ -1061,7 +1063,7 @@ function drawMap() {
 
       let count = areaCounters[area];
 
-      if (area != 'locations' && solutions[feature.properties.name]) {
+      if (area != 'locations' && imagelist[feature.properties.name]) {
         images.push( {src: `images/levels/${name}.webp`, name: name, area: area, title: title});
       }
 
@@ -1448,6 +1450,10 @@ window.onload = function() {
     if (a) {
       console.log(`${a.length} solutions, ${Math.min(...a)} min, ${Math.max(...a)} max, ${~~(a.reduce((x,y)=>x+y,0)/a.length)} average`);
     }
+  });
+
+  fetch('images/levels/images.txt').then(r => r.text()).then(data => {
+    imagelist = Object.fromEntries(data.split('\n').map(s => s.trim().split('.')).filter(([, v])=> v && v.length>=2));
   });
 
   fetch('data/regions.json').then(r=>r.json()).then(data=>{
