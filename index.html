@@ -509,7 +509,7 @@ function getIconHTML(feature, size=48) {
   options = options || {class:'fa fa-circle', bg:'dimgrey'};
 
 
-  options.bg = regionColors[feature.properties.area] || 'dimgrey';
+  options.bg = (imagelist[feature.properties.name] && regionColors[feature.properties.area]) || 'dimgrey';
 
   if (feature.properties.area=='locations') {
     options.bg = 'dimgrey';
