@@ -3,7 +3,8 @@
 set src=map_7680x4320.png
 set src=map_12288x6480.png
 set src=map_16384x9216.png
-set dest=tiles
+set src=mid-overworld.jpg
+set dest=tiles/release
 
 rem vips dzsave %src% %dest% --layout google --tile-size 512 --suffix .jpg[Q=70] --background 0 --centre --vips-progress
 

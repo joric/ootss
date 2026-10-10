@@ -780,7 +780,11 @@ function getCentroidRaw2(points) {
     return [centroidX, centroidY, 0];
 }
 
-function drawMap() {
+let config = {
+  Release_v1: { bounds: {left: -77, top: 221.5, right: 219, bottom: 74 } },
+}
+
+function getCRS(name) {
   // old map was 1920x1080 and the grid was almost precisely 10 pixels
   // center was at 860, 740
   // so basically an overhead screenshot is 192x108 grid
@@ -794,6 +798,15 @@ function drawMap() {
     center: [90,-89],
     flip_y: true,
   }
+
+  let b = config[name]?.bounds;
+  if (b) {
+    let dd = b.right-b.left;
+    m.size = dd;
+    m.bounds = [[0,0],[dd,dd]];
+    m.center = [71, -73.5];
+  }
+
 
   let tileSize = 512; // this is essentially map size in tiles on zoom level 0
   let size = tileSize*tileSize; // default map width in pixels is tileSize squared
@@ -823,10 +836,57 @@ function drawMap() {
   // a set of coefficients a, b, c, d for transforming a point of a form (x,y) into (a*x + b, c*y + d)
   crs.transformation = new L.Transformation(factor, dx, (m.flip_y ? -1 : 1) *  factor, dy); // Invert the y-axis
 
+  return {crs: crs, center: center};
+}
+
+function updateCRS(provider) {
+  let center = map.getCenter();
+  let zoom = map.getZoom();
+
+  map.options.crs = getCRS(provider).crs;
+
+  //map.setView(center);
+  //map._resetView(map.getCenter(), map.getZoom());
+
+  map._resetView(center, zoom);
+}
+
+function baseLayerChange(name) {
+  updateCRS(name);
+}
+
+function drawMap() {
+
+  let baseLayers={}
+
+  var blankTileLayer = L.tileLayer('https://via.placeholder.com/1x1/000000/ffffff?text=blank', {
+      attribution: 'Blank Map'
+  });
+
+  baseLayers['blank'] = blankTileLayer;
+
+  let tilesLayer = L.tileLayer('tiles/Demo2_16k/{z}/{y}/{x}.webp', {
+    tileSize: 512,
+    maxNativeZoom: 5,
+    attribution: '<a href="https://github.com/joric/ootss/wiki" target=_blank>Joric\'s OotSS Map</a>',
+  });
+
+  baseLayers['Demo2_16k'] = tilesLayer;
+
+  let tilesLayer2 = L.tileLayer('tiles/Release_v1/{z}/{y}/{x}.webp', {
+    tileSize: 512,
+    maxNativeZoom: 5,
+    attribution: '<a href="https://github.com/joric/ootss/wiki" target=_blank>Joric\'s OotSS Map</a>',
+  });
+
+  baseLayers['Release_v1'] = tilesLayer2;
+
+  let crs = getCRS('Release_v1');
+
   map = L.map('map', {
-    crs: crs,
+    crs: crs.crs,
     zoom: 3.5,
-    center: center,
+    center: crs.center,
     zoomControl: false,
     maxZoom: 8,
     renderer: L.canvas({ padding: 0.5 }),
@@ -835,6 +895,13 @@ function drawMap() {
     //zoomDelta: 0.5,
     //wheelPxPerZoomLevel: 100,
   });
+
+  map.on('baselayerchange', function(e) {
+    baseLayerChange(e.name);
+  });
+
+
+  tilesLayer2.addTo(map);
 
   L.control.zoom({ position: 'bottomright' }).addTo(map);
 
@@ -910,7 +977,7 @@ function drawMap() {
     let imageLayer3 = L.imageOverlay('images/overworld_2160p.jpg', getImageBounds(13.34, 3840, 2160, -65, -5 ),{
       attribution: '<a href="https://youtu.be/4m8R1BjjioU?t=90" target=_blank>YouTube</a>',
       //opacity: 0.5,
-    }).addTo(map);
+    });//.addTo(map);
 
 
     layers['overworld'] = imageLayer3;
@@ -1113,22 +1180,6 @@ function drawMap() {
 
     //document.querySelector('#info').innerHTML = text;
     //document.querySelector('#info').title = alt;
-
-    let baseLayers={}
-
-    var blankTileLayer = L.tileLayer('https://via.placeholder.com/1x1/000000/ffffff?text=blank', {
-        attribution: 'Blank Map'
-    });
-
-    baseLayers['blank'] = blankTileLayer;
-
-    let tilesLayer = L.tileLayer('tiles/{z}/{y}/{x}.webp', {
-      tileSize: 512,
-      maxNativeZoom: 5,
-      attribution: '<a href="https://github.com/joric/ootss/wiki" target=_blank>Joric\'s OotSS Map</a>',
-    }).addTo(map);
-
-    baseLayers['Demo2_16k'] = tilesLayer;
 
     // update overlay names to include count
     var overlaysWithCounts = Object.fromEntries(
