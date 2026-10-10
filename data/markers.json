@@ -1905,6 +1905,21 @@
         "area": "heroes3",
         "name": "heroes_3_21_condensed"
       }
+    },
+   {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.0,
+          87.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "vault",
+        "name": "target_practice_gem"
+      }
     }
   ]
 }

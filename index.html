@@ -727,9 +727,14 @@ function getMapURL(id) { return getBaseURL() + '#' + encodeURIComponent(id); }
 
 unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n))
 getMovesCount = s => unpackSolution(s).length;
-convertSolution = s => unpackSolution(s).toLowerCase().match(/.{1,5}/g)?.join(' ')||'';
 
-convertSolution = s => s
+//convertSolution = s => unpackSolution(s).toLowerCase().match(/.{1,5}/g)?.join(' ')||'';
+//convertSolution = s => s
+
+const packSolution = s => s.replace(/(.)\1*/g, (match, char) => char + (match.length > 1 ? match.length : ''));
+
+const convertSolution = s => packSolution(unpackSolution(s));
+
 
 function getCentroidRaw2(points) {
     if (!points || points.length < 3) return null;
@@ -1134,7 +1139,10 @@ function drawMap() {
           html += bodyHTML;
           const s = solutions[props.name]||'';
           if (s) {
-            html += `<span class="wrap"><a href="${getSolutionLink(name,true)}">Solution&nbsp;Player</a>&nbsp(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
+            let spl = '<a href="${getSolutionLink(name,true)}">Solution&nbsp;Player</a>&nbsp';
+            if (props.area == 'vault') spl = '';
+
+            html += `<span class="wrap">${spl}(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
           }
           wrapper.innerHTML = html;
           return wrapper;

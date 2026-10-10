@@ -17,7 +17,7 @@
           {
             "bounds": { "left": -6, "top": 185, "right": 186, "bottom": -7},
             "name": "Demo2_16k",
-            "urlTemplate": "tiles/{z}/{y}/{x}.webp",
+            "urlTemplate": "tiles/Demo2_16k/{z}/{y}/{x}.webp",
             "tileSize": 512,
             "maxAvailableZoom": 5,
             "comment": "scaled 1920x1080 screenshot, 192x108 grid with center at cell 86,74 (real world center is 80,69 in game units)"
