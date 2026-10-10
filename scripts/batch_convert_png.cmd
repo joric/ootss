@@ -7,4 +7,4 @@ for %%f in ("%src%\*.png") do (
   vips webpsave "%%f" "%dst%\%%~nf.webp" --Q 70 --vips-progress
 )
 
-dir /b %dst% > %dst%\images.txt
+dir /b %dst% > ..\data\images.txt

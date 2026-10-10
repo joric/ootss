@@ -441,13 +441,13 @@ let regionColors = {};
 
 let images = [];
 
-let imagelist = [];
-
 let currentOpenMarker = null;
 
 let polygonLayer = null;
 
 let solutions = {};
+let youtube = {};
+let imagelist = {};
 
 let svgLayer = null;
 let svg = null;
@@ -1162,7 +1162,7 @@ function drawMap() {
             let spl = `<a href="${getSolutionLink(name,true)}" target=_blank>Solution&nbsp;Player</a>&nbsp`;
 
             if (props.area.includes('promesst')) { 
-              spl = props.youtube ? `<a href="${props.youtube}" target=_blank>YouTube</a>&nbsp;` :'';
+              spl = youtube[props.name] ? `<a href="${youtube[props.name]}" target=_blank>YouTube</a>&nbsp;` :'';
             }
 
             html += `<span class="wrap">${spl}(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
@@ -1465,22 +1465,27 @@ window.onload = function() {
     }
   });
 
-  fetch('data/solutions.txt').then(r => r.text()).then(data => {
-    solutions = Object.fromEntries(data.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
-    const a = Object.values(solutions).map(s=>s.length);
-    if (a) {
-      console.log(`${a.length} solutions, ${Math.min(...a)} min, ${Math.max(...a)} max, ${~~(a.reduce((x,y)=>x+y,0)/a.length)} average`);
-    }
+  let promises = [
+    'data/solutions.txt',
+    'data/youtube.txt',
+    'data/images.txt',
+  ].map(url=>fetch(url).then(r=>r.text()));
+
+  Promise.all(promises).then(data => {
+    let [sol, yt, img] = data;
+
+    solutions = Object.fromEntries(sol.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
+    youtube = Object.fromEntries(yt.split('\n').map(s => s.trim().split(',', 2)).filter(([, v])=> v && v.length>=2));
+    imagelist = Object.fromEntries(img.split('\n').map(s => s.trim().split('.web')).filter(([, v])=> v));
+
+    fetch('data/regions.json').then(r=>r.json()).then(data=>{
+      regionData = data;
+      drawMap();
+    });
+
+
   });
 
-  fetch('images/levels/images.txt').then(r => r.text()).then(data => {
-    imagelist = Object.fromEntries(data.split('\n').map(s => s.trim().split('.web')).filter(([, v])=> v));
-  });
-
-  fetch('data/regions.json').then(r=>r.json()).then(data=>{
-    regionData = data;
-    drawMap();
-  });
 }
 
 </script>

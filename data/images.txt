@@ -67,6 +67,7 @@ heroes3_14_v3.webp
 heroes3_15_v4.webp
 heroes3_16_v4_alt.webp
 heroes3_1_v3.webp
+heroes3_21_condensed.webp
 heroes3_2_v4.webp
 heroes3_3_v2.webp
 heroes3_4.webp
@@ -78,8 +79,6 @@ heroes3_8_v3_alt3.webp
 heroes3_8_v4_alt.webp
 heroes3_druid_a.webp
 heroes3_druid_b_v2.webp
-heroes3_21_condensed.webp
-images.txt
 island_hopping.webp
 mirror8_v5.webp
 mirror_1.webp
