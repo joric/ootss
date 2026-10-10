@@ -1472,7 +1472,7 @@ window.onload = function() {
   });
 
   fetch('images/levels/images.txt').then(r => r.text()).then(data => {
-    imagelist = Object.fromEntries(data.split('\n').map(s => s.trim().split('.')).filter(([, v])=> v && v.length>=2));
+    imagelist = Object.fromEntries(data.split('\n').map(s => s.trim().split('.web')).filter(([, v])=> v));
   });
 
   fetch('data/regions.json').then(r=>r.json()).then(data=>{
