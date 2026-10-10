@@ -1059,9 +1059,14 @@ function drawMap() {
 
       let area = feature.properties.area;
 
-      areaCounters[area] = (areaCounters[area] || 0) + 1;
+      let solved = solutions[feature.properties.name];
 
-      let count = areaCounters[area];
+      if (solved) {
+        areaCounters[area] = (areaCounters[area] || 0) + 1;
+      }
+
+      let count = solved ? areaCounters[area] : '?';
+
 
       if (area != 'locations' && imagelist[feature.properties.name]) {
         images.push( {src: `images/levels/${name}.webp`, name: name, area: area, title: title});
