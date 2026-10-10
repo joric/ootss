@@ -1077,7 +1077,9 @@ function drawMap() {
         areaCounters[area] = (areaCounters[area] || 0) + 1;
       }
 
-      let count = solved ? areaCounters[area] : '?';
+      //let count = solved ? areaCounters[area] : '?';
+
+      let count = solved ? '\u2714' : '?';
 
 
       if (area != 'locations' && imagelist[feature.properties.name]) {
