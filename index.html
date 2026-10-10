@@ -459,6 +459,8 @@ let layers = {};
 
 let gridLayer = null;
 
+let areaCounters = {};
+
 function getSolutionLink(name, solvable) {
   if (solvable) {
     return `play.html#${name}`;
@@ -974,8 +976,6 @@ function drawMap() {
 
     images = [];
 
-    count = 0;
-
     let area = '';
 
     for (const feature of data.features) {
@@ -983,10 +983,11 @@ function drawMap() {
       let title = feature.properties.name;
       let name = feature.properties.name;
 
-      if (area != feature.properties.area) count = 0;
-      count = count + 1;
+      let area = feature.properties.area;
 
-      area = feature.properties.area;
+      areaCounters[area] = (areaCounters[area] || 0) + 1;
+
+      let count = areaCounters[area];
 
       if (area != 'locations') {
         images.push( {src: `images/levels/${name}.webp`, name: name, area: area, title: title});

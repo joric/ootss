@@ -1693,8 +1693,82 @@
       "properties": {
         "type": "helper",
         "area": "locations",
-        "name": "center",
-        "demo": true
+        "name": "center"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          124.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_14_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          125.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_16_v4_alt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          126.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "gatekeeping_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0,
+          119.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "compactor_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0,
+          125.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes_3_21_condensed"
       }
     }
   ]
