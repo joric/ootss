@@ -407,7 +407,7 @@ function initPlayer() {
 
   if (location.hash) {
     let levelName = location.hash.slice(1);
-    setTimeout(()=>{ loadLevel(levelName); }, 500);
+    setTimeout(()=>{ loadLevel(levelName); }, 1000);
   }
 
   document.querySelectorAll('[data-key]').forEach(c => { 
