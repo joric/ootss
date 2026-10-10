@@ -1165,7 +1165,7 @@ function drawMap() {
           if (s) {
             let spl = `<a href="${getSolutionLink(name,true)}" target=_blank>Solution&nbsp;Player</a>&nbsp`;
 
-            if (props.area == 'promesst') { 
+            if (props.area.includes('promesst')) { 
               spl = props.youtube ? `<a href="${props.youtube}" target=_blank>YouTube</a>&nbsp;` :'';
             }
 
