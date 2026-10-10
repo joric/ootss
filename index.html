@@ -1180,15 +1180,15 @@ function drawMap() {
 
       let group = feature.properties.area;
 
-      if (!regionColors[group] || !imagelist[feature.properties.name]) {
-        group = 'unsorted';
+      if (!regionColors[group] || !solutions[feature.properties.name]) {
+        group = 'unsolved';
         marker.setOpacity(0.5);
       }
 
 
       if (!layers[group]) {
         layers[group] = L.layerGroup();
-        if (group!='unsorted') layers[group].addTo(markerGroup);
+        if (group!='unsolved') layers[group].addTo(markerGroup);
       }
 
       marker.addTo(layers[group]);
