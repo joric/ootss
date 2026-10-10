@@ -12,7 +12,7 @@
   "types": {
     "icon": "misc",
     "group": "misc",
-    "category": "locations",
+    "category": "unsorted",
     "match": {
       "type": {
           "regionMarker": { "group": "regions", "category": "region"
@@ -20,13 +20,13 @@
         "level": { "group": "levels",
           "match": {
             "area": {
-              "promesst":   { "color": "#0000ff" },
+              "promesst1_and_2":   { "color": "#0000ff" },
               "mirror":     { "color": "#ffa500" },
               "crossroads": { "color": "#ffff00" },
               "heroes1":    { "color": "#ff0000" },
               "heroes2":    { "color": "#00ff00" },
               "heroes3":    { "color": "#ff00ff" },
-              "water":      { "color": "#00ffff" },
+              "heroes_and_water":      { "color": "#00ffff" },
               "mixture":    { "color": "#888" }
             }
           }
