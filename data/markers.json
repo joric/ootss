@@ -2014,14 +2014,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          87.0,
-          125.0
+          87,
+          125,
+          0
         ]
       },
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes_3_21_condensed"
+        "name": "heroes3_21_condensed"
       }
     },
     {
@@ -6840,22 +6841,6 @@
         "type": "level",
         "area": "beams_and_basic_heroes",
         "name": "help_drop"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          87,
-          125,
-          0
-        ]
-      },
-      "properties": {
-        "type": "level",
-        "area": "heroes3",
-        "name": "heroes3_21_condensed"
       }
     },
     {
