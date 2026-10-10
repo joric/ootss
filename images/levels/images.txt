@@ -118,6 +118,7 @@ quadrants.webp
 quadrants_follow_up.webp
 surrounded.webp
 target_practice_gem.webp
+torcoban_2.webp
 walk_it_over.webp
 wizard_and_druid_alt.webp
 wizard_and_druid_alt_5.webp
