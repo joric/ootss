@@ -1191,9 +1191,9 @@ function drawMap() {
 
       let group = feature.properties.area;
 
-      if (!regionColors[group] || !solutions[feature.properties.name]) {
+      if (!regionColors[group]) {
 
-        group = 'unsolved';
+        group = 'unsorted';
 
         marker.setOpacity(0.5);
       }
@@ -1201,7 +1201,7 @@ function drawMap() {
 
       if (!layers[group]) {
         layers[group] = L.layerGroup();
-        //if (group!='unsolved')
+        //if (group!='unsorted')
         layers[group].addTo(markerGroup);
       }
 
