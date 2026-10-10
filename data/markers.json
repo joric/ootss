@@ -6,6 +6,21 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          80.0,
+          69.0
+        ]
+      },
+      "properties": {
+        "type": "helper",
+        "area": "locations",
+        "name": "center"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           61.0,
           70.0
         ]
@@ -1686,14 +1701,134 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          80.0,
-          69.0
+          78.0,
+          117.0
         ]
       },
       "properties": {
-        "type": "helper",
-        "area": "locations",
-        "name": "center"
+        "type": "level",
+        "area": "heroes3",
+        "name": "wizard_and_druid_alt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.0,
+          118.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_13_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0,
+          118.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_druid_b_v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          118.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_druid_a"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          122.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_8_thief"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          121.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_6_v3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          120.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_7_v4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          119.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_8_v4_alt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          118.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "heroes3",
+        "name": "heroes3_8_v3_alt3"
       }
     },
     {
