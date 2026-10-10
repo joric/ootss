@@ -1920,6 +1920,22 @@
         "area": "vault",
         "name": "target_practice_gem"
       }
+   },
+   {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.0,
+          87.0
+        ]
+      },
+      "properties": {
+        "type": "level",
+        "area": "vault",
+        "name": "beam_rooms",
+        "youtube": "https://youtu.be/e1QlrqR8yE8?t=16408"
+      }
     }
   ]
 }

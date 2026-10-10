@@ -1140,7 +1140,10 @@ function drawMap() {
           const s = solutions[props.name]||'';
           if (s) {
             let spl = '<a href="${getSolutionLink(name,true)}">Solution&nbsp;Player</a>&nbsp';
-            if (props.area == 'vault') spl = '';
+
+            if (props.area == 'vault') { 
+              spl = props.youtube ? `<a href="${props.youtube}">YouTube</a>&nbsp;` :'';
+            }
 
             html += `<span class="wrap">${spl}(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
           }
