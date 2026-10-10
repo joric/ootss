@@ -958,6 +958,9 @@ function drawMap() {
 
   fetch('data/markers.json').then(r=>r.json()).then(data=>{
 
+    console.log(`loaded ${data.features.length} features`);
+
+
     counters = {};
     layers = {};
 
@@ -1184,12 +1187,11 @@ function drawMap() {
 
 
       if (!layers[group]) {
-        layers[group] = L.layerGroup().addTo(markerGroup);
+        layers[group] = L.layerGroup();
+        if (group!='unsolved') layers[group].addTo(markerGroup);
       }
 
       marker.addTo(layers[group]);
-
-
 
     }
 
