@@ -13,7 +13,8 @@
       "properties": {
         "type": "level",
         "area": "promesst",
-        "name": "promesst1_streamlined"
+        "name": "promesst1_streamlined",
+        "demo": true
       }
     },
     {
@@ -28,7 +29,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_1"
+        "name": "mirror_1",
+        "demo": true
       }
     },
     {
@@ -43,7 +45,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_2"
+        "name": "mirror_2",
+        "demo": true
       }
     },
     {
@@ -58,7 +61,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_3"
+        "name": "mirror_3",
+        "demo": true
       }
     },
     {
@@ -73,7 +77,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_4"
+        "name": "mirror_4",
+        "demo": true
       }
     },
     {
@@ -88,7 +93,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_5"
+        "name": "mirror_5",
+        "demo": true
       }
     },
     {
@@ -103,7 +109,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_6_alt"
+        "name": "mirror_6_alt",
+        "demo": true
       }
     },
     {
@@ -118,7 +125,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_7"
+        "name": "mirror_7",
+        "demo": true
       }
     },
     {
@@ -133,7 +141,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_8_v5"
+        "name": "mirror_8_v5",
+        "demo": true
       }
     },
     {
@@ -148,7 +157,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_11"
+        "name": "mirror_11",
+        "demo": true
       }
     },
     {
@@ -163,7 +173,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_12"
+        "name": "mirror_12",
+        "demo": true
       }
     },
     {
@@ -178,7 +189,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_13"
+        "name": "mirror_13",
+        "demo": true
       }
     },
     {
@@ -193,7 +205,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_14"
+        "name": "mirror_14",
+        "demo": true
       }
     },
     {
@@ -208,7 +221,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_15"
+        "name": "mirror_15",
+        "demo": true
       }
     },
     {
@@ -223,7 +237,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_19"
+        "name": "mirror_19",
+        "demo": true
       }
     },
     {
@@ -238,7 +253,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_17"
+        "name": "mirror_17",
+        "demo": true
       }
     },
     {
@@ -253,7 +269,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_sink"
+        "name": "mirror_sink",
+        "demo": true
       }
     },
     {
@@ -268,7 +285,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_20"
+        "name": "mirror_20",
+        "demo": true
       }
     },
     {
@@ -283,7 +301,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_18"
+        "name": "mirror_18",
+        "demo": true
       }
     },
     {
@@ -298,7 +317,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_21"
+        "name": "mirror_21",
+        "demo": true
       }
     },
     {
@@ -313,7 +333,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_22_v2"
+        "name": "mirror_22_v2",
+        "demo": true
       }
     },
     {
@@ -328,7 +349,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_factory_v2"
+        "name": "mirror_factory_v2",
+        "demo": true
       }
     },
     {
@@ -343,7 +365,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_pals"
+        "name": "mirror_pals",
+        "demo": true
       }
     },
     {
@@ -358,7 +381,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "walk_it_over"
+        "name": "walk_it_over",
+        "demo": true
       }
     },
     {
@@ -373,7 +397,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_10_alt2"
+        "name": "mirror_10_alt2",
+        "demo": true
       }
     },
     {
@@ -388,7 +413,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mundane_mirror"
+        "name": "mundane_mirror",
+        "demo": true
       }
     },
     {
@@ -403,7 +429,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_10_b_v2"
+        "name": "mirror_10_b_v2",
+        "demo": true
       }
     },
     {
@@ -418,7 +445,8 @@
       "properties": {
         "type": "level",
         "area": "mirror",
-        "name": "mirror_10_d"
+        "name": "mirror_10_d",
+        "demo": true
       }
     },
     {
@@ -433,7 +461,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_1"
+        "name": "heroes1_1",
+        "demo": true
       }
     },
     {
@@ -448,7 +477,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_2_v2"
+        "name": "heroes1_2_v2",
+        "demo": true
       }
     },
     {
@@ -463,7 +493,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_3"
+        "name": "heroes1_3",
+        "demo": true
       }
     },
     {
@@ -478,7 +509,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_4"
+        "name": "heroes1_4",
+        "demo": true
       }
     },
     {
@@ -493,7 +525,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_4.5"
+        "name": "heroes1_4.5",
+        "demo": true
       }
     },
     {
@@ -508,7 +541,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_5_v2"
+        "name": "heroes1_5_v2",
+        "demo": true
       }
     },
     {
@@ -523,7 +557,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_7_v2"
+        "name": "heroes1_7_v2",
+        "demo": true
       }
     },
     {
@@ -538,7 +573,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_6"
+        "name": "heroes1_6",
+        "demo": true
       }
     },
     {
@@ -553,7 +589,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_7.5"
+        "name": "heroes1_7.5",
+        "demo": true
       }
     },
     {
@@ -568,7 +605,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_8_v2"
+        "name": "heroes1_8_v2",
+        "demo": true
       }
     },
     {
@@ -583,7 +621,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_10_inv_v4_b"
+        "name": "heroes1_10_inv_v4_b",
+        "demo": true
       }
     },
     {
@@ -598,7 +637,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_9"
+        "name": "heroes1_9",
+        "demo": true
       }
     },
     {
@@ -613,7 +653,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_11_v2"
+        "name": "heroes1_11_v2",
+        "demo": true
       }
     },
     {
@@ -628,7 +669,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_13_v2"
+        "name": "heroes1_13_v2",
+        "demo": true
       }
     },
     {
@@ -643,7 +685,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_12_v2_alt"
+        "name": "heroes1_12_v2_alt",
+        "demo": true
       }
     },
     {
@@ -658,7 +701,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_15"
+        "name": "heroes1_15",
+        "demo": true
       }
     },
     {
@@ -673,7 +717,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_16_v3"
+        "name": "heroes1_16_v3",
+        "demo": true
       }
     },
     {
@@ -688,7 +733,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_17"
+        "name": "heroes1_17",
+        "demo": true
       }
     },
     {
@@ -703,7 +749,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_18"
+        "name": "heroes1_18",
+        "demo": true
       }
     },
     {
@@ -718,7 +765,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_19_jail"
+        "name": "heroes1_19_jail",
+        "demo": true
       }
     },
     {
@@ -733,7 +781,8 @@
       "properties": {
         "type": "level",
         "area": "heroes1",
-        "name": "heroes1_21_v3"
+        "name": "heroes1_21_v3",
+        "demo": true
       }
     },
     {
@@ -748,7 +797,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_2b"
+        "name": "heroes2_2b",
+        "demo": true
       }
     },
     {
@@ -763,7 +813,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_2"
+        "name": "heroes2_2",
+        "demo": true
       }
     },
     {
@@ -778,7 +829,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_thief_goblin"
+        "name": "heroes2_thief_goblin",
+        "demo": true
       }
     },
     {
@@ -793,7 +845,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_3_v2"
+        "name": "heroes2_3_v2",
+        "demo": true
       }
     },
     {
@@ -808,7 +861,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_5_altE"
+        "name": "heroes2_5_altE",
+        "demo": true
       }
     },
     {
@@ -823,7 +877,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_5_no_crystal"
+        "name": "heroes2_5_no_crystal",
+        "demo": true
       }
     },
     {
@@ -838,7 +893,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_5.5v5"
+        "name": "heroes2_5.5v5",
+        "demo": true
       }
     },
     {
@@ -853,7 +909,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_6_v3"
+        "name": "heroes2_6_v3",
+        "demo": true
       }
     },
     {
@@ -868,7 +925,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_9"
+        "name": "heroes2_9",
+        "demo": true
       }
     },
     {
@@ -883,7 +941,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_10a_intro"
+        "name": "heroes2_10a_intro",
+        "demo": true
       }
     },
     {
@@ -898,7 +957,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_10a"
+        "name": "heroes2_10a",
+        "demo": true
       }
     },
     {
@@ -913,7 +973,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_3monster"
+        "name": "heroes2_3monster",
+        "demo": true
       }
     },
     {
@@ -928,7 +989,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_10"
+        "name": "heroes2_10",
+        "demo": true
       }
     },
     {
@@ -943,7 +1005,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_11_v2_easier"
+        "name": "heroes2_11_v2_easier",
+        "demo": true
       }
     },
     {
@@ -958,7 +1021,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_12_v2"
+        "name": "heroes2_12_v2",
+        "demo": true
       }
     },
     {
@@ -973,7 +1037,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_11_v2"
+        "name": "heroes2_11_v2",
+        "demo": true
       }
     },
     {
@@ -988,7 +1053,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_10.5"
+        "name": "heroes2_10.5",
+        "demo": true
       }
     },
     {
@@ -1003,7 +1069,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "one_fire_v2"
+        "name": "one_fire_v2",
+        "demo": true
       }
     },
     {
@@ -1018,7 +1085,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_13"
+        "name": "heroes2_13",
+        "demo": true
       }
     },
     {
@@ -1033,7 +1101,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_14"
+        "name": "heroes2_14",
+        "demo": true
       }
     },
     {
@@ -1048,7 +1117,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_15"
+        "name": "heroes2_15",
+        "demo": true
       }
     },
     {
@@ -1063,7 +1133,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_reprise"
+        "name": "heroes2_reprise",
+        "demo": true
       }
     },
     {
@@ -1078,7 +1149,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_16v4"
+        "name": "heroes2_16v4",
+        "demo": true
       }
     },
     {
@@ -1093,7 +1165,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_18"
+        "name": "heroes2_18",
+        "demo": true
       }
     },
     {
@@ -1108,7 +1181,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "mosh_pit_small"
+        "name": "mosh_pit_small",
+        "demo": true
       }
     },
     {
@@ -1123,7 +1197,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_17_intro"
+        "name": "heroes2_17_intro",
+        "demo": true
       }
     },
     {
@@ -1138,7 +1213,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_17"
+        "name": "heroes2_17",
+        "demo": true
       }
     },
     {
@@ -1153,7 +1229,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_20"
+        "name": "heroes2_20",
+        "demo": true
       }
     },
     {
@@ -1168,7 +1245,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_21b"
+        "name": "heroes2_21b",
+        "demo": true
       }
     },
     {
@@ -1183,7 +1261,8 @@
       "properties": {
         "type": "level",
         "area": "heroes2",
-        "name": "heroes2_22_v2"
+        "name": "heroes2_22_v2",
+        "demo": true
       }
     },
     {
@@ -1198,7 +1277,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_10"
+        "name": "heroes3_10",
+        "demo": true
       }
     },
     {
@@ -1213,7 +1293,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_11_v2"
+        "name": "heroes3_11_v2",
+        "demo": true
       }
     },
     {
@@ -1228,7 +1309,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "druid_and_dragon"
+        "name": "druid_and_dragon",
+        "demo": true
       }
     },
     {
@@ -1243,7 +1325,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "wizard_and_druid_alt_5"
+        "name": "wizard_and_druid_alt_5",
+        "demo": true
       }
     },
     {
@@ -1258,7 +1341,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_15_v4"
+        "name": "heroes3_15_v4",
+        "demo": true
       }
     },
     {
@@ -1273,7 +1357,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_1_v3"
+        "name": "heroes3_1_v3",
+        "demo": true
       }
     },
     {
@@ -1288,7 +1373,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_2_v4"
+        "name": "heroes3_2_v4",
+        "demo": true
       }
     },
     {
@@ -1303,7 +1389,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_3_v2"
+        "name": "heroes3_3_v2",
+        "demo": true
       }
     },
     {
@@ -1318,7 +1405,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_4"
+        "name": "heroes3_4",
+        "demo": true
       }
     },
     {
@@ -1333,7 +1421,8 @@
       "properties": {
         "type": "level",
         "area": "heroes3",
-        "name": "heroes3_5"
+        "name": "heroes3_5",
+        "demo": true
       }
     },
     {
@@ -1348,7 +1437,8 @@
       "properties": {
         "type": "level",
         "area": "mixture",
-        "name": "worlds_collide_heroes_and_mirrors_v3"
+        "name": "worlds_collide_heroes_and_mirrors_v3",
+        "demo": true
       }
     },
     {
@@ -1363,7 +1453,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "dipping_your_toes_in"
+        "name": "dipping_your_toes_in",
+        "demo": true
       }
     },
     {
@@ -1378,7 +1469,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "crystal_bridges"
+        "name": "crystal_bridges",
+        "demo": true
       }
     },
     {
@@ -1393,7 +1485,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "push_and_pull_zach"
+        "name": "push_and_pull_zach",
+        "demo": true
       }
     },
     {
@@ -1408,7 +1501,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "quadrants"
+        "name": "quadrants",
+        "demo": true
       }
     },
     {
@@ -1423,7 +1517,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "quadrants_follow_up"
+        "name": "quadrants_follow_up",
+        "demo": true
       }
     },
     {
@@ -1438,7 +1533,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "drowner"
+        "name": "drowner",
+        "demo": true
       }
     },
     {
@@ -1453,7 +1549,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "surrounded"
+        "name": "surrounded",
+        "demo": true
       }
     },
     {
@@ -1468,7 +1565,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "dont_push_the_button"
+        "name": "dont_push_the_button",
+        "demo": true
       }
     },
     {
@@ -1483,7 +1581,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "detonator"
+        "name": "detonator",
+        "demo": true
       }
     },
     {
@@ -1498,7 +1597,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "a_wiz_out_of_water"
+        "name": "a_wiz_out_of_water",
+        "demo": true
       }
     },
     {
@@ -1513,7 +1613,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "island_hopping"
+        "name": "island_hopping",
+        "demo": true
       }
     },
     {
@@ -1528,7 +1629,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "dunk_tank_alt"
+        "name": "dunk_tank_alt",
+        "demo": true
       }
     },
     {
@@ -1543,7 +1645,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "gully_alt"
+        "name": "gully_alt",
+        "demo": true
       }
     },
     {
@@ -1558,7 +1661,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "easy_situation_v2"
+        "name": "easy_situation_v2",
+        "demo": true
       }
     },
     {
@@ -1573,7 +1677,8 @@
       "properties": {
         "type": "level",
         "area": "water",
-        "name": "one_vs_three"
+        "name": "one_vs_three",
+        "demo": true
       }
     },
     {
@@ -1588,7 +1693,8 @@
       "properties": {
         "type": "helper",
         "area": "locations",
-        "name": "center"
+        "name": "center",
+        "demo": true
       }
     }
   ]
