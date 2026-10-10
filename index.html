@@ -1236,7 +1236,7 @@ function drawMap() {
     //overlaysWithCounts = Object.fromEntries( Object.entries(overlaysWithCounts).sort((a, b) => a[0].localeCompare(b[0])) );
 
 
-    let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: false, position: 'topright'}).addTo(map);
+    let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: true, position: 'topright'}).addTo(map);
 
 
     map.on('zoom overlayadd', updateZoom);
