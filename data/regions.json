@@ -31,7 +31,7 @@
   },
   "properties": {
     "color": "#00ffff",
-    "name": "water",
+    "name": "heroes_and_water",
     "title": "Heroes and Water"
   }
 },
@@ -67,7 +67,7 @@
   },
   "properties": {
     "color": "#0000ff",
-    "name": "promesst",
+    "name": "promesst1_and_2",
     "title": "The Promise"
   }
 },

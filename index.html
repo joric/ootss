@@ -1061,14 +1061,13 @@ function drawMap() {
 
       let count = areaCounters[area];
 
-      if (area != 'locations') {
+      if (area != 'locations' && solutions[feature.properties.name]) {
         images.push( {src: `images/levels/${name}.webp`, name: name, area: area, title: title});
       }
 
       let latlng = [feature.geometry.coordinates[1],feature.geometry.coordinates[0]];
 
       if (!latlng) continue;
-
 
       feature.properties.title = count;
 
@@ -1169,13 +1168,21 @@ function drawMap() {
         };
       });
 
+      let group = feature.properties.area;
 
-
-      if (!layers[feature.properties.area]) {
-        layers[feature.properties.area] = L.layerGroup().addTo(markerGroup);
+      if (!regionColors[group] || !solutions[feature.properties.name]) {
+        group = 'unsolved';
+        marker.setOpacity(0.5);
       }
 
-      marker.addTo(layers[feature.properties.area]);
+
+      if (!layers[group]) {
+        layers[group] = L.layerGroup().addTo(markerGroup);
+      }
+
+      marker.addTo(layers[group]);
+
+
 
     }
 
@@ -1200,6 +1207,10 @@ function drawMap() {
         return [`${name}${hasMarkers ? ' ('+count+')' : ''}`, layer];
       })
     );
+
+
+    //overlaysWithCounts = Object.fromEntries( Object.entries(overlaysWithCounts).sort((a, b) => a[0].localeCompare(b[0])) );
+
 
     let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: false, position: 'topright'}).addTo(map);
 
