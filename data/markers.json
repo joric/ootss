@@ -1917,8 +1917,9 @@
       },
       "properties": {
         "type": "level",
-        "area": "vault",
-        "name": "target_practice_gem"
+        "area": "promesst",
+        "name": "target_practice_gem",
+        "youtube": "https://youtu.be/hijMdvtXRuA"
       }
    },
    {
@@ -1932,9 +1933,9 @@
       },
       "properties": {
         "type": "level",
-        "area": "vault",
+        "area": "promesst",
         "name": "beam_rooms",
-        "youtube": "https://youtu.be/e1QlrqR8yE8?t=16408"
+        "youtube": "https://youtu.be/SH8pQVGjKbs"
       }
     }
   ]
