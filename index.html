@@ -574,52 +574,35 @@ async function loadSave(file) {
   };
 
   // ---- header ----
-  const headerWords = [];
-  for (let i = 0; i < 28; i++) {
-    headerWords.push("0x" + view.getUint32(i * 4, true).toString(16));
-  }
-  //console.log("header words:", headerWords);
-
   off = 0x71;
   const v = u32();
   const f = [d[off], d[off + 1]];
   off += 2;
-  const s1 = string();
-  const s2 = string();
-
-  //console.log("u32 =", v);
-  //console.log("flags =", f[0], f[1]);
-  //console.log("str1 =", s1);
-  //console.log("str2 =", s2);
-
+  const currentLevel = string();
+  const menuLevel = string();
 
   // ---- level table ----
+  // Level_State_Flags: SOLVED 1, PARTIALLY_SOLVED 2, ENTERED 4 (never set), TOWER_UNLOCK_SIGNALLED 8
+  const SOLVED = 1;
+
   const n = u32();
-  //console.log(`\nLevels: ${n}`);
-  const levels = [];
+  const levels = [];   // every level that has an entry
+  const solved = [];   // only fully solved levels
   for (let i = 0; i < n; i++) {
     const name = string();
     const flags = u8();
     levels.push({ name, flags });
-    //console.log(
-    //  `  [${String(i).padStart(3)}] flags=0x${flags.toString(16).padStart(2, "0")} ` +
-    //  `(${flags.toString(2).padStart(4, "0")})  ${name}`);
+    if (flags & SOLVED) solved.push({ name, flags });
   }
 
-  // ---- trailing tables ----
+  // ---- trailing tables (must be consumed to stay aligned, even though unused) ----
   for (let t = 0; t < 3; t++) {
     if (off + 4 > d.length) break;
     const c = u32();
-    const vals = [];
-    for (let i = 0; i < c; i++) vals.push(u32());
-    //console.log(`\nTable ${t}: ${c} values`);
-    for (const v of vals) {
-      //console.log("  0x" + v.toString(16).padStart(8, "0"));
-    }
+    for (let i = 0; i < c; i++) u32();
   }
 
-  //console.log(`\nconsumed ${off} of ${d.length} bytes`);
-  return levels;
+  return { levels, solved, currentLevel };
 }
 
 function pickAndLoadSave() {
@@ -634,16 +617,21 @@ function pickAndLoadSave() {
     if (!file) return;
 
     try {
-      const levels = await loadSave(file);
-      //console.log("Parsed levels:", levels);
+      const { levels, solved, currentLevel } = await loadSave(file);
 
-      for (const level of levels) {
+      for (const level of solved) {
         settings.markedItems[level.name] = true;
       }
+
       markItems();
       saveSettings();
 
-      showAlert(`Marked ${levels.length} levels`);
+      showAlert(`Marked ${solved.length} levels`);
+
+      if (currentLevel != 'overworld') {
+        focusMarkerByName(currentLevel);
+      }
+
 
     } catch (err) {
       showAlert('Failed to parse save');
