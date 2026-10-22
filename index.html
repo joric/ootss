@@ -803,7 +803,7 @@ function focusMarkerByName(name) {
 
   if (!found) return;
 
-  let base = getAreaByHeight(found.feature.geometry.coordinates[2]);
+  let base = getBaseLayer(found.feature.geometry.coordinates[2]);
   let layer = baseLayers[base];
 
   setBaseLayer(base);
@@ -837,7 +837,7 @@ function getIconHTML(feature, size=48) {
 
   let areaColors = {'sky': 'royalblue', 'underworld': 'brown'};
 
-  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getAreaByHeight(feature.geometry.coordinates[2])]) || 'dimgrey';
+  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature.geometry.coordinates[2])]) || 'dimgrey';
 
   options.bg = color;
 
@@ -1191,7 +1191,7 @@ let heightRanges = {
   underworld: [-57, -4],
 };
 
-const getAreaByHeight = (z) => {
+const getBaseLayer = (z) => {
   for (const [name, [a, b]] of Object.entries(heightRanges)) {
     if (z >= a && z <= b) return name;
   }
@@ -2003,6 +2003,9 @@ function drawMap() {
     syncSearchLayer();
 
     searchControl = new L.Control.Search({propertyName: 'searchText', initial: false, layer: searchLayer, hideMarkerOnCollapse: true }).addTo(map);
+
+    // switch base layer upon search
+    searchControl.on('search:locationfound', e=>setBaseLayer(getBaseLayer(e.layer.feature.geometry.coordinates[2])));
 
     const search = document.querySelector('.leaflet-control-search');
     const label = document.createElement('div');
