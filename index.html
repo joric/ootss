@@ -560,49 +560,89 @@ async function loadSave(file) {
   const buffer = await file.arrayBuffer();
   const d = new Uint8Array(buffer);
   const view = new DataView(buffer);
-  let off = 0;
-
-  const u8  = () => d[off++];
-  const u32 = () => { const v = view.getUint32(off, true); off += 4; return v; };
-
   const decoder = new TextDecoder("utf-8");
-  const string = () => {
-    const n = view.getUint16(off, true);
-    const s = decoder.decode(d.subarray(off + 2, off + 2 + n));
-    off += 2 + n;
-    return s;
-  };
 
-  // ---- header ----
-  off = 0x71;
-  const v = u32();
-  const f = [d[off], d[off + 1]];
-  off += 2;
-  const currentLevel = string();
-  const menuLevel = string();
-
-  // ---- level table ----
   // Level_State_Flags: SOLVED 1, PARTIALLY_SOLVED 2, ENTERED 4 (never set), TOWER_UNLOCK_SIGNALLED 8
   const SOLVED = 1;
+  // Oldest saves: 0x71 + u32 + 2 bytes -> first string (currentLevel) starts here
+  const OLD_START = 0x77;
+  const SCAN_LIMIT = 4096;
 
-  const n = u32();
-  const levels = [];   // every level that has an entry
-  const solved = [];   // only fully solved levels
-  for (let i = 0; i < n; i++) {
-    const name = string();
-    const flags = u8();
-    levels.push({ name, flags });
-    if (flags & SOLVED) solved.push({ name, flags });
+  // Try to read the body with currentLevel's string at `start`.
+  // Returns null if what's there doesn't look like a level table.
+  const parseAt = (start) => {
+    let off = start;
+    const ok = (n) => off + n <= d.length;
+    const u8 = () => d[off++];
+    const u32 = () => { const v = view.getUint32(off, true); off += 4; return v; };
+    // u16 length + printable ASCII; null if it doesn't fit
+    const string = (min) => {
+      if (!ok(2)) return null;
+      const n = view.getUint16(off, true);
+      if (n < min || !ok(2 + n)) return null;
+      for (let i = off + 2; i < off + 2 + n; i++) if (d[i] < 0x20 || d[i] > 0x7e) return null;
+      const s = decoder.decode(d.subarray(off + 2, off + 2 + n));
+      off += 2 + n;
+      return s;
+    };
+
+    // empty current/menu names are only trusted at the known old position
+    const minLen = start === OLD_START ? 0 : 1;
+    const currentLevel = string(minLen);
+    if (currentLevel === null) return null;
+    const menuLevel = string(minLen);
+    if (menuLevel === null) return null;
+    if (!ok(4)) return null;
+
+    // ---- level table ----
+    const n = u32();
+    if (n * 4 > d.length - off) return null;           // each entry is >= 4 bytes
+    if (n === 0 && start !== OLD_START) return null;
+    const levels = [];   // every level that has an entry
+    const solved = [];   // only fully solved levels
+    for (let i = 0; i < n; i++) {
+      const name = string(1);
+      if (name === null || !ok(1)) return null;
+      const flags = u8();
+      levels.push({ name, flags });
+      if (flags & SOLVED) solved.push({ name, flags });
+    }
+
+    // ---- trailing tables: u32 count + count * u32, repeated until EOF ----
+    const tables = [];
+    while (ok(4)) {
+      const c = u32();
+      if (c * 4 > d.length - off) { off -= 4; break; }
+      const t = [];
+      for (let i = 0; i < c; i++) t.push(u32());
+      tables.push(t);
+    }
+
+    console.log('currentLevel', currentLevel);
+
+    return {
+      levels, solved, currentLevel, menuLevel, tables,
+      version: start >= 6 ? view.getUint32(start - 6, true) : 0,
+      flags: start >= 6 ? [d[start - 2], d[start - 1]] : [0, 0],
+      start,
+      clean: off === d.length,   // tables ended exactly at EOF
+    };
+  };
+
+  // Try the old position first; if the header has grown, scan for the real start.
+  // Prefer a candidate whose trailing tables end exactly at EOF.
+  const starts = [OLD_START];
+  for (let p = 0; p < Math.min(d.length, SCAN_LIMIT); p++) if (p !== OLD_START) starts.push(p);
+
+  let best = null;
+  for (const p of starts) {
+    const r = parseAt(p);
+    if (!r) continue;
+    if (r.clean) return r;
+    if (!best) best = r;
   }
-
-  // ---- trailing tables (must be consumed to stay aligned, even though unused) ----
-  for (let t = 0; t < 3; t++) {
-    if (off + 4 > d.length) break;
-    const c = u32();
-    for (let i = 0; i < c; i++) u32();
-  }
-
-  return { levels, solved, currentLevel };
+  if (best) return best;
+  throw new Error("Unrecognized save format: no level table found in the first " + SCAN_LIMIT + " bytes");
 }
 
 function pickAndLoadSave() {
