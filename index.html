@@ -766,23 +766,12 @@ function focusMarkerByName(name) {
 
   if (!found) return;
 
-  if (found==currentOpenMarker) return;
-
   let base = getAreaByHeight(found.feature.geometry.coordinates[2]);
   let layer = baseLayers[base];
 
-  if (!layer) {
-    console.warn(`No base layer for "${name}"`);
-  } else {
-    // Remove whichever base layer is currently on the map
-    map.eachLayer(l => {
-      if (l.isBaseLayer && l !== layer) map.removeLayer(l);
-    });
+  setBaseLayer(base);
 
-    // Add the new one if not already present
-    if (!map.hasLayer(layer)) layer.addTo(map);
-  }
-
+  if (found==currentOpenMarker) return;
 
   found.fire('click');
   found.closeTooltip();
@@ -1421,8 +1410,25 @@ function syncSearchLayer() {
 }
 
 function setBaseLayer(name) {
+  if (name == baseLayerName) return;
+
   map.removeLayer(baseLayers[baseLayerName]);
   baseLayers[name].addTo(map);
+
+/*
+
+  if (!layer) {
+    console.warn(`No base layer for "${name}"`);
+  } else {
+    // Remove whichever base layer is currently on the map
+    map.eachLayer(l => {
+      if (l.isBaseLayer && l !== layer) map.removeLayer(l);
+    });
+
+    // Add the new one if not already present
+    if (!map.hasLayer(layer)) layer.addTo(map);
+  }
+*/
 }
 
 function drawMap() {
