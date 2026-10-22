@@ -1259,7 +1259,17 @@ function updateMarkers() {
 function markItems() {
   function walk(layer) {
     if (layer instanceof L.Marker) {
-      const found = settings.markedItems[layer.feature?.properties?.name] === true;
+
+      const o = layer.feature?.properties;
+      let found = settings.markedItems[o?.name] === true;
+
+      // also mark all related freezers
+      if (o?.type == 'Freezer') {
+        let id = o?.entity_properties?.unlocked_by_id;
+        let slug = nameLookup[id];
+        if (settings.markedItems[slug] === true) found = true;
+      }
+
       layer._icon?.classList[found ? 'add' : 'remove']('found');
     } else if (layer instanceof L.LayerGroup) {
       layer.eachLayer(walk);
@@ -1347,10 +1357,8 @@ function openPopup(e) {
     header = `<div class="header"><b>Freezer</b> (${getCoordinates(marker)})</div>`;
   }
 
-  let id = o.entity_properties?.unlocked_by_id;
 
   let sol = solutions[o.name] || solutions2[o.name];
-
   const ytId = youtube[o.name] ? youTubeId(youtube[o.name]) : null;
 
   let image = imageList[o.name]
@@ -1360,6 +1368,7 @@ function openPopup(e) {
       : '';
 
   let unlocked = '';
+  let id = o.entity_properties?.unlocked_by_id;
   let slug = nameLookup[id];
   if (slug) {
     unlocked = `Unlocked by: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}')">${slug}</a>`;
