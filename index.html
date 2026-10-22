@@ -64,9 +64,8 @@
 
 #hoverPreview .hp-title {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  left: 0; top: 0;
   padding: 6px 10px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
   color: #fff;
   font: 14px/1.3 sans-serif;
   text-align: center;
@@ -74,6 +73,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   pointer-events: none;
+  text-shadow:  0 0 2px black, 0 0 4px black, 0 0 8px black, 0 0 16px black;
 }
 
 html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hidden; }
@@ -1540,7 +1540,7 @@ const hp = (() => {
       showT = setTimeout(() => {
         if (g !== gen || popupOpen(marker)) return;
         show(name, title, x, y);
-      }, 500);
+      }, 1000);
     },
     move(x, y, marker) {
       if (popupOpen(marker)) return;
