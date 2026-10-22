@@ -1409,6 +1409,11 @@ function syncSearchLayer() {
   }
 }
 
+function setBaseLayer(name) {
+  map.removeLayer(baseLayers[baseLayerName]);
+  baseLayers[name].addTo(map);
+}
+
 function drawMap() {
 
   for (const name of ['overworld','sky','underworld']) {
@@ -1441,7 +1446,6 @@ function drawMap() {
       crs = getCRS(k);
     }
   }
-
 
   map = L.map('map', {
     crs: crs.crs,
@@ -2073,6 +2077,11 @@ function drawMap() {
     } else if (e.code=='Escape') {
       toggleGallery();
     }
+
+    let slugs = ['overworld', 'sky', 'underworld']
+
+    if (/^Digit[1-3]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
+
   });
 
 }
