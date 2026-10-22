@@ -1222,6 +1222,7 @@ function updateMarkers() {
       marker._icon.style.visibility = (z>=a && z<=b) ? 'visible' : 'hidden';
     }
   })
+  markItems();
 }
 
 
@@ -1845,8 +1846,6 @@ function drawMap() {
 
     map.on('zoom overlayadd', updateZoom);
     updateZoom();
-
-    markItems();
 
     updateMarkers();
 
