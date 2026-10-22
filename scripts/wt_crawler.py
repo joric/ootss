@@ -1401,13 +1401,22 @@ def _instance_index(char_name: str) -> int:
         return 1
 
 
-def _cycle_slot(char_name: str) -> int:
+def _cycle_slot(char_name: str, groups: list[dict] | None = None) -> int:
     """Position of char_name in the game's C-cycle order.
 
-    The engine's cycle order follows the numeric suffix order
-    (#1, #2, #3, ...), so the slot index is (instance_index - 1).
-    Anonymous characters (no '#N') fall through as slot 0.
+    If the map's ``groups`` roster is available, the slot index is the
+    position of ``char_name`` in that list.  This is the *authoritative*
+    order: the game lists the default-selected pusher first and the
+    rest in cycle order, so cycling with C advances through the list.
+
+    Without ``groups`` we fall back to the numeric suffix order
+    (``#1 -> 0``, ``#2 -> 1``, ...), which matches every map we've
+    seen so far but isn't guaranteed by the spec.
     """
+    if groups:
+        for idx, entry in enumerate(groups):
+            if isinstance(entry, dict) and entry.get("name") == char_name:
+                return idx
     return _instance_index(char_name) - 1
 
 
@@ -1461,21 +1470,39 @@ def move_deltas(moves: list[str], frames: list | None) -> dict[int, int]:
     return deltas
 
 
-def _default_selected_char(moves: list[str]) -> str | None:
+def _default_selected_char(
+    moves: list[str], groups: list[dict] | None = None
+) -> str | None:
     """Infer which pusher is selected by default at level start.
 
-    The engine only accepts input on the currently-selected pusher,
-    so the first move in the solution *must* address whichever
-    pusher was already active.  The JSON therefore carries the
-    answer directly in moves[0]: no select action could have
-    preceded it.
+    Two signals, in order of reliability:
+
+    1. ``groups[0].name`` from the map JSON.  The game lists the
+       default-selected pusher first; the other pushers follow in
+       cycle order.  This is the answer even when the first recorded
+       move addresses a *different* pusher (in which case a ``C``
+       press is required before the first action).
+
+    2. Fallback: ``moves[0]``'s character.  Correct only when the
+       solution happens to begin on the default pusher; used when
+       ``groups`` is absent (older payloads).
+
+    The earlier version of this function used ``moves[0]`` alone and
+    silently dropped the leading ``C`` whenever the solution began on
+    a non-default pusher.
     """
+    if groups:
+        first = groups[0]
+        if isinstance(first, dict):
+            name = first.get("name")
+            if isinstance(name, str) and name:
+                return name
     if not moves:
         return None
-    first = moves[0]
-    if ":" not in first:
+    first_move = moves[0]
+    if ":" not in first_move:
         return None
-    return first.split(":", 1)[0]
+    return first_move.split(":", 1)[0]
 
 
 def convert_moves(
@@ -1484,6 +1511,7 @@ def convert_moves(
     timing: dict | None = None,
     deltas: dict[int, int] | None = None,
     *,
+    groups: list[dict] | None = None,
     default_char: str | None = None,
 ) -> str:
     if not moves:
@@ -1500,34 +1528,36 @@ def convert_moves(
     result: list[str] = []
 
     if needs_cycle:
-        # Cycle length = highest instance index seen; assumes pushers
-        # are numbered densely from 1, which the map JSON guarantees
-        # for any level we've seen.
+        # Cycle length = max pusher index seen in moves, extended to
+        # cover any extra pushers in the map roster.  Using groups when
+        # present makes n exact even if a pusher never appears in the
+        # move list (the C cycle still steps through it).
         n = 1
         for move in moves:
             if ":" in move:
                 idx = _instance_index(move.split(":", 1)[0])
                 if idx > n:
                     n = idx
+        if groups:
+            n = max(n, len(groups))
 
-        # Seed current_slot from the default-selected pusher.  The JSON
-        # gives us this directly: moves[0]'s character is the one that
-        # was already active, since nothing could have selected a
-        # different pusher before the first recorded input.  Without
-        # this, the converter wrongly assumed "#1 selected by default"
-        # and emitted a spurious leading C on levels whose default is
-        # #2, #3, etc.
+        # Seed current_slot from the default-selected pusher.  groups[0]
+        # is authoritative; moves[0] is a fallback for payloads without
+        # groups.  Seeding from the wrong pusher silently drops the
+        # leading C when the solution begins on a non-default one.
         if default_char is not None:
-            current_slot = _cycle_slot(default_char) % n
+            current_slot = _cycle_slot(default_char, groups) % n
         else:
-            inferred = _default_selected_char(moves)
-            current_slot = _cycle_slot(inferred) % n if inferred else 0
+            inferred = _default_selected_char(moves, groups)
+            current_slot = (
+                _cycle_slot(inferred, groups) % n if inferred else 0
+            )
 
         for i, move in enumerate(moves):
             if ":" not in move:
                 continue
             char_name, action = move.split(":", 1)
-            target_slot = _cycle_slot(char_name) % n
+            target_slot = _cycle_slot(char_name, groups) % n
 
             if target_slot != current_slot:
                 presses = (target_slot - current_slot) % n
@@ -1610,6 +1640,7 @@ def _build_record(
     moves = data.get("moves", [])
     timing = data.get("timing") or {}
     frames = data.get("frames") or []
+    groups = data.get("groups") or []
     deltas = move_deltas(moves, frames)
 
     if source_kind == "published":
@@ -1621,7 +1652,7 @@ def _build_record(
         "name": level,
         "note": " ".join(moves) if info else "",
         "solution": convert_moves(
-            moves, level, timing, deltas=deltas,
+            moves, level, timing, deltas=deltas, groups=groups,
         ),
     }
 
