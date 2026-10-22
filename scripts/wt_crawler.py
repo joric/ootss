@@ -1401,6 +1401,16 @@ def _instance_index(char_name: str) -> int:
         return 1
 
 
+def _cycle_slot(char_name: str) -> int:
+    """Position of char_name in the game's C-cycle order.
+
+    The engine's cycle order follows the numeric suffix order
+    (#1, #2, #3, ...), so the slot index is (instance_index - 1).
+    Anonymous characters (no '#N') fall through as slot 0.
+    """
+    return _instance_index(char_name) - 1
+
+
 def _has_digit_key(char_name: str) -> bool:
     cls = _move_class(char_name)
     return cls in CHAR_TO_NUM and cls not in NON_PLAYABLE_CLASSES
@@ -1451,11 +1461,30 @@ def move_deltas(moves: list[str], frames: list | None) -> dict[int, int]:
     return deltas
 
 
+def _default_selected_char(moves: list[str]) -> str | None:
+    """Infer which pusher is selected by default at level start.
+
+    The engine only accepts input on the currently-selected pusher,
+    so the first move in the solution *must* address whichever
+    pusher was already active.  The JSON therefore carries the
+    answer directly in moves[0]: no select action could have
+    preceded it.
+    """
+    if not moves:
+        return None
+    first = moves[0]
+    if ":" not in first:
+        return None
+    return first.split(":", 1)[0]
+
+
 def convert_moves(
     moves: list[str],
     level: str,
     timing: dict | None = None,
     deltas: dict[int, int] | None = None,
+    *,
+    default_char: str | None = None,
 ) -> str:
     if not moves:
         return ""
@@ -1469,39 +1498,42 @@ def convert_moves(
     )
 
     result: list[str] = []
-    current_char: str | None = None
 
     if needs_cycle:
-        # In cycle mode, each distinct character class gets its own
-        # rotation slot, ordered by first appearance.  Multiple
-        # instances of the same class share a slot (cycling cannot
-        # distinguish them anyway).
-        ordered: list[str] = []
-        slot_of: dict[str, int] = {}
+        # Cycle length = highest instance index seen; assumes pushers
+        # are numbered densely from 1, which the map JSON guarantees
+        # for any level we've seen.
+        n = 1
         for move in moves:
-            if ":" not in move:
-                continue
-            cls = _move_class(move.split(":", 1)[0])
-            if cls not in slot_of:
-                slot_of[cls] = len(ordered)
-                ordered.append(cls)
-        n = len(ordered)
+            if ":" in move:
+                idx = _instance_index(move.split(":", 1)[0])
+                if idx > n:
+                    n = idx
+
+        # Seed current_slot from the default-selected pusher.  The JSON
+        # gives us this directly: moves[0]'s character is the one that
+        # was already active, since nothing could have selected a
+        # different pusher before the first recorded input.  Without
+        # this, the converter wrongly assumed "#1 selected by default"
+        # and emitted a spurious leading C on levels whose default is
+        # #2, #3, etc.
+        if default_char is not None:
+            current_slot = _cycle_slot(default_char) % n
+        else:
+            inferred = _default_selected_char(moves)
+            current_slot = _cycle_slot(inferred) % n if inferred else 0
 
         for i, move in enumerate(moves):
             if ":" not in move:
                 continue
             char_name, action = move.split(":", 1)
-            cls = _move_class(char_name)
+            target_slot = _cycle_slot(char_name) % n
 
-            if cls != current_char:
-                is_first = not result
-                target = slot_of[cls]
-                current = 0 if current_char is None else slot_of[current_char]
-                presses = (target - current) % n if n > 1 else 0
-
-                if not (is_first and presses == 0):
+            if target_slot != current_slot:
+                presses = (target_slot - current_slot) % n
+                if presses:
                     result.append("C" * presses)
-                current_char = cls
+                current_slot = target_slot
 
             dz = deltas.get(i)
             if action == "T" and dz is not None:
@@ -1518,6 +1550,7 @@ def convert_moves(
 
         return "".join(result)
 
+    current_char: str | None = None
     for i, move in enumerate(moves):
         if ":" not in move:
             continue
@@ -1748,16 +1781,13 @@ def convert_cache_to_json(
             len(levels) - len(records)
         )
         # Split the missing ones by reason: map-data s:0, or /s/ 404.
-        missing_slugs = set(primary_missing_slugs)
         missing_s0 = 0
         missing_404 = 0
+        unresolved = set(stats.unresolved_solutions)
         for level, (_area, slug) in levels.items():
             if level in by_name:
                 continue
-            # was this slug skipped as s:0 during the crawl?
-            # We don't have flags here, so approximate: if the slug is in
-            # unresolved_solutions it 404'd; otherwise assume s:0.
-            if slug in set(stats.unresolved_solutions):
+            if slug in unresolved:
                 missing_404 += 1
             else:
                 missing_s0 += 1
