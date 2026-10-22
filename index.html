@@ -659,6 +659,8 @@ function pickAndLoadSave() {
     try {
       const { levels, solved, currentLevel } = await loadSave(file);
 
+      settings.markedItems = {};
+
       for (const level of solved) {
         settings.markedItems[level.name] = true;
       }
