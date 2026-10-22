@@ -1,0 +1,86 @@
+{"type":"FeatureCollection", "features": [
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[70.5, 127.5], [70.5, 114.5], [89.5, 114.5], [89.5, 127.5], [70.5, 127.5]]]
+  },
+  "properties": {
+    "color": "#ff00ff",
+    "name": "heroes3",
+    "title": "Heroes 3: Bard, Druid"
+  }
+},
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[70.5, 113.5], [70.5, 101.5], [89.5, 101.5], [89.5, 113.5], [70.5, 113.5]]]
+  },
+  "properties": {
+    "color": "#00ff00",
+    "name": "heroes2",
+    "title": "Heroes 2: Monsters"
+  }
+},
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[90.5, 140.5], [90.5, 95.5], [128.5, 95.5], [128.5, 140.5], [90.5, 140.5]]]
+  },
+  "properties": {
+    "color": "#00ffff",
+    "name": "heroes_and_water",
+    "title": "Heroes and Water"
+  }
+},
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[70.5, 100.5], [70.5, 77.5], [89.5, 77.5], [89.5, 100.5], [70.5, 100.5]]]
+  },
+  "properties": {
+    "color": "#ff0000",
+    "name": "heroes1",
+    "title": "Heroes of Hauling"
+  }
+},
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[70.5, 75.5], [70.5, 63.5], [88.5, 63.5], [88.5, 75.5], [70.5, 75.5]]]
+  },
+  "properties": {
+    "color": "#ffff00",
+    "name": "crossroads",
+    "title": "Crossroads"
+  }
+},
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[70.5, 75.5], [32.5, 75.5], [32.5, 62.5], [70.5, 62.5], [70.5, 63.5], [70.5, 75.5]]]
+  },
+  "properties": {
+    "color": "#0000ff",
+    "name": "promesst1_and_2",
+    "title": "The Promise"
+  }
+},
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[88.5, 63.5], [88.5, 56.5], [114.5, 56.5], [114.5, 49.5], [125.5, 49.5], [125.5, 56.5], [137.5, 56.5], [137.5, 75.5], [121.5, 75.5], [121.5, 83.5], [95.5, 83.5], [95.5, 75.5], [88.5, 75.5], [88.5, 63.5]]]
+  },
+  "properties": {
+    "color": "#ffa500",
+    "name": "mirror",
+    "title": "Mirror Isles"
+  }
+}
+]}
