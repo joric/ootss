@@ -147,7 +147,7 @@ function histDistance(queryHist, indexHist) {
 let INDEX = null;
 
 async function loadIndex() {
-  if (!INDEX) INDEX = await fetch('./index.json').then(r => r.json());
+  if (!INDEX) INDEX = await fetch('data/image_index.json').then(r => r.json());
   return INDEX;
 }
 

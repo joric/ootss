@@ -1,7 +1,7 @@
 // ---------- UI ----------
 
 let imageCB = (matches) => { console.log(matches); }
-let indexURL = 'data/image_search.json';
+let indexURL = 'data/image_index.json';
 
 const dropEl    = null;
 const fileEl    = null;
