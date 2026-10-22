@@ -204,7 +204,7 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 }
 
 .solution-wrapper {
-  margin-top: 5px;
+  margin-top: 8px;
   overflow: auto;
   max-height: 100px;
 }
@@ -1475,6 +1475,7 @@ const hp = (() => {
   const cache = new Map();
   let showT = null, hideT = null, cur = null;
   let frozen = false;
+  let gen = 0;
 
   function size() {
     const w = Math.min(800, innerWidth * 0.92);
@@ -1528,13 +1529,27 @@ const hp = (() => {
     hideT = setTimeout(hide, 150);
   });
 
+  const popupOpen = (m) => !!(m && m.isPopupOpen && m.isPopupOpen());
+
   return {
-    enter(name, title, x, y) {
+    // marker is passed in; only skip if THIS marker's popup is open
+    enter(name, title, x, y, marker) {
+      if (popupOpen(marker)) return;
+      const g = ++gen;
       clearTimeout(hideT); clearTimeout(showT);
-      showT = setTimeout(() => show(name, title, x, y), 500);
+      showT = setTimeout(() => {
+        if (g !== gen || popupOpen(marker)) return;
+        show(name, title, x, y);
+      }, 500);
     },
-    move(x, y) { if (cur && !frozen) place(x, y); },
-    leave() { clearTimeout(showT); clearTimeout(hideT); hideT = setTimeout(hide, 150); },
+    move(x, y, marker) {
+      if (popupOpen(marker)) return;
+      if (cur && !frozen) place(x, y);
+    },
+    leave() {
+      clearTimeout(showT); clearTimeout(hideT);
+      hideT = setTimeout(hide, 150);
+    },
     hide
   };
 })();
@@ -1951,12 +1966,12 @@ function drawMap() {
           const t = o.type === 'Freezer'
             ? `Freezer${nameLookup[o.entity_properties?.unlocked_by_id] ? ' [' + nameLookup[o.entity_properties.unlocked_by_id] + ']' : ''}`
             : nm;
-          marker.on('mouseover', (e) => hp.enter(nm, t, e.originalEvent.clientX, e.originalEvent.clientY));
-          marker.on('mousemove', (e) => hp.move(e.originalEvent.clientX, e.originalEvent.clientY));
+          marker.on('mouseover', (e) => hp.enter(nm, t, e.originalEvent.clientX, e.originalEvent.clientY, marker));
+          marker.on('mousemove', (e) => hp.move(e.originalEvent.clientX, e.originalEvent.clientY, marker));
           marker.on('mouseout',  () => hp.leave());
+          marker.on('click',     () => hp.hide());
         }
       }
-
 
     }
 
