@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-WikiTactics crawl + convert for Order of the Sinking Star.
+WikiTactics crawl for Order of the Sinking Star.
 
 * https://gist.github.com/joric/03831c74a33e73a0cd4aac96705d0707 crawler.py
 * https://gist.github.com/joric/0a95af72111a066ac44a801089c58c1d wt.txt
 
-Stages: root -> puzzle slugs -> /s/ -> published -> convert.
+Stages: root -> puzzle slugs -> /s/ -> published -> manifest.
 
 Puzzle slugs come from any embedded JSON catalogue we can find:
 
@@ -21,16 +21,8 @@ name similarity, and adopted only when the match is unambiguous; the
 orphan's bytes are copied to the parent slug's cache path so the
 converter picks it up without changes.
 
-Every puzzle is one record.  For each slug, a single source is chosen:
-
-    * /s/      — the primary solution file, if it exists in the cache
-    * published — a community-published solution, if there is no /s/ one
-                  (or if --prefer-community is set, when it overrides /s/)
-
-Sources are never combined, and no two slugs are ever joined.  The
-"Sources" section of the summary breaks the final count down so it's
-obvious where every record came from and how many puzzles remain
-unsolved.
+This script only crawls.  Run ``wt_converter.py`` afterwards to turn the
+cache into ``solutions.json``.
 
 The cache mirrors each source host's URL path exactly under cache/:
     https://sinkingstar.wikitactics.com/                      -> cache/sinkingstar.wikitactics.com/index.html
@@ -40,25 +32,15 @@ The cache mirrors each source host's URL path exactly under cache/:
                                                                (query-string pages get an index suffix;
                                                                 cursor pages go to page-NNNN.json next to it)
 
-Default record: {"name", "note": "", "solution"}.
-With --info: adds "url", "json", "note" (raw moves), timing arrays,
-and source metadata.
-
 Non-empty cache files are never re-fetched; zero-byte files are deleted.
 
 Usage:
-    crawler.py [--convert-only | --no-convert] [--no-published]
-               [--refresh-published] [--info]
-               [--out PATH] [--wt PATH]
-               [--prefer-community] [-v]
-
-Mapping table (wt.txt): level_name,area_slug,puzzle_slug
+    wt_crawler.py [--no-published] [--refresh-published] [-v]
 """
 
 from __future__ import annotations
 
 import argparse
-import csv
 import difflib
 import json
 import logging
@@ -99,7 +81,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 CACHE_DIR = SCRIPT_DIR / "cache"
 
 USER_AGENT = (
-    "WikiTactics-Crawler/1.6 "
+    "WikiTactics-Crawler/1.7 "
     "(+https://github.com/example/wikitactics-crawler)"
 )
 DEFAULT_WORKERS = 8
@@ -811,16 +793,7 @@ class CrawlStats:
     orphans_unmatched: list[str] = field(default_factory=list)
     adopted_map: dict[str, str] = field(default_factory=dict)
 
-    # converter breakdown — filled by convert_cache_to_json
-    out_total: int = 0
-    out_from_s: int = 0
-    out_from_published: int = 0
-    out_overlap_published: int = 0
-    out_missing: int = 0
-    out_missing_s0: int = 0
-    out_missing_404: int = 0
-
-    def summary(self, *, prefer_community: bool) -> str:
+    def summary(self) -> str:
         total = len(self.puzzles)
         s_resolved = (
             total
@@ -872,32 +845,6 @@ class CrawlStats:
                 lines.append("  unmatched:")
                 for slug in sorted(self.orphans_unmatched):
                     lines.append(f"    {slug}")
-        if self.out_total:
-            policy = (
-                "published wins over /s/ (--prefer-community)"
-                if prefer_community
-                else "/s/ wins over published (default)"
-            )
-            lines += [
-                "",
-                "Output (solutions.json)",
-                f"  policy:                 {policy}",
-                f"  records written:        {self.out_total}/{total}",
-                f"    from /s/:             {self.out_from_s}",
-                f"    from published only:  {self.out_from_published}",
-                f"    published overridden: {self.out_overlap_published} "
-                f"(same slug as /s/)",
-                f"  still unsolved:         {self.out_missing}/{total}",
-            ]
-            if self.out_missing_s0 or self.out_missing_404:
-                lines.append(
-                    f"    of which s:0 (no /s/ on site):    "
-                    f"{self.out_missing_s0}"
-                )
-                lines.append(
-                    f"    of which /s/ 404, no published:  "
-                    f"{self.out_missing_404}"
-                )
         lines += ["", f"Cache dir:               {CACHE_DIR}"]
         return "\n".join(lines)
 
@@ -1157,17 +1104,6 @@ def _load_published_pages(page_numbers: list[int]) -> list[dict]:
     return entries
 
 
-def read_cached_published_entries() -> list[dict]:
-    published_dir = published_page_cache_path(0).parent
-    if not published_dir.is_dir():
-        return []
-    pages = sorted(
-        int(path.stem.split("-", 1)[1])
-        for path in published_dir.glob("page-*.json")
-    )
-    return _load_published_pages(pages)
-
-
 # --------------------------------------------------------------------------- #
 # Solutions
 # --------------------------------------------------------------------------- #
@@ -1279,703 +1215,6 @@ def stage_solutions(
         resolved, len(slug_list), skipped_s0,
         len(stats.unresolved_solutions),
     )
-
-
-# --------------------------------------------------------------------------- #
-# Converter
-# --------------------------------------------------------------------------- #
-
-# Classes that map to a real playable character slot number (1..9).
-# NOTE: "queen" is intentionally absent — C is the cycle toggle, not a
-# queen key.  Queen is reached only by cycling if she appears in the map
-# roster, and in practice she never does.
-CHAR_TO_NUM = {
-    "warrior": "1",
-    "thief": "2",
-    "wizard": "3",
-    "priestess": "4",
-    "bard": "5",
-    "druid": "6",
-    "beamer": "8",
-    "trader": "9",
-}
-
-# Numbered pushers are selectable units: the player cycles among the
-# pusher instances with C.  A pusher has no fixed digit slot.
-NON_PLAYABLE_CLASSES = {"pusher"}
-
-
-DIR_TO_CHAR = {
-    "N": "U", "S": "D", "E": "R", "W": "L",
-    "A": "X", "T": "V", "F": "F",
-    "tick": "B", "wait": "BB", "pause": "BBBB",
-    "A@1": "X", "A@2": "X", "A@3": "X", "A@4": "X",
-    "A@5": "X", "A@6": "X", "A@7": "X", "A@8": "X",
-}
-
-# ---- Wait macros ----------------------------------------------------------
-#
-# Both waits are functions of the elevation change (dz = z_after -
-# z_before) seen on the frame after the move.  Negative dz = falling
-# (ledge drop, drop trap, elevator going down); positive dz = riding up.
-#
-# Rule of thumb: 4 B minimum, 8 B maximum, linear in between, clamped
-# outside [1, WAIT_MAX_LEVEL].  The B-count is the total wait (the "V"
-# press itself is not counted as a B).
-#
-# Elevator T moves are special: the macro also contains the "V" press
-# itself, since the caller emits it as part of the wait rather than as
-# DIR_TO_CHAR["T"].
-
-WAIT_MIN_B = 4
-WAIT_MAX_B = 8
-WAIT_MAX_LEVEL = 2         # |dz| at which the wait saturates
-ELEVATOR_PRESS_CHAR = "V"
-
-# --- Wait encoding ---------------------------------------------------------
-#
-# A single "B" on the wire is a real 0.25 s wait.  That is the value the
-# game itself uses for the ``tick`` action.
-#
-# Long runs of B, however, are NOT meant to be read as ``n * 0.25 s``.
-# They come from solution macros like ``queen:wait`` which do not map
-# 1:1 onto a single B.  Empirically, a run of 260 B's corresponds to
-# ~110 s of wall time, i.e. ~0.42 s per B when the run is long.  This
-# only matters for ``collapse_long_waits``: any B run *longer than one
-# second of real wall time* is emitted as a single ``_<seconds>_``
-# macro computed with the long-run quantum.
-#
-# So:
-#   * short runs (<= 1 s at the 0.25 s B quantum): left as literal Bs
-#   * long runs  (>  1 s at the 0.25 s B quantum): replaced with
-#     ``_<n * LONG_RUN_QUANTUM_US / 1e6>_``
-#
-# This keeps short waits exact and gives the long "wait a couple of
-# minutes" blocks the correct duration.
-QUANTUM_US = 250_000            # one literal B
-LONG_RUN_QUANTUM_US = 423_000   # 260 B -> 109.98 s -> "_110.0_"
-MAX_LITERAL_WAIT_US = 1_000_000  # 1 s: anything longer becomes _xx.x_
-_B_RUN_RE = re.compile(r"B+")
-
-
-def collapse_long_waits(s: str) -> str:
-    """Collapse runs of B whose real duration exceeds 1 second.
-
-    The threshold is evaluated with the literal-B quantum (0.25 s);
-    the *replacement* value is computed with the long-run quantum
-    (0.423 s), because long runs come from ``wait`` macros whose
-    per-B duration differs from the game's raw tick.
-    """
-    threshold_b = int(MAX_LITERAL_WAIT_US / QUANTUM_US)  # 4
-
-    def _repl(m: "re.Match[str]") -> str:
-        n = len(m.group(0))
-        if n <= threshold_b:
-            return m.group(0)
-        secs = n * LONG_RUN_QUANTUM_US / 1_000_000
-        return f"_{secs:.1f}_"
-
-    return _B_RUN_RE.sub(_repl, s)
-
-
-def _wait_bs(levels: int) -> int:
-    """Interpolate B-count: WAIT_MIN_B at 1, WAIT_MAX_B at WAIT_MAX_LEVEL."""
-    if levels <= 0:
-        return 0
-    if levels >= WAIT_MAX_LEVEL:
-        return WAIT_MAX_B
-    span = WAIT_MAX_LEVEL - 1
-    if span <= 0:
-        return WAIT_MAX_B
-    frac = (levels - 1) / span
-    return int(round(WAIT_MIN_B + frac * (WAIT_MAX_B - WAIT_MIN_B)))
-
-
-def fall_wait(dz: int) -> str:
-    """Return the wait string to append after a move that dropped by dz."""
-    if dz >= 0:
-        return ""
-    return "B" * _wait_bs(abs(dz))
-
-
-def elevator_wait(dz: int) -> str:
-    """Return the elevator macro for a T move with elevation change dz.
-
-    The V press sits in the middle of the wait; the pre/post split is
-    half-and-half (pre gets the floor).  Returns "" when dz == 0.
-    """
-    if dz == 0:
-        return ""
-    total = _wait_bs(abs(dz))
-    pre = total // 2
-    post = total - pre
-    return ("B" * pre) + ELEVATOR_PRESS_CHAR + ("B" * post)
-
-
-MIN_EMIT_US = 150_000
-
-
-def us_to_bs(us: int | None) -> int:
-    if us is None or us < MIN_EMIT_US:
-        return 0
-    return max(1, int(round(us / QUANTUM_US)))
-
-
-def _timing_for_move(timing: dict | None, i: int) -> tuple[int | None, int]:
-    return [], 0  # early exit for now
-    if not timing:
-        return None, 0
-    action_ticks = timing.get("action_ticks") or []
-    input_delay_ticks = timing.get("input_delay_ticks") or []
-    duration = action_ticks[i] if i < len(action_ticks) else None
-    extra = input_delay_ticks[i] if i < len(input_delay_ticks) else 0
-    return duration, extra
-
-
-def _move_class(char_name: str) -> str:
-    return char_name.split("#")[0]
-
-
-def _instance_index(char_name: str) -> int:
-    base, sep, suffix = char_name.partition("#")
-    if not sep:
-        return 1
-    try:
-        return int(suffix)
-    except ValueError:
-        return 1
-
-
-def _cycle_slot(char_name: str, groups: list[dict] | None = None) -> int:
-    """Position of char_name in the game's C-cycle order.
-
-    If the map's ``groups`` roster is available, the slot index is the
-    position of ``char_name`` in that list.  This is the *authoritative*
-    order: the game lists the default-selected pusher first and the
-    rest in cycle order, so cycling with C advances through the list.
-
-    Without ``groups`` we fall back to the numeric suffix order
-    (``#1 -> 0``, ``#2 -> 1``, ...), which matches every map we've
-    seen so far but isn't guaranteed by the spec.
-    """
-    if groups:
-        for idx, entry in enumerate(groups):
-            if isinstance(entry, dict) and entry.get("name") == char_name:
-                return idx
-    return _instance_index(char_name) - 1
-
-
-def _has_digit_key(char_name: str) -> bool:
-    cls = _move_class(char_name)
-    return cls in CHAR_TO_NUM and cls not in NON_PLAYABLE_CLASSES
-
-
-def _collect_ordered_chars(moves: list[str]) -> list[str]:
-    seen: set[str] = set()
-    ordered: list[str] = []
-    for move in moves:
-        if ":" not in move:
-            continue
-        char_name, _ = move.split(":", 1)
-        if char_name not in seen:
-            seen.add(char_name)
-            ordered.append(char_name)
-    return ordered
-
-
-def _pusher_z(frame: list) -> int | None:
-    """Return the z-coordinate of the pusher in a frame, or None."""
-    for obj in frame:
-        if obj.get("k") == "pusher":
-            p = obj.get("p") or []
-            if len(p) >= 3:
-                return p[2]
-    return None
-
-
-def move_deltas(moves: list[str], frames: list | None) -> dict[int, int]:
-    """Return {move_index: dz} for moves whose z changes on the next frame.
-
-    dz = z_after - z_before.  Positive = ascended, negative = fell.
-    Moves with no z change (or missing frames) are omitted.
-    """
-    if not frames or len(frames) < 2:
-        return {}
-
-    deltas: dict[int, int] = {}
-    limit = min(len(moves), len(frames) - 1)
-    for i in range(limit):
-        z_before = _pusher_z(frames[i])
-        z_after = _pusher_z(frames[i + 1])
-        if z_before is None or z_after is None:
-            continue
-        dz = z_after - z_before
-        if dz != 0:
-            deltas[i] = dz
-    return deltas
-
-
-def _default_selected_char(
-    moves: list[str], groups: list[dict] | None = None
-) -> str | None:
-    """Infer which pusher is selected by default at level start.
-
-    Two signals, in order of reliability:
-
-    1. ``groups[0].name`` from the map JSON.  The game lists the
-       default-selected pusher first; the other pushers follow in
-       cycle order.  This is the answer even when the first recorded
-       move addresses a *different* pusher (in which case a ``C``
-       press is required before the first action).
-
-    2. Fallback: ``moves[0]``'s character.  Correct only when the
-       solution happens to begin on the default pusher; used when
-       ``groups`` is absent (older payloads).
-
-    The earlier version of this function used ``moves[0]`` alone and
-    silently dropped the leading ``C`` whenever the solution began on
-    a non-default pusher.
-    """
-    if groups:
-        first = groups[0]
-        if isinstance(first, dict):
-            name = first.get("name")
-            if isinstance(name, str) and name:
-                return name
-    if not moves:
-        return None
-    first_move = moves[0]
-    if ":" not in first_move:
-        return None
-    return first_move.split(":", 1)[0]
-
-
-# --------------------------------------------------------------------------- #
-# Spawn detection
-# --------------------------------------------------------------------------- #
-
-def _actor_ids_in_frame(frame: list) -> set[int]:
-    """Collect the ``id`` values of every actor in a single frame."""
-    out: set[int] = set()
-    for obj in frame:
-        if isinstance(obj, dict):
-            oid = obj.get("id")
-            if isinstance(oid, int):
-                out.add(oid)
-    return out
-
-
-def _name_to_toid(groups: list[dict] | None) -> dict[str, int]:
-    out: dict[str, int] = {}
-    if not groups:
-        return out
-    for entry in groups:
-        if not isinstance(entry, dict):
-            continue
-        name = entry.get("name")
-        toid = entry.get("toid")
-        if isinstance(name, str) and isinstance(toid, int):
-            out[name] = toid
-    return out
-
-
-def _initial_actor_names(
-    groups: list[dict] | None,
-    frames: list | None,
-) -> set[str]:
-    """Return the set of actor names present in ``frames[0]``.
-
-    If ``frames`` is unavailable, fall back to the roster in ``groups``
-    (which lists every actor known to the recorder, initial or spawned).
-    Callers must treat a missing ``frames`` as "no spawn information".
-    """
-    if not frames:
-        return set()
-    if not groups:
-        return set()
-    initial_ids = _actor_ids_in_frame(frames[0])
-    if not initial_ids:
-        return set()
-    name_to_toid = _name_to_toid(groups)
-    return {
-        name for name, toid in name_to_toid.items()
-        if toid in initial_ids
-    }
-
-
-def detect_spawned_chars(
-    moves: list[str],
-    groups: list[dict] | None,
-    frames: list | None,
-) -> set[str]:
-    """Return names of characters that are driven in ``moves`` but not
-    present in ``frames[0]``, i.e. characters spawned mid-level.
-
-    Only meaningful when ``frames`` is available.  Without frames we
-    cannot know what was on the board at t=0, so we conservatively
-    return an empty set and treat every driven character as present
-    from the start.
-    """
-    if not frames:
-        return set()
-    initial = _initial_actor_names(groups, frames)
-    if not initial:
-        return set()
-    driven = {
-        m.split(":", 1)[0] for m in moves if ":" in m
-    }
-    return driven - initial
-
-
-def convert_moves(
-    moves: list[str],
-    level: str,
-    timing: dict | None = None,
-    deltas: dict[int, int] | None = None,
-    *,
-    groups: list[dict] | None = None,
-    default_char: str | None = None,
-    frames: list | None = None,
-) -> str:
-    if not moves:
-        return ""
-    deltas = deltas or {}
-
-    # A level "spawns" if any character the solution drives is not on
-    # the board at frames[0].  When that happens the game auto-selects
-    # newly spawned characters and the C-cycle roster changes as they
-    # appear; trying to C-cycle towards a pusher that is not yet on the
-    # board is meaningless and produces long runs of C.  In that case
-    # we drop C entirely and rely on the game's automatic selection.
-    spawned = detect_spawned_chars(moves, groups, frames)
-    use_cycle = not spawned
-
-    # Pure-digit fast path (no pushers, no spawns): emit digit keys
-    # directly, separated by spaces.  Kept as-is for unchanged levels.
-    all_playable = all(
-        _has_digit_key(m.split(":", 1)[0]) for m in moves if ":" in m
-    )
-    if use_cycle and all_playable:
-        result: list[str] = []
-        current_char: str | None = None
-        for i, move in enumerate(moves):
-            if ":" not in move:
-                continue
-            char_name, action = move.split(":", 1)
-            cls = _move_class(char_name)
-            key = CHAR_TO_NUM[cls]
-            target_idx = _instance_index(char_name)
-
-            if char_name != current_char:
-                is_first = not result
-                drop_first = is_first and target_idx == 1
-                if not drop_first:
-                    if result:
-                        result.append(" ")
-                    result.append(key)
-                current_char = char_name
-
-            dz = deltas.get(i)
-            if action == "T" and dz is not None:
-                result.append(elevator_wait(dz))
-            else:
-                result.append(
-                    DIR_TO_CHAR.get(
-                        action, action if action.isdigit() else "?"
-                    )
-                )
-                if dz is not None and dz < 0:
-                    result.append(fall_wait(dz))
-
-            if i < len(moves) - 1:
-                duration, extra = _timing_for_move(timing, i)
-                n_b = us_to_bs((duration or 0) + (extra or 0))
-                if n_b:
-                    result.append("B")
-        return collapse_long_waits("".join(result))
-
-    # ---- mixed level --------------------------------------------------
-    #
-    # Cases:
-    #   * use_cycle == False (spawns detected): never emit C.  Playable
-    #     digit classes still get a digit on change; everything else is
-    #     assumed selected automatically by the game.
-    #   * use_cycle == True: multiple characters exist from the start.
-    #     Pushers are reached via C; playable classes via their digit.
-
-    playable_chars = sorted({
-        m.split(":", 1)[0] for m in moves
-        if ":" in m and _has_digit_key(m.split(":", 1)[0])
-    })
-    pusher_instances = sorted(
-        {
-            m.split(":", 1)[0] for m in moves
-            if ":" in m
-            and _move_class(m.split(":", 1)[0]) in NON_PLAYABLE_CLASSES
-        },
-        key=_instance_index,
-    )
-    n_pushers = len(pusher_instances)
-
-    multi_playable = len(playable_chars) > 1
-    multi_pusher = n_pushers > 1
-
-    current_char: str | None = None
-    current_pusher_idx = 0
-
-    result: list[str] = []
-
-    for i, move in enumerate(moves):
-        if ":" not in move:
-            continue
-        char_name, action = move.split(":", 1)
-        cls = _move_class(char_name)
-
-        if cls in NON_PLAYABLE_CLASSES:
-            # Numbered pusher.  Only cycle when the level has multiple
-            # pushers present from the start.  If pushers spawn mid-level
-            # (use_cycle == False), the game selects them automatically;
-            # emitting C here would mis-select.
-            if use_cycle and multi_pusher and char_name in pusher_instances:
-                target = pusher_instances.index(char_name)
-                if target != current_pusher_idx:
-                    presses = (target - current_pusher_idx) % n_pushers
-                    if presses:
-                        result.append("C" * presses)
-                    current_pusher_idx = target
-        elif _has_digit_key(char_name):
-            # Playable digit class: press the digit only on change, and
-            # only if the level uses more than one such character.
-            if multi_playable and char_name != current_char:
-                result.append(CHAR_TO_NUM[cls])
-                current_char = char_name
-        # else: queen / scripted NPC -> never selected.
-
-        dz = deltas.get(i)
-        if action == "T" and dz is not None:
-            result.append(elevator_wait(dz))
-        else:
-            result.append(
-                DIR_TO_CHAR.get(
-                    action, action if action.isdigit() else "?"
-                )
-            )
-            if dz is not None and dz < 0:
-                result.append(fall_wait(dz))
-
-    return collapse_long_waits("".join(result))
-
-
-def _load_wt_table(path: Path) -> dict[str, tuple[str, str]]:
-    table: dict[str, tuple[str, str]] = {}
-    with open(path, newline="", encoding="utf-8") as fh:
-        for row in csv.reader(fh):
-            if len(row) >= 3:
-                table[row[0]] = (row[1], row[2])
-    return table
-
-
-def _build_record(
-    level: str,
-    area: str,
-    slug: str,
-    data: dict,
-    source_kind: str,
-    *,
-    info: bool = False,
-) -> dict:
-    moves = data.get("moves", [])
-    timing = data.get("timing") or {}
-    frames = data.get("frames") or []
-    groups = data.get("groups") or []
-    deltas = move_deltas(moves, frames)
-
-    if source_kind == "published":
-        json_url = PUBLISHED_BASE + "?site=sinkingstar&type=solution"
-    else:
-        json_url = SOLUTION_URL_FMT.format(slug=slug)
-
-    record = {
-        "name": level,
-        "note": " ".join(moves) if info else "",
-        "solution": convert_moves(
-            moves, level, timing,
-            deltas=deltas,
-            groups=groups,
-            frames=frames,
-        ),
-    }
-
-    if not info:
-        return record
-
-    record["url"] = f"{BASE}/areas/{area}/#{slug}"
-    record["json"] = json_url
-
-    if source_kind in ("published", "s"):
-        candidate = data.get("author")
-        if isinstance(candidate, dict) and candidate.get("displayName"):
-            record["author"] = candidate["displayName"]
-            if candidate.get("profileUrl"):
-                record["authorProfile"] = candidate["profileUrl"]
-
-    if source_kind == "published":
-        record["source"] = "published"
-        if data.get("id"):
-            record["post_id"] = data["id"]
-        if data.get("publishedAt"):
-            record["publishedAt"] = data["publishedAt"]
-        if data.get("checkedBy"):
-            record["checkedBy"] = data["checkedBy"]
-        ingame = data.get("inGame") or {}
-        if isinstance(ingame, dict) and ingame.get("checkedAt"):
-            record["inGameCheckedAt"] = ingame["checkedAt"]
-
-    for key in ("action_ticks", "frame_ticks", "input_delay_ticks"):
-        value = timing.get(key)
-        if value:
-            record[key] = ",".join(map(str, value))
-
-    return record
-
-
-def convert_cache_to_json(
-    *,
-    wt_path: Path,
-    out_path: Path,
-    prefer_community: bool = False,
-    info: bool = False,
-    stats: "CrawlStats | None" = None,
-) -> int:
-    if not wt_path.is_file():
-        raise FileNotFoundError(
-            f"mapping table not found: {wt_path}\n"
-            f"expected one row per puzzle: level_name,area_slug,puzzle_slug\n"
-            f"pass --wt PATH to point at it."
-        )
-
-    levels = _load_wt_table(wt_path)
-    levels_by_slug = {
-        slug: (name, (area, slug))
-        for name, (area, slug) in levels.items()
-    }
-
-    published = read_cached_published_entries()
-
-    records: list[dict] = []
-    by_name: dict[str, dict] = {}
-    # Track where each output record came from, per slug, so we can
-    # report the breakdown in the summary.
-    source_of: dict[str, str] = {}  # level name -> "s" | "published"
-    published_overlap = 0
-
-    def _upsert(
-        level: str, rec: dict, source: str
-    ) -> bool:
-        existing = by_name.get(level)
-        if existing is None:
-            records.append(rec)
-            by_name[level] = rec
-            source_of[level] = source
-            return True
-        if prefer_community:
-            records[records.index(existing)] = rec
-            by_name[level] = rec
-            source_of[level] = source
-            return True
-        return False
-
-    pub_added = pub_skipped_unmapped = 0
-    for entry in published:
-        pid = entry.get("puzzleId")
-        if not pid or pid not in levels_by_slug:
-            pub_skipped_unmapped += 1
-            continue
-        level, (area, slug) = levels_by_slug[pid]
-        rec = _build_record(level, area, slug, entry, "published", info=info)
-        current = source_of.get(level)
-        if current is not None and not prefer_community:
-            # published entry maps to a level that /s/ already filled;
-            # default policy discards it.
-            published_overlap += 1
-            continue
-        if _upsert(level, rec, "published"):
-            pub_added += 1
-
-    primary_found = primary_missing = 0
-    primary_missing_slugs: list[str] = []
-    for level, (area, slug) in levels.items():
-        path = solution_cache_path(slug)
-        try:
-            with open(path, encoding="utf-8") as fh:
-                data = json.load(fh)
-        except FileNotFoundError:
-            primary_missing += 1
-            primary_missing_slugs.append(slug)
-            continue
-        except Exception as exc:  # noqa: BLE001
-            log.warning("convert: unreadable %s (%s)", path, exc)
-            primary_missing += 1
-            primary_missing_slugs.append(slug)
-            continue
-        rec = _build_record(level, area, slug, data, "s", info=info)
-        existing = by_name.get(level)
-        if existing is None:
-            records.append(rec)
-            by_name[level] = rec
-            source_of[level] = "s"
-            primary_found += 1
-        elif not prefer_community:
-            records[records.index(existing)] = rec
-            by_name[level] = rec
-            source_of[level] = "s"
-            primary_found += 1
-        else:
-            primary_found += 1
-
-    records.sort(key=lambda r: r["name"])
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as fh:
-        json.dump(records, fh, indent=2)
-
-    # ---- source breakdown -------------------------------------------------
-    n_from_s = sum(1 for v in source_of.values() if v == "s")
-    n_from_pub = sum(1 for v in source_of.values() if v == "published")
-
-    log.info(
-        "converter: %d records written "
-        "(from /s/: %d, from published: %d, published overlap dropped: %d)",
-        len(records), n_from_s, n_from_pub, published_overlap,
-    )
-    log.info(
-        "converter: /s/ cache: %d found, %d missing "
-        "(published added %d, unmapped %d)",
-        primary_found, primary_missing, pub_added, pub_skipped_unmapped,
-    )
-
-    if stats is not None:
-        stats.out_total = len(records)
-        stats.out_from_s = n_from_s
-        stats.out_from_published = n_from_pub
-        stats.out_overlap_published = published_overlap
-        stats.out_missing = (
-            len(levels) - len(records)
-        )
-        # Split the missing ones by reason: map-data s:0, or /s/ 404.
-        missing_s0 = 0
-        missing_404 = 0
-        unresolved = set(stats.unresolved_solutions)
-        for level, (_area, slug) in levels.items():
-            if level in by_name:
-                continue
-            if slug in unresolved:
-                missing_404 += 1
-            else:
-                missing_s0 += 1
-        stats.out_missing_s0 = missing_s0
-        stats.out_missing_404 = missing_404
-
-    return len(records)
 
 
 # --------------------------------------------------------------------------- #
@@ -2187,33 +1426,6 @@ def main(argv: list[str] | None = None) -> int:
         "-v", "--verbose", action="store_true",
         help="show cache hits, retries, and 404 warnings",
     )
-    parser.add_argument(
-        "--convert-only", action="store_true",
-        help="skip the crawl; only rebuild the output file from cache",
-    )
-    parser.add_argument(
-        "--no-convert", action="store_true",
-        help="run the crawl but do not write the converted JSON",
-    )
-    parser.add_argument(
-        "--out", type=Path, default=SCRIPT_DIR / "solutions.json",
-        help="output JSON path for the converter "
-             "(default: solutions.json next to this script)",
-    )
-    parser.add_argument(
-        "--wt", type=Path, default=SCRIPT_DIR / "wt.txt",
-        help="mapping table (level_name,area_slug,puzzle_slug). "
-             "Default: wt.txt next to this script.",
-    )
-    parser.add_argument(
-        "--info", action="store_true",
-        help="emit full records (url, json, note, timing arrays, "
-             "source metadata); off by default",
-    )
-    parser.add_argument(
-        "--prefer-community", action="store_true",
-        help="prefer published solutions over /s/ primary solutions",
-    )
 
     args = parser.parse_args(argv)
 
@@ -2225,48 +1437,33 @@ def main(argv: list[str] | None = None) -> int:
     for noisy in ("urllib3", "requests", "charset_normalizer"):
         logging.getLogger(noisy).setLevel(logging.WARNING)
 
-    if args.convert_only and args.no_convert:
-        parser.error(
-            "--convert-only and --no-convert are mutually exclusive"
-        )
-
-    wt_path = args.wt.expanduser().resolve()
-    out_path = args.out.expanduser().resolve()
-    if not args.no_convert and not wt_path.is_file():
-        log.warning(
-            "mapping table not found yet: %s "
-            "(converter will fail unless --no-convert is used)",
-            wt_path,
-        )
-
     t0 = time.time()
     stats: CrawlStats | None = None
 
-    if not args.convert_only:
-        stop_evt = threading.Event()
-        hb_thread = None
-        if args.heartbeat > 0:
-            hb_thread = threading.Thread(
-                target=_heartbeat_loop,
-                args=(stop_evt, args.heartbeat, args.stall_warn),
-                daemon=True,
-                name="heartbeat",
-            )
-            hb_thread.start()
-        try:
-            stats = crawl(
-                workers=args.workers,
-                delay=args.delay,
-                refresh_published=args.refresh_published,
-                no_published=args.no_published,
-            )
-        except KeyboardInterrupt:
-            log.warning("interrupted by user")
-            return 130
-        finally:
-            stop_evt.set()
-            if hb_thread:
-                hb_thread.join(timeout=1.0)
+    stop_evt = threading.Event()
+    hb_thread = None
+    if args.heartbeat > 0:
+        hb_thread = threading.Thread(
+            target=_heartbeat_loop,
+            args=(stop_evt, args.heartbeat, args.stall_warn),
+            daemon=True,
+            name="heartbeat",
+        )
+        hb_thread.start()
+    try:
+        stats = crawl(
+            workers=args.workers,
+            delay=args.delay,
+            refresh_published=args.refresh_published,
+            no_published=args.no_published,
+        )
+    except KeyboardInterrupt:
+        log.warning("interrupted by user")
+        return 130
+    finally:
+        stop_evt.set()
+        if hb_thread:
+            hb_thread.join(timeout=1.0)
 
     rc = 0
     if stats and (
@@ -2275,26 +1472,8 @@ def main(argv: list[str] | None = None) -> int:
     ):
         rc = 1
 
-    if not args.no_convert:
-        try:
-            count = convert_cache_to_json(
-                wt_path=wt_path,
-                out_path=out_path,
-                prefer_community=args.prefer_community,
-                info=args.info,
-                stats=stats,
-            )
-            log.info("converted %d record(s) -> %s", count, out_path)
-        except FileNotFoundError as exc:
-            log.error("%s", exc)
-            rc = rc or 2
-        except KeyboardInterrupt:
-            return 130
-
     if stats is not None:
-        log.info(
-            stats.summary(prefer_community=args.prefer_community)
-        )
+        log.info(stats.summary())
 
     log.info("done in %.1fs", time.time() - t0)
     return rc
