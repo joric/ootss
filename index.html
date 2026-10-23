@@ -1646,15 +1646,22 @@ function drawMap() {
 
 
   // add toolbar
-  const ImmediateAction = L.Toolbar2.Action.extend({
+  const BaseAction = L.Toolbar2.Action.extend({
+    _createIcon(...args) {
+      const r = L.Toolbar2.Action.prototype._createIcon.apply(this, args);
+      L.DomEvent.on(this._link, 'click', L.DomEvent.preventDefault);
+      return r;
+    },
+  });
+
+  const ImmediateAction = BaseAction.extend({
     initialize(map) {
       L.Toolbar2.Action.prototype.initialize.call(this);
       this.disableTime = Date.now();
       map.on('click', () => this.disable());
     },
     enable() {
-      if (Date.now() - this.disableTime > 100)
-        L.Toolbar2.Action.prototype.enable.call(this);
+      if (Date.now() - this.disableTime > 100) L.Toolbar2.Action.prototype.enable.call(this);
     },
     disable() {
       if (this._enabled) this.disableTime = Date.now();
@@ -1662,7 +1669,7 @@ function drawMap() {
     },
   });
 
-  const ImmediateSubAction = L.Toolbar2.Action.extend({
+  const ImmediateSubAction = BaseAction.extend({
     initialize(map, myAction) {
       this.map = map;
       this.myAction = myAction;
