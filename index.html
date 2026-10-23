@@ -482,6 +482,11 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 
 .leaflet-grab { cursor: auto; }
 
+.leaflet-control-toolbar .leaflet-toolbar-1>li>.leaflet-toolbar-icon,
+.leaflet-control-toolbar .leaflet-toolbar-1>li>.leaflet-toolbar-icon:hover {
+  font-size: 13px;
+}
+
 </style>
 
 </head>
@@ -1641,96 +1646,63 @@ function drawMap() {
 
 
   // add toolbar
-  let ImmediateAction = L.Toolbar2.Action.extend({
-    initialize: function(map, myAction) {
+  const ImmediateAction = L.Toolbar2.Action.extend({
+    initialize(map) {
       L.Toolbar2.Action.prototype.initialize.call(this);
       this.disableTime = Date.now();
-      map.on('click', () => {
-        this.disable();
-      });
+      map.on('click', () => this.disable());
     },
-    enable: function() {
-      if (Date.now() - this.disableTime > 100) {
+    enable() {
+      if (Date.now() - this.disableTime > 100)
         L.Toolbar2.Action.prototype.enable.call(this);
-      }
     },
-    disable: function() {
-      if (this._enabled) {
-        this.disableTime = Date.now();
-      }
+    disable() {
+      if (this._enabled) this.disableTime = Date.now();
       L.Toolbar2.Action.prototype.disable.call(this);
     },
   });
 
-  let ImmediateSubAction = L.Toolbar2.Action.extend({
-    initialize: function(map, myAction) {
+  const ImmediateSubAction = L.Toolbar2.Action.extend({
+    initialize(map, myAction) {
       this.map = map;
       this.myAction = myAction;
       L.Toolbar2.Action.prototype.initialize.call(this);
     },
-    addHooks: function() {
+    addHooks() {
       this.myAction.disable();
-    }
+    },
   });
 
-  let cancelAction = ImmediateSubAction.extend({
-      options: {
-          toolbarIcon: {
-              html: '&times;',
-              tooltip: 'Cancel'
-          }
-      }
+  const cancelAction = ImmediateSubAction.extend({
+    options: { toolbarIcon: { html: '&times;', tooltip: 'Cancel' } },
   });
 
-  function action(tooltip, icon, actions) {
-    return ImmediateAction.extend({
-      options: {
-        toolbarIcon: {
-          html: icon,
-          tooltip: tooltip,
-        },
-        subToolbar: new L.Toolbar2({
-          actions: [...actions, cancelAction],
-        })
-      },
-    });
-  }
+  const action = (tooltip, html, actions) => ImmediateAction.extend({
+    options: {
+      toolbarIcon: { html, tooltip },
+      subToolbar: new L.Toolbar2({ actions: [...actions, cancelAction] }),
+    },
+  });
 
-  function subAction(html, callback, tooltip, keepOpen) {
-    return ImmediateSubAction.extend({
-      options: {
-          toolbarIcon: {
-              html: html,
-              tooltip: tooltip||html,
-          }
-      },
-      addHooks: function () {
-          if (typeof callback === 'function') {
-              callback();
-          }
-
-          if (!keepOpen) {
-            ImmediateSubAction.prototype.addHooks.call(this);
-          }
-      }
-    });
-  }
+  const subAction = (html, callback, tooltip, keepOpen) => ImmediateSubAction.extend({
+    options: { toolbarIcon: { html, tooltip: tooltip || html } },
+    addHooks() {
+      if (typeof callback === 'function') callback();
+      if (!keepOpen) ImmediateSubAction.prototype.addHooks.call(this);
+    },
+  });
 
   new L.Toolbar2.Control({
     position: 'bottomleft',
     actions: [
-      action('Settings', '&#x2699;&#xFE0F;',[
+      action('Settings', '&#x2699;&#xFE0F;', [
         subAction('Load Settings', loadLocalData),
         subAction('Save Settings', saveLocalData),
-        subAction('Reset Settings', ()=>{ if (confirm('Are you sure you want to reset settings?')) resetLocalData() } ),
+        subAction('Reset Settings', () => confirm('Are you sure you want to reset settings?') && resetLocalData()),
       ]),
-      action('Import Data', '&#x1F4C1;',[
-        subAction('Copy Save Path', () => {
-          copyToClipboard('%USERPROFILE%\\Saved Games\\Order of the Sinking Star');
-          return true;
-        }, 'Copy Save Path', true),  // <-- keepOpen passed as true
+      action('Import Data', '&#x1F4C1;', [
+        subAction('Copy Save Path', () => copyToClipboard('%USERPROFILE%\\Saved Games\\Order of the Sinking Star'), null, true),
         subAction('Import Save File', pickAndLoadSave),
-        //subAction('About the Map', ()=>window.open('https://github.com/joric/ootss/wiki/', '_blank')),
       ]),
     ],
   }).addTo(map);
