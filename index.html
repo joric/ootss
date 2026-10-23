@@ -1395,7 +1395,7 @@ function openPopup(e) {
   let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name}</b></a> in ${o.area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
   if (o.type == 'Freezer') {
-    header = `<div class="header"><b>Freezer</b> (${getCoordinates(marker)})</div>`;
+    header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
   }
 
 
@@ -1912,8 +1912,11 @@ function drawMap() {
 
       let marker = null;
 
-      if (o.type == 'Level_Entry' || o.type == 'Freezer') {
+      if (o.type == 'Level_Entry') {
         marker = customMarker(latlng, feature);
+      } else if (o.type == 'Freezer') {
+        // filter out non-unlocable freezers
+        if (nameLookup[o.entity_properties?.unlocked_by_id]) marker = customMarker(latlng, feature);
       } else if (o.type == 'Area_Pin' ) {
         const f2 = featureLookup[o.entity_properties?.map_label_marker_id];
         if (f2) {
