@@ -1121,17 +1121,27 @@ unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n))
 getMovesCount = s => unpackSolution(s).length;
 
 //convertSolution = s => unpackSolution(s).toLowerCase().match(/.{1,5}/g)?.join(' ')||'';
+//const convertSolution = s => packSolution(unpackSolution(s));
 //convertSolution = s => s
 
 const packSolution = s => s.replace(/(.)\1*/g, (match, char) => char + (match.length > 1 ? match.length : ''));
-
-//const convertSolution = s => packSolution(unpackSolution(s));
-
-//const convertSolution = s => s;
+//const convertSolution = s => { return s.split(' ').map(packSolution).join(' '); }
 
 const convertSolution = s => {
-  return s.split(' ').map(packSolution).join(' ');
-}
+  return s
+    .split(' ')
+    .map(segment => {
+      // Split into: [plain, macro, plain, macro, ..., plain]
+      // Even indices are plain text (to compress);
+      // odd indices are `_..._` macros (to keep verbatim).
+      const parts = segment.split(/(_[^_]*_)/g);
+      return parts
+        .map((part, i) => (i % 2 === 1 ? part : packSolution(part)))
+        .join('');
+    })
+    .join(' ');
+};
+
 
 
 function getCentroidRaw2(points) {

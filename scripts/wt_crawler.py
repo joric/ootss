@@ -1285,7 +1285,10 @@ def stage_solutions(
 # Converter
 # --------------------------------------------------------------------------- #
 
-# Classes that map to a real playable character slot number (1..9/C).
+# Classes that map to a real playable character slot number (1..9).
+# NOTE: "queen" is intentionally absent — C is the cycle toggle, not a
+# queen key.  Queen is reached only by cycling if she appears in the map
+# roster, and in practice she never does.
 CHAR_TO_NUM = {
     "warrior": "1",
     "thief": "2",
@@ -1295,12 +1298,10 @@ CHAR_TO_NUM = {
     "druid": "6",
     "beamer": "8",
     "trader": "9",
-    "queen": "C",
 }
 
-# "pusher" has no fixed character slot: the same pusher action can be
-# performed by warrior / trader / etc., so it cannot be selected with a
-# digit.  If any move uses it, the whole level falls back to C cycling.
+# Numbered pushers are selectable units: the player cycles among the
+# pusher instances with C.  A pusher has no fixed digit slot.
 NON_PLAYABLE_CLASSES = {"pusher"}
 
 
@@ -1330,6 +1331,51 @@ WAIT_MIN_B = 4
 WAIT_MAX_B = 8
 WAIT_MAX_LEVEL = 2         # |dz| at which the wait saturates
 ELEVATOR_PRESS_CHAR = "V"
+
+# --- Wait encoding ---------------------------------------------------------
+#
+# A single "B" on the wire is a real 0.25 s wait.  That is the value the
+# game itself uses for the ``tick`` action.
+#
+# Long runs of B, however, are NOT meant to be read as ``n * 0.25 s``.
+# They come from solution macros like ``queen:wait`` which do not map
+# 1:1 onto a single B.  Empirically, a run of 260 B's corresponds to
+# ~110 s of wall time, i.e. ~0.42 s per B when the run is long.  This
+# only matters for ``collapse_long_waits``: any B run *longer than one
+# second of real wall time* is emitted as a single ``_<seconds>_``
+# macro computed with the long-run quantum.
+#
+# So:
+#   * short runs (<= 1 s at the 0.25 s B quantum): left as literal Bs
+#   * long runs  (>  1 s at the 0.25 s B quantum): replaced with
+#     ``_<n * LONG_RUN_QUANTUM_US / 1e6>_``
+#
+# This keeps short waits exact and gives the long "wait a couple of
+# minutes" blocks the correct duration.
+QUANTUM_US = 250_000            # one literal B
+LONG_RUN_QUANTUM_US = 423_000   # 260 B -> 109.98 s -> "_110.0_"
+MAX_LITERAL_WAIT_US = 1_000_000  # 1 s: anything longer becomes _xx.x_
+_B_RUN_RE = re.compile(r"B+")
+
+
+def collapse_long_waits(s: str) -> str:
+    """Collapse runs of B whose real duration exceeds 1 second.
+
+    The threshold is evaluated with the literal-B quantum (0.25 s);
+    the *replacement* value is computed with the long-run quantum
+    (0.423 s), because long runs come from ``wait`` macros whose
+    per-B duration differs from the game's raw tick.
+    """
+    threshold_b = int(MAX_LITERAL_WAIT_US / QUANTUM_US)  # 4
+
+    def _repl(m: "re.Match[str]") -> str:
+        n = len(m.group(0))
+        if n <= threshold_b:
+            return m.group(0)
+        secs = n * LONG_RUN_QUANTUM_US / 1_000_000
+        return f"_{secs:.1f}_"
+
+    return _B_RUN_RE.sub(_repl, s)
 
 
 def _wait_bs(levels: int) -> int:
@@ -1366,7 +1412,6 @@ def elevator_wait(dz: int) -> str:
     return ("B" * pre) + ELEVATOR_PRESS_CHAR + ("B" * post)
 
 
-QUANTUM_US = 150_000
 MIN_EMIT_US = 150_000
 
 
@@ -1505,6 +1550,83 @@ def _default_selected_char(
     return first_move.split(":", 1)[0]
 
 
+# --------------------------------------------------------------------------- #
+# Spawn detection
+# --------------------------------------------------------------------------- #
+
+def _actor_ids_in_frame(frame: list) -> set[int]:
+    """Collect the ``id`` values of every actor in a single frame."""
+    out: set[int] = set()
+    for obj in frame:
+        if isinstance(obj, dict):
+            oid = obj.get("id")
+            if isinstance(oid, int):
+                out.add(oid)
+    return out
+
+
+def _name_to_toid(groups: list[dict] | None) -> dict[str, int]:
+    out: dict[str, int] = {}
+    if not groups:
+        return out
+    for entry in groups:
+        if not isinstance(entry, dict):
+            continue
+        name = entry.get("name")
+        toid = entry.get("toid")
+        if isinstance(name, str) and isinstance(toid, int):
+            out[name] = toid
+    return out
+
+
+def _initial_actor_names(
+    groups: list[dict] | None,
+    frames: list | None,
+) -> set[str]:
+    """Return the set of actor names present in ``frames[0]``.
+
+    If ``frames`` is unavailable, fall back to the roster in ``groups``
+    (which lists every actor known to the recorder, initial or spawned).
+    Callers must treat a missing ``frames`` as "no spawn information".
+    """
+    if not frames:
+        return set()
+    if not groups:
+        return set()
+    initial_ids = _actor_ids_in_frame(frames[0])
+    if not initial_ids:
+        return set()
+    name_to_toid = _name_to_toid(groups)
+    return {
+        name for name, toid in name_to_toid.items()
+        if toid in initial_ids
+    }
+
+
+def detect_spawned_chars(
+    moves: list[str],
+    groups: list[dict] | None,
+    frames: list | None,
+) -> set[str]:
+    """Return names of characters that are driven in ``moves`` but not
+    present in ``frames[0]``, i.e. characters spawned mid-level.
+
+    Only meaningful when ``frames`` is available.  Without frames we
+    cannot know what was on the board at t=0, so we conservatively
+    return an empty set and treat every driven character as present
+    from the start.
+    """
+    if not frames:
+        return set()
+    initial = _initial_actor_names(groups, frames)
+    if not initial:
+        return set()
+    driven = {
+        m.split(":", 1)[0] for m in moves if ":" in m
+    }
+    return driven - initial
+
+
 def convert_moves(
     moves: list[str],
     level: str,
@@ -1513,61 +1635,48 @@ def convert_moves(
     *,
     groups: list[dict] | None = None,
     default_char: str | None = None,
+    frames: list | None = None,
 ) -> str:
     if not moves:
         return ""
-
     deltas = deltas or {}
 
-    needs_cycle = not all(
-        _has_digit_key(m.split(":", 1)[0])
-        for m in moves
-        if ":" in m
+    # A level "spawns" if any character the solution drives is not on
+    # the board at frames[0].  When that happens the game auto-selects
+    # newly spawned characters and the C-cycle roster changes as they
+    # appear; trying to C-cycle towards a pusher that is not yet on the
+    # board is meaningless and produces long runs of C.  In that case
+    # we drop C entirely and rely on the game's automatic selection.
+    spawned = detect_spawned_chars(moves, groups, frames)
+    use_cycle = not spawned
+
+    # Pure-digit fast path (no pushers, no spawns): emit digit keys
+    # directly, separated by spaces.  Kept as-is for unchanged levels.
+    all_playable = all(
+        _has_digit_key(m.split(":", 1)[0]) for m in moves if ":" in m
     )
-
-    result: list[str] = []
-
-    if needs_cycle:
-        # Cycle length = max pusher index seen in moves, extended to
-        # cover any extra pushers in the map roster.  Using groups when
-        # present makes n exact even if a pusher never appears in the
-        # move list (the C cycle still steps through it).
-        n = 1
-        for move in moves:
-            if ":" in move:
-                idx = _instance_index(move.split(":", 1)[0])
-                if idx > n:
-                    n = idx
-        if groups:
-            n = max(n, len(groups))
-
-        # Seed current_slot from the default-selected pusher.  groups[0]
-        # is authoritative; moves[0] is a fallback for payloads without
-        # groups.  Seeding from the wrong pusher silently drops the
-        # leading C when the solution begins on a non-default one.
-        if default_char is not None:
-            current_slot = _cycle_slot(default_char, groups) % n
-        else:
-            inferred = _default_selected_char(moves, groups)
-            current_slot = (
-                _cycle_slot(inferred, groups) % n if inferred else 0
-            )
-
+    if use_cycle and all_playable:
+        result: list[str] = []
+        current_char: str | None = None
         for i, move in enumerate(moves):
             if ":" not in move:
                 continue
             char_name, action = move.split(":", 1)
-            target_slot = _cycle_slot(char_name, groups) % n
+            cls = _move_class(char_name)
+            key = CHAR_TO_NUM[cls]
+            target_idx = _instance_index(char_name)
 
-            if target_slot != current_slot:
-                presses = (target_slot - current_slot) % n
-                if presses:
-                    result.append("C" * presses)
-                current_slot = target_slot
+            if char_name != current_char:
+                is_first = not result
+                drop_first = is_first and target_idx == 1
+                if not drop_first:
+                    if result:
+                        result.append(" ")
+                    result.append(key)
+                current_char = char_name
 
             dz = deltas.get(i)
             if action == "T" and dz is not None:
-                # The V press lives inside the elevator macro.
                 result.append(elevator_wait(dz))
             else:
                 result.append(
@@ -1578,25 +1687,69 @@ def convert_moves(
                 if dz is not None and dz < 0:
                     result.append(fall_wait(dz))
 
-        return "".join(result)
+            if i < len(moves) - 1:
+                duration, extra = _timing_for_move(timing, i)
+                n_b = us_to_bs((duration or 0) + (extra or 0))
+                if n_b:
+                    result.append("B")
+        return collapse_long_waits("".join(result))
+
+    # ---- mixed level --------------------------------------------------
+    #
+    # Cases:
+    #   * use_cycle == False (spawns detected): never emit C.  Playable
+    #     digit classes still get a digit on change; everything else is
+    #     assumed selected automatically by the game.
+    #   * use_cycle == True: multiple characters exist from the start.
+    #     Pushers are reached via C; playable classes via their digit.
+
+    playable_chars = sorted({
+        m.split(":", 1)[0] for m in moves
+        if ":" in m and _has_digit_key(m.split(":", 1)[0])
+    })
+    pusher_instances = sorted(
+        {
+            m.split(":", 1)[0] for m in moves
+            if ":" in m
+            and _move_class(m.split(":", 1)[0]) in NON_PLAYABLE_CLASSES
+        },
+        key=_instance_index,
+    )
+    n_pushers = len(pusher_instances)
+
+    multi_playable = len(playable_chars) > 1
+    multi_pusher = n_pushers > 1
 
     current_char: str | None = None
+    current_pusher_idx = 0
+
+    result: list[str] = []
+
     for i, move in enumerate(moves):
         if ":" not in move:
             continue
         char_name, action = move.split(":", 1)
         cls = _move_class(char_name)
-        key = CHAR_TO_NUM[cls]
-        target_idx = _instance_index(char_name)
 
-        if char_name != current_char:
-            is_first = not result
-            drop_first = is_first and target_idx == 1
-            if not drop_first:
-                if result:
-                    result.append(" ")
-                result.append(key)
-            current_char = char_name
+        if cls in NON_PLAYABLE_CLASSES:
+            # Numbered pusher.  Only cycle when the level has multiple
+            # pushers present from the start.  If pushers spawn mid-level
+            # (use_cycle == False), the game selects them automatically;
+            # emitting C here would mis-select.
+            if use_cycle and multi_pusher and char_name in pusher_instances:
+                target = pusher_instances.index(char_name)
+                if target != current_pusher_idx:
+                    presses = (target - current_pusher_idx) % n_pushers
+                    if presses:
+                        result.append("C" * presses)
+                    current_pusher_idx = target
+        elif _has_digit_key(char_name):
+            # Playable digit class: press the digit only on change, and
+            # only if the level uses more than one such character.
+            if multi_playable and char_name != current_char:
+                result.append(CHAR_TO_NUM[cls])
+                current_char = char_name
+        # else: queen / scripted NPC -> never selected.
 
         dz = deltas.get(i)
         if action == "T" and dz is not None:
@@ -1610,13 +1763,7 @@ def convert_moves(
             if dz is not None and dz < 0:
                 result.append(fall_wait(dz))
 
-        if i < len(moves) - 1:
-            duration, extra = _timing_for_move(timing, i)
-            n_b = us_to_bs((duration or 0) + (extra or 0))
-            if n_b:
-                result.append("B")
-
-    return "".join(result)
+    return collapse_long_waits("".join(result))
 
 
 def _load_wt_table(path: Path) -> dict[str, tuple[str, str]]:
@@ -1652,7 +1799,10 @@ def _build_record(
         "name": level,
         "note": " ".join(moves) if info else "",
         "solution": convert_moves(
-            moves, level, timing, deltas=deltas, groups=groups,
+            moves, level, timing,
+            deltas=deltas,
+            groups=groups,
+            frames=frames,
         ),
     }
 
