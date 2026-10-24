@@ -2012,10 +2012,22 @@ function drawMap() {
     searchLayer = L.layerGroup();
     syncSearchLayer();
 
-    searchControl = new L.Control.Search({propertyName: 'searchText', initial: false, layer: searchLayer, hideMarkerOnCollapse: true }).addTo(map);
+    searchControl = new L.Control.Search({
+      propertyName: 'searchText',
+      initial: false,
+      layer: searchLayer,
+      hideMarkerOnCollapse: true,
+      marker: {
+        icon: false,
+        circle: false,
+      },
+    }).addTo(map);
 
     // switch base layer upon search
-    searchControl.on('search:locationfound', e=>setBaseLayer(getBaseLayer(e.layer.feature.geometry.coordinates[2])));
+    searchControl.on('search:locationfound', e=>{
+      setBaseLayer(getBaseLayer(e.layer.feature.geometry.coordinates[2]));
+      focusMarkerByName(e.layer.feature.properties.name);
+    });
 
     const search = document.querySelector('.leaflet-control-search');
     const label = document.createElement('div');
