@@ -1500,70 +1500,10 @@ const hp = (() => {
   const img = el.querySelector('img');
   const ttl = el.querySelector('.hp-title');
 
-  const MAX_CACHE = 20;               // ~4-8 MB of decoded WebP
-  const cache = new Map();            // name -> HTMLImageElement (insertion-ordered)
-  const pending = new Map();          // name -> Promise<HTMLImageElement>
-
   let showT = null, hideT = null;
   let cur = null;
   let frozen = false;
   let gen = 0;
-
-  // --- cache ------------------------------------------------------
-
-  function getImage(name) {
-    let im = cache.get(name);
-    if (im) {
-      cache.delete(name);
-      cache.set(name, im);              // touch: move to end
-      return im;
-    }
-    im = new Image();
-    im.decoding = 'async';
-    im.src = `${image_base}/images/levels/${name}.webp`;
-    cache.set(name, im);
-    if (cache.size > MAX_CACHE) {
-      const oldest = cache.keys().next().value;
-      if (oldest !== cur) {
-        cache.delete(oldest);
-      } else {
-        // rotate so the oldest *other* entry gets evicted
-        const v = cache.get(oldest);
-        cache.delete(oldest);
-        cache.set(oldest, v);
-        const next = cache.keys().next().value;
-        if (next !== cur) cache.delete(next);
-      }
-    }
-    return im;
-  }
-
-  function whenReady(name) {
-    const im = getImage(name);
-    if (im.complete && im.naturalWidth) return Promise.resolve(im);
-    let p = pending.get(name);
-    if (p) return p;
-    p = new Promise((resolve, reject) => {
-      const done = () => { pending.delete(name); resolve(im); };
-      const fail = () => { pending.delete(name); reject(new Error('load failed')); };
-      if (im.decode) {
-        im.decode().then(done, () => {
-          if (im.complete && im.naturalWidth) done(); else fail();
-        });
-      } else {
-        im.addEventListener('load', done, { once: true });
-        im.addEventListener('error', fail, { once: true });
-      }
-    });
-    pending.set(name, p);
-    return p;
-  }
-
-  // Kick off the load; ignore result. Called on hover-in.
-  function preload(name) {
-    if (!imageList[name]) return;
-    whenReady(name).catch(() => {});
-  }
 
   // --- geometry ---------------------------------------------------
 
@@ -1586,7 +1526,7 @@ const hp = (() => {
 
   // --- show / hide ------------------------------------------------
 
-  async function show(name, title, x, y) {
+  function show(name, title, x, y) {
     const myGen = ++gen;
     cur = name;
     ttl.textContent = title || name;
@@ -1594,11 +1534,8 @@ const hp = (() => {
     place(x, y);
     frozen = true;
 
-    let im;
-    try { im = await whenReady(name); } catch { return; }
-    if (myGen !== gen || cur !== name) return;
-
-    if (img.getAttribute('src') !== im.src) img.src = im.src;
+    const src = `${image_base}/images/levels/${name}.webp`;
+    if (img.getAttribute('src') !== src) img.src = src;
     el.classList.add('visible');
   }
 
@@ -1609,6 +1546,8 @@ const hp = (() => {
     el.classList.remove('visible');
   }
 
+  // --- events -----------------------------------------------------
+
   el.addEventListener('mouseenter', () => clearTimeout(hideT));
   el.addEventListener('mouseleave', () => {
     clearTimeout(hideT);
@@ -1618,10 +1557,11 @@ const hp = (() => {
   const popupOpen = (m) => !!(m && m.isPopupOpen && m.isPopupOpen());
 
   return {
-    // pointer enters a marker: start loading immediately, show after a beat
     enter(name, title, x, y, marker) {
       if (popupOpen(marker)) return;
-      preload(name);                    // fetch/decode starts NOW
+
+      // start the load now; the 1500ms delay is the load window
+      if (imageList[name]) new Image().src = `${image_base}/images/levels/${name}.webp`;
 
       const g = ++gen;
       clearTimeout(hideT);
@@ -1629,7 +1569,7 @@ const hp = (() => {
       showT = setTimeout(() => {
         if (g !== gen || popupOpen(marker)) return;
         show(name, title, x, y);
-      }, 1000);
+      }, 1500);
     },
 
     move(x, y, marker) {
