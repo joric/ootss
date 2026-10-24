@@ -1560,7 +1560,7 @@ const hp = (() => {
     enter(name, title, x, y, marker) {
       if (popupOpen(marker)) return;
 
-      // start the load now; the 1500ms delay is the load window
+      // start the load now; the 1000ms delay is the load window
       if (imageList[name]) new Image().src = `${image_base}/images/levels/${name}.webp`;
 
       const g = ++gen;
@@ -1569,7 +1569,7 @@ const hp = (() => {
       showT = setTimeout(() => {
         if (g !== gen || popupOpen(marker)) return;
         show(name, title, x, y);
-      }, 1500);
+      }, 1000);
     },
 
     move(x, y, marker) {
