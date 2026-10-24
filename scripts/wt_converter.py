@@ -438,6 +438,12 @@ def convert_moves(
                     current_char = char_name
         elif _has_digit_key(char_name):
             if char_name != current_char:
+                # Separate a digit key from any preceding movement so the
+                # game parser treats the digit as a character selection,
+                # not as a direction.  No leading space when the digit is
+                # the very first emitted token.
+                if result:
+                    result.append(" ")
                 result.append(CHAR_TO_NUM[cls])
                 current_char = char_name
                 # A digit press also moves the game's selection pointer;
