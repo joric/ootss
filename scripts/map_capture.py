@@ -12,13 +12,16 @@ What it does to the running game (restart the game afterwards to undo it all):
   - renders at the tile resolution, without HUD, and saves one game screenshot per tile
 
 Usage (game running on the overworld, any save you don't care about):
-  python sinking_star_map_capture.py [--px 128] [--tiles 8 8] [--out map_tiles] [--stitch-only]
+  python sinking_star_map_capture.py [--px 128] [--tiles 8 8] [--out map_tiles] [--stitch-only] [--warmup]
   python sinking_star_map_capture.py --make-signatures [--exe PATH]
   python sinking_star_map_capture.py --find-addresses [--exe PATH]
 
   --px      pixels per grid square in the final map
   --tiles   tile columns and rows; each tile must be a whole number of pixels
   --out     folder for the tiles and the stitched map
+  --warmup  discard a throwaway first frame on every tile (slower, more reliable)
+  --settle  seconds to wait after a camera move before screenshotting (default 0.75)
+  --first-settle  seconds to wait after the first camera move / a resolution change (default 3.0)
   --exe     exe for the two options below (default: the running game's)
   --make-signatures  from an exe whose addresses are known (BUILDS or a saved resolution), save
             code patterns that find the globals again in later builds
@@ -1012,7 +1015,7 @@ def render_size(game):
 
 def set_resolution(game, width, height):
     if render_size(game) == (width, height):
-        return
+        return False
     a = game.addr
     game.put_s64(game.va(a.CUSTOM_WIDTH), width)
     game.put_s64(game.va(a.CUSTOM_HEIGHT), height)
@@ -1021,10 +1024,14 @@ def set_resolution(game, width, height):
     swapchain = game.u64(game.va(a.SWAPCHAIN))
     game.put_s64(swapchain + 8, 0)
     user32.PostMessageW(game.u64(swapchain), WM_SIZE, 0, 0)
+    # Wait for the render target to actually resize, then let it settle.
+    start = time.time()
+    while render_size(game) != (width, height):
+        if time.time() - start > 30:
+            raise RuntimeError('render target did not resize to %dx%d' % (width, height))
+        time.sleep(0.1)
     time.sleep(2.0)
-    actual = render_size(game)
-    if actual != (width, height):
-        raise RuntimeError('render target is %s, wanted %dx%d' % (actual, width, height))
+    return True
 
 
 def shoot(game, screenshot_dir, out_path):
@@ -1062,23 +1069,48 @@ def tile_size(squares_x, squares_y, tiles_x, tiles_y, px_per_square):
     return width_squares, height_squares, int(width_px), int(height_px)
 
 
-def shoot_tiles(game, world, px_per_square, tiles_x, tiles_y, out_dir):
+def shoot_tile(game, screenshot_dir, out_path, warmup):
+    """Take one tile. With warmup, the first frame is thrown away and the second kept."""
+    if warmup:
+        warmup_path = out_path + '.warmup.png'
+        shoot(game, screenshot_dir, warmup_path)
+        shoot(game, screenshot_dir, out_path)
+        try:
+            os.remove(warmup_path)
+        except OSError:
+            pass
+    else:
+        shoot(game, screenshot_dir, out_path)
+
+
+def shoot_tiles(game, world, px_per_square, tiles_x, tiles_y, out_dir, settle=0.75, first_settle=3.0, warmup_all=False):
     width_squares, height_squares, width_px, height_px = tile_size(world.squares_x, world.squares_y, tiles_x, tiles_y, px_per_square)
     screenshot_dir = os.path.join(os.path.dirname(game.exe_path), 'screenshots')
     os.makedirs(out_dir, exist_ok=True)
-    set_resolution(game, width_px, height_px)
+    resized = set_resolution(game, width_px, height_px)
+    first_tile = True
     for row in range(tiles_y):
         for column in range(tiles_x):
             out_path = tile_path(out_dir, row, column)
             if os.path.exists(out_path):
+                first_tile = False
                 continue
             # Row 0 is the north (top) row.
             center_x = world.world_x0 + (column + 0.5) * width_squares
             center_y = world.world_y0 + world.squares_y - (row + 0.5) * height_squares
             world.place_camera(center_x, center_y, height_squares)
-            time.sleep(0.5)
-            shoot(game, screenshot_dir, out_path)
-            print('tile', row, column, 'at', round(center_x, 3), round(center_y, 3), flush=True)
+            # First frame after a camera move (and especially the very first tile, or the
+            # first frame after a resolution change) needs extra time to render.
+            needs_warmup = warmup_all or first_tile or resized
+            if needs_warmup:
+                time.sleep(first_settle)
+                resized = False
+            else:
+                time.sleep(settle)
+            shoot_tile(game, screenshot_dir, out_path, warmup=needs_warmup)
+            print('tile', row, column, 'at', round(center_x, 3), round(center_y, 3),
+                  ('(warmup)' if needs_warmup else ''), flush=True)
+            first_tile = False
 
 
 def stitch(squares_x, squares_y, px_per_square, tiles_x, tiles_y, out_dir):
@@ -1103,6 +1135,12 @@ def main():
     parser.add_argument('--tiles', type=int, nargs=2, default=(8, 8), metavar=('COLUMNS', 'ROWS'))
     parser.add_argument('--out', default='map_tiles')
     parser.add_argument('--stitch-only', action='store_true')
+    parser.add_argument('--warmup', action='store_true',
+                        help='discard a throwaway first frame on every tile (slower, more reliable)')
+    parser.add_argument('--settle', type=float, default=0.75,
+                        help='seconds to wait after a camera move before screenshotting (default 0.75)')
+    parser.add_argument('--first-settle', type=float, default=3.0,
+                        help='seconds to wait after the first camera move / a resolution change (default 3.0)')
     parser.add_argument('--exe', help="exe to analyse for --make-signatures / --find-addresses (default: the running game's)")
     parser.add_argument('--make-signatures', action='store_true', help='save patterns that find the globals in later builds')
     parser.add_argument('--find-addresses', action='store_true', help='resolve and print the globals of an exe; the game is not touched')
@@ -1130,7 +1168,8 @@ def main():
         world.draw_all_wrap_copies()
         world.set_shadow_distance(CAMERA_HEIGHT + 200)
         freeze_and_force_detail(game)
-        shoot_tiles(game, world, args.px, tiles_x, tiles_y, args.out)
+        shoot_tiles(game, world, args.px, tiles_x, tiles_y, args.out,
+                    settle=args.settle, first_settle=args.first_settle, warmup_all=args.warmup)
     stitch(world.squares_x, world.squares_y, args.px, tiles_x, tiles_y, args.out)
 
 
