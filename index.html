@@ -40,7 +40,7 @@
   position: fixed;
   z-index: 9998;
   pointer-events: none;
-  display: none;
+  display: block;
   background: #000;
   border: 2px solid #fff;
   border-radius: 6px;
@@ -48,23 +48,34 @@
   overflow: hidden;
   aspect-ratio: 16 / 9;
   width: min(800px, 92vw);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease, visibility 0s linear 250ms;
 }
+
 #hoverPreview.visible {
-  display: block;
-  pointer-events: auto;   /* allow hover / selection / copy */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 250ms ease, visibility 0s;
 }
+
 #hoverPreview img {
   display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  user-select: text;      /* allow selecting */
+  user-select: text;
   -webkit-user-drag: none;
 }
 
 #hoverPreview .hp-title {
   position: absolute;
-  left: 0; top: 0;
+  left: 0;
+  top: 0;
+  z-index: 1;
   padding: 6px 10px;
   color: #fff;
   font: 14px/1.3 sans-serif;
@@ -73,8 +84,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   pointer-events: none;
-  text-shadow:  0 0 2px black, 0 0 4px black, 0 0 8px black, 0 0 16px black;
+  text-shadow: 0 0 2px black, 0 0 4px black, 0 0 8px black, 0 0 16px black;
 }
+
 
 html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hidden; }
 
@@ -1487,10 +1499,73 @@ const hp = (() => {
   const el  = document.getElementById('hoverPreview');
   const img = el.querySelector('img');
   const ttl = el.querySelector('.hp-title');
-  const cache = new Map();
-  let showT = null, hideT = null, cur = null;
+
+  const MAX_CACHE = 20;               // ~4-8 MB of decoded WebP
+  const cache = new Map();            // name -> HTMLImageElement (insertion-ordered)
+  const pending = new Map();          // name -> Promise<HTMLImageElement>
+
+  let showT = null, hideT = null;
+  let cur = null;
   let frozen = false;
   let gen = 0;
+
+  // --- cache ------------------------------------------------------
+
+  function getImage(name) {
+    let im = cache.get(name);
+    if (im) {
+      cache.delete(name);
+      cache.set(name, im);              // touch: move to end
+      return im;
+    }
+    im = new Image();
+    im.decoding = 'async';
+    im.src = `${image_base}/images/levels/${name}.webp`;
+    cache.set(name, im);
+    if (cache.size > MAX_CACHE) {
+      const oldest = cache.keys().next().value;
+      if (oldest !== cur) {
+        cache.delete(oldest);
+      } else {
+        // rotate so the oldest *other* entry gets evicted
+        const v = cache.get(oldest);
+        cache.delete(oldest);
+        cache.set(oldest, v);
+        const next = cache.keys().next().value;
+        if (next !== cur) cache.delete(next);
+      }
+    }
+    return im;
+  }
+
+  function whenReady(name) {
+    const im = getImage(name);
+    if (im.complete && im.naturalWidth) return Promise.resolve(im);
+    let p = pending.get(name);
+    if (p) return p;
+    p = new Promise((resolve, reject) => {
+      const done = () => { pending.delete(name); resolve(im); };
+      const fail = () => { pending.delete(name); reject(new Error('load failed')); };
+      if (im.decode) {
+        im.decode().then(done, () => {
+          if (im.complete && im.naturalWidth) done(); else fail();
+        });
+      } else {
+        im.addEventListener('load', done, { once: true });
+        im.addEventListener('error', fail, { once: true });
+      }
+    });
+    pending.set(name, p);
+    return p;
+  }
+
+  // Kick off the load; ignore result. Called on hover-in.
+  function preload(name) {
+    if (!imageList[name]) return;
+    whenReady(name).catch(() => {});
+  }
+
+  // --- geometry ---------------------------------------------------
 
   function size() {
     const w = Math.min(800, innerWidth * 0.92);
@@ -1509,62 +1584,65 @@ const hp = (() => {
     el.style.top  = Math.max(12, T) + 'px';
   }
 
-  function get(name) {
-    let im = cache.get(name);
-    if (!im) {
-      im = new Image();
-      im.src = `${image_base}/images/levels/${name}.webp`;
-      cache.set(name, im);
-    }
-    return im;
-  }
+  // --- show / hide ------------------------------------------------
 
-  function show(name, title, x, y) {
+  async function show(name, title, x, y) {
+    const myGen = ++gen;
     cur = name;
     ttl.textContent = title || name;
     img.title = title || name;
-    const im = get(name);
-    const reveal = () => { if (cur === name) img.src = im.src; };
-    if (im.complete && im.naturalWidth) reveal();
-    else { img.removeAttribute('src'); im.onload = reveal; }
     place(x, y);
     frozen = true;
+
+    let im;
+    try { im = await whenReady(name); } catch { return; }
+    if (myGen !== gen || cur !== name) return;
+
+    if (img.getAttribute('src') !== im.src) img.src = im.src;
     el.classList.add('visible');
   }
 
   function hide() {
     cur = null;
     frozen = false;
+    gen++;
     el.classList.remove('visible');
   }
 
-  el.addEventListener('mouseenter', () => { clearTimeout(hideT); });
+  el.addEventListener('mouseenter', () => clearTimeout(hideT));
   el.addEventListener('mouseleave', () => {
     clearTimeout(hideT);
-    hideT = setTimeout(hide, 150);
+    hideT = setTimeout(hide, 180);
   });
 
   const popupOpen = (m) => !!(m && m.isPopupOpen && m.isPopupOpen());
 
   return {
-    // marker is passed in; only skip if THIS marker's popup is open
+    // pointer enters a marker: start loading immediately, show after a beat
     enter(name, title, x, y, marker) {
       if (popupOpen(marker)) return;
+      preload(name);                    // fetch/decode starts NOW
+
       const g = ++gen;
-      clearTimeout(hideT); clearTimeout(showT);
+      clearTimeout(hideT);
+      clearTimeout(showT);
       showT = setTimeout(() => {
         if (g !== gen || popupOpen(marker)) return;
         show(name, title, x, y);
-      }, 750);
+      }, 500);
     },
+
     move(x, y, marker) {
       if (popupOpen(marker)) return;
-      if (cur && !frozen) place(x, y);
+      if (el.classList.contains('visible') && !frozen) place(x, y);
     },
+
     leave() {
-      clearTimeout(showT); clearTimeout(hideT);
-      hideT = setTimeout(hide, 150);
+      clearTimeout(showT);
+      clearTimeout(hideT);
+      hideT = setTimeout(hide, 180);
     },
+
     hide
   };
 })();
