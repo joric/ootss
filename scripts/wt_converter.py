@@ -13,9 +13,9 @@ For each slug, a single source is chosen:
 
 Sources are never combined, and no two slugs are ever joined.
 
-Default record: {"name", "note": "", "solution"}.
-With --info: adds "url", "json", "note" (raw moves), timing arrays,
-and source metadata.
+Default record: {"name", "solution"}.
+With --info: adds "url", "json", "moves" (raw moves), timing arrays,
+source metadata, and "order" (all actors in switching order).
 
 Usage:
     wt_converter.py [--info] [--prefer-community]
@@ -216,6 +216,26 @@ def _cycle_position(order: list[str], name: str) -> int | None:
         return order.index(name)
     except ValueError:
         return None
+
+
+def _players_order(groups: list[dict] | None, moves: list[str]) -> str:
+    """All actors in C-cycle order, space-separated.
+
+    Uses the ``groups`` roster when present; otherwise falls back to
+    the distinct actors seen in the move list, in first-appearance
+    order.
+    """
+    order = _cycle_order(groups)
+    if not order:
+        seen: list[str] = []
+        for m in moves:
+            if ":" not in m:
+                continue
+            n = m.split(":", 1)[0]
+            if n not in seen:
+                seen.append(n)
+        order = seen
+    return " ".join(order)
 
 
 def _pusher_z(frame: list) -> int | None:
@@ -539,7 +559,6 @@ def _build_record(
 
     record = {
         "name": level,
-        "note": " ".join(moves) if info else "",
         "solution": convert_moves(
             moves, level, timing,
             deltas=deltas,
@@ -553,6 +572,7 @@ def _build_record(
 
     record["url"] = f"{BASE}/areas/{area}/#{slug}"
     record["json"] = json_url
+    record["moves"] = " ".join(moves)
 
     if source_kind in ("published", "s"):
         candidate = data.get("author")
@@ -577,6 +597,9 @@ def _build_record(
         value = timing.get(key)
         if value:
             record[key] = ",".join(map(str, value))
+
+    # All actors in switching order, space-separated.
+    record["order"] = _players_order(groups, moves)
 
     return record
 
@@ -725,8 +748,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--info", action="store_true",
-        help="emit full records (url, json, note, timing arrays, "
-             "source metadata); off by default",
+        help="emit full records (url, json, moves, timing arrays, "
+             "source metadata, order); off by default",
     )
     parser.add_argument(
         "--prefer-community", action="store_true",
