@@ -13,15 +13,25 @@ What it does to the running game (restart the game afterwards to undo it all):
 
 Usage (game running on the overworld, any save you don't care about):
   python sinking_star_map_capture.py [--px 128] [--tiles 8 8] [--out map_tiles] [--stitch-only] [--warmup]
+  python sinking_star_map_capture.py --capture-only
+  python sinking_star_map_capture.py --tile 3 5 [--tile 3 6 ...] [--capture-only]
+  python sinking_star_map_capture.py --rows 2 4 --cols 0 3 [--capture-only]
   python sinking_star_map_capture.py --make-signatures [--exe PATH]
   python sinking_star_map_capture.py --find-addresses [--exe PATH]
 
   --px      pixels per grid square in the final map
   --tiles   tile columns and rows; each tile must be a whole number of pixels
   --out     folder for the tiles and the stitched map
-  --warmup  discard a throwaway first frame on every tile (slower, more reliable)
-  --settle  seconds to wait after a camera move before screenshotting (default 0.75)
-  --first-settle  seconds to wait after the first camera move / a resolution change (default 3.0)
+  --warmup  discard a throwaway first frame on every tile (slower, more reliable); every tile that
+            is not the immediate right-neighbour of the previous one is warmed up anyway
+  --settle  seconds to wait after a camera move before screenshotting (default 1.0)
+  --first-settle  seconds to wait after the first camera move / a resolution change / a jump to
+            an arbitrary tile (default 3.5)
+  --tile    capture only this tile ROW COL (repeatable; overwrites the tile if present)
+  --rows    capture only these tile rows, inclusive (FIRST LAST)
+  --cols    capture only these tile columns, inclusive (FIRST LAST)
+  --capture-only  capture tiles but do not stitch the map (stitch later with --stitch-only)
+  --no-stitch     alias for --capture-only
   --exe     exe for the two options below (default: the running game's)
   --make-signatures  from an exe whose addresses are known (BUILDS or a saved resolution), save
             code patterns that find the globals again in later builds
@@ -1083,34 +1093,49 @@ def shoot_tile(game, screenshot_dir, out_path, warmup):
         shoot(game, screenshot_dir, out_path)
 
 
-def shoot_tiles(game, world, px_per_square, tiles_x, tiles_y, out_dir, settle=0.75, first_settle=3.0, warmup_all=False):
+def shoot_tiles(game, world, px_per_square, tiles_x, tiles_y, out_dir, settle=1.0, first_settle=3.5,
+                warmup_all=False, only=None, rows=None, cols=None, overwrite=False):
+    """Capture tiles, skipping any that already exist unless `overwrite`. `only` is a set of
+    (row, column) pairs; `rows`/`cols` are sets of indices (None = all).
+
+    A tile whose camera move is not the natural next step of the loop (any tile selected with
+    `--tile`, any tile after a skipped tile, or the very first tile) is always warmed up: the game
+    renders the first frame with the previous camera pose, so a naive screenshot would show the
+    wrong place. Warmup means: wait `first_settle`, discard one frame, keep the second."""
     width_squares, height_squares, width_px, height_px = tile_size(world.squares_x, world.squares_y, tiles_x, tiles_y, px_per_square)
     screenshot_dir = os.path.join(os.path.dirname(game.exe_path), 'screenshots')
     os.makedirs(out_dir, exist_ok=True)
     resized = set_resolution(game, width_px, height_px)
-    first_tile = True
+    previous = None             # (row, column) of the last tile actually rendered
     for row in range(tiles_y):
+        if rows is not None and row not in rows:
+            continue
         for column in range(tiles_x):
-            out_path = tile_path(out_dir, row, column)
-            if os.path.exists(out_path):
-                first_tile = False
+            if cols is not None and column not in cols:
                 continue
-            # Row 0 is the north (top) row.
-            center_x = world.world_x0 + (column + 0.5) * width_squares
-            center_y = world.world_y0 + world.squares_y - (row + 0.5) * height_squares
-            world.place_camera(center_x, center_y, height_squares)
-            # First frame after a camera move (and especially the very first tile, or the
-            # first frame after a resolution change) needs extra time to render.
-            needs_warmup = warmup_all or first_tile or resized
+            if only is not None and (row, column) not in only:
+                continue
+            out_path = tile_path(out_dir, row, column)
+            if os.path.exists(out_path) and not overwrite:
+                previous = None     # next tile is not adjacent to what we rendered
+                continue
+            # A jump to an arbitrary tile (e.g. `--tile`), or a tile that is not the immediate
+            # right-neighbour of the previous one, needs the full first-frame treatment.
+            adjacent = previous is not None and previous == (row, column - 1)
+            needs_warmup = warmup_all or resized or not adjacent
             if needs_warmup:
                 time.sleep(first_settle)
                 resized = False
             else:
                 time.sleep(settle)
+            # Row 0 is the north (top) row.
+            center_x = world.world_x0 + (column + 0.5) * width_squares
+            center_y = world.world_y0 + world.squares_y - (row + 0.5) * height_squares
+            world.place_camera(center_x, center_y, height_squares)
             shoot_tile(game, screenshot_dir, out_path, warmup=needs_warmup)
             print('tile', row, column, 'at', round(center_x, 3), round(center_y, 3),
                   ('(warmup)' if needs_warmup else ''), flush=True)
-            first_tile = False
+            previous = (row, column)
 
 
 def stitch(squares_x, squares_y, px_per_square, tiles_x, tiles_y, out_dir):
@@ -1136,11 +1161,22 @@ def main():
     parser.add_argument('--out', default='map_tiles')
     parser.add_argument('--stitch-only', action='store_true')
     parser.add_argument('--warmup', action='store_true',
-                        help='discard a throwaway first frame on every tile (slower, more reliable)')
-    parser.add_argument('--settle', type=float, default=0.75,
-                        help='seconds to wait after a camera move before screenshotting (default 0.75)')
-    parser.add_argument('--first-settle', type=float, default=3.0,
-                        help='seconds to wait after the first camera move / a resolution change (default 3.0)')
+                        help='discard a throwaway first frame on every tile (slower, more reliable); '
+                             'tiles that are not the immediate right-neighbour of the previous one are '
+                             'warmed up anyway')
+    parser.add_argument('--settle', type=float, default=1.0,
+                        help='seconds to wait after a camera move before screenshotting (default 1.0)')
+    parser.add_argument('--first-settle', type=float, default=3.5,
+                        help='seconds to wait after the first camera move / a resolution change / a '
+                             'jump to an arbitrary tile (default 3.5)')
+    parser.add_argument('--tile', type=int, nargs=2, action='append', metavar=('ROW', 'COL'),
+                        help='capture only this tile (repeatable; overwrites the tile if present)')
+    parser.add_argument('--rows', type=int, nargs=2, metavar=('FIRST', 'LAST'),
+                        help='capture only these tile rows, inclusive')
+    parser.add_argument('--cols', type=int, nargs=2, metavar=('FIRST', 'LAST'),
+                        help='capture only these tile columns, inclusive')
+    parser.add_argument('--capture-only', '--no-stitch', dest='capture_only', action='store_true',
+                        help='capture tiles but do not stitch the map (stitch later with --stitch-only)')
     parser.add_argument('--exe', help="exe to analyse for --make-signatures / --find-addresses (default: the running game's)")
     parser.add_argument('--make-signatures', action='store_true', help='save patterns that find the globals in later builds')
     parser.add_argument('--find-addresses', action='store_true', help='resolve and print the globals of an exe; the game is not touched')
@@ -1154,6 +1190,10 @@ def main():
         else:
             find_addresses_command(exe_path)
         return
+
+    only = {tuple(pair) for pair in args.tile} if args.tile else None
+    rows = set(range(args.rows[0], args.rows[1] + 1)) if args.rows else None
+    cols = set(range(args.cols[0], args.cols[1] + 1)) if args.cols else None
 
     game = Game()
     print('reading Type_Info from', game.exe_path)
@@ -1169,8 +1209,10 @@ def main():
         world.set_shadow_distance(CAMERA_HEIGHT + 200)
         freeze_and_force_detail(game)
         shoot_tiles(game, world, args.px, tiles_x, tiles_y, args.out,
-                    settle=args.settle, first_settle=args.first_settle, warmup_all=args.warmup)
-    stitch(world.squares_x, world.squares_y, args.px, tiles_x, tiles_y, args.out)
+                    settle=args.settle, first_settle=args.first_settle, warmup_all=args.warmup,
+                    only=only, rows=rows, cols=cols, overwrite=only is not None)
+    if not args.capture_only:
+        stitch(world.squares_x, world.squares_y, args.px, tiles_x, tiles_y, args.out)
 
 
 if __name__ == '__main__':
