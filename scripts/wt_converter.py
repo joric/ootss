@@ -201,14 +201,40 @@ def _has_digit_key(char_name: str) -> bool:
     return cls in CHAR_TO_NUM and cls not in NON_PLAYABLE_CLASSES
 
 
+def _roster_toids(groups: list[dict] | None) -> dict[str, int]:
+    out: dict[str, int] = {}
+    if not groups:
+        return out
+    for entry in groups:
+        if not isinstance(entry, dict):
+            continue
+        name = entry.get("name")
+        toid = entry.get("toid")
+        if isinstance(name, str) and isinstance(toid, int):
+            out[name] = toid
+    return out
+
+
 def _cycle_order(groups: list[dict] | None) -> list[str]:
-    """Names in the game's C-cycle order; ``groups[0]`` is default-selected."""
+    """Actors in switching order.
+
+    The game's cycle order is determined by ``toid`` *allocation block*
+    (high 16 bits), ascending, and within a block by the ``groups``
+    array order (which already reflects the entity allocation order the
+    crawler serialized).  ``groups`` array order alone is NOT the cycle
+    order — it fails across blocks (e.g. ``stones_below_v3`` lists
+    wizard before bard, but the cycle is bard → wizard).
+    """
     if not groups:
         return []
-    return [
+    names = [
         g["name"] for g in groups
         if isinstance(g, dict) and isinstance(g.get("name"), str)
     ]
+    toid_of = _roster_toids(groups)
+    # Stable sort by allocation block; preserves array order within a block.
+    names.sort(key=lambda n: toid_of.get(n, 0) >> 16)
+    return names
 
 
 def _cycle_position(order: list[str], name: str) -> int | None:
@@ -218,12 +244,56 @@ def _cycle_position(order: list[str], name: str) -> int | None:
         return None
 
 
-def _players_order(groups: list[dict] | None, moves: list[str]) -> str:
-    """All actors in C-cycle order, space-separated.
+def _infer_default_char(
+    moves: list[str], order: list[str]
+) -> str | None:
+    """Actor selected at level start.
 
-    Uses the ``groups`` roster when present; otherwise falls back to
-    the distinct actors seen in the move list, in first-appearance
-    order.
+    Inferred from the first move that names an actor in the roster (the
+    level's solution begins with that actor's movement, with no digit
+    press preceding it).
+    """
+    if not order:
+        return None
+    for m in moves:
+        if ":" not in m:
+            continue
+        n = m.split(":", 1)[0]
+        if n in order:
+            return n
+    return order[0]
+
+
+def _all_playable_have_distinct_digits(moves: list[str]) -> bool:
+    """True iff every playable actor in the level has its own digit key.
+
+    When this holds, the solution can (and must) select actors by digit
+    key alone, so the switching order is irrelevant.  Pushers and other
+    non-playable actors are excluded — they never have a digit.
+    """
+    digits: dict[str, str] = {}
+    for m in moves:
+        if ":" not in m:
+            continue
+        name = m.split(":", 1)[0]
+        if not _has_digit_key(name):
+            continue
+        key = CHAR_TO_NUM[_move_class(name)]
+        if name in digits and digits[name] != key:
+            return False
+        digits[name] = key
+    seen_keys = list(digits.values())
+    return len(seen_keys) == len(set(seen_keys))
+
+
+def _players_order(
+    groups: list[dict] | None, moves: list[str]
+) -> str:
+    """All actors in switching order, space-separated.
+
+    Uses :func:`_cycle_order` (block sort + array order within block)
+    when ``groups`` is present; otherwise falls back to first-appearance
+    order in the move list.
     """
     order = _cycle_order(groups)
     if not order:
@@ -277,20 +347,6 @@ def _actor_ids_in_frame(frame: list) -> set[int]:
     return out
 
 
-def _name_to_toid(groups: list[dict] | None) -> dict[str, int]:
-    out: dict[str, int] = {}
-    if not groups:
-        return out
-    for entry in groups:
-        if not isinstance(entry, dict):
-            continue
-        name = entry.get("name")
-        toid = entry.get("toid")
-        if isinstance(name, str) and isinstance(toid, int):
-            out[name] = toid
-    return out
-
-
 def _initial_actor_names(
     groups: list[dict] | None,
     frames: list | None,
@@ -302,7 +358,7 @@ def _initial_actor_names(
     initial_ids = _actor_ids_in_frame(frames[0])
     if not initial_ids:
         return set()
-    name_to_toid = _name_to_toid(groups)
+    name_to_toid = _roster_toids(groups)
     return {
         name for name, toid in name_to_toid.items()
         if toid in initial_ids
@@ -349,20 +405,62 @@ def convert_moves(
     all_playable = all(
         _has_digit_key(m.split(":", 1)[0]) for m in moves if ":" in m
     )
+    digit_all = _all_playable_have_distinct_digits(moves)
+
+    # ---- all-playable level -------------------------------------------
+    #
+    # Every actor is digit-selectable.  If the level also gives every
+    # playable actor a *distinct* digit key (``digit_all``), always
+    # emit the digit on switch — including the very first move — and
+    # ignore switching order entirely.
     if use_cycle and all_playable:
         order = _cycle_order(groups)
         result: list[str] = []
 
-        if order:
-            # Roster known: track selection by cycle position.  ``groups[0]``
-            # is the actor the game selects at level start.
-            current_cycle: int | None = 0
-            current_char: str | None = order[0]
-        else:
-            # No roster: assume the first driven actor is default-selected.
-            current_cycle = None
-            current_char = None
+        if digit_all:
+            # Order-independent: emit the digit unconditionally on every
+            # actor switch, starting with the first move.  ``current_char``
+            # starts as None so the first move always triggers a digit.
+            current_char: str | None = None
+            for i, move in enumerate(moves):
+                if ":" not in move:
+                    continue
+                char_name, action = move.split(":", 1)
+                cls = _move_class(char_name)
+                key = CHAR_TO_NUM[cls]
 
+                if char_name != current_char:
+                    if result:
+                        result.append(" ")
+                    result.append(key)
+                    current_char = char_name
+
+                dz = deltas.get(i)
+                if action == "T" and dz is not None:
+                    result.append(elevator_wait(dz))
+                else:
+                    result.append(
+                        DIR_TO_CHAR.get(
+                            action, action if action.isdigit() else "?"
+                        )
+                    )
+                    if dz is not None and dz < 0:
+                        result.append(fall_wait(dz))
+
+                if i < len(moves) - 1:
+                    duration, extra = _timing_for_move(timing, i)
+                    n_b = us_to_bs((duration or 0) + (extra or 0))
+                    if n_b:
+                        result.append("B")
+            return collapse_long_waits("".join(result))
+
+        # Non-distinct (shared digit keys): fall back to cycle tracking
+        # with the inferred default.
+        default = _infer_default_char(moves, order) if order else None
+        current_char = default
+        current_cycle: int | None = (
+            _cycle_position(order, default) if (order and default) else 0
+        )
         for i, move in enumerate(moves):
             if ":" not in move:
                 continue
@@ -373,8 +471,6 @@ def convert_moves(
 
             if char_name != current_char:
                 if order:
-                    # Emit the digit key only if the target is not the
-                    # currently selected actor (tracked via cycle pos).
                     target = _cycle_position(order, char_name)
                     if target is not None:
                         if target != current_cycle:
@@ -382,13 +478,10 @@ def convert_moves(
                                 result.append(" ")
                             result.append(key)
                             current_cycle = target
-                            current_char = char_name
                     else:
-                        # Not in roster (e.g. instanced); fall back to key.
                         if result:
                             result.append(" ")
                         result.append(key)
-                        current_char = char_name
                 else:
                     is_first = not result
                     drop_first = is_first and target_idx == 1
@@ -396,10 +489,7 @@ def convert_moves(
                         if result:
                             result.append(" ")
                         result.append(key)
-                    current_char = char_name
-            else:
-                # Same actor still selected; nothing to emit.
-                pass
+                current_char = char_name
 
             dz = deltas.get(i)
             if action == "T" and dz is not None:
@@ -422,25 +512,13 @@ def convert_moves(
 
     # ---- mixed level --------------------------------------------------
     #
-    # When the map ships a ``groups`` roster, that roster is the
-    # authoritative C-cycle order and ``groups[0]`` is the actor the
-    # game selects at level start.  We track the current selection by
-    # position in that roster and emit exactly the C presses needed to
-    # move from the current position to the target pusher — regardless
-    # of how many pushers the level has.  (The old ``multi_pusher``
-    # gate assumed pusher #1 was default-selected, which is false when
-    # the default is a playable class such as the beamer.)
-    #
-    # Without ``groups`` we fall back to the previous behaviour:
-    # assume the first driven char is selected and cycle numbered
-    # pushers with C.
+    # Playable actors are selected by digit; pushers by C.  When every
+    # playable actor has a distinct digit key (``digit_all``), the
+    # playable part is order-independent; only pusher C-presses use the
+    # cycle tracker.
 
     order = _cycle_order(groups)
 
-    playable_chars = sorted({
-        m.split(":", 1)[0] for m in moves
-        if ":" in m and _has_digit_key(m.split(":", 1)[0])
-    })
     pusher_instances = sorted(
         {
             m.split(":", 1)[0] for m in moves
@@ -453,8 +531,13 @@ def convert_moves(
     multi_pusher = n_pushers > 1
 
     if order:
-        current_cycle: int | None = 0
-        current_char: str | None = order[0]
+        default = _infer_default_char(moves, order)
+        current_cycle: int | None = (
+            _cycle_position(order, default) if default else 0
+        )
+        # In the digit_all case, the first move must still emit its digit;
+        # start current_char as None so it does.
+        current_char: str | None = None if digit_all else default
     elif moves and ":" in moves[0]:
         current_cycle = None
         current_char = moves[0].split(":", 1)[0]
@@ -490,17 +573,10 @@ def convert_moves(
                     current_char = char_name
         elif _has_digit_key(char_name):
             if char_name != current_char:
-                # Separate a digit key from any preceding movement so the
-                # game parser treats the digit as a character selection,
-                # not as a direction.  No leading space when the digit is
-                # the very first emitted token.
                 if result:
                     result.append(" ")
                 result.append(CHAR_TO_NUM[cls])
                 current_char = char_name
-                # A digit press also moves the game's selection pointer;
-                # keep the C-cycle tracker in sync when the roster is
-                # known and the char is listed in it.
                 if order:
                     idx = _cycle_position(order, char_name)
                     if idx is not None:
