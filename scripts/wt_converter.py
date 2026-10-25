@@ -350,8 +350,19 @@ def convert_moves(
         _has_digit_key(m.split(":", 1)[0]) for m in moves if ":" in m
     )
     if use_cycle and all_playable:
+        order = _cycle_order(groups)
         result: list[str] = []
-        current_char: str | None = None
+
+        if order:
+            # Roster known: track selection by cycle position.  ``groups[0]``
+            # is the actor the game selects at level start.
+            current_cycle: int | None = 0
+            current_char: str | None = order[0]
+        else:
+            # No roster: assume the first driven actor is default-selected.
+            current_cycle = None
+            current_char = None
+
         for i, move in enumerate(moves):
             if ":" not in move:
                 continue
@@ -361,13 +372,34 @@ def convert_moves(
             target_idx = _instance_index(char_name)
 
             if char_name != current_char:
-                is_first = not result
-                drop_first = is_first and target_idx == 1
-                if not drop_first:
-                    if result:
-                        result.append(" ")
-                    result.append(key)
-                current_char = char_name
+                if order:
+                    # Emit the digit key only if the target is not the
+                    # currently selected actor (tracked via cycle pos).
+                    target = _cycle_position(order, char_name)
+                    if target is not None:
+                        if target != current_cycle:
+                            if result:
+                                result.append(" ")
+                            result.append(key)
+                            current_cycle = target
+                            current_char = char_name
+                    else:
+                        # Not in roster (e.g. instanced); fall back to key.
+                        if result:
+                            result.append(" ")
+                        result.append(key)
+                        current_char = char_name
+                else:
+                    is_first = not result
+                    drop_first = is_first and target_idx == 1
+                    if not drop_first:
+                        if result:
+                            result.append(" ")
+                        result.append(key)
+                    current_char = char_name
+            else:
+                # Same actor still selected; nothing to emit.
+                pass
 
             dz = deltas.get(i)
             if action == "T" and dz is not None:
