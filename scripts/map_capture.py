@@ -35,16 +35,18 @@ Usage (game running on the overworld, any save you don't care about):
   --exe     exe for the two options below (default: the running game's)
   --make-signatures  from an exe whose addresses are known (BUILDS or a saved resolution), save
             code patterns that find the globals again in later builds
-            (sinking_star_signatures.json, next to this script)
+            (sinking_star_signatures.json, next to this script; the built-in set below is used
+            when that file is missing)
   --find-addresses   resolve the globals of an exe from those patterns and print them; the game
             is not touched
 
 Game builds: the static globals move with every build. A build listed in BUILDS is used as is. For a
-new one the script first tries the saved patterns (sinking_star_signatures.json); without them it
-searches the running game for the globals, using the spacing they had in the newest known build.
-Either way every address is checked against the live process before anything is written to it, the
-result is remembered in the json, and patterns for the next update are made from the new exe. If
-all of that fails, find the addresses in IDA and add the build to BUILDS.
+new one the script first tries the saved patterns (sinking_star_signatures.json, or the built-in set
+embedded below when that file is missing); without them it searches the running game for the globals,
+using the spacing they had in the newest known build. Either way every address is checked against the
+live process before anything is written to it, the result is remembered in the json, and patterns for
+the next update are made from the new exe. If all of that fails, find the addresses in IDA and add
+the build to BUILDS.
 
 Needs: Windows, Python 3, `pip install pefile pillow` (and `numpy` for a build that has to be resolved).
 
@@ -345,9 +347,113 @@ class TypeInfo:
 # A new game build moves the static globals. The code that uses them moves too, but it stays
 # byte-for-byte the same apart from its displacements. So each global is found again from patterns
 # of the code around its uses (displacements masked), made once from a build whose addresses are
-# known and kept in sinking_star_signatures.json. Several patterns vote for every global.
+# known. Several patterns vote for every global. The set below is built in, so the script resolves a
+# new build on its own; a json file (SIGNATURE_FILE) still caches builds resolved at runtime and
+# signatures made from later builds.
 
 SIGNATURE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sinking_star_signatures.json')
+
+# Signatures made from build 0x6AD32EAE (2026-10-17 evening update). Embedded so the script is
+# standalone; the json file (if present) takes precedence and stores newly resolved builds and
+# signatures made from later builds.
+EMBEDDED_FROM_TIMESTAMP = '6ad32eae'
+EMBEDDED_SIGNATURES = {
+    'SCREENSHOT_REQUEST': [
+        {'pat': '0F 83 ?? ?? ?? ?? 80 3D ?? ?? ?? ?? 00 0F 84 ?? ?? ?? ?? 80 3D', 'at': 8, 'tail': 1, 'delta': 0},
+        {'pat': '7F 20 C6 05 ?? ?? ?? ?? 00 48 C7 05', 'at': 4, 'tail': 1, 'delta': 0},
+        {'pat': 'B6 01 80 3D ?? ?? ?? ?? 00 75 0D EB 43', 'at': 4, 'tail': 1, 'delta': 0},
+        {'pat': '31 F6 80 3D ?? ?? ?? ?? 00 74 38 48 8D', 'at': 4, 'tail': 1, 'delta': 0},
+    ],
+    'RENDER_OVERRIDE': [
+        {'pat': 'C4 0F B6 05 ?? ?? ?? ?? 3C FF 0F 85', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '84 ?? ?? ?? ?? 0F B7 05 ?? ?? ?? ?? 66 89 05 ?? ?? ?? ?? 48', 'at': 8, 'tail': 0, 'delta': 55},
+        {'pat': '24 00 00 48 8B 05 ?? ?? ?? ?? 48 85 C0 74 2A 48', 'at': 6, 'tail': 0, 'delta': 47},
+        {'pat': '01 48 89 0D ?? ?? ?? ?? 48 8D 0D', 'at': 4, 'tail': 0, 'delta': 47},
+        {'pat': '48 C7 05 ?? ?? ?? ?? 01 00 00 00 0F B6 0D', 'at': 3, 'tail': 4, 'delta': 47},
+        {'pat': '15 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 00 0F 84 ?? ?? ?? ?? 48 C7', 'at': 8, 'tail': 1, 'delta': 47},
+    ],
+    'CUSTOM_WIDTH': [
+        {'pat': '32 48 8B 05 ?? ?? ?? ?? 48 89 03 48', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '84 ?? ?? ?? ?? 0F B7 05 ?? ?? ?? ?? 66 89 05 ?? ?? ?? ?? 48', 'at': 8, 'tail': 0, 'delta': 64},
+        {'pat': '01 48 89 0D ?? ?? ?? ?? 48 8D 0D', 'at': 4, 'tail': 0, 'delta': 56},
+        {'pat': '15 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 00 0F 84 ?? ?? ?? ?? 48 C7', 'at': 8, 'tail': 1, 'delta': 56},
+        {'pat': 'E8 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 00 0F 84 ?? ?? ?? ?? 48 C7', 'at': 8, 'tail': 1, 'delta': 56},
+        {'pat': '00 0F B6 0D ?? ?? ?? ?? FE C1 88 0D', 'at': 4, 'tail': 0, 'delta': 48},
+    ],
+    'CUSTOM_HEIGHT': [
+        {'pat': '03 48 8B 05 ?? ?? ?? ?? 48 89 07 41', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '07 4C 8B 25 ?? ?? ?? ?? 49 D1 FD 48', 'at': 4, 'tail': 0, 'delta': 0},
+    ],
+    'SWAPCHAIN': [
+        {'pat': 'CE 48 8B 05 ?? ?? ?? ?? 48 8B 08 BA', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '00 00 00 48 8B 05 ?? ?? ?? ?? 48 8D 0D', 'at': 6, 'tail': 0, 'delta': 0},
+        {'pat': '05 ?? ?? ?? ?? 48 89 05 ?? ?? ?? ?? 4C 89 35 ?? ?? ?? ?? 66', 'at': 8, 'tail': 0, 'delta': 0},
+        {'pat': '03 48 8B 0D ?? ?? ?? ?? 48 3B 01 0F', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '83 FA 47 0F 85 ?? ?? ?? ?? 48 8B 05 ?? ?? ?? ?? 48 85 C0 0F 84 ?? ?? ?? ?? 48 3B 08', 'at': 12, 'tail': 0, 'delta': 0},
+        {'pat': '4C 8B 35 ?? ?? ?? ?? 49 8B 36 44', 'at': 3, 'tail': 0, 'delta': 0},
+    ],
+    'FINAL_TARGET': [
+        {'pat': '48 89 05 ?? ?? ?? ?? 8B 5C 24 50', 'at': 3, 'tail': 0, 'delta': 0},
+        {'pat': 'F7 75 10 4C 8B 3D ?? ?? ?? ?? 4D 85 FF 0F 84', 'at': 6, 'tail': 0, 'delta': 0},
+        {'pat': '66 0F 7F 84 24 60 0F 00 00 48 8B 05 ?? ?? ?? ?? 48 89 84 24 70 0F 00 00 0F B7 05', 'at': 12, 'tail': 0, 'delta': 0},
+        {'pat': '48 39 35 ?? ?? ?? ?? 0F 29 BC 24', 'at': 3, 'tail': 0, 'delta': 0},
+    ],
+    'CAMERA_MODE': [
+        {'pat': '38 48 83 3D ?? ?? ?? ?? 01 74 6B 0F B6', 'at': 4, 'tail': 1, 'delta': 0},
+        {'pat': '1F 40 00 48 83 3D ?? ?? ?? ?? 01 74 2D 0F B6 05', 'at': 6, 'tail': 1, 'delta': 0},
+        {'pat': '00 00 00 48 83 3D ?? ?? ?? ?? 01 74 2D 0F B6 05', 'at': 6, 'tail': 1, 'delta': 0},
+        {'pat': 'C3 0F 1F 84 00 00 00 00 00 48 83 EC 38 48 83 3D ?? ?? ?? ?? 01 75 07 84 D2 48 83 C4 38 C3 0F B6 05', 'at': 16, 'tail': 1, 'delta': 0},
+        {'pat': '85 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 01 0F 85 ?? ?? ?? ?? 31 D2', 'at': 8, 'tail': 1, 'delta': 0},
+        {'pat': '34 48 83 3D ?? ?? ?? ?? 01 74 2A C6 05', 'at': 4, 'tail': 1, 'delta': 0},
+    ],
+    'TIME_MULTIPLIER': [
+        {'pat': 'F2 0F 59 05 ?? ?? ?? ?? F2 0F 59 05', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '28 48 8D 35 ?? ?? ?? ?? 31 C0 F6 05', 'at': 4, 'tail': 0, 'delta': 40},
+        {'pat': 'C7 48 8D 2D ?? ?? ?? ?? 4D 3B BC 2E', 'at': 4, 'tail': 0, 'delta': 40},
+        {'pat': '00 48 8D 3D ?? ?? ?? ?? 41 83 BC 3E', 'at': 4, 'tail': 0, 'delta': 40},
+        {'pat': '01 4C 8D 25 ?? ?? ?? ?? 31 F6 EB 77', 'at': 4, 'tail': 0, 'delta': 40},
+        {'pat': 'F6 73 1E 48 8D 05 ?? ?? ?? ?? 4C 8B 84 03 F0 45', 'at': 6, 'tail': 0, 'delta': 40},
+    ],
+    'LOD_LEVEL2_THRESHOLD': [
+        {'pat': '74 D9 F3 0F 10 35 ?? ?? ?? ?? F3 0F 58 35', 'at': 6, 'tail': 0, 'delta': 0},
+        {'pat': '24 08 F3 0F 10 35 ?? ?? ?? ?? F3 0F 58 35', 'at': 6, 'tail': 0, 'delta': 0},
+        {'pat': 'C9 0F 2E 0D ?? ?? ?? ?? 41 0F 96 C1', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': '0F 85 ?? ?? ?? ?? F3 0F 10 35 ?? ?? ?? ?? F3 0F 58 35 ?? ?? ?? ?? 48 8B 44 24', 'at': 10, 'tail': 0, 'delta': 0},
+    ],
+    'LOD_LEVEL1_THRESHOLD': [
+        {'pat': 'C2 0F 2E 0D ?? ?? ?? ?? 41 0F 96 C0', 'at': 4, 'tail': 0, 'delta': 0},
+        {'pat': 'F2 0F 59 05 ?? ?? ?? ?? F2 0F 59 05', 'at': 4, 'tail': 0, 'delta': 64},
+        {'pat': '88 05 ?? ?? ?? ?? 4C 89 6C 24', 'at': 2, 'tail': 0, 'delta': 56},
+        {'pat': '01 48 8D 05 ?? ?? ?? ?? 49 0F 44 C4', 'at': 4, 'tail': 0, 'delta': 56},
+        {'pat': 'F2 0F 11 84 24 78 05 00 00 F3 0F 10 05 ?? ?? ?? ?? F3 0F 5A C0 F2 0F 11 84 24 80 05 00 00 48 8B 7C', 'at': 13, 'tail': 0, 'delta': 52},
+        {'pat': 'F2 0F 11 84 24 78 05 00 00 F3 0F 10 05 ?? ?? ?? ?? F3 0F 5A C0 F2 0F 11 84 24 80 05 00 00 48 8D 35', 'at': 13, 'tail': 0, 'delta': 52},
+    ],
+    'SHADOW_FADE_THRESHOLD': [
+        {'pat': '0F 85 ?? ?? ?? ?? F3 0F 10 35 ?? ?? ?? ?? F3 0F 58 35 ?? ?? ?? ?? F3 0F 10 B8', 'at': 10, 'tail': 0, 'delta': 0},
+        {'pat': 'F2 0F 59 05 ?? ?? ?? ?? F2 0F 5A C0', 'at': 4, 'tail': 0, 'delta': 60},
+        {'pat': '3F 48 89 05 ?? ?? ?? ?? E9', 'at': 4, 'tail': 0, 'delta': 60},
+        {'pat': 'F2 0F 10 05 ?? ?? ?? ?? 83 F8 01 0F', 'at': 4, 'tail': 0, 'delta': 60},
+        {'pat': 'F2 0F 11 0D ?? ?? ?? ?? 66 0F 2E C1 75 06', 'at': 4, 'tail': 0, 'delta': 60},
+        {'pat': 'E9 ?? ?? ?? ?? 4C 8D 35 ?? ?? ?? ?? F2 0F 10 0D ?? ?? ?? ?? F2 0F 11 0D ?? ?? ?? ?? 66 0F 2E C1 0F 85 ?? ?? ?? ?? 0F 8B ?? ?? ?? ?? E9 ?? ?? ?? ?? 4C 8D 35', 'at': 24, 'tail': 0, 'delta': 60},
+    ],
+    'FORCE_MAP_LEVEL0': [
+        {'pat': '51 01 80 3D ?? ?? ?? ?? 00 0F 94 C1 20', 'at': 4, 'tail': 1, 'delta': 0},
+        {'pat': '74 07 C6 05 ?? ?? ?? ?? 01 80 BC 24 5C', 'at': 4, 'tail': 1, 'delta': 52},
+        {'pat': '74 07 C6 05 ?? ?? ?? ?? 01 80 BC 24 5D', 'at': 4, 'tail': 1, 'delta': 51},
+        {'pat': '75 20 80 3D ?? ?? ?? ?? 00 0F 85', 'at': 4, 'tail': 1, 'delta': 48},
+        {'pat': 'C4 0F B6 05 ?? ?? ?? ?? 3C FF 0F 85', 'at': 4, 'tail': 0, 'delta': 46},
+        {'pat': '44 0F B6 0D ?? ?? ?? ?? 45 84 C9 75', 'at': 4, 'tail': 0, 'delta': 45},
+    ],
+    'REFLECTION_COUNT': [
+        {'pat': 'EC 88 00 00 00 48 83 3D ?? ?? ?? ?? 00 0F 8E ?? ?? ?? ?? 48 89', 'at': 8, 'tail': 1, 'delta': 0},
+        {'pat': '48 83 3D ?? ?? ?? ?? 02 0F 8D', 'at': 3, 'tail': 1, 'delta': 0},
+        {'pat': '48 83 3D ?? ?? ?? ?? 02 0F 8C', 'at': 3, 'tail': 1, 'delta': 0},
+        {'pat': 'E8 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 03 0F 8C ?? ?? ?? ?? E9', 'at': 8, 'tail': 1, 'delta': 0},
+        {'pat': 'E8 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 03 0F 8C ?? ?? ?? ?? 48 83', 'at': 8, 'tail': 1, 'delta': 0},
+        {'pat': 'E8 ?? ?? ?? ?? 48 83 3D ?? ?? ?? ?? 04 0F 8C ?? ?? ?? ?? E9', 'at': 8, 'tail': 1, 'delta': 0},
+    ],
+}
+
 WINDOWS = ((4, 4), (6, 6), (8, 8), (12, 12), (16, 16), (24, 24), (32, 32))   # bytes before / after an operand
 SIGNATURES_PER_GLOBAL = 6
 EXECUTABLE = 0x20000000
@@ -356,16 +462,29 @@ OPCODES_WITH_IMM32 = (0x81, 0xC7, 0xF7)
 
 
 def load_state():
+    """The cached resolutions and signatures. Missing pieces come from the embedded set, so a
+    fresh checkout (with no json file) resolves new builds without any extra file."""
+    state = {}
     try:
         with open(SIGNATURE_FILE) as file:
-            return json.load(file)
+            state = json.load(file)
     except (OSError, ValueError):
-        return {}
+        pass
+    state.setdefault('signatures', EMBEDDED_SIGNATURES)
+    state.setdefault('from_timestamp', EMBEDDED_FROM_TIMESTAMP)
+    return state
 
 
 def save_state(state):
+    """Write the cache. Values equal to the embedded defaults are left out, so the file only ever
+    holds what the embedded set does not already provide."""
+    out = dict(state)
+    if out.get('signatures') == EMBEDDED_SIGNATURES:
+        out.pop('signatures', None)
+    if out.get('from_timestamp') == EMBEDDED_FROM_TIMESTAMP:
+        out.pop('from_timestamp', None)
     with open(SIGNATURE_FILE, 'w') as file:
-        json.dump(state, file, indent=1)
+        json.dump(out, file, indent=1)
 
 
 def known_build(timestamp):
@@ -567,8 +686,8 @@ def resolve_from_signatures(image):
     signatures = state.get('signatures')
     if not signatures:
         raise RuntimeError(
-            'build %08x is not known and there are no signatures (%s). With the game running, a normal '
-            'run searches the live process instead and makes signatures for the next build.' % (image.timestamp, SIGNATURE_FILE))
+            'build %08x is not known and there are no signatures. With the game running, a normal '
+            'run searches the live process instead and makes signatures for the next build.' % image.timestamp)
     reference, _ = known_build(int(state['from_timestamp'], 16))
     print('resolving the globals of build %08x from the signatures of build %s (scans the exe)' % (
         image.timestamp, state['from_timestamp']), flush=True)
