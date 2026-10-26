@@ -438,33 +438,34 @@ def _emit_selection(
     current_cycle: int | None,
     order: list[str],
     mode: str,
-) -> tuple[list[str], str | None, int | None]:
-    """Return (tokens, new_current_char, new_current_cycle).
+) -> tuple[str, bool, str | None, int | None]:
+    """Return (fragment, needs_leading_space, new_char, new_cycle).
 
-    ``tokens`` are space-separated fragments (without the trailing space).
-    In ``cycle`` mode we press C as many times as needed to reach the
-    target actor's roster position and never emit digit keys.  In
-    ``digit`` mode we press the class digit once per required instance.
+    ``fragment`` is the selection token string (e.g. ``"C"``, ``"CC"``,
+    ``"4"``, or ``"4 4"``).  ``needs_leading_space`` is True for digit
+    selections (which must be separated from preceding output) and
+    False for C runs (which concatenate directly).
     """
     if mode == "cycle" and order and current_cycle is not None:
         presses = _cycle_presses(char_name, current_cycle, order)
         if presses:
             return (
-                ["C" * presses],
+                "C" * presses,
+                False,
                 char_name,
                 _find_in_order(order, char_name),
             )
-        return [], current_char, current_cycle
+        return "", False, current_char, current_cycle
 
     # digit mode (or no roster to cycle with)
     presses = _digit_presses(char_name, current_char, order)
-    toks = [p for p in presses]
+    fragment = " ".join(presses)
     new_cycle = current_cycle
     if order:
         pos = _find_in_order(order, char_name)
         if pos is not None:
             new_cycle = pos
-    return toks, char_name, new_cycle
+    return fragment, True, char_name, new_cycle
 
 
 def convert_moves(
@@ -506,13 +507,13 @@ def convert_moves(
             char_name, action = move.split(":", 1)
 
             if char_name != current_char:
-                toks, current_char, current_cycle = _emit_selection(
+                frag, needs_space, current_char, current_cycle = _emit_selection(
                     char_name, current_char, current_cycle, order, mode,
                 )
-                for t in toks:
-                    if result:
+                if frag:
+                    if needs_space and result:
                         result.append(" ")
-                    result.append(t)
+                    result.append(frag)
 
             dz = deltas.get(i)
             if action == "T" and dz is not None:
@@ -584,13 +585,13 @@ def convert_moves(
                     current_char = char_name
         elif _has_digit_key(char_name):
             if char_name != current_char:
-                toks, current_char, current_cycle = _emit_selection(
+                frag, needs_space, current_char, current_cycle = _emit_selection(
                     char_name, current_char, current_cycle, order, mode,
                 )
-                for t in toks:
-                    if result:
+                if frag:
+                    if needs_space and result:
                         result.append(" ")
-                    result.append(t)
+                    result.append(frag)
         # else: queen / scripted NPC -> never selected.
 
         dz = deltas.get(i)
