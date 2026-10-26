@@ -36,17 +36,6 @@ global g_File    := ""
 
 ; solutions_debug.json lives in the same folder as this script.
 ResolveSolutionsPath() {
-    candidates := [
-        A_ScriptDir "\solutions_debug.json",
-        A_ScriptDir "\solutions.json",
-        A_WorkingDir "\solutions_debug.json",
-        A_ScriptDir "\..\solutions_debug.json",
-        A_ScriptDir "\..\solutions.json"
-    ]
-    for p in candidates {
-        if FileExist(p)
-            return p
-    }
     return A_ScriptDir "\solutions_debug.json"
 }
 
