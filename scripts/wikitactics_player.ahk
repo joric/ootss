@@ -32,6 +32,10 @@ DEFAULT_GAP_MS := 40      ; only used if a move has no frame_ticks value
 MIN_GAP_MS     := 16      ; never send two keys closer together than this
 PRESS_MS       := 40      ; how long each key is held down
 
+; Precision: raise this thread's priority so the busy-wait and SendEvent calls
+; are not preempted mid-send. AHK itself recommends High for delay=0 sending.
+PROCESS_PRIORITY := "High"
+
 global g_Abort   := false
 global g_Playing := false
 global g_LB      := ""
@@ -378,11 +382,22 @@ BuildSchedule(rec, speed := 1) {
     return schedule
 }
 
-; blind = true keeps the held Alt down while keys are sent
-SendKeyStr(k, blind := false) {
-    if (StrLen(k) = 1)
-        k := "{" k "}"
-    SendEvent((blind ? "{Blind}" : "") k)
+; ---------------------------------------------------------------------------
+; Precision key sending
+;
+; SetKeyDelay's PressDuration is subject to the OS timer granularity (often
+; 10-15 ms), so a nominal 40 ms hold can actually last 40-55 ms. To get a
+; deterministic hold we send key-down, busy-wait with QPC for exactly
+; PRESS_MS microseconds, then send key-up. Gap between keys is handled by
+; the scheduler's fire_at_us, not by SetKeyDelay.
+; ---------------------------------------------------------------------------
+SendKeyRaw(k, hold_us, blind := false) {
+    ; Normalise single characters to the {x} form so {Alt} / {Blind} parse right.
+    keyStr := (StrLen(k) = 1) ? "{" k "}" : k
+    prefix := blind ? "{Blind}" : ""
+    SendEvent(prefix "{" (StrLen(k) = 1 ? k : SubStr(keyStr, 2, -1)) " down}")
+    SleepUntilUS(QPC() + hold_us)
+    SendEvent(prefix "{" (StrLen(k) = 1 ? k : SubStr(keyStr, 2, -1)) " up}")
 }
 
 ; ---------------------------------------------------------------------------
@@ -418,13 +433,17 @@ ReplayLevel(rec) {
         return
     }
 
-    SetKeyDelay(0, PRESS_MS)
+    ; No SetKeyDelay: SendKeyRaw drives the hold with QPC. Keep key delay at 0
+    ; so SendEvent itself adds no extra pause after each down/up.
+    SetKeyDelay(0, -1)
+
     g_Abort := false
     g_Playing := true
 
     total := schedule.Length
     idx := 0
     aborted := false
+    hold_us := PRESS_MS * 1000
     DllCall("winmm\timeBeginPeriod", "UInt", 1)    ; 1 ms timer resolution
     try {
         ; 4x mode: hold Alt BEFORE the reset and keep it down for the whole run
@@ -437,7 +456,7 @@ ReplayLevel(rec) {
         ; offset_us (game time) later, because the reset itself takes time.
         g_Status.SetText("Reset (" RESET_KEY ")...")
         t0 := QPC()
-        SendKeyStr(RESET_KEY, fast)
+        SendKeyRaw(RESET_KEY, hold_us, fast)
         for ev in schedule {
             if g_Abort {
                 aborted := true
@@ -449,7 +468,7 @@ ReplayLevel(rec) {
                 break
             }
             idx++
-            SendKeyStr(ev.key, fast)
+            SendKeyRaw(ev.key, hold_us, fast)
             g_Status.SetText("Playing " name ": " idx "/" total (fast ? "  [4x]" : ""))
         }
     } finally {
@@ -468,8 +487,12 @@ ReplayLevel(rec) {
 ; ---------------------------------------------------------------------------
 ; Main
 ; ---------------------------------------------------------------------------
+ProcessSetPriority(PROCESS_PRIORITY)
 BuildGui()
 RefreshList()
 
 F5::RefreshList()
 ~Esc::StopPlayback()
+
+; Ctrl+F plays the selected level (mirrors the Play button).
+^f::PlaySelected()
