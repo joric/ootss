@@ -31,6 +31,7 @@ Usage:
     wt_converter.py [--info] [--prefer-community]
                     [--timing | --no-timing]
                     [--elevator-wait | --no-elevator-wait]
+                    [--elevator-pre-b N] [--elevator-post-b N]
                     [--fall-wait | --no-fall-wait]
                     [--selection-mode {digit,cycle}]
                     [--out PATH] [--wt PATH] [-v]
@@ -75,7 +76,8 @@ SELECTION_MODE = "cycle"
 # EMIT_TIMING — emit a per-move _x.y_ time sleep derived from
 #               action_ticks / input_delay_ticks after each move.
 #
-# EMIT_ELEVATOR_WAIT — wrap elevator presses (V) in literal B keypresses.
+# EMIT_ELEVATOR_WAIT — wrap elevator presses (V) in literal B keypresses,
+#                      using ELEVATOR_PRE_B before and ELEVATOR_POST_B after.
 #
 # EMIT_FALL_WAIT — emit a wait after a downward pusher step (dz < 0).
 #                  By default this uses B presses (the one intentional
@@ -84,8 +86,8 @@ SELECTION_MODE = "cycle"
 #                  instead.
 #
 EMIT_TIMING = False
-EMIT_ELEVATOR_WAIT = True
-EMIT_FALL_WAIT = True
+EMIT_ELEVATOR_WAIT = False
+EMIT_FALL_WAIT = False
 
 # If True, fall waits are emitted as _x.y_ sleeps instead of B presses.
 FALL_WAIT_AS_SLEEP = False
@@ -167,10 +169,13 @@ DIR_TO_CHAR = {
 
 ELEVATOR_PRESS_CHAR = "V"
 
-# Elevator wait: number of B presses on each side of V, scaled by |dz|.
-WAIT_MIN_B = 4
-WAIT_MAX_B = 8
-WAIT_MAX_LEVEL = 2
+# Elevator wait: fixed B presses before and after V.
+# These are NOT derived from dz — the pre-wait is the "let the elevator
+# settle / be callable" pause, and the post-wait is the fixed ride wait.
+# The ride length does not scale these; dz is only used to detect that
+# an elevator press happened at all.
+ELEVATOR_PRE_B = 6
+ELEVATOR_POST_B = 4
 
 # Fall wait: B presses (or _x.y_ if FALL_WAIT_AS_SLEEP) scaled by |dz|.
 FALL_WAIT_MIN_B = 4
@@ -182,29 +187,19 @@ QUANTUM_US = 250_000
 MIN_EMIT_US = 150_000
 
 
-def _wait_bs(levels: int) -> int:
-    if levels <= 0:
-        return 0
-    if levels >= WAIT_MAX_LEVEL:
-        return WAIT_MAX_B
-    span = WAIT_MAX_LEVEL - 1
-    if span <= 0:
-        return WAIT_MAX_B
-    frac = (levels - 1) / span
-    return int(round(WAIT_MIN_B + frac * (WAIT_MAX_B - WAIT_MIN_B)))
-
-
-def elevator_wait(dz: int) -> str:
+def elevator_wait(
+    dz: int | None,
+    *,
+    pre_b: int = ELEVATOR_PRE_B,
+    post_b: int = ELEVATOR_POST_B,
+) -> str:
     """Literal B presses around the elevator press key.
 
-    Only emitted when ``EMIT_ELEVATOR_WAIT`` is on.
+    Both counts are fixed and configurable; neither is derived from dz.
+    Emitted whenever an elevator press occurs and EMIT_ELEVATOR_WAIT is on,
+    even if dz is unknown.
     """
-    if dz == 0:
-        return ""
-    total = _wait_bs(abs(dz))
-    pre = total // 2
-    post = total - pre
-    return ("B" * pre) + ELEVATOR_PRESS_CHAR + ("B" * post)
+    return ("B" * max(pre_b, 0)) + ELEVATOR_PRESS_CHAR + ("B" * max(post_b, 0))
 
 
 def _fall_bs(levels: int) -> int:
@@ -527,19 +522,25 @@ def _emit_action(
     *,
     emit_elevator_wait: bool,
     emit_fall_wait: bool,
+    elevator_pre_b: int,
+    elevator_post_b: int,
 ) -> str:
     """Translate one action token into output characters.
 
     Rules:
-      * Elevator press (``T`` with a known delta) becomes
-        [B...] V [B...] when ``emit_elevator_wait`` is on, else just ``V``.
+      * Elevator press (``T``) becomes
+        [B * pre] V [B * post] when ``emit_elevator_wait`` is on, else ``V``.
+        The pre/post counts are fixed and configurable, not derived from dz;
+        they are emitted even when dz is unknown.
       * Any other action that stepped the pusher down (dz < 0) gets a
         fall wait appended when ``emit_fall_wait`` is on.
       * Every action maps through ``DIR_TO_CHAR``.
     """
-    if action == "T" and dz is not None:
+    if action == "T":
         if emit_elevator_wait:
-            return elevator_wait(dz)
+            return elevator_wait(
+                dz, pre_b=elevator_pre_b, post_b=elevator_post_b,
+            )
         return ELEVATOR_PRESS_CHAR
 
     out = DIR_TO_CHAR.get(action, action if action.isdigit() else "?")
@@ -561,6 +562,8 @@ def convert_moves(
     emit_timing: bool | None = None,
     emit_elevator_wait: bool | None = None,
     emit_fall_wait: bool | None = None,
+    elevator_pre_b: int | None = None,
+    elevator_post_b: int | None = None,
 ) -> str:
     if not moves:
         return ""
@@ -572,6 +575,10 @@ def convert_moves(
         emit_elevator_wait = EMIT_ELEVATOR_WAIT
     if emit_fall_wait is None:
         emit_fall_wait = EMIT_FALL_WAIT
+    if elevator_pre_b is None:
+        elevator_pre_b = ELEVATOR_PRE_B
+    if elevator_post_b is None:
+        elevator_post_b = ELEVATOR_POST_B
 
     spawned = detect_spawned_chars(moves, groups, frames)
     use_cycle = not spawned
@@ -610,6 +617,8 @@ def convert_moves(
                     action, dz,
                     emit_elevator_wait=emit_elevator_wait,
                     emit_fall_wait=emit_fall_wait,
+                    elevator_pre_b=elevator_pre_b,
+                    elevator_post_b=elevator_post_b,
                 )
             )
 
@@ -687,6 +696,8 @@ def convert_moves(
                 action, dz,
                 emit_elevator_wait=emit_elevator_wait,
                 emit_fall_wait=emit_fall_wait,
+                elevator_pre_b=elevator_pre_b,
+                elevator_post_b=elevator_post_b,
             )
         )
 
@@ -758,6 +769,8 @@ def _build_record(
     emit_timing: bool | None = None,
     emit_elevator_wait: bool | None = None,
     emit_fall_wait: bool | None = None,
+    elevator_pre_b: int | None = None,
+    elevator_post_b: int | None = None,
 ) -> dict:
     moves = data.get("moves", [])
     timing = data.get("timing") or {}
@@ -781,6 +794,8 @@ def _build_record(
             emit_timing=emit_timing,
             emit_elevator_wait=emit_elevator_wait,
             emit_fall_wait=emit_fall_wait,
+            elevator_pre_b=elevator_pre_b,
+            elevator_post_b=elevator_post_b,
         ),
     }
 
@@ -848,6 +863,8 @@ def convert_cache_to_json(
     emit_timing: bool | None = None,
     emit_elevator_wait: bool | None = None,
     emit_fall_wait: bool | None = None,
+    elevator_pre_b: int | None = None,
+    elevator_post_b: int | None = None,
 ) -> ConvertStats:
     if not wt_path.is_file():
         raise FileNotFoundError(
@@ -894,6 +911,8 @@ def convert_cache_to_json(
             emit_timing=emit_timing,
             emit_elevator_wait=emit_elevator_wait,
             emit_fall_wait=emit_fall_wait,
+            elevator_pre_b=elevator_pre_b,
+            elevator_post_b=elevator_post_b,
         )
         if source_of.get(level) is not None and not prefer_community:
             stats.published_overlap_dropped += 1
@@ -918,6 +937,8 @@ def convert_cache_to_json(
             emit_timing=emit_timing,
             emit_elevator_wait=emit_elevator_wait,
             emit_fall_wait=emit_fall_wait,
+            elevator_pre_b=elevator_pre_b,
+            elevator_post_b=elevator_post_b,
         )
         existing = by_name.get(level)
         if existing is None:
@@ -1017,6 +1038,17 @@ def main(argv: list[str] | None = None) -> int:
         help="emit only the elevator press key V, with no B waits",
     )
 
+    parser.add_argument(
+        "--elevator-pre-b", type=int, default=None, metavar="N",
+        help=f"B presses before each elevator press V "
+             f"(default: ELEVATOR_PRE_B = {ELEVATOR_PRE_B}); 0 disables",
+    )
+    parser.add_argument(
+        "--elevator-post-b", type=int, default=None, metavar="N",
+        help=f"B presses after each elevator press V "
+             f"(default: ELEVATOR_POST_B = {ELEVATOR_POST_B}); 0 disables",
+    )
+
     fall_group = parser.add_mutually_exclusive_group()
     fall_group.add_argument(
         "--fall-wait", dest="emit_fall_wait",
@@ -1058,6 +1090,8 @@ def main(argv: list[str] | None = None) -> int:
             emit_timing=args.emit_timing,
             emit_elevator_wait=args.emit_elevator_wait,
             emit_fall_wait=args.emit_fall_wait,
+            elevator_pre_b=args.elevator_pre_b,
+            elevator_post_b=args.elevator_post_b,
         )
     except FileNotFoundError as exc:
         log.error("%s", exc)
