@@ -8,6 +8,13 @@ TARGET_WIN     := "ahk_exe sinking_star.exe"
 RESET_KEY      := "r"
 START_OFFSET_MS := 0   ; default of the UI field: reset key press -> level time 0 (game time)
 
+; Name of the level to auto-select when the list loads ("" = select first).
+; Matches exactly, or by substring; if not found, falls back to the first entry.
+DEFAULT_LEVEL  := "vertical_promesst_v2"
+
+; Start with the "4x speed" checkbox enabled (true) or disabled (false).
+DEFAULT_4X     := true
+
 ; Keys (same as your working Solution Player script)
 KEY_UP        := "{Up}"
 KEY_DOWN      := "{Down}"
@@ -137,7 +144,7 @@ LoadSolutions() {
 ; ---------------------------------------------------------------------------
 BuildGui() {
     global g_LB, g_Fast, g_Offset, g_Status
-    global START_OFFSET_MS
+    global START_OFFSET_MS, DEFAULT_4X
 
     g := Gui("+Resize", "WikiTactics Player")
     g.SetFont("s10", "Segoe UI")
@@ -148,7 +155,8 @@ BuildGui() {
     g_LB := g.Add("ListBox", "w420 h400")
     g_LB.OnEvent("DoubleClick", (*) => PlaySelected())
 
-    g_Fast := g.Add("Checkbox", "xm", "4x speed (holds Alt before reset and during play)")
+    g_Fast := g.Add("Checkbox", "xm" (DEFAULT_4X ? " Checked" : ""),
+        "4x speed (holds Alt before reset and during play)")
 
     g.Add("Text", "xm y+8", "Start offset after reset (ms, game time):")
     g_Offset := g.Add("Edit", "x+8 w70 Number", START_OFFSET_MS)
@@ -172,7 +180,7 @@ BuildGui() {
 }
 
 RefreshList() {
-    global g_LB, g_Recs, g_Status, g_File
+    global g_LB, g_Recs, g_Status, g_File, DEFAULT_LEVEL
 
     g_Status.SetText("Loading...")
     try {
@@ -190,8 +198,29 @@ RefreshList() {
     g_Recs := recs
     g_LB.Delete()
     g_LB.Add(names)
-    g_LB.Choose(1)
-    g_Status.SetText("Loaded " names.Length " level(s) from " g_File)
+
+    ; pick the preferred level: exact match first, then substring, else first
+    sel := 0
+    if (DEFAULT_LEVEL != "") {
+        for i, n in names {
+            if (n == DEFAULT_LEVEL) {
+                sel := i
+                break
+            }
+        }
+        if (sel = 0) {
+            for i, n in names {
+                if InStr(n, DEFAULT_LEVEL) {
+                    sel := i
+                    break
+                }
+            }
+        }
+    }
+    g_LB.Choose(sel > 0 ? sel : 1)
+
+    g_Status.SetText("Loaded " names.Length " level(s) from " g_File
+        . (sel > 0 ? "  — selected: " names[sel] : ""))
 }
 
 PlaySelected() {

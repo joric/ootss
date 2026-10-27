@@ -13,12 +13,26 @@ For each slug, a single source is chosen:
 
 Sources are never combined, and no two slugs are ever joined.
 
+Output token vocabulary:
+
+    * direction / action keys   (U D L R X V F, digits, C, ...)
+    * ``B``                     — literal wait key, used by elevator waits
+                                  and (by default) fall waits
+    * ``_x.y_``                 — explicit time sleep, used for per-move
+                                  timing correction from action_ticks /
+                                  input_delay_ticks (and optionally for
+                                  fall waits if FALL_WAIT_AS_SLEEP is set)
+
 Default record: {"name", "solution"}.
 With --info: adds "url", "json", "moves" (raw moves), timing arrays,
 source metadata, and "order" (all actors in switching order).
 
 Usage:
     wt_converter.py [--info] [--prefer-community]
+                    [--timing | --no-timing]
+                    [--elevator-wait | --no-elevator-wait]
+                    [--fall-wait | --no-fall-wait]
+                    [--selection-mode {digit,cycle}]
                     [--out PATH] [--wt PATH] [-v]
 
 Mapping table (wt.txt): level_name,area_slug,puzzle_slug
@@ -30,9 +44,8 @@ import argparse
 import csv
 import json
 import logging
-import re
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -52,9 +65,30 @@ from urllib.parse import urlparse
 #              Works for both playable characters and pushers, and never
 #              uses digit keys.
 #
-# Change this constant to switch the default for the whole conversion.
-#
 SELECTION_MODE = "cycle"
+
+
+# --------------------------------------------------------------------------- #
+# Optional emissions
+# --------------------------------------------------------------------------- #
+#
+# EMIT_TIMING — emit a per-move _x.y_ time sleep derived from
+#               action_ticks / input_delay_ticks after each move.
+#
+# EMIT_ELEVATOR_WAIT — wrap elevator presses (V) in literal B keypresses.
+#
+# EMIT_FALL_WAIT — emit a wait after a downward pusher step (dz < 0).
+#                  By default this uses B presses (the one intentional
+#                  exception to "B is elevator-only"); set
+#                  FALL_WAIT_AS_SLEEP = True to route it through _x.y_
+#                  instead.
+#
+EMIT_TIMING = False
+EMIT_ELEVATOR_WAIT = True
+EMIT_FALL_WAIT = True
+
+# If True, fall waits are emitted as _x.y_ sleeps instead of B presses.
+FALL_WAIT_AS_SLEEP = False
 
 
 BASE = "https://sinkingstar.wikitactics.com"
@@ -106,7 +140,7 @@ def _is_usable_file(path: Path) -> bool:
 
 
 # --------------------------------------------------------------------------- #
-# Wait / move macros
+# Move macros
 # --------------------------------------------------------------------------- #
 
 # Classes that map to a real playable character slot number (1..9).
@@ -131,29 +165,21 @@ DIR_TO_CHAR = {
     "A@5": "X", "A@6": "X", "A@7": "X", "A@8": "X",
 }
 
+ELEVATOR_PRESS_CHAR = "V"
+
+# Elevator wait: number of B presses on each side of V, scaled by |dz|.
 WAIT_MIN_B = 4
 WAIT_MAX_B = 8
 WAIT_MAX_LEVEL = 2
-ELEVATOR_PRESS_CHAR = "V"
 
+# Fall wait: B presses (or _x.y_ if FALL_WAIT_AS_SLEEP) scaled by |dz|.
+FALL_WAIT_MIN_B = 4
+FALL_WAIT_MAX_B = 8
+FALL_WAIT_MAX_LEVEL = 2
+
+# Timing correction: microsecond thresholds for _x.y_ output.
 QUANTUM_US = 250_000
-LONG_RUN_QUANTUM_US = 423_000
-MAX_LITERAL_WAIT_US = 1_000_000
-_B_RUN_RE = re.compile(r"B+")
-
-
-def collapse_long_waits(s: str) -> str:
-    """Collapse runs of B whose real duration exceeds 1 second."""
-    threshold_b = int(MAX_LITERAL_WAIT_US / QUANTUM_US)
-
-    def _repl(m: "re.Match[str]") -> str:
-        n = len(m.group(0))
-        if n <= threshold_b:
-            return m.group(0)
-        secs = n * LONG_RUN_QUANTUM_US / 1_000_000
-        return f"_{secs:.1f}_"
-
-    return _B_RUN_RE.sub(_repl, s)
+MIN_EMIT_US = 150_000
 
 
 def _wait_bs(levels: int) -> int:
@@ -168,13 +194,11 @@ def _wait_bs(levels: int) -> int:
     return int(round(WAIT_MIN_B + frac * (WAIT_MAX_B - WAIT_MIN_B)))
 
 
-def fall_wait(dz: int) -> str:
-    if dz >= 0:
-        return ""
-    return "B" * _wait_bs(abs(dz))
-
-
 def elevator_wait(dz: int) -> str:
+    """Literal B presses around the elevator press key.
+
+    Only emitted when ``EMIT_ELEVATOR_WAIT`` is on.
+    """
     if dz == 0:
         return ""
     total = _wait_bs(abs(dz))
@@ -183,17 +207,46 @@ def elevator_wait(dz: int) -> str:
     return ("B" * pre) + ELEVATOR_PRESS_CHAR + ("B" * post)
 
 
-MIN_EMIT_US = 150_000
-
-
-def us_to_bs(us: int | None) -> int:
-    if us is None or us < MIN_EMIT_US:
+def _fall_bs(levels: int) -> int:
+    if levels <= 0:
         return 0
-    return max(1, int(round(us / QUANTUM_US)))
+    if levels >= FALL_WAIT_MAX_LEVEL:
+        return FALL_WAIT_MAX_B
+    span = FALL_WAIT_MAX_LEVEL - 1
+    if span <= 0:
+        return FALL_WAIT_MAX_B
+    frac = (levels - 1) / span
+    return int(round(FALL_WAIT_MIN_B + frac * (FALL_WAIT_MAX_B - FALL_WAIT_MIN_B)))
+
+
+def fall_wait(dz: int) -> str:
+    """Wait emitted after a downward pusher step (dz < 0).
+
+    Emits B presses by default; if ``FALL_WAIT_AS_SLEEP`` is set,
+    emits an ``_x.y_`` sleep instead.
+    """
+    if dz >= 0:
+        return ""
+    levels = abs(dz)
+    if FALL_WAIT_AS_SLEEP:
+        us = _fall_bs(levels) * QUANTUM_US
+        return us_to_sleep(us)
+    return "B" * _fall_bs(levels)
+
+
+def us_to_sleep(us: int | None) -> str:
+    """Convert a microsecond duration into an explicit ``_x.y_`` token.
+
+    Returns an empty string if the duration is below ``MIN_EMIT_US``.
+    Never emits B.
+    """
+    if us is None or us < MIN_EMIT_US:
+        return ""
+    secs = us / 1_000_000
+    return f"_{secs:.1f}_"
 
 
 def _timing_for_move(timing: dict | None, i: int) -> tuple[int | None, int]:
-    return [], 0
     if not timing:
         return None, 0
     action_ticks = timing.get("action_ticks") or []
@@ -468,6 +521,33 @@ def _emit_selection(
     return fragment, True, char_name, new_cycle
 
 
+def _emit_action(
+    action: str,
+    dz: int | None,
+    *,
+    emit_elevator_wait: bool,
+    emit_fall_wait: bool,
+) -> str:
+    """Translate one action token into output characters.
+
+    Rules:
+      * Elevator press (``T`` with a known delta) becomes
+        [B...] V [B...] when ``emit_elevator_wait`` is on, else just ``V``.
+      * Any other action that stepped the pusher down (dz < 0) gets a
+        fall wait appended when ``emit_fall_wait`` is on.
+      * Every action maps through ``DIR_TO_CHAR``.
+    """
+    if action == "T" and dz is not None:
+        if emit_elevator_wait:
+            return elevator_wait(dz)
+        return ELEVATOR_PRESS_CHAR
+
+    out = DIR_TO_CHAR.get(action, action if action.isdigit() else "?")
+    if emit_fall_wait and dz is not None and dz < 0:
+        out += fall_wait(dz)
+    return out
+
+
 def convert_moves(
     moves: list[str],
     level: str,
@@ -478,11 +558,20 @@ def convert_moves(
     default_char: str | None = None,
     frames: list | None = None,
     mode: str | None = None,
+    emit_timing: bool | None = None,
+    emit_elevator_wait: bool | None = None,
+    emit_fall_wait: bool | None = None,
 ) -> str:
     if not moves:
         return ""
     deltas = deltas or {}
     mode = mode or SELECTION_MODE
+    if emit_timing is None:
+        emit_timing = EMIT_TIMING
+    if emit_elevator_wait is None:
+        emit_elevator_wait = EMIT_ELEVATOR_WAIT
+    if emit_fall_wait is None:
+        emit_fall_wait = EMIT_FALL_WAIT
 
     spawned = detect_spawned_chars(moves, groups, frames)
     use_cycle = not spawned
@@ -516,23 +605,21 @@ def convert_moves(
                     result.append(frag)
 
             dz = deltas.get(i)
-            if action == "T" and dz is not None:
-                result.append(elevator_wait(dz))
-            else:
-                result.append(
-                    DIR_TO_CHAR.get(
-                        action, action if action.isdigit() else "?"
-                    )
+            result.append(
+                _emit_action(
+                    action, dz,
+                    emit_elevator_wait=emit_elevator_wait,
+                    emit_fall_wait=emit_fall_wait,
                 )
-                if dz is not None and dz < 0:
-                    result.append(fall_wait(dz))
+            )
 
-            if i < len(moves) - 1:
+            if emit_timing and i < len(moves) - 1:
                 duration, extra = _timing_for_move(timing, i)
-                n_b = us_to_bs((duration or 0) + (extra or 0))
-                if n_b:
-                    result.append("B")
-        return collapse_long_waits("".join(result))
+                sleep = us_to_sleep((duration or 0) + (extra or 0))
+                if sleep:
+                    result.append(sleep)
+
+        return "".join(result)
 
     # ---- mixed level --------------------------------------------------
     order = _cycle_order(groups)
@@ -595,18 +682,21 @@ def convert_moves(
         # else: queen / scripted NPC -> never selected.
 
         dz = deltas.get(i)
-        if action == "T" and dz is not None:
-            result.append(elevator_wait(dz))
-        else:
-            result.append(
-                DIR_TO_CHAR.get(
-                    action, action if action.isdigit() else "?"
-                )
+        result.append(
+            _emit_action(
+                action, dz,
+                emit_elevator_wait=emit_elevator_wait,
+                emit_fall_wait=emit_fall_wait,
             )
-            if dz is not None and dz < 0:
-                result.append(fall_wait(dz))
+        )
 
-    return collapse_long_waits("".join(result))
+        if emit_timing and i < len(moves) - 1:
+            duration, extra = _timing_for_move(timing, i)
+            sleep = us_to_sleep((duration or 0) + (extra or 0))
+            if sleep:
+                result.append(sleep)
+
+    return "".join(result)
 
 
 # --------------------------------------------------------------------------- #
@@ -665,6 +755,9 @@ def _build_record(
     *,
     info: bool = False,
     mode: str | None = None,
+    emit_timing: bool | None = None,
+    emit_elevator_wait: bool | None = None,
+    emit_fall_wait: bool | None = None,
 ) -> dict:
     moves = data.get("moves", [])
     timing = data.get("timing") or {}
@@ -685,6 +778,9 @@ def _build_record(
             groups=groups,
             frames=frames,
             mode=mode,
+            emit_timing=emit_timing,
+            emit_elevator_wait=emit_elevator_wait,
+            emit_fall_wait=emit_fall_wait,
         ),
     }
 
@@ -749,6 +845,9 @@ def convert_cache_to_json(
     prefer_community: bool = False,
     info: bool = False,
     mode: str | None = None,
+    emit_timing: bool | None = None,
+    emit_elevator_wait: bool | None = None,
+    emit_fall_wait: bool | None = None,
 ) -> ConvertStats:
     if not wt_path.is_file():
         raise FileNotFoundError(
@@ -792,6 +891,9 @@ def convert_cache_to_json(
         level, (area, slug) = levels_by_slug[pid]
         rec = _build_record(
             level, area, slug, entry, "published", info=info, mode=mode,
+            emit_timing=emit_timing,
+            emit_elevator_wait=emit_elevator_wait,
+            emit_fall_wait=emit_fall_wait,
         )
         if source_of.get(level) is not None and not prefer_community:
             stats.published_overlap_dropped += 1
@@ -813,6 +915,9 @@ def convert_cache_to_json(
             continue
         rec = _build_record(
             level, area, slug, data, "s", info=info, mode=mode,
+            emit_timing=emit_timing,
+            emit_elevator_wait=emit_elevator_wait,
+            emit_fall_wait=emit_fall_wait,
         )
         existing = by_name.get(level)
         if existing is None:
@@ -887,6 +992,45 @@ def main(argv: list[str] | None = None) -> int:
              "'cycle' (C key only, multiple presses as needed). "
              "Defaults to the SELECTION_MODE constant at the top of the file.",
     )
+
+    timing_group = parser.add_mutually_exclusive_group()
+    timing_group.add_argument(
+        "--timing", dest="emit_timing", action="store_true", default=None,
+        help="emit per-move _x.y_ sleep derived from action_ticks / "
+             "input_delay_ticks (default: EMIT_TIMING constant)",
+    )
+    timing_group.add_argument(
+        "--no-timing", dest="emit_timing", action="store_false",
+        help="skip per-move _x.y_ sleeps",
+    )
+
+    elevator_group = parser.add_mutually_exclusive_group()
+    elevator_group.add_argument(
+        "--elevator-wait", dest="emit_elevator_wait",
+        action="store_true", default=None,
+        help="wrap elevator presses (V) in literal B waits "
+             "(default: EMIT_ELEVATOR_WAIT constant)",
+    )
+    elevator_group.add_argument(
+        "--no-elevator-wait", dest="emit_elevator_wait",
+        action="store_false",
+        help="emit only the elevator press key V, with no B waits",
+    )
+
+    fall_group = parser.add_mutually_exclusive_group()
+    fall_group.add_argument(
+        "--fall-wait", dest="emit_fall_wait",
+        action="store_true", default=None,
+        help="emit a wait after downward pusher steps "
+             "(B presses, or _x.y_ if FALL_WAIT_AS_SLEEP is set; "
+             "default: EMIT_FALL_WAIT constant)",
+    )
+    fall_group.add_argument(
+        "--no-fall-wait", dest="emit_fall_wait",
+        action="store_false",
+        help="skip fall waits after downward pusher steps",
+    )
+
     parser.add_argument(
         "-v", "--verbose", action="store_true",
         help="show cache hits and per-slug warnings",
@@ -911,6 +1055,9 @@ def main(argv: list[str] | None = None) -> int:
             prefer_community=args.prefer_community,
             info=args.info,
             mode=mode,
+            emit_timing=args.emit_timing,
+            emit_elevator_wait=args.emit_elevator_wait,
+            emit_fall_wait=args.emit_fall_wait,
         )
     except FileNotFoundError as exc:
         log.error("%s", exc)
