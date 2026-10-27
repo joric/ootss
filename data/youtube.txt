@@ -29,3 +29,4 @@ unblock_block_alt,https://youtu.be/0TBFiaZag8M?t=3551
 cancel_out,https://youtu.be/7AE_0EODDNs
 swap_seats,https://youtu.be/XpLDqs4ldOo?t=3099
 multipurpose,https://youtu.be/0TBFiaZag8M?t=2242
+vertical_promesst_v2,https://youtu.be/WHB5Fdu9Q3k?t=252
