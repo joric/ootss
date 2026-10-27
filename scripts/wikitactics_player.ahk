@@ -10,7 +10,7 @@ START_OFFSET_MS := 0   ; default of the UI field: reset key press -> level time 
 
 ; Name of the level to auto-select when the list loads ("" = select first).
 ; Matches exactly, or by substring; if not found, falls back to the first entry.
-DEFAULT_LEVEL  := "vertical_promesst_v2"
+DEFAULT_LEVEL  := "promesst1_streamlined"
 
 ; Start with the "4x speed" checkbox enabled (true) or disabled (false).
 DEFAULT_4X     := true
