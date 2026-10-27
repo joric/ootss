@@ -162,7 +162,7 @@ NON_PLAYABLE_CLASSES = {"pusher"}
 DIR_TO_CHAR = {
     "N": "U", "S": "D", "E": "R", "W": "L",
     "A": "X", "T": "V", "F": "F",
-    "tick": "B", "wait": "BB", "pause": "BBBB",
+    "tick": "B", "wait": "B", "pause": "B",
     "A@1": "X", "A@2": "X", "A@3": "X", "A@4": "X",
     "A@5": "X", "A@6": "X", "A@7": "X", "A@8": "X",
 }
