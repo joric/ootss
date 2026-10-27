@@ -1,4 +1,4 @@
-#Requires AutoHotkey v2.0
+﻿#Requires AutoHotkey v2.0
 #SingleInstance Force
 
 ; ---------------------------------------------------------------------------
@@ -6,57 +6,34 @@
 ; ---------------------------------------------------------------------------
 TARGET_WIN     := "ahk_exe sinking_star.exe"
 RESET_KEY      := "r"
-START_OFFSET_MS := 0   ; default of the UI field: reset key press -> level time 0 (game time)
-
-; Name of the level to auto-select when the list loads ("" = select first).
-; Matches exactly, or by substring; if not found, falls back to the first entry.
+START_OFFSET_MS := 0
+DEFAULT_DELTA_TICKS := 0
 DEFAULT_LEVEL  := "promesst1_streamlined"
+DEFAULT_4X     := false
+DEFAULT_SLOW   := false   ; hold Ctrl: 4x longer wall-clock, same ticks
+DEFAULT_SHIFT  := false   ; hold Shift: character 2x, ticks unchanged
 
-; Start with the "4x speed" checkbox enabled (true) or disabled (false).
-DEFAULT_4X     := true
-
-; Keys (same as your working Solution Player script)
 KEY_UP        := "{Up}"
 KEY_DOWN      := "{Down}"
 KEY_LEFT      := "{Left}"
 KEY_RIGHT     := "{Right}"
-KEY_PRIMARY   := "x"      ; move token "A" / "A@n"
-KEY_SECONDARY := "v"      ; move token "T"
-KEY_SWITCH    := "c"      ; cycle to next character
-KEY_F         := "f"      ; move token "F"
-; tick / wait / pause send no key at all; they just take up their timestamp
+KEY_PRIMARY   := "x"
+KEY_SECONDARY := "v"
+KEY_SWITCH    := "c"
+KEY_F         := "f"
 
-; Timing
-TICK_US        := 1       ; microseconds per unit of frame_ticks (1 = values are already in us)
-DEFAULT_GAP_MS := 40      ; only used if a move has no frame_ticks value
-MIN_GAP_MS     := 16      ; never send two keys closer together than this
-PRESS_MS       := 40      ; how long each key is held down
-
-; Precision: raise this thread's priority so the busy-wait and SendEvent calls
-; are not preempted mid-send. AHK itself recommends High for delay=0 sending.
+TICK_US        := 1
+DEFAULT_GAP_MS := 0
+PRESS_MS       := 16
 PROCESS_PRIORITY := "High"
 
-global g_Abort   := false
-global g_Playing := false
-global g_LB      := ""
-global g_Fast    := ""     ; "4x speed" checkbox
-global g_Offset  := ""     ; start offset edit box
-global g_Status  := ""
-global g_Recs    := []     ; array of Map(name, moves, order, ticks), same order as the ListBox
-global g_File    := ""
-
-; solutions_debug.json lives in the same folder as this script.
-ResolveSolutionsPath() {
-    return A_ScriptDir "\solutions_debug.json"
-}
+global g_Abort := false, g_Playing := false, g_ExitRequested := false
+global g_LB := "", g_Fast := "", g_Slow := "", g_Shift2 := "", g_Offset := "", g_Delta := "", g_Status := ""
+global g_Recs := [], g_File := ""
 
 ; ---------------------------------------------------------------------------
-; JSON loading with plain InStr/SubStr only (NO regex on the file text).
+; JSON loading (plain InStr/SubStr only)
 ; ---------------------------------------------------------------------------
-
-; p points right after a key's closing quote. Reads  : "value"
-; Returns the value and sets endp to the position after it; endp := 0 if this
-; was not a  key: "string"  pair.
 ReadValue(text, p, &endp) {
     len := StrLen(text)
     endp := 0
@@ -71,7 +48,7 @@ ReadValue(text, p, &endp) {
         return ""
     start := p + 1
     q := InStr(text, '"', true, start)
-    while (q && SubStr(text, q - 1, 1) = "\")     ; skip escaped quotes
+    while (q && SubStr(text, q - 1, 1) = "\")
         q := InStr(text, '"', true, q + 1)
     if !q
         return ""
@@ -83,8 +60,6 @@ ReadValue(text, p, &endp) {
     return v
 }
 
-; Finds the next  "key": "value"  at or after `from` (and before `to` if to > 0).
-; Returns the position of the key (0 if none); val/endp are set on success.
 FindKey(text, key, from, to, &val, &endp) {
     pat := '"' key '"'
     kl := StrLen(pat)
@@ -107,33 +82,25 @@ FindKey(text, key, from, to, &val, &endp) {
 
 LoadSolutions() {
     global g_File
-    g_File := ResolveSolutionsPath()
+    g_File := A_ScriptDir "\solutions_debug.json"
     if !FileExist(g_File)
-        throw Error("Solutions file not found:`n" g_File)
-
+        throw Error("Solutions file not found: " g_File)
     text := FileRead(g_File, "UTF-8")
 
-    ; 1) locate every record by its "name"
-    starts := []
-    names := []
-    nends := []
-    pos := 1
+    starts := [], names := [], nends := [], pos := 1
     while (np := FindKey(text, "name", pos, 0, &nm, &ne)) {
         starts.Push(np)
         names.Push(nm)
         nends.Push(ne)
         pos := ne
     }
-
     if (names.Length = 0)
-        throw Error("No records with a name found.`n`nFile: " g_File "`nSize: " StrLen(text) " chars`n`nStart of file:`n" SubStr(text, 1, 300))
+        throw Error("No records with a name found in " g_File)
 
-    ; 2) inside each record's text, read moves / order / frame_ticks
     recs := []
     for i, rn in names {
         from := nends[i]
         stop := (i < names.Length) ? starts[i + 1] : StrLen(text) + 1
-        ; search only inside this record's own text (never scan the whole file)
         region := SubStr(text, from, stop - from)
         FindKey(region, "moves", 1, 0, &mv, &e1)
         FindKey(region, "order", 1, 0, &od, &e2)
@@ -147,8 +114,8 @@ LoadSolutions() {
 ; GUI
 ; ---------------------------------------------------------------------------
 BuildGui() {
-    global g_LB, g_Fast, g_Offset, g_Status
-    global START_OFFSET_MS, DEFAULT_4X
+    global g_LB, g_Fast, g_Slow, g_Shift2, g_Offset, g_Delta, g_Status
+    global START_OFFSET_MS, DEFAULT_DELTA_TICKS, DEFAULT_4X, DEFAULT_SLOW, DEFAULT_SHIFT
 
     g := Gui("+Resize", "WikiTactics Player")
     g.SetFont("s10", "Segoe UI")
@@ -161,9 +128,15 @@ BuildGui() {
 
     g_Fast := g.Add("Checkbox", "xm" (DEFAULT_4X ? " Checked" : ""),
         "4x speed (holds Alt before reset and during play)")
+    g_Slow := g.Add("Checkbox", "xm" (DEFAULT_SLOW ? " Checked" : ""),
+        "Slow down 4x (holds Ctrl; wall-clock x4, same ticks)")
+    g_Shift2 := g.Add("Checkbox", "xm" (DEFAULT_SHIFT ? " Checked" : ""),
+        "Speed up character 2x (holds Shift; ticks unchanged)")
 
     g.Add("Text", "xm y+8", "Start offset after reset (ms, game time):")
     g_Offset := g.Add("Edit", "x+8 w70 Number", START_OFFSET_MS)
+    g.Add("Text", "xm y+8", "Move delta (ticks, can be negative):")
+    g_Delta := g.Add("Edit", "x+8 w90", DEFAULT_DELTA_TICKS)
 
     btnPlay   := g.Add("Button", "xm y+10 w100 Default", "Play")
     btnStop   := g.Add("Button", "w100 x+10", "Stop")
@@ -173,11 +146,11 @@ BuildGui() {
     btnPlay.OnEvent("Click",   (*) => PlaySelected())
     btnStop.OnEvent("Click",   (*) => StopPlayback())
     btnReload.OnEvent("Click", (*) => RefreshList())
-    btnClose.OnEvent("Click",  (*) => ExitApp())
+    btnClose.OnEvent("Click",  (*) => RequestExit())
 
     g_Status := g.Add("StatusBar", , "Ready.")
-    g.OnEvent("Close",  (*) => ExitApp())
-    g.OnEvent("Escape", (*) => ExitApp())
+    g.OnEvent("Close",  (*) => RequestExit())
+    g.OnEvent("Escape", (*) => RequestExit())
 
     g.Show("w560")
     return g
@@ -185,11 +158,10 @@ BuildGui() {
 
 RefreshList() {
     global g_LB, g_Recs, g_Status, g_File, DEFAULT_LEVEL
-
     g_Status.SetText("Loading...")
-    try {
+    try
         recs := LoadSolutions()
-    } catch as e {
+    catch as e {
         g_Status.SetText("Load error - see message box")
         MsgBox("Could not load solutions:`n`n" e.Message, "WikiTactics Player", "Iconx")
         return
@@ -203,7 +175,6 @@ RefreshList() {
     g_LB.Delete()
     g_LB.Add(names)
 
-    ; pick the preferred level: exact match first, then substring, else first
     sel := 0
     if (DEFAULT_LEVEL != "") {
         for i, n in names {
@@ -222,7 +193,6 @@ RefreshList() {
         }
     }
     g_LB.Choose(sel > 0 ? sel : 1)
-
     g_Status.SetText("Loaded " names.Length " level(s) from " g_File
         . (sel > 0 ? "  — selected: " names[sel] : ""))
 }
@@ -242,9 +212,20 @@ PlaySelected() {
 }
 
 StopPlayback() {
-    global g_Abort, g_Status
+    global g_Abort, g_Status, g_Playing
+    if !g_Playing
+        return
     g_Abort := true
-    g_Status.SetText("Stopping...")
+    g_Status.SetText("Stopping and releasing keys...")
+}
+
+RequestExit() {
+    global g_Playing, g_ExitRequested
+    if g_Playing {
+        g_ExitRequested := true
+        StopPlayback()
+    } else
+        ExitApp()
 }
 
 ; ---------------------------------------------------------------------------
@@ -260,18 +241,31 @@ QPC() {
 }
 
 SleepUntilUS(target_us) {
+    global g_Abort
+    static timer := 0
+    if !timer {
+        try timer := DllCall("CreateWaitableTimerExW", "Ptr", 0, "Ptr", 0,
+            "UInt", 0x2, "UInt", 0x1F0003, "Ptr")
+        if !timer
+            timer := DllCall("CreateWaitableTimerW", "Ptr", 0, "Int", 0, "Ptr", 0, "Ptr")
+    }
     while !g_Abort {
-        now := QPC()
-        if (now >= target_us)
+        remaining := target_us - QPC()
+        if (remaining <= 0)
             return true
-        if (target_us - now > 2500)
-            Sleep(1)            ; coarse wait; the last ~2.5 ms are spun for precision
+        if (timer && remaining > 500) {
+            wait_us := Min(remaining - 300, 2000)
+            due := -wait_us * 10
+            DllCall("SetWaitableTimer", "Ptr", timer, "Int64*", &due,
+                "Int", 0, "Ptr", 0, "Ptr", 0, "Int", 0)
+            DllCall("WaitForSingleObject", "Ptr", timer, "UInt", 2)
+        }
     }
     return false
 }
 
 ; ---------------------------------------------------------------------------
-; Moves -> key schedule
+; Moves -> schedule
 ; ---------------------------------------------------------------------------
 MoveClass(name) {
     return StrSplit(name, "#")[1]
@@ -279,21 +273,14 @@ MoveClass(name) {
 
 MoveInstance(name) {
     parts := StrSplit(name, "#")
-    if (parts.Length < 2 || !IsInteger(parts[2]))
-        return 1
-    return Integer(parts[2])
+    return (parts.Length < 2 || !IsInteger(parts[2])) ? 1 : Integer(parts[2])
 }
 
-; Position (1-based) of an actor in the C-cycle order, 0 if not in it.
-; Falls back to class + instance number ("priestess#2"), and to bare class names.
 FindInOrder(order, name) {
-    for i, n in order {
+    for i, n in order
         if (n == name)
             return i
-    }
-    cls := MoveClass(name)
-    idx := MoveInstance(name)
-    seen := 0
+    cls := MoveClass(name), idx := MoveInstance(name), seen := 0
     for i, n in order {
         if (MoveClass(n) == cls) {
             seen++
@@ -310,58 +297,54 @@ FindInOrder(order, name) {
     return 0
 }
 
-; Move action -> key to send ("" = no key, just let time pass)
 KeyForAction(action) {
     global KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_PRIMARY, KEY_SECONDARY, KEY_F
-    if (action == "N")
+    if (action == "N") {
         return KEY_UP
-    if (action == "S")
+    }
+    if (action == "S") {
         return KEY_DOWN
-    if (action == "W")
+    }
+    if (action == "W") {
         return KEY_LEFT
-    if (action == "E")
+    }
+    if (action == "E") {
         return KEY_RIGHT
-    if (action == "A" || SubStr(action, 1, 2) == "A@")
+    }
+    if (action == "A" || SubStr(action, 1, 2) == "A@") {
         return KEY_PRIMARY
-    if (action == "T")
+    }
+    if (action == "T") {
         return KEY_SECONDARY
-    if (action == "F")
+    }
+    if (action == "F") {
         return KEY_F
-    if (StrLen(action) = 1 && IsDigit(action))
+    }
+    if (StrLen(action) = 1 && IsDigit(action)) {
         return action
-    return ""         ; tick / wait / pause: no key, they only use up their timestamp
+    }
+    return ""
 }
 
-BuildSchedule(rec, speed := 1) {
-    global KEY_SWITCH, TICK_US, DEFAULT_GAP_MS, MIN_GAP_MS
-
+BuildSchedule(rec, speed := 1, delta_ticks := 0) {
+    global KEY_SWITCH, TICK_US, DEFAULT_GAP_MS
+    delta_us := delta_ticks * TICK_US
     moves := StrSplit(rec["moves"], " ")
     order := (rec["order"] != "") ? StrSplit(rec["order"], " ") : []
     ticks := (rec["ticks"] != "") ? StrSplit(rec["ticks"], ",") : []
 
-    schedule := []
-    t_us := 0
-    last := -1000000000
-    gap := MIN_GAP_MS * 1000 * speed         ; gap is in game time; real gap stays MIN_GAP_MS
-    cur := (order.Length > 0) ? 1 : 0        ; first actor in the roster starts selected
-    pending := 0                             ; C presses owed before the next real action
-
+    schedule := [], t_us := 0
+    cur := (order.Length > 0) ? 1 : 0
+    pending := 0
     for i, token in moves {
         if (token = "" || !InStr(token, ":"))
             continue
         parts := StrSplit(token, ":", , 2)
-        actor := parts[1]
-        action := parts[2]
-
-        ; frame_ticks[i] = absolute timestamp (us from start) of move i
+        actor := parts[1], action := parts[2]
         if (i <= ticks.Length && IsNumber(ticks[i]))
             t_us := Number(ticks[i]) * TICK_US
         else if (i > 1)
             t_us += DEFAULT_GAP_MS * 1000
-
-        ; Accumulate C presses for this actor. They get NO timestamp, do NOT
-        ; advance `last`, and do NOT consume the MIN_GAP budget. They are
-        ; attached to the next real key and tapped just before it.
         if (order.Length > 0) {
             tgt := FindInOrder(order, actor)
             if (tgt > 0 && tgt != cur) {
@@ -370,59 +353,55 @@ BuildSchedule(rec, speed := 1) {
                 cur := tgt
             }
         }
-
         key := KeyForAction(action)
         if (key != "") {
-            fire := Max(t_us, last + gap)
-            schedule.Push({key: key, fire_at_us: fire, switches: pending})
+            schedule.Push({key: key, fire_at_us: t_us + delta_us, switches: pending})
             pending := 0
-            last := fire
         }
     }
-
-    ; Trailing switches with no following real action: flush them as a final
-    ; zero-hold tap at the last known timestamp (no gap cost, no hold).
     if (pending > 0)
-        schedule.Push({key: "", fire_at_us: last, switches: pending})
-
+        schedule.Push({key: "", fire_at_us: t_us + delta_us, switches: pending})
     return schedule
 }
 
 ; ---------------------------------------------------------------------------
-; Precision key sending
-;
-; SetKeyDelay's PressDuration is subject to the OS timer granularity (often
-; 10-15 ms), so a nominal 40 ms hold can actually last 40-55 ms. To get a
-; deterministic hold we send key-down, busy-wait with QPC for exactly
-; PRESS_MS microseconds, then send key-up. Gap between keys is handled by
-; the scheduler's fire_at_us, not by SetKeyDelay.
-;
-; hold_us = 0 means a true momentary tap: down and up back-to-back, no wait.
-; This is used for the C character switch.
+; Input
 ; ---------------------------------------------------------------------------
-SendKeyRaw(k, hold_us, blind := false) {
-    keyName := (StrLen(k) = 1) ? k : SubStr(k, 2, -1)
-    prefix := blind ? "{Blind}" : ""
-    SendEvent(prefix "{" keyName " down}")
-    if (hold_us > 0)
-        SleepUntilUS(QPC() + hold_us)
-    SendEvent(prefix "{" keyName " up}")
+SendTargetKey(keyName, direction) {
+    global TARGET_WIN
+    ControlSend("{" keyName " " direction "}", , TARGET_WIN)
+}
+
+ReleaseHeldKeys(held) {
+    for keyName, _ in held
+        try SendTargetKey(keyName, "up")
+    held.Clear()
+}
+
+HasPendingRelease(releases, keyName) {
+    for rel in releases
+        if (rel.key = keyName)
+            return true
+    return false
 }
 
 ; ---------------------------------------------------------------------------
-; Playback (moves + order + frame_ticks)
+; Playback
 ; ---------------------------------------------------------------------------
 ReplayLevel(rec) {
-    global g_Abort, g_Playing, g_Status, g_Fast, g_Offset
-    global TARGET_WIN, RESET_KEY, PRESS_MS
+    global g_Abort, g_Playing, g_Status, g_Fast, g_Slow, g_Shift2, g_Offset, g_Delta, g_ExitRequested
+    global TARGET_WIN, RESET_KEY, PRESS_MS, KEY_SWITCH
 
-    offset_ms := IsInteger(g_Offset.Value) ? Integer(g_Offset.Value) : 0
-    offset_us := offset_ms * 1000
+    offset_us := (IsInteger(g_Offset.Value) ? Integer(g_Offset.Value) : 0) * 1000
     fast := (g_Fast.Value = 1)
-    speed := fast ? 4 : 1                   ; holding Alt in the game = 4x
+    slow := (g_Slow.Value = 1)
+    shiftHold := (g_Shift2.Value = 1)
+    ; Clock factor: Alt = /4 wall-clock, Ctrl = *4 wall-clock. Only one can
+    ; scale the scheduler at a time; Alt wins if both are set.
+    speed := fast ? 4 : (slow ? 0.25 : 1)
     name := rec["name"]
     if (rec["moves"] = "") {
-        g_Status.SetText("No 'moves' for " name " (was the JSON made with --info?)")
+        g_Status.SetText("No 'moves' for " name)
         return
     }
     if !WinExist(TARGET_WIN) {
@@ -430,7 +409,8 @@ ReplayLevel(rec) {
         return
     }
 
-    schedule := BuildSchedule(rec, speed)
+    schedule := BuildSchedule(rec, speed,
+        IsNumber(g_Delta.Value) ? Number(g_Delta.Value) : 0)
     if (schedule.Length = 0) {
         g_Status.SetText("Nothing to play for " name)
         return
@@ -442,63 +422,112 @@ ReplayLevel(rec) {
         return
     }
 
-    ; No SetKeyDelay: SendKeyRaw drives the hold with QPC. Keep key delay at 0
-    ; so SendEvent itself adds no extra pause after each down/up.
-    SetKeyDelay(0, -1)
-
     g_Abort := false
     g_Playing := true
-
-    total := schedule.Length
-    idx := 0
-    aborted := false
+    total := schedule.Length, idx := 0, aborted := false
     hold_us := PRESS_MS * 1000
-    DllCall("winmm\timeBeginPeriod", "UInt", 1)    ; 1 ms timer resolution
+    held := Map()
+    DllCall("winmm\timeBeginPeriod", "UInt", 1)
     try {
-        ; 4x mode: hold Alt BEFORE the reset and keep it down for the whole run
-        if fast {
-            SendEvent("{Alt down}")
-            Sleep(50)
+        ; Hold modifier keys BEFORE the reset, and keep them down for the run.
+        ; Shift changes the character's speed, not the clock; Alt/Ctrl scale time.
+        if shiftHold {
+            SendTargetKey("Shift", "down")
+            held["Shift"] := true
         }
+        if slow && !fast {
+            SendTargetKey("Ctrl", "down")
+            held["Ctrl"] := true
+        }
+        if fast {
+            SendTargetKey("Alt", "down")
+            held["Alt"] := true
+        }
+        if shiftHold || (slow && !fast) || fast
+            Sleep(50)
 
-        ; The clock starts at the reset key press. Timestamp 0 of the level is
-        ; offset_us (game time) later, because the reset itself takes time.
         g_Status.SetText("Reset (" RESET_KEY ")...")
+        SendTargetKey(RESET_KEY, "down")
+        held[RESET_KEY] := true
         t0 := QPC()
-        SendKeyRaw(RESET_KEY, hold_us, fast)
+        releases := [{key: RESET_KEY, at: t0 + hold_us}]
         for ev in schedule {
             if g_Abort {
                 aborted := true
                 break
             }
-            ; schedule times are "game time"; real time is game time / speed
-            if !SleepUntilUS(t0 + (offset_us + ev.fire_at_us) // speed) {
+            deadline := t0 + Round((offset_us + ev.fire_at_us) / speed)
+            ; Release any keys whose hold expires before this event.
+            while (releases.Length > 0) {
+                earliest := 1
+                for ri, rel in releases
+                    if (rel.at < releases[earliest].at)
+                        earliest := ri
+                if (releases[earliest].at > deadline)
+                    break
+                rel := releases.RemoveAt(earliest)
+                if !SleepUntilUS(rel.at) {
+                    aborted := true
+                    break
+                }
+                if !HasPendingRelease(releases, rel.key) {
+                    SendTargetKey(rel.key, "up")
+                    held.Delete(rel.key)
+                }
+            }
+            if aborted {
+                break
+            }
+            if !SleepUntilUS(deadline) {
                 aborted := true
                 break
             }
-
-            ; C switches: zero-hold taps immediately before the action key.
-            ; They are not on the tick timeline and add no delay.
-            Loop ev.switches
-                SendKeyRaw(KEY_SWITCH, 0, fast)
-
+            ; Character switches are tapped immediately before the action.
+            Loop ev.switches {
+                SendTargetKey(KEY_SWITCH, "down")
+                SendTargetKey(KEY_SWITCH, "up")
+            }
             if (ev.key != "") {
+                keyName := (StrLen(ev.key) = 1) ? ev.key : SubStr(ev.key, 2, -1)
+                SendTargetKey(keyName, "down")
+                held[keyName] := true
+                releases.Push({key: keyName, at: deadline + hold_us})
                 idx++
-                SendKeyRaw(ev.key, hold_us, fast)
-                g_Status.SetText("Playing " name ": " idx "/" total (fast ? "  [4x]" : ""))
+                modeTag := (fast ? "  [4x]" : (slow ? "  [slow]" : ""))
+                    . (shiftHold ? "  [2x]" : "")
+                g_Status.SetText("Playing " name ": " idx "/" total modeTag)
+            }
+        }
+        ; Release remaining keys in deadline order.
+        while (releases.Length > 0 && !g_Abort) {
+            earliest := 1
+            for ri, rel in releases
+                if (rel.at < releases[earliest].at)
+                    earliest := ri
+            rel := releases.RemoveAt(earliest)
+            if !SleepUntilUS(rel.at) {
+                aborted := true
+                break
+            }
+            if !HasPendingRelease(releases, rel.key) {
+                SendTargetKey(rel.key, "up")
+                held.Delete(rel.key)
             }
         }
     } finally {
-        if fast
-            SendEvent("{Alt up}")            ; always release Alt, even on Stop/error
+        ReleaseHeldKeys(held)
         DllCall("winmm\timeEndPeriod", "UInt", 1)
     }
 
     g_Playing := false
     g_Abort := false
+    modeTag := (fast ? "  [4x]" : (slow ? "  [slow]" : ""))
+        . (shiftHold ? "  [2x]" : "")
     g_Status.SetText(aborted
-        ? "Stopped after " idx "/" total " keys."
-        : "Done: " name " (" total " keys).")
+        ? "Stopped after " idx "/" total " keys." modeTag
+        : "Done: " name " (" total " keys)." modeTag)
+    if g_ExitRequested
+        ExitApp()
 }
 
 ; ---------------------------------------------------------------------------
@@ -510,6 +539,7 @@ RefreshList()
 
 F5::RefreshList()
 ~Esc::StopPlayback()
-
-; Ctrl+j plays the selected level (mirrors the Play button).
+#HotIf g_Playing
+*r::StopPlayback()
+#HotIf
 ^j::PlaySelected()
