@@ -344,6 +344,7 @@ BuildSchedule(rec, speed := 1) {
     last := -1000000000
     gap := MIN_GAP_MS * 1000 * speed         ; gap is in game time; real gap stays MIN_GAP_MS
     cur := (order.Length > 0) ? 1 : 0        ; first actor in the roster starts selected
+    pending := 0                             ; C presses owed before the next real action
 
     for i, token in moves {
         if (token = "" || !InStr(token, ":"))
@@ -358,16 +359,14 @@ BuildSchedule(rec, speed := 1) {
         else if (i > 1)
             t_us += DEFAULT_GAP_MS * 1000
 
-        ; switch character with C presses (cycle order)
+        ; Accumulate C presses for this actor. They get NO timestamp, do NOT
+        ; advance `last`, and do NOT consume the MIN_GAP budget. They are
+        ; attached to the next real key and tapped just before it.
         if (order.Length > 0) {
             tgt := FindInOrder(order, actor)
             if (tgt > 0 && tgt != cur) {
                 n := order.Length
-                Loop Mod(tgt - cur + n, n) {
-                    fire := Max(t_us, last + gap)
-                    schedule.Push({key: KEY_SWITCH, fire_at_us: fire})
-                    last := fire
-                }
+                pending += Mod(tgt - cur + n, n)
                 cur := tgt
             }
         }
@@ -375,10 +374,17 @@ BuildSchedule(rec, speed := 1) {
         key := KeyForAction(action)
         if (key != "") {
             fire := Max(t_us, last + gap)
-            schedule.Push({key: key, fire_at_us: fire})
+            schedule.Push({key: key, fire_at_us: fire, switches: pending})
+            pending := 0
             last := fire
         }
     }
+
+    ; Trailing switches with no following real action: flush them as a final
+    ; zero-hold tap at the last known timestamp (no gap cost, no hold).
+    if (pending > 0)
+        schedule.Push({key: "", fire_at_us: last, switches: pending})
+
     return schedule
 }
 
@@ -390,14 +396,17 @@ BuildSchedule(rec, speed := 1) {
 ; deterministic hold we send key-down, busy-wait with QPC for exactly
 ; PRESS_MS microseconds, then send key-up. Gap between keys is handled by
 ; the scheduler's fire_at_us, not by SetKeyDelay.
+;
+; hold_us = 0 means a true momentary tap: down and up back-to-back, no wait.
+; This is used for the C character switch.
 ; ---------------------------------------------------------------------------
 SendKeyRaw(k, hold_us, blind := false) {
-    ; Normalise single characters to the {x} form so {Alt} / {Blind} parse right.
-    keyStr := (StrLen(k) = 1) ? "{" k "}" : k
+    keyName := (StrLen(k) = 1) ? k : SubStr(k, 2, -1)
     prefix := blind ? "{Blind}" : ""
-    SendEvent(prefix "{" (StrLen(k) = 1 ? k : SubStr(keyStr, 2, -1)) " down}")
-    SleepUntilUS(QPC() + hold_us)
-    SendEvent(prefix "{" (StrLen(k) = 1 ? k : SubStr(keyStr, 2, -1)) " up}")
+    SendEvent(prefix "{" keyName " down}")
+    if (hold_us > 0)
+        SleepUntilUS(QPC() + hold_us)
+    SendEvent(prefix "{" keyName " up}")
 }
 
 ; ---------------------------------------------------------------------------
@@ -467,9 +476,17 @@ ReplayLevel(rec) {
                 aborted := true
                 break
             }
-            idx++
-            SendKeyRaw(ev.key, hold_us, fast)
-            g_Status.SetText("Playing " name ": " idx "/" total (fast ? "  [4x]" : ""))
+
+            ; C switches: zero-hold taps immediately before the action key.
+            ; They are not on the tick timeline and add no delay.
+            Loop ev.switches
+                SendKeyRaw(KEY_SWITCH, 0, fast)
+
+            if (ev.key != "") {
+                idx++
+                SendKeyRaw(ev.key, hold_us, fast)
+                g_Status.SetText("Playing " name ": " idx "/" total (fast ? "  [4x]" : ""))
+            }
         }
     } finally {
         if fast
@@ -494,5 +511,5 @@ RefreshList()
 F5::RefreshList()
 ~Esc::StopPlayback()
 
-; Ctrl+F plays the selected level (mirrors the Play button).
-^f::PlaySelected()
+; Ctrl+j plays the selected level (mirrors the Play button).
+^j::PlaySelected()
