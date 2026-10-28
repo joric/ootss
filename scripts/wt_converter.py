@@ -2,34 +2,37 @@
 """
 WikiTactics cache -> solutions.json converter.
 
-Reads the crawl cache produced by ``wt_crawler.py`` and emits one record
-per puzzle, keyed by level name from the mapping table (``wt.txt``).
+Character-switch order is derived from the actors' starting positions in
+``frames[0]``: bottom row first, then left-to-right within a row, i.e.
+sort by y descending, then x ascending (``(-y, x)``).
 
-For each slug, a single source is chosen:
+If a **druid** is present in the roster, the converter falls back to
+**digit-key selection** for every switch.  Druids petrify actors, and a
+stone is not on the C-cycle, so cycle-based selection is unreliable in
+those levels.  Digit keys select by class directly.
 
-    * /s/        — the primary solution file, if it exists in the cache
-    * published  — a community-published solution, if there is no /s/ one
-                   (or if --prefer-community is set, when it overrides /s/)
-
-Sources are never combined, and no two slugs are ever joined.
+Timing:
+    USE_ACTION_TICKS (formerly EMIT_TIMING) emits a per-move ``_x.y_``
+    sleep derived from ``action_ticks`` / ``input_delay_ticks``.  When it
+    is enabled *and* the level actually carries timestamp data, all other
+    wait emission (elevator waits, fall waits, literal ``B``) is
+    suppressed — the action ticks are the authoritative timing.  When it
+    is disabled, or when the level has no usable timestamps, the wait
+    options apply instead.
 
 Output token vocabulary:
 
     * direction / action keys   (U D L R X V F, digits, C, ...)
-    * ``B``                     — literal wait key, used by elevator waits
-                                  and (by default) fall waits
-    * ``_x.y_``                 — explicit time sleep, used for per-move
-                                  timing correction from action_ticks /
-                                  input_delay_ticks (and optionally for
-                                  fall waits if FALL_WAIT_AS_SLEEP is set)
+    * ``B``                     — literal wait key (only when not using ticks)
+    * ``_x.y_``                 — explicit time sleep (USE_ACTION_TICKS)
 
 Default record: {"name", "solution"}.
-With --info: adds "url", "json", "moves" (raw moves), timing arrays,
-source metadata, and "order" (all actors in switching order).
+With --info: adds "url", "json", "moves", timing arrays, source metadata,
+and "order" (selectable actors, static coordinate order).
 
 Usage:
     wt_converter.py [--info] [--prefer-community]
-                    [--timing | --no-timing]
+                    [--use-action-ticks | --no-use-action-ticks]
                     [--elevator-wait | --no-elevator-wait]
                     [--elevator-pre-b N] [--elevator-post-b N]
                     [--fall-wait | --no-fall-wait]
@@ -53,43 +56,22 @@ from urllib.parse import urlparse
 # --------------------------------------------------------------------------- #
 # Character-selection mode
 # --------------------------------------------------------------------------- #
-#
-# SELECTION_MODE controls how switches between actors are encoded:
-#
-#   "digit"  — use the digit keys (1..9) to select playable characters.
-#              This is the in-game default and what the official solutions
-#              use.  Instanced classes (e.g. priestess#2) may require
-#              repeated presses of the same digit.
-#
-#   "cycle"  — use only the C key to cycle through the roster.  Multiple
-#              C presses are emitted as needed to reach the target actor.
-#              Works for both playable characters and pushers, and never
-#              uses digit keys.
-#
+# "cycle" — C key only, multiple presses as needed.
+# "digit" — digit keys (1..9) by class.
+# When a druid is in the roster, "digit" is forced regardless of this setting.
 SELECTION_MODE = "cycle"
 
 
 # --------------------------------------------------------------------------- #
-# Optional emissions
+# Timing / waits
 # --------------------------------------------------------------------------- #
-#
-# EMIT_TIMING — emit a per-move _x.y_ time sleep derived from
-#               action_ticks / input_delay_ticks after each move.
-#
-# EMIT_ELEVATOR_WAIT — wrap elevator presses (V) in literal B keypresses,
-#                      using ELEVATOR_PRE_B before and ELEVATOR_POST_B after.
-#
-# EMIT_FALL_WAIT — emit a wait after a downward pusher step (dz < 0).
-#                  By default this uses B presses (the one intentional
-#                  exception to "B is elevator-only"); set
-#                  FALL_WAIT_AS_SLEEP = True to route it through _x.y_
-#                  instead.
-#
-EMIT_TIMING = False
+# When True and the level has timestamp data, emit per-move _x.y_ sleeps
+# from action_ticks / input_delay_ticks and suppress all other waits.
+USE_ACTION_TICKS = False
+
+# When USE_ACTION_TICKS is False (or unavailable), these apply:
 EMIT_ELEVATOR_WAIT = False
 EMIT_FALL_WAIT = False
-
-# If True, fall waits are emitted as _x.y_ sleeps instead of B presses.
 FALL_WAIT_AS_SLEEP = False
 
 
@@ -109,10 +91,6 @@ log = logging.getLogger("converter")
 # --------------------------------------------------------------------------- #
 
 def cache_path_for_url(url: str) -> Path:
-    """Map a URL to a path under cache/, preserving host and URL path.
-
-    Must stay in sync with wt_crawler.cache_path_for_url.
-    """
     parsed = urlparse(url)
     host = parsed.netloc
     path = parsed.path or "/"
@@ -145,7 +123,6 @@ def _is_usable_file(path: Path) -> bool:
 # Move macros
 # --------------------------------------------------------------------------- #
 
-# Classes that map to a real playable character slot number (1..9).
 CHAR_TO_NUM = {
     "warrior": "1",
     "thief": "2",
@@ -157,7 +134,11 @@ CHAR_TO_NUM = {
     "trader": "9",
 }
 
+NON_SELECTABLE_CLASSES = {"pusher", "stone"}
 NON_PLAYABLE_CLASSES = {"pusher"}
+
+# Classes whose presence forces digit selection (petrification risk).
+FORCE_DIGIT_CLASSES = {"druid"}
 
 DIR_TO_CHAR = {
     "N": "U", "S": "D", "E": "R", "W": "L",
@@ -168,21 +149,13 @@ DIR_TO_CHAR = {
 }
 
 ELEVATOR_PRESS_CHAR = "V"
-
-# Elevator wait: fixed B presses before and after V.
-# These are NOT derived from dz — the pre-wait is the "let the elevator
-# settle / be callable" pause, and the post-wait is the fixed ride wait.
-# The ride length does not scale these; dz is only used to detect that
-# an elevator press happened at all.
 ELEVATOR_PRE_B = 6
 ELEVATOR_POST_B = 4
 
-# Fall wait: B presses (or _x.y_ if FALL_WAIT_AS_SLEEP) scaled by |dz|.
 FALL_WAIT_MIN_B = 4
 FALL_WAIT_MAX_B = 8
 FALL_WAIT_MAX_LEVEL = 2
 
-# Timing correction: microsecond thresholds for _x.y_ output.
 QUANTUM_US = 250_000
 MIN_EMIT_US = 150_000
 
@@ -193,12 +166,6 @@ def elevator_wait(
     pre_b: int = ELEVATOR_PRE_B,
     post_b: int = ELEVATOR_POST_B,
 ) -> str:
-    """Literal B presses around the elevator press key.
-
-    Both counts are fixed and configurable; neither is derived from dz.
-    Emitted whenever an elevator press occurs and EMIT_ELEVATOR_WAIT is on,
-    even if dz is unknown.
-    """
     return ("B" * max(pre_b, 0)) + ELEVATOR_PRESS_CHAR + ("B" * max(post_b, 0))
 
 
@@ -215,11 +182,6 @@ def _fall_bs(levels: int) -> int:
 
 
 def fall_wait(dz: int) -> str:
-    """Wait emitted after a downward pusher step (dz < 0).
-
-    Emits B presses by default; if ``FALL_WAIT_AS_SLEEP`` is set,
-    emits an ``_x.y_`` sleep instead.
-    """
     if dz >= 0:
         return ""
     levels = abs(dz)
@@ -230,15 +192,19 @@ def fall_wait(dz: int) -> str:
 
 
 def us_to_sleep(us: int | None) -> str:
-    """Convert a microsecond duration into an explicit ``_x.y_`` token.
-
-    Returns an empty string if the duration is below ``MIN_EMIT_US``.
-    Never emits B.
-    """
     if us is None or us < MIN_EMIT_US:
         return ""
     secs = us / 1_000_000
     return f"_{secs:.1f}_"
+
+
+def _has_action_ticks(timing: dict | None) -> bool:
+    """True if the level carries usable per-move timestamp data."""
+    if not timing:
+        return False
+    at = timing.get("action_ticks")
+    idt = timing.get("input_delay_ticks")
+    return bool(at) or bool(idt)
 
 
 def _timing_for_move(timing: dict | None, i: int) -> tuple[int | None, int]:
@@ -265,28 +231,63 @@ def _instance_index(char_name: str) -> int:
         return 1
 
 
-def _has_digit_key(char_name: str) -> bool:
-    cls = _move_class(char_name)
-    return cls in CHAR_TO_NUM and cls not in NON_PLAYABLE_CLASSES
+def _is_selectable_class(cls: str | None) -> bool:
+    return cls is not None and cls in CHAR_TO_NUM and cls not in NON_SELECTABLE_CLASSES
 
 
-def _cycle_order(groups: list[dict] | None) -> list[str]:
-    """Names in the game's C-cycle order; ``groups[0]`` is default-selected."""
-    if not groups:
+def _is_selectable(char_name: str) -> bool:
+    return _is_selectable_class(_move_class(char_name))
+
+
+# --------------------------------------------------------------------------- #
+# Coordinate order (static, from frame 0)
+# --------------------------------------------------------------------------- #
+
+def _coordinate_order(frames: list | None) -> list[str]:
+    """Selectable actor names at frame 0, ordered by (-y, x).
+
+    Verified against:
+      * heroes1_19_jail  -> wizard, thief, warrior
+      * battle_royale_v2 -> priestess, thief, warrior, wizard, druid
+    """
+    if not frames:
         return []
-    return [
-        g["name"] for g in groups
-        if isinstance(g, dict) and isinstance(g.get("name"), str)
-    ]
+    frame0 = frames[0]
+    if not isinstance(frame0, list):
+        return []
+
+    actors: list[tuple[int, int, str]] = []
+    for obj in frame0:
+        if not isinstance(obj, dict):
+            continue
+        if obj.get("t") != "Guy":
+            continue
+        cls = obj.get("k")
+        if not _is_selectable_class(cls):
+            continue
+        p = obj.get("p")
+        if not isinstance(p, list) or len(p) < 2:
+            continue
+        x, y = p[0], p[1]
+        if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+            continue
+        actors.append((int(x), int(y), cls))
+
+    if not actors:
+        return []
+
+    actors.sort(key=lambda a: (-a[1], a[0]))
+
+    counts: dict[str, int] = {}
+    order: list[str] = []
+    for _, _, cls in actors:
+        counts[cls] = counts.get(cls, 0) + 1
+        idx = counts[cls]
+        order.append(cls if idx == 1 else f"{cls}#{idx}")
+    return order
 
 
 def _find_in_order(order: list[str], char_name: str) -> int | None:
-    """Locate ``char_name`` in the roster.
-
-    Exact match first; then fall back to matching by base class and
-    instance index so rosters that store bare class names (``"priestess"``)
-    still resolve instanced move names (``"priestess#1"``).
-    """
     try:
         return order.index(char_name)
     except ValueError:
@@ -300,7 +301,6 @@ def _find_in_order(order: list[str], char_name: str) -> int | None:
         seen += 1
         if seen == idx:
             return i
-    # Single-instance class stored bare: treat "priestess#1" == "priestess".
     if idx == 1:
         for i, name in enumerate(order):
             if name == cls:
@@ -319,14 +319,6 @@ def _digit_presses(
     current_char: str | None,
     order: list[str],
 ) -> list[str]:
-    """Digit-key presses needed to select ``char_name``.
-
-    Returns a list of single-digit strings.  The game selects a class
-    with its digit key.  Repeated presses of the same digit cycle
-    between instances of that class (``priestess#1`` -> ``priestess#2``).
-    When coming from a *different* class, the first press selects
-    instance ``#1``, so selecting instance ``#k`` needs ``k`` presses.
-    """
     cls = _move_class(char_name)
     key = CHAR_TO_NUM[cls]
     target_idx = _instance_index(char_name)
@@ -354,12 +346,6 @@ def _cycle_presses(
     current_cycle: int | None,
     order: list[str],
 ) -> int:
-    """C-key presses needed to reach ``char_name`` from ``current_cycle``.
-
-    The roster order is the C-cycle order; ``C`` advances one position
-    at a time and wraps.  If the roster is unknown, return 0 (caller
-    will fall back to digit selection).
-    """
     if not order or current_cycle is None:
         return 0
     target = _find_in_order(order, char_name)
@@ -369,23 +355,60 @@ def _cycle_presses(
     return (target - current_cycle) % n
 
 
-def _players_order(groups: list[dict] | None, moves: list[str]) -> str:
-    """All actors in C-cycle order, space-separated.
+def _has_druid_in_roster(
+    groups: list[dict] | None,
+    frames: list | None,
+    moves: list[str],
+) -> bool:
+    """True if any selectable druid appears at frame 0, in groups, or in moves."""
+    if frames and isinstance(frames[0], list):
+        for obj in frames[0]:
+            if not isinstance(obj, dict):
+                continue
+            if obj.get("t") != "Guy":
+                continue
+            if obj.get("k") in FORCE_DIGIT_CLASSES:
+                return True
+    if groups:
+        for entry in groups:
+            if not isinstance(entry, dict):
+                continue
+            name = entry.get("name")
+            if isinstance(name, str) and _move_class(name) in FORCE_DIGIT_CLASSES:
+                return True
+    for m in moves:
+        if ":" not in m:
+            continue
+        if _move_class(m.split(":", 1)[0]) in FORCE_DIGIT_CLASSES:
+            return True
+    return False
 
-    Uses the ``groups`` roster when present; otherwise falls back to
-    the distinct actors seen in the move list, in first-appearance
-    order.
-    """
-    order = _cycle_order(groups)
+
+def _players_order(
+    groups: list[dict] | None,
+    frames: list | None,
+    moves: list[str],
+) -> str:
+    order = _coordinate_order(frames)
+    seen = set(order)
+    if moves:
+        for m in moves:
+            if ":" not in m:
+                continue
+            name = m.split(":", 1)[0]
+            if not _is_selectable(name):
+                continue
+            if name not in seen:
+                order.append(name)
+                seen.add(name)
     if not order:
-        seen: list[str] = []
         for m in moves:
             if ":" not in m:
                 continue
             n = m.split(":", 1)[0]
-            if n not in seen:
-                seen.append(n)
-        order = seen
+            if _is_selectable(n) and n not in seen:
+                order.append(n)
+                seen.add(n)
     return " ".join(order)
 
 
@@ -446,18 +469,13 @@ def _initial_actor_names(
     groups: list[dict] | None,
     frames: list | None,
 ) -> set[str]:
-    if not frames:
-        return set()
-    if not groups:
+    if not frames or not groups:
         return set()
     initial_ids = _actor_ids_in_frame(frames[0])
     if not initial_ids:
         return set()
     name_to_toid = _name_to_toid(groups)
-    return {
-        name for name, toid in name_to_toid.items()
-        if toid in initial_ids
-    }
+    return {name for name, toid in name_to_toid.items() if toid in initial_ids}
 
 
 def detect_spawned_chars(
@@ -471,7 +489,8 @@ def detect_spawned_chars(
     if not initial:
         return set()
     driven = {
-        m.split(":", 1)[0] for m in moves if ":" in m
+        m.split(":", 1)[0] for m in moves
+        if ":" in m and _is_selectable(m.split(":", 1)[0])
     }
     return driven - initial
 
@@ -487,13 +506,6 @@ def _emit_selection(
     order: list[str],
     mode: str,
 ) -> tuple[str, bool, str | None, int | None]:
-    """Return (fragment, needs_leading_space, new_char, new_cycle).
-
-    ``fragment`` is the selection token string (e.g. ``"C"``, ``"CC"``,
-    ``"4"``, or ``"4 4"``).  ``needs_leading_space`` is True for digit
-    selections (which must be separated from preceding output) and
-    False for C runs (which concatenate directly).
-    """
     if mode == "cycle" and order and current_cycle is not None:
         presses = _cycle_presses(char_name, current_cycle, order)
         if presses:
@@ -505,7 +517,6 @@ def _emit_selection(
             )
         return "", False, current_char, current_cycle
 
-    # digit mode (or no roster to cycle with)
     presses = _digit_presses(char_name, current_char, order)
     fragment = " ".join(presses)
     new_cycle = current_cycle
@@ -525,17 +536,6 @@ def _emit_action(
     elevator_pre_b: int,
     elevator_post_b: int,
 ) -> str:
-    """Translate one action token into output characters.
-
-    Rules:
-      * Elevator press (``T``) becomes
-        [B * pre] V [B * post] when ``emit_elevator_wait`` is on, else ``V``.
-        The pre/post counts are fixed and configurable, not derived from dz;
-        they are emitted even when dz is unknown.
-      * Any other action that stepped the pusher down (dz < 0) gets a
-        fall wait appended when ``emit_fall_wait`` is on.
-      * Every action maps through ``DIR_TO_CHAR``.
-    """
     if action == "T":
         if emit_elevator_wait:
             return elevator_wait(
@@ -559,7 +559,7 @@ def convert_moves(
     default_char: str | None = None,
     frames: list | None = None,
     mode: str | None = None,
-    emit_timing: bool | None = None,
+    use_action_ticks: bool | None = None,
     emit_elevator_wait: bool | None = None,
     emit_fall_wait: bool | None = None,
     elevator_pre_b: int | None = None,
@@ -569,8 +569,8 @@ def convert_moves(
         return ""
     deltas = deltas or {}
     mode = mode or SELECTION_MODE
-    if emit_timing is None:
-        emit_timing = EMIT_TIMING
+    if use_action_ticks is None:
+        use_action_ticks = USE_ACTION_TICKS
     if emit_elevator_wait is None:
         emit_elevator_wait = EMIT_ELEVATOR_WAIT
     if emit_fall_wait is None:
@@ -580,14 +580,31 @@ def convert_moves(
     if elevator_post_b is None:
         elevator_post_b = ELEVATOR_POST_B
 
+    order = _coordinate_order(frames)
+
+    # If a druid is present, force digit selection for this level.
+    if _has_druid_in_roster(groups, frames, moves):
+        mode = "digit"
+
+    # Decide timing strategy.
+    ticks_available = _has_action_ticks(timing)
+    use_ticks = bool(use_action_ticks and ticks_available)
+    if use_ticks:
+        # Action ticks are authoritative: suppress every other wait.
+        emit_elevator_wait = False
+        emit_fall_wait = False
+    else:
+        # No ticks (or not requested): the wait options apply.
+        pass
+
     spawned = detect_spawned_chars(moves, groups, frames)
     use_cycle = not spawned
 
     all_playable = all(
-        _has_digit_key(m.split(":", 1)[0]) for m in moves if ":" in m
+        _is_selectable(m.split(":", 1)[0]) for m in moves if ":" in m
     )
+
     if use_cycle and all_playable:
-        order = _cycle_order(groups)
         result: list[str] = []
 
         if order:
@@ -602,7 +619,7 @@ def convert_moves(
                 continue
             char_name, action = move.split(":", 1)
 
-            if char_name != current_char:
+            if _is_selectable(char_name) and char_name != current_char:
                 frag, needs_space, current_char, current_cycle = _emit_selection(
                     char_name, current_char, current_cycle, order, mode,
                 )
@@ -622,7 +639,7 @@ def convert_moves(
                 )
             )
 
-            if emit_timing and i < len(moves) - 1:
+            if use_ticks and i < len(moves) - 1:
                 duration, extra = _timing_for_move(timing, i)
                 sleep = us_to_sleep((duration or 0) + (extra or 0))
                 if sleep:
@@ -630,9 +647,7 @@ def convert_moves(
 
         return "".join(result)
 
-    # ---- mixed level --------------------------------------------------
-    order = _cycle_order(groups)
-
+    # ---- mixed level (pushers / NPCs / spawned / stones) ---------------
     pusher_instances = sorted(
         {
             m.split(":", 1)[0] for m in moves
@@ -647,7 +662,7 @@ def convert_moves(
     if order:
         current_cycle: int | None = 0
         current_char: str | None = order[0]
-    elif moves and ":" in moves[0]:
+    elif moves and ":" in moves[0] and _is_selectable(moves[0].split(":", 1)[0]):
         current_cycle = None
         current_char = moves[0].split(":", 1)[0]
     else:
@@ -679,7 +694,7 @@ def convert_moves(
                         result.append("C" * presses)
                     current_pusher_idx = target
                     current_char = char_name
-        elif _has_digit_key(char_name):
+        elif _is_selectable(char_name):
             if char_name != current_char:
                 frag, needs_space, current_char, current_cycle = _emit_selection(
                     char_name, current_char, current_cycle, order, mode,
@@ -688,7 +703,7 @@ def convert_moves(
                     if needs_space and result:
                         result.append(" ")
                     result.append(frag)
-        # else: queen / scripted NPC -> never selected.
+        # else: stone / queen / scripted NPC -> never selected.
 
         dz = deltas.get(i)
         result.append(
@@ -701,7 +716,7 @@ def convert_moves(
             )
         )
 
-        if emit_timing and i < len(moves) - 1:
+        if use_ticks and i < len(moves) - 1:
             duration, extra = _timing_for_move(timing, i)
             sleep = us_to_sleep((duration or 0) + (extra or 0))
             if sleep:
@@ -731,7 +746,6 @@ def _load_published_pages(page_numbers: list[int]) -> list[dict]:
 
 
 def read_cached_published_entries() -> list[dict]:
-    """Read every cached published page in the cache directory."""
     published_dir = published_page_cache_path(0).parent
     if not published_dir.is_dir():
         return []
@@ -766,7 +780,7 @@ def _build_record(
     *,
     info: bool = False,
     mode: str | None = None,
-    emit_timing: bool | None = None,
+    use_action_ticks: bool | None = None,
     emit_elevator_wait: bool | None = None,
     emit_fall_wait: bool | None = None,
     elevator_pre_b: int | None = None,
@@ -791,7 +805,7 @@ def _build_record(
             groups=groups,
             frames=frames,
             mode=mode,
-            emit_timing=emit_timing,
+            use_action_ticks=use_action_ticks,
             emit_elevator_wait=emit_elevator_wait,
             emit_fall_wait=emit_fall_wait,
             elevator_pre_b=elevator_pre_b,
@@ -830,8 +844,7 @@ def _build_record(
         if value:
             record[key] = ",".join(map(str, value))
 
-    # All actors in switching order, space-separated.
-    record["order"] = _players_order(groups, moves)
+    record["order"] = _players_order(groups, frames, moves)
 
     return record
 
@@ -860,7 +873,7 @@ def convert_cache_to_json(
     prefer_community: bool = False,
     info: bool = False,
     mode: str | None = None,
-    emit_timing: bool | None = None,
+    use_action_ticks: bool | None = None,
     emit_elevator_wait: bool | None = None,
     emit_fall_wait: bool | None = None,
     elevator_pre_b: int | None = None,
@@ -908,7 +921,7 @@ def convert_cache_to_json(
         level, (area, slug) = levels_by_slug[pid]
         rec = _build_record(
             level, area, slug, entry, "published", info=info, mode=mode,
-            emit_timing=emit_timing,
+            use_action_ticks=use_action_ticks,
             emit_elevator_wait=emit_elevator_wait,
             emit_fall_wait=emit_fall_wait,
             elevator_pre_b=elevator_pre_b,
@@ -934,7 +947,7 @@ def convert_cache_to_json(
             continue
         rec = _build_record(
             level, area, slug, data, "s", info=info, mode=mode,
-            emit_timing=emit_timing,
+            use_action_ticks=use_action_ticks,
             emit_elevator_wait=emit_elevator_wait,
             emit_fall_wait=emit_fall_wait,
             elevator_pre_b=elevator_pre_b,
@@ -977,10 +990,7 @@ def convert_cache_to_json(
         stats.primary_found, stats.primary_missing,
         stats.pub_added, stats.pub_skipped_unmapped,
     )
-    return stats
-
-
-# --------------------------------------------------------------------------- #
+    return stats# --------------------------------------------------------------------------- #
 # CLI
 # --------------------------------------------------------------------------- #
 
@@ -1011,18 +1021,23 @@ def main(argv: list[str] | None = None) -> int:
         "--selection-mode", choices=["digit", "cycle"], default=None,
         help="character-switching encoding: 'digit' (default in-game) or "
              "'cycle' (C key only, multiple presses as needed). "
+             "Druid levels always use 'digit'. "
              "Defaults to the SELECTION_MODE constant at the top of the file.",
     )
 
-    timing_group = parser.add_mutually_exclusive_group()
-    timing_group.add_argument(
-        "--timing", dest="emit_timing", action="store_true", default=None,
-        help="emit per-move _x.y_ sleep derived from action_ticks / "
-             "input_delay_ticks (default: EMIT_TIMING constant)",
+    ticks_group = parser.add_mutually_exclusive_group()
+    ticks_group.add_argument(
+        "--use-action-ticks", dest="use_action_ticks",
+        action="store_true", default=None,
+        help="emit per-move _x.y_ sleeps from action_ticks / "
+             "input_delay_ticks.  When the level has timestamp data, this "
+             "suppresses elevator waits, fall waits and literal B. "
+             "(default: USE_ACTION_TICKS constant)",
     )
-    timing_group.add_argument(
-        "--no-timing", dest="emit_timing", action="store_false",
-        help="skip per-move _x.y_ sleeps",
+    ticks_group.add_argument(
+        "--no-use-action-ticks", dest="use_action_ticks",
+        action="store_false",
+        help="never emit action-tick sleeps; wait options apply instead",
     )
 
     elevator_group = parser.add_mutually_exclusive_group()
@@ -1030,6 +1045,7 @@ def main(argv: list[str] | None = None) -> int:
         "--elevator-wait", dest="emit_elevator_wait",
         action="store_true", default=None,
         help="wrap elevator presses (V) in literal B waits "
+             "(ignored when action ticks are in effect). "
              "(default: EMIT_ELEVATOR_WAIT constant)",
     )
     elevator_group.add_argument(
@@ -1055,7 +1071,8 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true", default=None,
         help="emit a wait after downward pusher steps "
              "(B presses, or _x.y_ if FALL_WAIT_AS_SLEEP is set; "
-             "default: EMIT_FALL_WAIT constant)",
+             "ignored when action ticks are in effect). "
+             "(default: EMIT_FALL_WAIT constant)",
     )
     fall_group.add_argument(
         "--no-fall-wait", dest="emit_fall_wait",
@@ -1087,7 +1104,7 @@ def main(argv: list[str] | None = None) -> int:
             prefer_community=args.prefer_community,
             info=args.info,
             mode=mode,
-            emit_timing=args.emit_timing,
+            use_action_ticks=args.use_action_ticks,
             emit_elevator_wait=args.emit_elevator_wait,
             emit_fall_wait=args.emit_fall_wait,
             elevator_pre_b=args.elevator_pre_b,
