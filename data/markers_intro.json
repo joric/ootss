@@ -1,0 +1,5674 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          52.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 111149357,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "entity_name": "intro_end3_freezer",
+          "group_id": 115343472,
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 40.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "y": 0.11598163843154907,
+            "z": 0.11300402879714966,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115343937
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.0,
+          52.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 111149389,
+        "entity_properties": {
+          "position": {
+            "x": 50.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "entity_name": "intro_end2_freezer",
+          "group_id": 115343472,
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 50.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "y": 0.11598163843154907,
+            "z": 0.11300402879714966,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115343939
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          22.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 111149581,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 22.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 115343473,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_B",
+          "visual_position": {
+            "x": 40.0,
+            "y": 22.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 0.1697458028793335,
+            "y": 0.5511747002601624,
+            "z": 0.6006389856338501,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115343941
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344502,
+        "entity_properties": {
+          "position": {
+            "x": 56.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 56.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344498
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344548,
+        "entity_properties": {
+          "position": {
+            "x": 87.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 87.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344564
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344555,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 82.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344560
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344574,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 81.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344569
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344731,
+        "entity_properties": {
+          "position": {
+            "x": 63.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 63.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 0.47518444061279297,
+            "y": 0.0,
+            "z": 0.7795275449752808,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344889
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.0,
+          3.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344936,
+        "entity_properties": {
+          "position": {
+            "x": 61.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 61.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "y": 0.910980224609375,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344990
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.0,
+          0.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115345264,
+        "entity_properties": {
+          "position": {
+            "x": 59.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 59.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 0.47518444061279297,
+            "y": 0.0,
+            "z": 0.7795275449752808,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344889
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.0,
+          23.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115345446,
+        "entity_properties": {
+          "position": {
+            "x": 84.0,
+            "y": 23.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "entity_name": "intro_end3_freezer",
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 84.0,
+            "y": 23.0,
+            "z": 1.0
+          },
+          "color_frozen": {
+            "x": 0.5827855467796326,
+            "y": 0.16999496519565582,
+            "z": 0.8146964907646179,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115343937
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.0,
+          24.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115345488,
+        "entity_properties": {
+          "position": {
+            "x": 65.0,
+            "y": 24.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 65.0,
+            "y": 24.0
+          },
+          "color_frozen": {
+            "x": 0.2540716528892517,
+            "y": 0.15740740299224854,
+            "z": 0.14542536437511444,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 62915022,
+          "hide_requirements": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.0,
+          44.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344355,
+        "entity_properties": {
+          "position": {
+            "x": 47.0,
+            "y": 44.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 47.0,
+            "y": 44.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "y": 0.0033179998863488436,
+            "z": 0.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 111149222
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          47.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 115344356,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 47.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 47.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "y": 0.0033179998863488436,
+            "z": 0.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 111149224
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.0,
+          48.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 135266428,
+        "entity_properties": {
+          "position": {
+            "x": 46.0,
+            "y": 48.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.6685604453086853,
+            "y": 0.6685604453086853,
+            "z": 0.6685604453086853
+          },
+          "mesh": "GAME_OVER_Freezer_B",
+          "visual_position": {
+            "x": 46.0,
+            "y": 48.0
+          },
+          "color_frozen": {
+            "x": 0.8436480164527893,
+            "y": 0.42155298590660095,
+            "z": 0.3705880045890808,
+            "w": 0.05000000074505806
+          },
+          "fast_unfreeze": true,
+          "unlocked_by_id": 135266397,
+          "disappear_to_nothing": true,
+          "hide_requirements": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          48.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 135266429,
+        "entity_properties": {
+          "position": {
+            "x": 44.0,
+            "y": 48.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.6685604453086853,
+            "y": 0.6685604453086853,
+            "z": 0.6685604453086853
+          },
+          "mesh": "GAME_OVER_Freezer_B",
+          "visual_position": {
+            "x": 44.0,
+            "y": 48.0
+          },
+          "color_frozen": {
+            "x": 0.8436480164527893,
+            "y": 0.42155298590660095,
+            "z": 0.3705880045890808,
+            "w": 0.05000000074505806
+          },
+          "fast_unfreeze": true,
+          "unlocked_by_id": 135266397,
+          "disappear_to_nothing": true,
+          "hide_requirements": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.0,
+          48.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 135266460,
+        "entity_properties": {
+          "position": {
+            "x": 46.0,
+            "y": 48.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.6685604453086853,
+            "y": 0.6685604453086853,
+            "z": 0.6685604453086853
+          },
+          "mesh": "GAME_OVER_Freezer_B",
+          "visual_position": {
+            "x": 46.0,
+            "y": 48.0
+          },
+          "color_frozen": {
+            "x": 0.8436480164527893,
+            "y": 0.42155298590660095,
+            "z": 0.3705880045890808,
+            "w": 0.05000000074505806
+          },
+          "fast_unfreeze": true,
+          "unlocked_by_id": 135266397,
+          "disappear_to_nothing": true,
+          "hide_requirements": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          48.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 135266461,
+        "entity_properties": {
+          "position": {
+            "x": 44.0,
+            "y": 48.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "tint_color_a": {
+            "w": 1.0
+          },
+          "tint_color_b": {
+            "x": 0.6685604453086853,
+            "y": 0.6685604453086853,
+            "z": 0.6685604453086853
+          },
+          "mesh": "GAME_OVER_Freezer_B",
+          "visual_position": {
+            "x": 44.0,
+            "y": 48.0
+          },
+          "color_frozen": {
+            "x": 0.8436480164527893,
+            "y": 0.42155298590660095,
+            "z": 0.3705880045890808,
+            "w": 0.05000000074505806
+          },
+          "fast_unfreeze": true,
+          "unlocked_by_id": 135266397,
+          "disappear_to_nothing": true,
+          "hide_requirements": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          52.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 62914671,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "entity_name": "intro_end1_freezer",
+          "group_id": 115343472,
+          "tint_color_a": {
+            "x": 0.004665312357246876,
+            "y": 0.00318698026239872,
+            "z": 0.7963899970054626,
+            "w": 1.0
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "y": 0.11598163843154907,
+            "z": 0.11300402879714966,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115343950
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 95420578,
+        "entity_properties": {
+          "position": {
+            "x": 75.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 75.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344521
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 95420579,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 83.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344538
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 95420580,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 76.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344508
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 95420581,
+        "entity_properties": {
+          "position": {
+            "x": 88.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 88.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344558
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 95420582,
+        "entity_properties": {
+          "position": {
+            "x": 85.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 85.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344566
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          46.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Freezer",
+        "id": 95421065,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 46.0,
+            "z": 3.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_b": {
+            "x": 0.20999999344348907,
+            "y": 0.23999999463558197,
+            "z": 0.4099999964237213
+          },
+          "mesh": "GAME_OVER_Freezer_A",
+          "visual_position": {
+            "x": 81.0,
+            "y": 46.0,
+            "z": 3.0
+          },
+          "color_frozen": {
+            "x": 1.0,
+            "z": 1.0,
+            "w": 0.05000000074505806
+          },
+          "unlocked_by_id": 115344569
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.0,
+          44.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344566,
+        "name": "across_the_fence_old",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 84.0,
+            "y": 44.0,
+            "z": 3.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 84.0,
+            "y": 44.0,
+            "z": 3.0
+          },
+          "level_name": "across_the_fence_old",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344567,
+        "name": "across_the_fence_vtrader_m_p",
+        "area": "beams_and_mirrors",
+        "entity_properties": {
+          "position": {
+            "x": 85.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 85.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "level_name": "across_the_fence_vtrader_m_p",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344566,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.0,
+          47.0,
+          4.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344668,
+        "name": "catching_up_v0",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 8.0,
+            "y": 47.0,
+            "z": 4.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 8.0,
+            "y": 47.0,
+            "z": 4.0
+          },
+          "level_name": "catching_up_v0",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.0,
+          46.0,
+          4.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344657,
+        "name": "catching_up_v2",
+        "area": "vertical_mirrors",
+        "entity_properties": {
+          "position": {
+            "x": 8.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 8.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "level_name": "catching_up_v2",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344668,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.0,
+          48.0,
+          8.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344662,
+        "name": "height_chooser",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 8.0,
+            "y": 48.0,
+            "z": 8.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.08343400061130524,
+            "y": 0.06143299862742424,
+            "z": 0.03914700075984001
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 8.0,
+            "y": 48.0,
+            "z": 8.0
+          },
+          "level_name": "height_chooser",
+          "enabled_t_target": 1.0,
+          "color_disabled": {
+            "x": 0.08343400061130524,
+            "y": 0.06143299862742424,
+            "z": 0.03914700075984001
+          },
+          "color_inactive": {
+            "x": 0.843187689781189,
+            "y": 0.08693546801805496,
+            "z": 0.08693546801805496
+          },
+          "color_active": {
+            "x": 1.0,
+            "y": 0.9403769969940186,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.0,
+          48.0,
+          8.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344666,
+        "name": "height_chooser_v0",
+        "area": "vertical_reflection",
+        "entity_properties": {
+          "position": {
+            "x": 10.0,
+            "y": 48.0,
+            "z": 8.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.08343400061130524,
+            "y": 0.06143299862742424,
+            "z": 0.03914700075984001
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 10.0,
+            "y": 48.0,
+            "z": 8.0
+          },
+          "level_name": "height_chooser_v0",
+          "color_disabled": {
+            "x": 0.08343400061130524,
+            "y": 0.06143299862742424,
+            "z": 0.03914700075984001
+          },
+          "color_inactive": {
+            "x": 0.843187689781189,
+            "y": 0.08693546801805496,
+            "z": 0.08693546801805496
+          },
+          "color_active": {
+            "x": 1.0,
+            "y": 0.9403769969940186,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344662,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344498,
+        "name": "heroes1_7",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 55.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 55.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "level_name": "heroes1_7",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344495,
+        "name": "heroes1_7_v2",
+        "area": "heroes1",
+        "entity_properties": {
+          "position": {
+            "x": 56.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 56.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "level_name": "heroes1_7_v2",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344498,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          71.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 62915022,
+        "name": "jenga_dispenser",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 71.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2646830081939697,
+            "y": 0.8745440244674683,
+            "z": 0.9546719789505005
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 71.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "level_name": "jenga_dispenser",
+          "enabled_t_target": 1.0,
+          "color_disabled": {
+            "x": 0.08343400061130524,
+            "y": 0.06143299862742424,
+            "z": 0.03914700075984001
+          },
+          "color_inactive": {
+            "x": 0.9966009855270386,
+            "y": 1.0
+          },
+          "color_active": {
+            "x": 0.2646830081939697,
+            "y": 0.8745440244674683,
+            "z": 0.9546719789505005,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "context_type": "DIFFICULT"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344503,
+        "name": "lily_wearing_intro",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 66.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 66.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "level_name": "lily_wearing_intro",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          47.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344644,
+        "name": "push_down_a_lot",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 2.0,
+            "y": 47.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 2.0,
+            "y": 47.0,
+            "z": 1.0
+          },
+          "level_name": "push_down_a_lot",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0,
+          47.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344642,
+        "name": "push_down_a_lot_small",
+        "area": "heroes_in_3d",
+        "entity_properties": {
+          "position": {
+            "x": 4.0,
+            "y": 47.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 4.0,
+            "y": 47.0,
+            "z": 1.0
+          },
+          "level_name": "push_down_a_lot_small",
+          "color_inactive": {
+            "x": 0.843187689781189,
+            "y": 0.08693546801805496,
+            "z": 0.08693546801805496
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344644,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344512,
+        "name": "quad_torch",
+        "area": "heroes_and_mirrors",
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 76.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "level_name": "quad_torch",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344508,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344508,
+        "name": "quad_torch_v1",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 75.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 75.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "level_name": "quad_torch_v1",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344521,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0,
+          46.0,
+          4.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344564,
+        "name": "sender",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 86.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 86.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "level_name": "sender",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0,
+          46.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344558,
+        "name": "sender_simplified",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 87.0,
+            "y": 46.0,
+            "z": 3.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 87.0,
+            "y": 46.0,
+            "z": 3.0
+          },
+          "level_name": "sender_simplified",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344564,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344550,
+        "name": "sender_simplified_v2",
+        "area": "vertical_endpoint",
+        "entity_properties": {
+          "position": {
+            "x": 88.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 88.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "level_name": "sender_simplified_v2",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344558,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.0,
+          47.0,
+          6.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344652,
+        "name": "strategic_stack",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 10.0,
+            "y": 47.0,
+            "z": 6.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 10.0,
+            "y": 47.0,
+            "z": 6.0
+          },
+          "level_name": "strategic_stack",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344507,
+        "name": "tiger_lily_v2",
+        "area": "skipping_in_3d",
+        "entity_properties": {
+          "position": {
+            "x": 68.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 68.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "level_name": "tiger_lily_v2",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344503,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344521,
+        "name": "torcher",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 74.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 74.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "level_name": "torcher",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.0,
+          46.0,
+          6.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344651,
+        "name": "triple_gate",
+        "area": "mirrors_in_3d",
+        "entity_properties": {
+          "position": {
+            "x": 10.0,
+            "y": 46.0,
+            "z": 6.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 10.0,
+            "y": 46.0,
+            "z": 6.0
+          },
+          "level_name": "triple_gate",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344652,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 62915021,
+        "name": "wizards_true_nature",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 73.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2646830081939697,
+            "y": 0.8745440244674683,
+            "z": 0.9546719789505005
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 73.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "level_name": "wizards_true_nature",
+          "color_disabled": {
+            "x": 0.08343400061130524,
+            "y": 0.06143299862742424,
+            "z": 0.03914700075984001
+          },
+          "color_inactive": {
+            "x": 0.9966009855270386,
+            "y": 1.0
+          },
+          "color_active": {
+            "x": 0.2646830081939697,
+            "y": 0.8745440244674683,
+            "z": 0.9546719789505005,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 62915022,
+          "context_type": "DIFFICULT"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          46.0,
+          5.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344569,
+        "name": "worlds_collide_heroes_and_promesst",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 46.0,
+            "z": 5.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Available_A",
+          "visual_position": {
+            "x": 80.0,
+            "y": 46.0,
+            "z": 5.0
+          },
+          "level_name": "worlds_collide_heroes_and_promesst",
+          "enabled_t_target": 1.0,
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          46.0,
+          4.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344560,
+        "name": "worlds_collide_heroes_and_promesst_v2",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 81.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "level_name": "worlds_collide_heroes_and_promesst_v2",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344569,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          46.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344538,
+        "name": "worlds_collide_heroes_and_promesst_v3",
+        "area": "UNDEFINED",
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 46.0,
+            "z": 3.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 82.0,
+            "y": 46.0,
+            "z": 3.0
+          },
+          "level_name": "worlds_collide_heroes_and_promesst_v3",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344560,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Level_Entry",
+        "id": 115344544,
+        "name": "worlds_collide_heroes_and_promesst_v4",
+        "area": "worlds_collide",
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.2850880026817322,
+            "y": 0.9121320247650146,
+            "z": 0.994517982006073
+          },
+          "mesh": "GAME_OVER_Entry_Locked_A",
+          "visual_position": {
+            "x": 83.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "level_name": "worlds_collide_heroes_and_promesst_v4",
+          "color_inactive": {
+            "x": 0.8303750157356262,
+            "y": 0.0686430037021637,
+            "z": 0.0686430037021637
+          },
+          "color_active": {
+            "x": 0.777999997138977,
+            "y": 0.4560000002384186,
+            "z": 0.722000002861023,
+            "w": 3.0
+          },
+          "color_solved": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 7.0
+          },
+          "color_solved_active": {
+            "x": 1.0,
+            "y": 0.8690680265426636,
+            "z": 0.09887699782848358,
+            "w": 6.5
+          },
+          "unlocked_by_id": 115344538,
+          "can_move": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          46.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115344403,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 46.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "freezer_recovery",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.036393001675605774,
+            "y": 0.8125309944152832,
+            "z": 0.06173500046133995
+          },
+          "mesh": "editorUI_marker_B",
+          "visual_position": {
+            "x": 45.0,
+            "y": 46.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.0316047668457,
+          26.258852005004883,
+          0.4018993377685547
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115344411,
+        "entity_properties": {
+          "position": {
+            "x": 49.0316047668457,
+            "y": 26.258852005004883,
+            "z": 0.4018993377685547
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 49.0316047668457,
+            "y": 26.258852005004883,
+            "z": 0.4018993377685547
+          },
+          "script_name": "undo_sign_alt",
+          "script_target_entity_id": 115344412,
+          "is_point_marker": false,
+          "box_extents": {
+            "x": 0.5,
+            "y": 0.8232922554016113,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115344728,
+        "entity_properties": {
+          "position": {
+            "x": 62.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 62.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115344891,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 83.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115344971,
+        "entity_properties": {
+          "position": {
+            "x": 68.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 68.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.0,
+          1.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115345003,
+        "entity_properties": {
+          "position": {
+            "x": 20.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 20.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115345011,
+        "entity_properties": {
+          "position": {
+            "x": 2.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 2.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115345019,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 31.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420515,
+        "entity_properties": {
+          "position": {
+            "x": 63.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "levels2",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 63.0,
+            "y": 43.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.08148193359375,
+          30.457386016845703,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115345634,
+        "entity_properties": {
+          "position": {
+            "x": 47.08148193359375,
+            "y": 30.457386016845703
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 47.08148193359375,
+            "y": 30.457386016845703
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": 9,
+          "string_parameter": "intro_queen_hosts_3",
+          "box_extents": {
+            "x": 1.8738679885864258,
+            "y": 0.8763275146484375,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.94002151489258,
+          -8.007425308227539,
+          3.814697265625e-06
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115343715,
+        "entity_properties": {
+          "position": {
+            "x": 44.94002151489258,
+            "y": -8.007425308227539,
+            "z": 3.814697265625e-06
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "group_id": 115343732,
+          "tint_color_a": {
+            "x": 0.1861502230167389,
+            "y": 0.7786574959754944,
+            "z": 0.014851507730782032
+          },
+          "visual_position": {
+            "x": 44.94002151489258,
+            "y": -8.007425308227539,
+            "z": 3.814697265625e-06
+          },
+          "script_name": "prompt_after_restart",
+          "script_target_entity_id": 115343742,
+          "is_point_marker": false,
+          "box_extents": {
+            "x": 5.180935859680176,
+            "y": 6.7725911140441895,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.429420471191406,
+          33.281517028808594,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115343817,
+        "entity_properties": {
+          "position": {
+            "x": 54.429420471191406,
+            "y": 33.281517028808594
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.1861502230167389,
+            "y": 0.7786574959754944,
+            "z": 0.014851507730782032
+          },
+          "visual_position": {
+            "x": 54.429420471191406,
+            "y": 33.281517028808594
+          },
+          "script_name": "enable_prompt_after_restart",
+          "is_point_marker": false,
+          "box_extents": {
+            "x": 2.7546892166137695,
+            "y": 2.509054660797119,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.0,
+          42.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115343407,
+        "entity_properties": {
+          "position": {
+            "x": 18.0,
+            "y": 42.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "levels",
+          "group_id": 115343461,
+          "tint_color_a": {
+            "x": 0.9300000071525574,
+            "y": 0.18000000715255737,
+            "z": 0.009999999776482582
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 18.0,
+            "y": 42.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.0,
+          33.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115343846,
+        "entity_properties": {
+          "position": {
+            "x": 55.0,
+            "y": 33.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "res",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 55.0,
+            "y": 33.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          52.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115343857,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 52.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "end",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 52.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.514930725097656,
+          83.6434326171875,
+          3.814697265625e-06
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115343883,
+        "entity_properties": {
+          "position": {
+            "x": 45.514930725097656,
+            "y": 83.6434326171875,
+            "z": 3.814697265625e-06
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.1861502230167389,
+            "y": 0.7786574959754944,
+            "z": 0.014851507730782032
+          },
+          "visual_position": {
+            "x": 45.514930725097656,
+            "y": 83.6434326171875,
+            "z": 3.814697265625e-06
+          },
+          "script_name": "start_sign_keyboard",
+          "script_target_entity_id": 62914569,
+          "is_point_marker": false,
+          "box_extents": {
+            "x": 5.180935859680176,
+            "y": 1.7000641822814941,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.0,
+          39.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 115344154,
+        "entity_properties": {
+          "position": {
+            "x": 43.0,
+            "y": 39.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "eroom",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 43.0,
+            "y": 39.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 121634849,
+        "entity_properties": {
+          "position": {
+            "x": 72.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071070075035095,
+            "w": -0.7071070075035095
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hard_puzzles",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 72.0,
+            "y": 24.0,
+            "z": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.269615173339844,
+          2.9259796142578125,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266494,
+        "entity_properties": {
+          "position": {
+            "x": 45.269615173339844,
+            "y": 2.9259796142578125,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "entity_name": "menu_marker",
+          "visual_position": {
+            "x": 45.269615173339844,
+            "y": 2.9259796142578125,
+            "z": 3.0
+          },
+          "script_name": "set_pause_menu",
+          "is_point_marker": false,
+          "string_parameter": "menu_intro_a",
+          "box_extents": {
+            "x": 10.013916969299316,
+            "y": 13.218719482421875,
+            "z": 5.433170318603516
+          },
+          "frame_thickness": 0.10000000149011612,
+          "segment_length_on": 1.0,
+          "segment_length_off": 1.0,
+          "inner_length": 1.5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.5870475769043,
+          49.744171142578125,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266495,
+        "entity_properties": {
+          "position": {
+            "x": 44.5870475769043,
+            "y": 49.744171142578125,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "entity_name": "menu_marker",
+          "visual_position": {
+            "x": 44.5870475769043,
+            "y": 49.744171142578125,
+            "z": 3.0
+          },
+          "script_name": "set_pause_menu",
+          "is_point_marker": false,
+          "string_parameter": "menu_intro_a",
+          "box_extents": {
+            "x": 10.013916969299316,
+            "y": 13.218719482421875,
+            "z": 5.433170318603516
+          },
+          "frame_thickness": 0.10000000149011612,
+          "segment_length_on": 1.0,
+          "segment_length_off": 1.0,
+          "inner_length": 1.5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.0,
+          55.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266589,
+        "entity_properties": {
+          "position": {
+            "x": 37.0,
+            "y": 55.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 37.0,
+            "y": 55.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.0,
+          56.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266590,
+        "entity_properties": {
+          "position": {
+            "x": 37.0,
+            "y": 56.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 37.0,
+            "y": 56.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0,
+          72.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266623,
+        "entity_properties": {
+          "position": {
+            "x": 58.0,
+            "y": 72.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 58.0,
+            "y": 72.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.0,
+          58.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266658,
+        "entity_properties": {
+          "position": {
+            "x": 52.0,
+            "y": 58.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 52.0,
+            "y": 58.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266822,
+        "entity_properties": {
+          "position": {
+            "x": 33.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 33.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266823,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 19.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0,
+          25.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266824,
+        "entity_properties": {
+          "position": {
+            "x": 6.0,
+            "y": 25.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 6.0,
+            "y": 25.0,
+            "z": 1.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          25.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266825,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 25.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 82.0,
+            "y": 25.0,
+            "z": 1.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          25.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266826,
+        "entity_properties": {
+          "position": {
+            "x": 72.0,
+            "y": 25.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 72.0,
+            "y": 25.0,
+            "z": 1.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0,
+          5.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267147,
+        "entity_properties": {
+          "position": {
+            "x": 5.0,
+            "y": 5.0,
+            "z": 1.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 5.0,
+            "y": 5.0,
+            "z": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          3.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267148,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 3.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 3.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          -4.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267149,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": -4.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": -4.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          -10.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267150,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": -10.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": -10.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          -17.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267151,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": -17.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": -17.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          10.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267152,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 10.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 10.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          17.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267153,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 17.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 17.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          24.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267154,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 24.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 24.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0,
+          24.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267155,
+        "entity_properties": {
+          "position": {
+            "x": 58.0,
+            "y": 24.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 58.0,
+            "y": 24.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0,
+          31.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267156,
+        "entity_properties": {
+          "position": {
+            "x": 58.0,
+            "y": 31.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 58.0,
+            "y": 31.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          31.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267157,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 31.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 31.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          38.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267158,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 38.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 38.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          45.0,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135267159,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 45.0,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "hack_intro_fog_clear",
+          "tint_color_a": {
+            "y": 0.5134438872337341,
+            "z": 0.0
+          },
+          "mesh": "editorUI_fog_of_war_clear",
+          "visual_position": {
+            "x": 45.0,
+            "y": 45.0,
+            "z": 3.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          49.69166564941406,
+          3.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 135266397,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 49.69166564941406,
+            "z": 3.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "entity_name": "intro_end1_freezer_thaw",
+          "tint_color_a": {
+            "y": 0.006816300097852945,
+            "z": 0.005931253544986248
+          },
+          "visual_position": {
+            "x": 45.0,
+            "y": 49.69166564941406,
+            "z": 3.0
+          },
+          "script_name": "intro_end1_freezer_thaw",
+          "is_point_marker": false,
+          "box_extents": {
+            "x": 2.5,
+            "y": 2.119007110595703,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.0,
+          50.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914663,
+        "entity_properties": {
+          "position": {
+            "x": 50.0,
+            "y": 50.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "~end2",
+          "group_id": 115343472,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 50.0,
+            "y": 50.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          50.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914665,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 50.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "~end1",
+          "group_id": 115343472,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 50.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          50.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914667,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 50.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "~end3",
+          "group_id": 115343472,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 40.0,
+            "y": 50.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914810,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "four",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 7.0,
+            "y": 46.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01597595214844,
+          -5.524042129516602,
+          0.0009613037109375
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914933,
+        "entity_properties": {
+          "position": {
+            "x": 45.01597595214844,
+            "y": -5.524042129516602,
+            "z": 0.0009613037109375
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 45.01597595214844,
+            "y": -5.524042129516602,
+            "z": 0.0009613037109375
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": "ONLY_BEFORE_END1",
+          "string_parameter": "intro_queen_callout_alt",
+          "box_extents": {
+            "x": 3.8825159072875977,
+            "y": 0.9667694568634033,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0408935546875,
+          3.9416182041168213,
+          0.0009613037109375
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914934,
+        "entity_properties": {
+          "position": {
+            "x": 45.0408935546875,
+            "y": 3.9416182041168213,
+            "z": 0.0009613037109375
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 45.0408935546875,
+            "y": 3.9416182041168213,
+            "z": 0.0009613037109375
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": 9,
+          "string_parameter": "intro_queen_foreign_script",
+          "box_extents": {
+            "x": 3.5141849517822266,
+            "y": 1.5361311435699463,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01565933227539,
+          -16.591981887817383,
+          0.0009613037109375
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914935,
+        "entity_properties": {
+          "position": {
+            "x": 45.01565933227539,
+            "y": -16.591981887817383,
+            "z": 0.0009613037109375
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 45.01565933227539,
+            "y": -16.591981887817383,
+            "z": 0.0009613037109375
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": "ONLY_BEFORE_END1",
+          "string_parameter": "intro_queen_am_i_dead",
+          "box_extents": {
+            "x": 3.077786684036255,
+            "y": 1.304135799407959,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.36692810058594,
+          24.948062896728516,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914936,
+        "entity_properties": {
+          "position": {
+            "x": 52.36692810058594,
+            "y": 24.948062896728516
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 52.36692810058594,
+            "y": 24.948062896728516
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": 9,
+          "string_parameter": "intro_queen_hosts_1",
+          "box_extents": {
+            "x": 1.8738679885864258,
+            "y": 1.9985599517822266,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.29898452758789,
+          26.995540618896484,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914937,
+        "entity_properties": {
+          "position": {
+            "x": 57.29898452758789,
+            "y": 26.995540618896484
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 57.29898452758789,
+            "y": 26.995540618896484
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": 9,
+          "string_parameter": "intro_queen_hosts_2",
+          "box_extents": {
+            "x": 1.8738679885864258,
+            "y": 0.8763275146484375,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.003597259521484,
+          47.040748596191406,
+          0.4986610412597656
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 62914938,
+        "entity_properties": {
+          "position": {
+            "x": 45.003597259521484,
+            "y": 47.040748596191406,
+            "z": 0.4986610412597656
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "group_id": 115343472,
+          "tint_color_a": {
+            "x": 0.7979919910430908,
+            "y": 0.7979919910430908,
+            "z": 0.7979919910430908
+          },
+          "visual_position": {
+            "x": 45.003597259521484,
+            "y": 47.040748596191406,
+            "z": 0.4986610412597656
+          },
+          "script_name": "bark",
+          "is_point_marker": false,
+          "bark_flags": "ONLY_BEFORE_END1",
+          "string_parameter": "intro_queen_teleporter",
+          "box_extents": {
+            "x": 0.5485687255859375,
+            "y": 0.5579071044921875,
+            "z": 1.0249420404434204
+          },
+          "segment_length_on": 2.0,
+          "segment_length_off": 2.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.0,
+          5.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420545,
+        "entity_properties": {
+          "position": {
+            "x": 63.0,
+            "y": 5.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071070075035095,
+            "w": -0.7071070075035095
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "credits",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 63.0,
+            "y": 5.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420547,
+        "entity_properties": {
+          "position": {
+            "x": 63.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071070075035095,
+            "w": -0.7071070075035095
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "design_illustrations",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 63.0,
+            "y": 48.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.0,
+          45.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420585,
+        "entity_properties": {
+          "position": {
+            "x": 59.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 59.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420586,
+        "entity_properties": {
+          "position": {
+            "x": 73.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 73.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420587,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 83.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420588,
+        "entity_properties": {
+          "position": {
+            "x": 6.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 6.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420589,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 19.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420590,
+        "entity_properties": {
+          "position": {
+            "x": 30.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 30.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          64.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420591,
+        "entity_properties": {
+          "position": {
+            "x": 64.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071070075035095,
+            "w": -0.7071070075035095
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "design",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 64.0,
+            "y": 48.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420655,
+        "entity_properties": {
+          "position": {
+            "y": 6.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071070075035095,
+            "w": -0.7071070075035095
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "creditsbard",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "y": 6.0,
+            "z": 2.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          53.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420737,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 53.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 53.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          60.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420738,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 60.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 40.0,
+            "y": 60.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.0,
+          66.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420739,
+        "entity_properties": {
+          "position": {
+            "x": 44.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 44.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          66.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420740,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 31.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          73.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420741,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 73.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 73.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0,
+          65.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420742,
+        "entity_properties": {
+          "position": {
+            "x": 58.0,
+            "y": 65.0,
+            "z": 2.0
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.009999995119869709,
+            "y": 0.9086757302284241,
+            "z": 0.929999828338623
+          },
+          "mesh": "GAME_EX_CamControl_A",
+          "visual_position": {
+            "x": 58.0,
+            "y": 65.0,
+            "z": 2.0
+          },
+          "script_name": "editor_camera_z"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          -20.0,
+          10.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420803,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": -20.0,
+            "z": 10.0
+          },
+          "entity_flags": "INVISIBLE|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "leave",
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": -20.0,
+            "z": 10.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420805,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071070075035095,
+            "w": -0.7071070075035095
+          },
+          "entity_flags": "NOT_SNAPPED_TO_GRID|DOES_NOT_CAST_SHADOW|DOES_NOT_FALL",
+          "entity_name": "difficult",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8236200213432312,
+            "y": 0.00014800000644754618,
+            "z": 0.00014800000644754618
+          },
+          "mesh": "editorUI_marker_A",
+          "visual_position": {
+            "x": 40.0,
+            "y": 24.0,
+            "z": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.514930725097656,
+          83.6434326171875,
+          0.3022346496582031
+        ]
+      },
+      "properties": {
+        "type": "Marker",
+        "id": 95420498,
+        "entity_properties": {
+          "position": {
+            "x": 45.514930725097656,
+            "y": 83.6434326171875,
+            "z": 0.3022346496582031
+          },
+          "entity_flags": "DOES_NOT_CAST_SHADOW|DYNAMICALLY_GENERATED_MESH|DOES_NOT_FALL",
+          "tint_color_a": {
+            "x": 0.7786574959754944,
+            "y": 0.48088255524635315,
+            "z": 0.014851507730782032
+          },
+          "visual_position": {
+            "x": 45.514930725097656,
+            "y": 83.6434326171875,
+            "z": 0.3022346496582031
+          },
+          "script_name": "start_sign_gamepad",
+          "script_target_entity_id": 95420499,
+          "is_point_marker": false,
+          "box_extents": {
+            "x": 5.180935859680176,
+            "y": 1.7000641822814941,
+            "z": 1.5538339614868164
+          },
+          "segment_length_on": 0.25,
+          "segment_length_off": 0.25
+        }
+      }
+    }
+  ]
+}

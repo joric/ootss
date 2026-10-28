@@ -3,6 +3,8 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 python map_capture.py --px 352 --tiles 8 8 --out map_tiles_64k --capture-only
 
+rem intro capture: python %p% --px 352 --tiles 8 8 --out map_tiles_64k-intro --capture-only --level 91 105
+
 cd map_tiles_64k
 
 REM ============================================================
@@ -70,6 +72,10 @@ echo [2/3] Resizing to %OUT_W% px wide...
 set /a BIG_W=8360*8
 for /f "delims=" %%a in ('powershell -NoProfile -Command "65536 / %BIG_W%"') do set "SCALE=%%a"
 vips resize "%GRID%" "%RESIZED%" %SCALE% --vips-progress
+
+rem intro was just plopped onto 66880 (8360*8) canvas
+rem vips gravity "%GRID%" "%PADDED%" centre 66880 66880 --extend background --background "0 0 0 0" --vips-progress
+rem vips resize "%PADDED%" "%RESIZED%" %SCALE% --vips-progress
 
 if errorlevel 1 goto :err
 

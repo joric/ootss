@@ -545,6 +545,8 @@ let tileset_base = location.protocol === 'file:' ? '../ootss_tileset' : 'https:/
 
 let image_base = tileset_base;
 
+let allFeatures = [];
+
 function saveSettings() {
   localStorage.setItem(localDataName, JSON.stringify(localData));
 }
@@ -820,7 +822,7 @@ function focusMarkerByName(name) {
 
   if (!found) return;
 
-  let base = getBaseLayer(found.feature.geometry.coordinates[2]);
+  let base = getBaseLayer(found.feature);
   let layer = baseLayers[base];
 
   setBaseLayer(base);
@@ -854,7 +856,7 @@ function getIconHTML(feature, size=48) {
 
   let areaColors = {'sky': 'royalblue', 'underworld': 'brown'};
 
-  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature.geometry.coordinates[2])]) || 'dimgrey';
+  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
 
   options.bg = color;
 
@@ -1206,19 +1208,25 @@ function getCentroidRaw2(points) {
 }
 
 let config = {
-  Release_v1: { bounds: {left: -77, top: 221.5, right: 219, bottom: 74 } },
   overworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} },
   sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} },
-  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} }
+  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} },
+  intro: {"bounds": { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0} },
 }
 
 let heightRanges = {
   sky: [10, 75],
   overworld: [-4, 10],
   underworld: [-57, -4],
+  intro: [-300, -100],
 };
 
-const getBaseLayer = (z) => {
+const getBaseLayer = feature => {
+  if (!feature || !feature.properties) return 'intro';
+
+  if (feature.properties.baseLayer) return feature.properties.baseLayer;
+
+  const z = feature.geometry.coordinates[2]
   for (const [name, [a, b]] of Object.entries(heightRanges)) {
     if (z >= a && z <= b) return name;
   }
@@ -1298,13 +1306,15 @@ function updateCRS(provider) {
 function updateMarkers() {
   let base = baseLayerName;
   map.eachLayer(function(marker) {
+
     if (!marker?.feature?.geometry?.coordinates) return;
-    const [x,y,z] = marker.feature.geometry.coordinates;
-    if (heightRanges[base]) {
-      const [a,b] = heightRanges[base];
-      marker._icon.style.visibility = (z>=a && z<=b) ? 'visible' : 'hidden';
-    }
+
+    const baseLayer = getBaseLayer(marker.feature);
+
+    marker._icon.style.visibility = baseLayer == base ? 'visible' : 'hidden';
+
   })
+
   markItems();
 }
 
@@ -1410,14 +1420,15 @@ function openPopup(e) {
     header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
   }
 
-
   let sol = solutions[o.name] || solutions2[o.name];
   const ytId = youtube[o.name] ? youTubeId(youtube[o.name]) : null;
 
-  let image = imageList[o.name]
-    ? `<a href="javascript:openGallery('${o.name}')" title="Click to open image gallery" class="image-wrapper"><img class="popup-image" src="${image_base}/images/levels/${o.name}.webp"></a>`
+  let baseName = o.name.replace('intro-','');
+
+  let image = imageList[baseName]
+    ? `<a href="javascript:openGallery('${baseName}')" title="Click to open image gallery" class="image-wrapper"><img class="popup-image" src="${image_base}/images/levels/${baseName}.webp"></a>`
     : ytId
-      ? `<a href="${youtube[o.name]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
+      ? `<a href="${youtube[baseName]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
       : '';
 
   let unlocked = '';
@@ -1589,7 +1600,7 @@ const hp = (() => {
 
 function drawMap() {
 
-  for (const name of ['overworld','sky','underworld']) {
+  for (const name of Object.keys(config)) {
 
     let b = config[name].bounds;
     let bounds = [[b.top,b.left],[b.bottom,b.right]]
@@ -1795,11 +1806,8 @@ function drawMap() {
   }
 
 
-  fetch('data/markers.json').then(r=>r.json()).then(data=>{
-
-    console.log(`loaded ${data.features.length} features`);
-
-
+  // markers
+  {
     counters = {};
     layers = {};
 
@@ -1874,7 +1882,7 @@ function drawMap() {
 
     let area = '';
 
-    for (const feature of data.features) {
+    for (const feature of allFeatures) {
       featureLookup[feature.properties.id] = feature;
       const o = feature.properties;
       nameLookup[o.id] = o.name;
@@ -1891,13 +1899,15 @@ function drawMap() {
       }
     }
 
-    for (const feature of data.features) {
+    for (const feature of allFeatures) {
 
       let o = feature.properties;
 
       let title = o.name;
       let name = o.name;
       let area = o.area;
+
+      name = (name||'').replace('intro-','');
 
       let solved = solutions[name] || youtube[name];
       let hasImage = imageList[name] || youtube[name];
@@ -1988,7 +1998,7 @@ function drawMap() {
     map.on('movestart zoomstart', () => hp.hide());
 
 
-    let text =`Total markers: ${data.features.length}`;
+    let text =`Total markers: ${allFeatures.length}`;
 
     let alt = ''
     for (k in counters) {
@@ -2067,10 +2077,8 @@ function drawMap() {
     if (name) {
       focusMarkerByName(name);
     }
-
     baseLayerChange(baseLayerName);
-
-  })
+  }
 
   function drawGrid() {
 
@@ -2151,9 +2159,9 @@ function drawMap() {
       toggleGallery();
     }
 
-    let slugs = ['overworld', 'sky', 'underworld']
+    let slugs = Object.keys(config);
 
-    if (/^Digit[1-3]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
+    if (/^Digit[1-4]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
 
   });
 
@@ -2187,6 +2195,8 @@ window.onload = function() {
   });
 
   const promises = [
+    'data/markers.json',
+    'data/markers_intro.json',
     'data/solutions.txt',
     'data/youtube.txt',
     'data/images.txt',
@@ -2199,13 +2209,25 @@ window.onload = function() {
   );
 
   Promise.all(promises).then(data => {
-    let [sol, yt, img, ord, wtd, lg, s2] = data;
+    let [base, intro, sol, yt, img, ord, wtd, lg, s2] = data;
 
     solutions = Object.fromEntries(sol.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
     youtube = Object.fromEntries(yt.split('\n').map(s => s.trim().split(',', 2)).filter(([, v])=> v && v.length>=2));
     imageList = Object.fromEntries(img.split('\n').map(s => s.trim()).filter(Boolean).map(s => [s.replace(/\.[^.]+$/, ''), true]));
     order = Object.fromEntries(ord.split('\n').map(s => s.trim()).filter(Boolean).map((s, i) => [s, i]));
     wt = Object.fromEntries(wtd.trim().split('\n').map(s => { const [n,a,i] = s.trim().split(','); return [n, [a,i]]; }));
+
+
+    const names = new Set(base.features.map(f => f.properties.name).filter(Boolean));
+
+    for (const f of intro.features) {
+      f.properties.baseLayer = 'intro';
+      if (names.has(f.properties.name)) f.properties.name = 'intro-'+f.properties.name;
+    }
+
+    allFeatures = [...base.features, ...intro.features];
+
+    console.log(`loaded ${allFeatures.length} features`);
 
 
     for (const s of s2) solutions2[s.name] = s.solution;

@@ -16,6 +16,8 @@ Usage (game running on the overworld, any save you don't care about):
   python sinking_star_map_capture.py --capture-only
   python sinking_star_map_capture.py --tile 3 5 [--tile 3 6 ...] [--capture-only]
   python sinking_star_map_capture.py --rows 2 4 --cols 0 3 [--capture-only]
+  python sinking_star_map_capture.py --info
+  python sinking_star_map_capture.py --level 24 16
   python sinking_star_map_capture.py --make-signatures [--exe PATH]
   python sinking_star_map_capture.py --find-addresses [--exe PATH]
 
@@ -32,6 +34,8 @@ Usage (game running on the overworld, any save you don't care about):
   --cols    capture only these tile columns, inclusive (FIRST LAST)
   --capture-only  capture tiles but do not stitch the map (stitch later with --stitch-only)
   --no-stitch     alias for --capture-only
+  --info    list the loaded levels with their grid sizes and exit; the game is not touched
+  --level   capture this grid (COLUMNS ROWS) explicitly instead of the largest one (see --info)
   --exe     exe for the two options below (default: the running game's)
   --make-signatures  from an exe whose addresses are known (BUILDS or a saved resolution), save
             code patterns that find the globals again in later builds
@@ -1047,7 +1051,7 @@ def find_entities(game, types, type_names):
 
 
 class Overworld:
-    def __init__(self, game, types):
+    def __init__(self, game, types, level=None):
         self.game = game
         self.types = types
         entities = find_entities(game, types, ['Settings', 'Fog_Of_War', 'Guy'])
@@ -1056,19 +1060,26 @@ class Overworld:
         squares_x = types.offset('Gridlike', 'squares_x')
         squares_y = types.offset('Gridlike', 'squares_y')
         corner = types.offset('Gridlike', 'corner')
-        # The overworld is the level with the largest grid.
-        best_area = 0
+        candidates = []
         for settings, manager in entities['Settings']:
             columns = game.s64(settings + grid + squares_x)
             rows = game.s64(settings + grid + squares_y)
-            if 0 < columns < 10000 and 0 < rows < 10000 and columns * rows > best_area:
-                best_area = columns * rows
-                self.settings = settings
-                self.manager = manager
-                self.squares_x = columns
-                self.squares_y = rows
-        if not best_area:
-            raise RuntimeError('overworld Settings not found')
+            if 0 < columns < 10000 and 0 < rows < 10000:
+                candidates.append((columns * rows, columns, rows, settings, manager))
+        if not candidates:
+            raise RuntimeError('no level Settings found (is a level loaded?)')
+        if level is None:
+            # The overworld is the level with the largest grid.
+            _, self.squares_x, self.squares_y, self.settings, self.manager = max(candidates)
+        else:
+            want = tuple(level)
+            matches = [c for c in candidates if (c[1], c[2]) == want]
+            if not matches:
+                found = ', '.join('%dx%d' % (c[1], c[2]) for c in candidates) or 'none'
+                raise RuntimeError('no level with grid %dx%d; found: %s' % (*want, found))
+            if len(matches) > 1:
+                raise RuntimeError('%d levels have grid %dx%d; run --info to see them' % (len(matches), *want))
+            _, self.squares_x, self.squares_y, self.settings, self.manager = matches[0]
         if not camera_layout_is_plausible(game, self.manager):
             message = 'no sensible camera pose at the Entity_Manager offsets %#x, %#x, %#x: moved in this build?' % (
                 MANAGER_CAMERA_POSITION, MANAGER_CAMERA_ORIENTATION, MANAGER_CAMERA_PROJECTION)
@@ -1082,7 +1093,7 @@ class Overworld:
 
         self.fogs = [entity for entity, manager in entities['Fog_Of_War'] if manager == self.manager]
         self.guys = [entity for entity, manager in entities['Guy'] if manager == self.manager]
-        print('overworld grid %d x %d, corner (%d, %d), %d fog regions, %d heroes' % (
+        print('level grid %d x %d, corner (%d, %d), %d fog regions, %d heroes' % (
             self.squares_x, self.squares_y, corner_x, corner_y, len(self.fogs), len(self.guys)))
 
     def clear_fog(self):
@@ -1116,6 +1127,42 @@ class Overworld:
         game.write(self.manager + MANAGER_CAMERA_POSITION, struct.pack('<3f', center_x, center_y, CAMERA_HEIGHT))
         game.write(self.manager + MANAGER_CAMERA_ORIENTATION, struct.pack('<4f', *TOPDOWN_NORTH_UP))
         game.write(self.manager + MANAGER_CAMERA_PROJECTION, struct.pack('<3f', fov, CAMERA_HEIGHT - 100, CAMERA_HEIGHT + 100))
+
+
+def print_info(game, types):
+    """Print every level Settings with its grid size and entity counts. The game is not touched."""
+    entities = find_entities(game, types, ['Settings', 'Fog_Of_War', 'Guy'])
+    grid = types.offset('Settings', 'grid')
+    squares_x = types.offset('Gridlike', 'squares_x')
+    squares_y = types.offset('Gridlike', 'squares_y')
+    corner = types.offset('Gridlike', 'corner')
+    levels = []
+    for settings, manager in entities['Settings']:
+        columns = game.s64(settings + grid + squares_x)
+        rows = game.s64(settings + grid + squares_y)
+        if not (0 < columns < 10000 and 0 < rows < 10000):
+            continue
+        try:
+            cx, cy, cz = struct.unpack('<3i', game.read(settings + grid + corner, 12))
+        except OSError:
+            cx = cy = cz = None
+        fogs = sum(1 for _, m in entities['Fog_Of_War'] if m == manager)
+        guys = sum(1 for _, m in entities['Guy'] if m == manager)
+        camera = camera_layout_is_plausible(game, manager)
+        levels.append((columns * rows, columns, rows, cx, cy, fogs, guys, camera))
+    if not levels:
+        print('no level Settings found (is a level loaded?)')
+        return
+    levels.sort(reverse=True)
+    print('%-9s %-13s %-16s %-5s %-5s %-9s' % ('grid', 'corner', 'manager camera', 'fog', 'guys', 'area'))
+    for area, columns, rows, cx, cy, fogs, guys, camera in levels:
+        corner_text = '(%d, %d)' % (cx, cy) if cx is not None else '?'
+        print('%-9s %-13s %-16s %-5d %-5d %-9d  ->  --level %d %d' % (
+            '%dx%d' % (columns, rows), corner_text, 'ok' if camera else 'NOT PLAUSIBLE',
+            fogs, guys, area, columns, rows))
+    top = levels[0][1:3]
+    if sum(1 for level in levels if level[1:3] == top) > 1:
+        print('warning: several levels share the largest grid; pass --level to pick one')
 
 
 # ---------------------------------------------------------------------------------------------
@@ -1296,6 +1343,10 @@ def main():
                         help='capture only these tile columns, inclusive')
     parser.add_argument('--capture-only', '--no-stitch', dest='capture_only', action='store_true',
                         help='capture tiles but do not stitch the map (stitch later with --stitch-only)')
+    parser.add_argument('--info', action='store_true',
+                        help='list the loaded levels with their grid sizes and exit; the game is not touched')
+    parser.add_argument('--level', type=int, nargs=2, metavar=('COLUMNS', 'ROWS'),
+                        help='capture this grid explicitly instead of the largest one (see --info)')
     parser.add_argument('--exe', help="exe to analyse for --make-signatures / --find-addresses (default: the running game's)")
     parser.add_argument('--make-signatures', action='store_true', help='save patterns that find the globals in later builds')
     parser.add_argument('--find-addresses', action='store_true', help='resolve and print the globals of an exe; the game is not touched')
@@ -1317,8 +1368,11 @@ def main():
     game = Game()
     print('reading Type_Info from', game.exe_path)
     types = TypeInfo(game.exe_path)
+    if args.info:
+        print_info(game, types)
+        return
     print('scanning memory for entities')
-    world = Overworld(game, types)
+    world = Overworld(game, types, level=args.level)
     tile_size(world.squares_x, world.squares_y, tiles_x, tiles_y, args.px)
 
     if not args.stitch_only:
