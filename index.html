@@ -718,7 +718,7 @@ function pickAndLoadSave() {
       settings.markedItems = {};
 
       for (const level of solved) {
-        settings.markedItems[level.name] = true;
+        settings.markedItems[baseName(level.name)] = true;
       }
 
       markItems();
@@ -1218,19 +1218,21 @@ let heightRanges = {
   sky: [10, 75],
   overworld: [-4, 10],
   underworld: [-57, -4],
-  intro: [-300, -100],
 };
 
+const locationSeparator = ':';
+const fullName = (name,location) => location + locationSeparator + name;
+const baseName = name => (name||'').replace(new RegExp(`^.*?${locationSeparator}`), '');
+
 const getBaseLayer = feature => {
-  if (!feature || !feature.properties) return 'intro';
-
+  const defaultLayer = Object.keys(config)[0];
+  if (!feature || !feature.properties) return defaultLayer;
   if (feature.properties.baseLayer) return feature.properties.baseLayer;
-
   const z = feature.geometry.coordinates[2]
   for (const [name, [a, b]] of Object.entries(heightRanges)) {
     if (z >= a && z <= b) return name;
   }
-  return '';
+  return defaultLayer;
 };
 
 
@@ -1324,7 +1326,7 @@ function markItems() {
     if (layer instanceof L.Marker) {
 
       const o = layer.feature?.properties;
-      let found = settings.markedItems[o?.name] === true;
+      let found = settings.markedItems[baseName(o?.name)] === true;
 
       // also mark all related freezers
       if (o?.type == 'Freezer') {
@@ -1423,12 +1425,12 @@ function openPopup(e) {
   let sol = solutions[o.name] || solutions2[o.name];
   const ytId = youtube[o.name] ? youTubeId(youtube[o.name]) : null;
 
-  let baseName = o.name.replace('intro-','');
+  let name = baseName(o.name);
 
-  let image = imageList[baseName]
-    ? `<a href="javascript:openGallery('${baseName}')" title="Click to open image gallery" class="image-wrapper"><img class="popup-image" src="${image_base}/images/levels/${baseName}.webp"></a>`
+  let image = imageList[name]
+    ? `<a href="javascript:openGallery('${name}')" title="Click to open image gallery" class="image-wrapper"><img class="popup-image" src="${image_base}/images/levels/${name}.webp"></a>`
     : ytId
-      ? `<a href="${youtube[baseName]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
+      ? `<a href="${youtube[name]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
       : '';
 
   let unlocked = '';
@@ -1908,7 +1910,7 @@ function drawMap() {
       let name = o.name;
       let area = o.area;
 
-      name = (name||'').replace('intro-','');
+      name = baseName(name);
 
       let solved = solutions[name] || youtube[name];
       let hasImage = imageList[name] || youtube[name];
@@ -2223,7 +2225,7 @@ window.onload = function() {
 
     for (const f of intro.features) {
       f.properties.baseLayer = 'intro';
-      if (names.has(f.properties.name)) f.properties.name = 'intro-'+f.properties.name;
+      if (names.has(f.properties.name)) f.properties.name = fullName(f.properties.name, f.properties.baseLayer);
     }
 
     allFeatures = [...base.features, ...intro.features];
