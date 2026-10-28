@@ -1220,7 +1220,7 @@ let heightRanges = {
   underworld: [-57, -4],
 };
 
-const locationSeparator = ':';
+const locationSeparator = '/';
 const fullName = (name,location) => location + locationSeparator + name;
 const baseName = name => (name||'').replace(new RegExp(`^.*?${locationSeparator}`), '');
 
