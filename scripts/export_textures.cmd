@@ -6,12 +6,14 @@ for /f "usebackq delims=" %%a in (".env") do set %%a
 set src=textures
 set dst=webp
 
+set base=..\..\ootss_tileset\images\levels
+goto :list
+
 mkdir %src%
 mkdir %dst%
 
 python level_names.py > names.txt
 
-goto :list
 
 for /f "usebackq delims=" %%n in ("names.txt") do (
     set "name=%%n"
@@ -26,4 +28,4 @@ for %%f in ("%src%\*.png") do (
 
 :list
 
-dir /b %dst% > ..\data\images.txt
+dir /b %base% > ..\data\images.txt
