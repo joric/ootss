@@ -1455,7 +1455,11 @@ function openPopup(e) {
   let moves = sol ? `<span class="wrap">(${getMovesCount(sol)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(sol)}</span></span>`:'';
 
   let player = ytplayer;
-  if (scripted) player += '&nbsp;/&nbsp' + scripted;
+
+  if (scripted) {
+    if (player) player += '&nbsp;/&nbsp;';
+    player += scripted;
+  }
 
   footer += `${player}${moves}`;
 
