@@ -1442,17 +1442,18 @@ function openPopup(e) {
 
   const p = wt[o.name];
 
-  let player = '';
+  let ytplayer = youtube[o.name] ? `<a href="${youtube[o.name]}" target=_blank>YouTube</a>` : '';
 
-  if (youtube[o.name]) player += `<a href="${youtube[o.name]}" target=_blank>YouTube</a>&nbsp;/&nbsp;` 
-
-  player += solutions[o.name]
+  let scripted = solutions[o.name]
     ? `<a href="${getSolutionPlayerLink(o.name, true)}" target=_blank>PuzzleScript</a>&nbsp;`
     : solutions2[o.name] && p
     ? `<a href="https://sinkingstar.wikitactics.com/areas/${p[0]}/#${p[1]}" target=_blank>WikiTactics</a>&nbsp`
     :'';
 
   let moves = sol ? `<span class="wrap">(${getMovesCount(sol)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(sol)}</span></span>`:'';
+
+  let player = ytplayer;
+  if (scripted) player += '&nbsp;/&nbsp' + scripted;
 
   footer += `${player}${moves}`;
 
