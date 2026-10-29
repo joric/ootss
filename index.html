@@ -833,6 +833,8 @@ function focusMarkerByName(name) {
   found.closeTooltip();
 
   map.panTo(found.getLatLng(), { animate: false });
+
+  return false; // in case of js clicking
 }
 
 
