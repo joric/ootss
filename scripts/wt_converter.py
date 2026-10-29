@@ -561,9 +561,14 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
 
     if use_cycle and all_playable:
         result = []
-        if order:
+        if order and mode != "digit":
             current_cycle = 0
             current_char = order[0]
+        elif order and mode == "digit":
+            # Digit mode: do not assume any character is pre-selected;
+            # force the first selectable move to emit its selection digits.
+            current_cycle = None
+            current_char = None
         else:
             current_cycle = None
             current_char = None
@@ -598,13 +603,14 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
     n_pushers = len(pusher_instances)
     multi_pusher = n_pushers > 1
 
-    if order:
+    if order and mode != "digit":
         current_cycle = 0
         current_char = order[0]
-    elif moves and ":" in moves[0] and _is_selectable(moves[0].split(":", 1)[0]):
+    elif moves and ":" in moves[0] and _is_selectable(moves[0].split(":", 1)[0]) and mode != "digit":
         current_cycle = None
         current_char = moves[0].split(":", 1)[0]
     else:
+        # Digit mode (or no order): never pre-select; force first selection.
         current_cycle = None
         current_char = None
     current_pusher_idx = 0
