@@ -1377,6 +1377,7 @@ function baseLayerChange(name) {
   updateZoom();
   updateMarkers();
   updateCRS(name);
+  map.closePopup();
 }
 
 const getCoordinates = marker => marker.feature.geometry.coordinates.map(String).join(',');
