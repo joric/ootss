@@ -1445,17 +1445,19 @@ function openPopup(e) {
   function getSolutionWrapper(o) {
     let html = '<div class="solution-wrapper">';
 
-    const ytLink = youtube[o.name] && `<a href="${youtube[o.name]}" target=_blank>YouTube</a>`;
-    const psLink = solutions[o.name] && `<a href="${getSolutionPlayerLink(o.name, true)}" target=_blank>PuzzleScript</a>`;
-    const wtLink = wt[o.name] && `<a href="https://sinkingstar.wikitactics.com/areas/${wt[o.name][0]}/#${wt[o.name][1]}" target=_blank>WikiTactics</a>`;
+    const name = baseName(o.name);
 
-    function getMoves(link, sol, o, skipMoves=false) {
-      const s = sol[o.name];
+    const ytLink = youtube[name] && `<a href="${youtube[o.name]}" target=_blank>YouTube</a>`;
+    const psLink = solutions[name] && `<a href="${getSolutionPlayerLink(o.name, true)}" target=_blank>PuzzleScript</a>`;
+    const wtLink = wt[name] && `<a href="https://sinkingstar.wikitactics.com/areas/${wt[name][0]}/#${wt[name][1]}" target=_blank>WikiTactics</a>`;
+
+    function getMoves(link, sol, name, skipMoves=false) {
+      const s = sol[name];
       const moves = s && !skipMoves && `<span class="wrap">(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
       return [link, moves].filter(Boolean).join('&nbsp;');
     }
 
-    html += [ytLink, getMoves(wtLink, solutions2, o, psLink), getMoves(psLink, solutions, o)].filter(Boolean).join('&nbsp;/&nbsp;');
+    html += [ytLink, getMoves(wtLink, solutions2, name, psLink), getMoves(psLink, solutions, name)].filter(Boolean).join('&nbsp;/&nbsp;');
 
     html += '</div>';
 
