@@ -2048,7 +2048,7 @@ function drawMap() {
     const search = document.querySelector('.leaflet-control-search');
     const label = document.createElement('div');
     const camera='<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:4px;"><path d="M9 3l-1.5 2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.5L15 3H9zm3 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>'
-    label.innerHTML = `<div class="leaflet-control-search-label" id="drop" title="Search by screenshot, you can drop it or paste with Ctrl+V anywhere on the map">${camera}<span>Search by Image</span></div><input type="file" id="file" accept="image/*" hidden>`;
+    label.innerHTML = `<div class="leaflet-control-search-label" id="drop" title="Search by screenshot, you can drop it or paste with Ctrl+V anywhere on the map">${camera}<span></span></div><input type="file" id="file" accept="image/*" hidden>`;
     search.appendChild(label);
 
     initImageSearch(matches=>{
