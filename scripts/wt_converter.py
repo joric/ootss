@@ -11,6 +11,8 @@ Character-switch order:
        y ascending (top to bottom), then x ascending (left to right),
        i.e. a row-major grid read ``(y, x)``.
 
+All classes in CHAR_TO_NUM are selectable, including ``pusher``.
+
 If a **druid** is present in the roster, the converter falls back to
 **digit-key selection** for every switch.
 
@@ -116,12 +118,11 @@ CHAR_TO_NUM = {
     "priestess": "4",
     "bard": "5",
     "druid": "6",
+    "pusher": "7",
     "beamer": "8",
     "trader": "9",
 }
 
-NON_SELECTABLE_CLASSES = {"pusher", "stone"}
-NON_PLAYABLE_CLASSES = {"pusher"}
 FORCE_DIGIT_CLASSES = {"druid"}
 
 DIR_TO_CHAR = {
@@ -209,7 +210,7 @@ def _instance_index(char_name):
 
 
 def _is_selectable_class(cls):
-    return cls is not None and cls in CHAR_TO_NUM and cls not in NON_SELECTABLE_CLASSES
+    return cls in CHAR_TO_NUM
 
 
 def _is_selectable(char_name):
@@ -261,7 +262,7 @@ def _coordinate_order(frames):
     return order
 
 
-def _groups_order(groups, frames):
+def _groups_order(groups):
     """Return the ``groups`` order, or [] if groups is absent/empty."""
     if not groups:
         return []
@@ -298,7 +299,7 @@ def _roster_order(groups, frames):
     otherwise uses the row-major ``(y, x)`` coordinate order.
     """
     if _groups_first_is_bottom(groups, frames):
-        order = _groups_order(groups, frames)
+        order = _groups_order(groups)
         if order:
             return order
     return _coordinate_order(frames)
@@ -595,14 +596,9 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
                     result.append(sleep)
         return "".join(result)
 
-    # mixed level
-    pusher_instances = sorted(
-        {m.split(":", 1)[0] for m in moves
-         if ":" in m and _move_class(m.split(":", 1)[0]) in NON_PLAYABLE_CLASSES},
-        key=_instance_index)
-    n_pushers = len(pusher_instances)
-    multi_pusher = n_pushers > 1
-
+    # Non-selectable move names present (e.g. stones, doors driven by the
+    # level).  These are not characters, so they cannot be cycle-selected;
+    # emit only their actions.
     if order and mode != "digit":
         current_cycle = 0
         current_char = order[0]
@@ -610,40 +606,20 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
         current_cycle = None
         current_char = moves[0].split(":", 1)[0]
     else:
-        # Digit mode (or no order): never pre-select; force first selection.
         current_cycle = None
         current_char = None
-    current_pusher_idx = 0
     result = []
     for i, move in enumerate(moves):
         if ":" not in move:
             continue
         char_name, action = move.split(":", 1)
-        cls = _move_class(char_name)
-        if cls in NON_PLAYABLE_CLASSES:
-            if use_cycle and current_cycle is not None and order:
-                target = _find_in_order(order, char_name)
-                if target is not None and target != current_cycle:
-                    n = len(order)
-                    result.append("C" * ((target - current_cycle) % n))
-                    current_cycle = target
-                    current_char = char_name
-            elif use_cycle and multi_pusher and char_name in pusher_instances:
-                target = pusher_instances.index(char_name)
-                if target != current_pusher_idx:
-                    presses = (target - current_pusher_idx) % n_pushers
-                    if presses:
-                        result.append("C" * presses)
-                    current_pusher_idx = target
-                    current_char = char_name
-        elif _is_selectable(char_name):
-            if char_name != current_char:
-                frag, needs_space, current_char, current_cycle = _emit_selection(
-                    char_name, current_char, current_cycle, order, mode)
-                if frag:
-                    if needs_space and result:
-                        result.append(" ")
-                    result.append(frag)
+        if _is_selectable(char_name) and char_name != current_char:
+            frag, needs_space, current_char, current_cycle = _emit_selection(
+                char_name, current_char, current_cycle, order, mode)
+            if frag:
+                if needs_space and result:
+                    result.append(" ")
+                result.append(frag)
         dz = deltas.get(i)
         result.append(_emit_action(
             action, dz, emit_elevator_wait=emit_elevator_wait,
