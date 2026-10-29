@@ -1442,34 +1442,27 @@ function openPopup(e) {
     unlocked = `Unlocked by: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}')">${slug}</a>`;
   }
 
-  let footer = '<div class="solution-wrapper">';
+  function getSolutionWrapper(o) {
+    let html = '<div class="solution-wrapper">';
 
-  const p = wt[o.name];
+    const ytLink = youtube[o.name] && `<a href="${youtube[o.name]}" target=_blank>YouTube</a>`;
+    const psLink = solutions[o.name] && `<a href="${getSolutionPlayerLink(o.name, true)}" target=_blank>PuzzleScript</a>`;
+    const wtLink = wt[o.name] && `<a href="https://sinkingstar.wikitactics.com/areas/${wt[o.name][0]}/#${wt[o.name][1]}" target=_blank>WikiTactics</a>`;
 
-  let ytplayer = youtube[o.name] ? `<a href="${youtube[o.name]}" target=_blank>YouTube</a>` : '';
+    function getMoves(link, sol, o, skipMoves=false) {
+      const s = sol[o.name];
+      const moves = s && !skipMoves && `<span class="wrap">(${getMovesCount(s)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(s)}</span></span>`;
+      return [link, moves].filter(Boolean).join('&nbsp;');
+    }
 
-  let scripted = solutions[o.name]
-    ? `<a href="${getSolutionPlayerLink(o.name, true)}" target=_blank>PuzzleScript</a>&nbsp;`
-    : solutions2[o.name] && p
-    ? `<a href="https://sinkingstar.wikitactics.com/areas/${p[0]}/#${p[1]}" target=_blank>WikiTactics</a>&nbsp`
-    :'';
+    html += [ytLink, getMoves(wtLink, solutions2, o, psLink), getMoves(psLink, solutions, o)].filter(Boolean).join('&nbsp;/&nbsp;');
 
-  let moves = sol ? `<span class="wrap">(${getMovesCount(sol)}):&nbsp<span class="copyable" title="Click to copy solution to clipboard">${convertSolution(sol)}</span></span>`:'';
+    html += '</div>';
 
-  let player = ytplayer;
-
-  if (scripted) {
-    if (player) player += '&nbsp;/&nbsp;';
-    player += scripted;
+    return html;
   }
 
-  footer += `${player}${moves}`;
-
-  if (p && !solutions2[o.name]) {
-    footer += `<a href="https://sinkingstar.wikitactics.com/areas/${p[0]}/#${p[1]}" target=_blank>WikiTactics</a>&nbsp`;
-  }
-
-  footer += '</div>';
+  const footer = getSolutionWrapper(o);
 
   let content = `${header}${image}${unlocked}${footer}`;
 
