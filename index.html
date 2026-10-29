@@ -1375,6 +1375,7 @@ function updateZoom() {
 function baseLayerChange(name) {
   map.closePopup();
   baseLayerName = name;
+  addGrid();
   updateZoom();
   updateMarkers();
   updateCRS(name);
@@ -1605,6 +1606,32 @@ const hp = (() => {
   };
 })();
 
+function addGrid() {
+    gridLayer.clearLayers();
+
+    let conf = { size:[190,156], corner: [-24,-2], grid: [19, 13] };
+
+    if (baseLayerName == 'intro') {
+        conf = { size:[91, 105], corner: [0, -21], grid: [13, 7] };
+    }
+
+    const [w, h] = conf.size;
+    const [cx, cy] = conf.corner;
+    const [gw, gh] = conf.grid;
+
+    const style = { color: '#fff', weight: 1.5, opacity: 0.7 };
+
+    const dx = -0.5;
+    const dy = -0.5;
+
+    for (let x = cx; x <= cx + w; x += gw)
+        gridLayer.addLayer(L.polyline([[cy+dy, x+dx], [cy + h + dy, x + dx]], style));
+
+    for (let y = cy; y <= cy + h; y += gh)
+        gridLayer.addLayer(L.polyline([[y + dy, cx + dx], [y + dy, cx + w + dx]], style));
+}
+
+
 function drawMap() {
 
   for (const name of Object.keys(config)) {
@@ -1652,6 +1679,7 @@ function drawMap() {
 
   map.on('overlayadd', function(e) {
     settings.activeLayers[e.layer.id] = true;
+    addGrid();
     syncSearchLayer();
     updateMarkers();
     saveSettings();
@@ -1831,58 +1859,17 @@ function drawMap() {
 
 
     gridLayer = L.layerGroup();
-
     gridLayer.id = 'grid'; // for settings
 
-    gw = 19;
-    gh = 13;
-
-    cx = 80;
-    cy = 69;
-
-    d = gh*10;
-
-    const hCells = 11;
-    const vCells = 12;
-
-    const origin = [cy - gh/2 + gh, cx];
-
-    const bounds = [
-        [origin[0] - (vCells/2)*gh, origin[1] - (hCells/2)*gw],
-        [origin[0] + (vCells/2)*gh, origin[1] + (hCells/2-1)*gw],
-    ];
-
-    const gridStyle = { color: '#fff', weight: 1.5, opacity: 0.7 };
-
-    const lngStep = 1 * gw;//(bounds[1][1] - bounds[0][1]) / steps;
-    const latStep = 1 * gh;//(bounds[1][0] - bounds[0][0]) / steps;
-
-    // vertical lines (meridians)
-    for (let i = 0; i <= hCells-1; i++) {
-        const lng = bounds[0][1] + i * lngStep;
-        gridLayer.addLayer(L.polyline([
-            [bounds[0][0], lng],
-            [bounds[1][0], lng]
-        ], gridStyle));
-    }
-
-    // horizontal lines (parallels)
-    for (let i = 0; i <= vCells; i++) {
-        const lat = bounds[0][0] + i * latStep;
-        gridLayer.addLayer(L.polyline([
-            [lat, bounds[0][1]],
-            [lat, bounds[1][1]]
-        ], gridStyle));
-    }
-
+    addGrid();
 
     // add grid to map (visible by default)
-    //gridLayer.addTo(map);
+    if (settings.activeLayers['grid']) gridLayer.addTo(map);
 
     layers['grid'] = gridLayer;
-//    layers['polygons'] = polygonLayer;
-//    layers['regions'] = regionLayer;
 
+    //layers['polygons'] = polygonLayer;
+    //layers['regions'] = regionLayer;
     //regionLayer.addTo(map);
 
     images = [];
@@ -2085,59 +2072,6 @@ function drawMap() {
       focusMarkerByName(name);
     } else {
       baseLayerChange(baseLayerName); // closes popup internally
-    }
-  }
-
-  function drawGrid() {
-
-    svgLayer = layers['grid'] || L.svg({padding: 2});
-
-    svgLayer.addTo(map);
-
-    svg = svgLayer._container;
-
-    if (!svg) return;
-
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-
-    const size = 2048;
-
-    const topLeft = map.containerPointToLatLng([0,0]);
-    const bottomRight = map.containerPointToLatLng([map.getSize().x,map.getSize().y]);
-
-    const spacing = 10;
-
-    const minX = Math.max(0, Math.floor(Math.min(topLeft.lng, bottomRight.lng)));
-    const maxX = Math.min(size, Math.ceil(Math.max(topLeft.lng, bottomRight.lng)));
-    const minY = Math.max(0, Math.floor(Math.min(topLeft.lat, bottomRight.lat)));
-    const maxY = Math.min(size, Math.ceil(Math.max(topLeft.lat, bottomRight.lat)));
-
-    let stroke = 'rgba(255,255,255,0.75)';
-
-    for (let x = minX; x <= maxX; x += spacing) {
-      const p1 = map.latLngToLayerPoint([minY, x]);
-      const p2 = map.latLngToLayerPoint([maxY, x]);
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', p1.x);
-      line.setAttribute('y1', p1.y);
-      line.setAttribute('x2', p2.x);
-      line.setAttribute('y2', p2.y);
-      line.setAttribute('stroke', stroke);
-      line.setAttribute('stroke-width', x%16==0 ? '2':'1');
-      svg.appendChild(line);
-    }
-
-    for (let y = minY; y <= maxY; y += spacing) {
-      const p1 = map.latLngToLayerPoint([y, minX]);
-      const p2 = map.latLngToLayerPoint([y, maxX]);
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', p1.x);
-      line.setAttribute('y1', p1.y);
-      line.setAttribute('x2', p2.x);
-      line.setAttribute('y2', p2.y);
-      line.setAttribute('stroke', stroke);
-      line.setAttribute('stroke-width', y%16==0 ? '2' : '1');
-      svg.appendChild(line);
     }
   }
 
