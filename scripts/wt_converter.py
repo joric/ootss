@@ -19,6 +19,13 @@ Timing:
     ``action_ticks`` / ``input_delay_ticks``.  When enabled and the level
     carries timestamp data, all other waits are suppressed.
 
+Elevator:
+    ``T`` always maps to the ``V`` keypress.  Elevator wait padding
+    (``B..V..B``) is applied only when the ``T`` move corresponds to a
+    known non-zero height change of the elevator carriage (``pusher`` ->
+    ``Elevator_Platform`` -> ``Guy``).  Unclear or zero deltas emit a
+    plain ``V``.
+
 Output token vocabulary:
 
     * direction / action keys   (U D L R X V F, digits, C, ...)
@@ -51,7 +58,7 @@ from urllib.parse import urlparse
 SELECTION_MODE = "cycle"
 
 USE_ACTION_TICKS = False
-EMIT_ELEVATOR_WAIT = False
+EMIT_ELEVATOR_WAIT = True
 EMIT_FALL_WAIT = False
 FALL_WAIT_AS_SLEEP = False
 
@@ -126,7 +133,7 @@ DIR_TO_CHAR = {
 }
 
 ELEVATOR_PRESS_CHAR = "V"
-ELEVATOR_PRE_B = 6
+ELEVATOR_PRE_B = 2
 ELEVATOR_POST_B = 4
 
 FALL_WAIT_MIN_B = 4
@@ -138,6 +145,7 @@ MIN_EMIT_US = 150_000
 
 
 def elevator_wait(dz, *, pre_b=ELEVATOR_PRE_B, post_b=ELEVATOR_POST_B):
+    # Only called when a known non-zero height change is occurring.
     return ("B" * max(pre_b, 0)) + ELEVATOR_PRESS_CHAR + ("B" * max(post_b, 0))
 
 
@@ -382,28 +390,54 @@ def _players_order(groups, frames, moves):
     return " ".join(order)
 
 
-def _pusher_z(frame):
+# --------------------------------------------------------------------------- #
+# Elevator carriage height
+# --------------------------------------------------------------------------- #
+
+def _frame_z(frame):
+    """Return a representative elevator-carriage z for a frame.
+
+    Prefers an explicit ``pusher``; falls back to ``Elevator_Platform``;
+    then to any ``Guy``'s z.  Returns None if no carrier is present.
+    """
+    if not isinstance(frame, list):
+        return None
+
+    def _z_of(obj):
+        p = obj.get("p") or []
+        return p[2] if len(p) >= 3 else None
+
     for obj in frame:
-        if obj.get("k") == "pusher":
-            p = obj.get("p") or []
-            if len(p) >= 3:
-                return p[2]
+        if isinstance(obj, dict) and obj.get("k") == "pusher":
+            z = _z_of(obj)
+            if z is not None:
+                return z
+    for obj in frame:
+        if isinstance(obj, dict) and obj.get("t") == "Elevator_Platform":
+            z = _z_of(obj)
+            if z is not None:
+                return z
+    for obj in frame:
+        if isinstance(obj, dict) and obj.get("t") == "Guy":
+            z = _z_of(obj)
+            if z is not None:
+                return z
     return None
 
 
 def move_deltas(moves, frames):
+    """Map move index -> z delta (int) or None (unclear)."""
     if not frames or len(frames) < 2:
         return {}
     deltas = {}
     limit = min(len(moves), len(frames) - 1)
     for i in range(limit):
-        zb = _pusher_z(frames[i])
-        za = _pusher_z(frames[i + 1])
+        zb = _frame_z(frames[i])
+        za = _frame_z(frames[i + 1])
         if zb is None or za is None:
-            continue
-        dz = za - zb
-        if dz != 0:
-            deltas[i] = dz
+            deltas[i] = None
+        else:
+            deltas[i] = za - zb
     return deltas
 
 
@@ -481,7 +515,9 @@ def _emit_selection(char_name, current_char, current_cycle, order, mode):
 def _emit_action(action, dz, *, emit_elevator_wait, emit_fall_wait,
                  elevator_pre_b, elevator_post_b):
     if action == "T":
-        if emit_elevator_wait:
+        # T is the V keypress.  Elevator padding applies only when this
+        # move corresponds to a known non-zero height change.
+        if emit_elevator_wait and dz is not None and dz != 0:
             return elevator_wait(dz, pre_b=elevator_pre_b, post_b=elevator_post_b)
         return ELEVATOR_PRESS_CHAR
     out = DIR_TO_CHAR.get(action, action if action.isdigit() else "?")

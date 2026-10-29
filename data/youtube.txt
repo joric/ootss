@@ -33,3 +33,4 @@ vertical_promesst_v2,https://youtu.be/WHB5Fdu9Q3k?t=252
 all_together_now,https://youtu.be/5bgmQ4kg5Mg?t=631
 jenga_dispenser,https://youtu.be/o9Wk2PKMFq0
 wizards_true_nature,https://youtu.be/o9Wk2PKMFq0?t=559
+wand_reintro,https://youtu.be/0kgSMtew03Q
