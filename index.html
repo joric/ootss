@@ -1373,6 +1373,7 @@ function updateZoom() {
 }
 
 function baseLayerChange(name) {
+  map.closePopup();
   baseLayerName = name;
   updateZoom();
   updateMarkers();
@@ -2082,8 +2083,9 @@ function drawMap() {
     mapParam = {};
     if (name) {
       focusMarkerByName(name);
+    } else {
+      baseLayerChange(baseLayerName); // closes popup internally
     }
-    baseLayerChange(baseLayerName);
   }
 
   function drawGrid() {
