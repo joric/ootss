@@ -42,7 +42,6 @@
   pointer-events: none;
   display: block;
   background: #000;
-  border: 2px solid #fff;
   border-radius: 6px;
   box-shadow: 0 6px 24px rgba(0,0,0,0.65);
   overflow: hidden;
@@ -51,6 +50,24 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 250ms ease, visibility 0s linear 250ms;
+}
+
+#hoverPreview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
 }
 
 #hoverPreview.visible {
@@ -84,7 +101,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   pointer-events: none;
-  text-shadow: 0 0 2px black, 0 0 4px black, 0 0 8px black, 0 0 16px black;
+  text-shadow: 0 0 1px black, 0 0 2px black, 0 0 4px black, 0 0 8px black;
 }
 
 
@@ -1527,7 +1544,7 @@ const hp = (() => {
   // --- geometry ---------------------------------------------------
 
   function size() {
-    const w = Math.min(800, innerWidth * 0.92);
+    const w = Math.min(1280, innerWidth * 0.92);
     const h = Math.min(w * 9 / 16, innerHeight * 0.82);
     return { w: h * 16 / 9, h };
   }
