@@ -1059,7 +1059,7 @@ R = Bedrock and DragonRight
 S = YellowSwitch and Goblin (one_fire_v2)
 T = Bedrock and Thief
 U = Bedrock and DragonUp
-(V = reserved, unavailable because of ^ < > v )
+V = YellowSwitch and Crate
 W = Bedrock and Wizard
 X = Target
 Y = YellowSwitch and Bard (heroes3_2_v4)
@@ -3445,4 +3445,25 @@ _###*...#__
 ___#..###__
 ___####____
 ___________
+
+section wizards_true_nature
+
+#############
+#*..........#
+#...........#
+#...........#
+#...{VVVV...#
+#...V...V...#
+#...V...V...#
+#...V...V...#
+#...VVVVV...#
+#...........#
+#.........W[#
+#.........[G#
+#############
+
+
+
+
+
 
