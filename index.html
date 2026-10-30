@@ -1537,7 +1537,7 @@ function setBaseLayer(name) {
 */
 }
 
-const hp = (() => {
+const hoverPreview = (() => {
   const el  = document.getElementById('hoverPreview');
   const img = el.querySelector('img');
   const ttl = el.querySelector('.hp-title');
@@ -1601,7 +1601,6 @@ const hp = (() => {
   return {
     enter(name, title, x, y, marker) {
       if (popupOpen(marker)) return;
-
       // start the load now; the 1000ms delay is the load window
       if (imageList[name]) new Image().src = `${image_base}/images/levels/${name}.webp`;
 
@@ -1998,21 +1997,21 @@ function drawMap() {
       marker.addTo(layers[group]);
 
       {
-        const nm = o.name;
+        const nm = baseName(o.name);
         if (nm && imageList[nm]) {
           const t = o.type === 'Freezer'
             ? `Freezer${nameLookup[o.entity_properties?.unlocked_by_id] ? ' [' + nameLookup[o.entity_properties.unlocked_by_id] + ']' : ''}`
             : nm;
-          marker.on('mouseover', (e) => hp.enter(nm, t, e.originalEvent.clientX, e.originalEvent.clientY, marker));
-          marker.on('mousemove', (e) => hp.move(e.originalEvent.clientX, e.originalEvent.clientY, marker));
-          marker.on('mouseout',  () => hp.leave());
-          marker.on('click',     () => hp.hide());
+          marker.on('mouseover', (e) => hoverPreview.enter(nm, t, e.originalEvent.clientX, e.originalEvent.clientY, marker));
+          marker.on('mousemove', (e) => hoverPreview.move(e.originalEvent.clientX, e.originalEvent.clientY, marker));
+          marker.on('mouseout',  () => hoverPreview.leave());
+          marker.on('click',     () => hoverPreview.hide());
         }
       }
 
     }
 
-    map.on('movestart zoomstart', () => hp.hide());
+    map.on('movestart zoomstart', () => hoverPreview.hide());
 
 
     let text =`Total markers: ${allFeatures.length}`;
