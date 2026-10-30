@@ -1464,7 +1464,7 @@ function openPopup(e) {
   let id = o.entity_properties?.unlocked_by_id;
   let slug = nameLookup[id];
   if (slug) {
-    unlocked = `Unlocked by: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}')">${slug}</a>`;
+    unlocked = `Unlocked by: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
   }
 
   function getSolutionWrapper(o) {
@@ -1503,6 +1503,8 @@ function openPopup(e) {
   marker.unbindPopup();
   marker.bindPopup(content, { offset: [0,5], maxWidth: 360, minWidth: 360 });
   marker.openPopup();
+
+  return false; // in case of js clicking
 }
 
 function syncSearchLayer() {
