@@ -1471,7 +1471,7 @@ function openPopup(e) {
   let id = o.entity_properties?.unlocked_by_id;
   let slug = nameLookup[id];
   if (slug) {
-    unlocked = `Unlocked by: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
+    unlocked = `After: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
   }
 
   let subtitle = [region, unlocked].filter(Boolean).join('&nbsp;/&nbsp;');
