@@ -49,7 +49,7 @@
   transition: opacity 250ms ease, visibility 0s linear 250ms;
 }
 
-/* Ring � OUTSIDE the image rectangle, painted BELOW the image */
+/* Ring — OUTSIDE the image rectangle, painted BELOW the image */
 #hoverPreview::after {
   content: "";
   position: absolute;
@@ -75,7 +75,7 @@
   transition: opacity 250ms ease, visibility 0s;
 }
 
-/* Image � opaque, rounded, painted ON TOP of the ring.
+/* Image — opaque, rounded, painted ON TOP of the ring.
    Because it sits at inset: 0 and the ring is at inset: -4px,
    the image covers any blurred ring pixels inside its own rect.
    overflow: hidden on the wrapper is gone, so corners are
@@ -530,7 +530,7 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 
 
 <div id="galleryOverlay">
-  <div id="closeBtn">✕</div>
+  <div id="closeBtn">вњ•</div>
 
   <div id="caption" class="gallery-caption"></div>
 
@@ -879,9 +879,11 @@ function getIconHTML(feature, size=48) {
 
   options = options || {class:'fa fa-circle', bg:'dimgrey'};
 
-  let areaColors = {'sky': 'royalblue', 'underworld': 'brown'};
+  let areaColors = {'overworld': 'orange', 'sky': 'royalblue', 'underworld': 'brown', 'intro': 'green'};
 
-  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
+  //let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
+
+  let color = o.areaFound ? areaColors[getBaseLayer(feature)] : 'dimgrey';
 
   options.bg = color;
 
@@ -924,12 +926,15 @@ let baseIcon = (feature) => {
   });
 };
 
+function translate(s) {
+  return lang[s] || s;
+}
 
 let areaIcon = (feature, label) => {
   let size = 256;
   return L.divIcon({
     className: 'region-label',
-    html: lang[label],
+    html: translate(label),
     iconSize: [512, 100],
     iconAnchor: [256, 50],
   });
@@ -1408,7 +1413,7 @@ const getCoordinates = marker => marker.feature.geometry.coordinates.map(String)
 
 function getTooltipTitle(marker) {
   let o = marker.feature.properties;
-  let title = `<b>${o.name}</b> in ${o.area} (${getCoordinates(marker)})`;
+  let title = `<b>${o.name}</b> in ${translate(o.area)} (${getCoordinates(marker)})`;
 
   if (o.type=='Freezer') {
     title = `Freezer`;
@@ -1443,7 +1448,7 @@ function openPopup(e) {
 
   let backlink = `<a class="copyable" href="${getMapURL(o.name)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
-  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name}</b></a> in ${o.area} (${getCoordinates(marker)}) ${backlink}</div>`;
+  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name}</b></a> in ${translate(o.area)} (${getCoordinates(marker)}) ${backlink}</div>`;
 
   if (o.type == 'Freezer') {
     header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
@@ -2131,6 +2136,67 @@ function drawMap() {
 
 }
 
+
+function updateAreas() {
+  const entities = {};
+  for (const feature of allFeatures) {
+    entities[String(feature.properties.id)] = feature;
+  }
+
+  // Build boxes: each local_area marker IS a box (its own position + box_extents).
+  // The Area_Pin it targets only supplies the human-readable area name.
+  // Multiple markers can share the same area name.
+  const boxes = {};
+  for (const feature of allFeatures) {
+    const ep = feature.properties.entity_properties;
+    if (ep?.script_name !== 'local_area') continue;
+
+    const pin = entities[String(ep.script_target_entity_id)];
+    const areaName = pin?.properties?.entity_properties?.local_area_name;
+    if (!areaName) continue;
+
+    const center = ep.position ?? ep.visual_position;
+    const ext = ep.box_extents;
+    if (!center || !ext) continue;
+
+    (boxes[areaName] ??= []).push({
+      cx: center.x ?? 0,
+      cy: center.y ?? 0,
+      cz: center.z ?? 0,
+      ex: ext.x ?? 0,
+      ey: ext.y ?? 0,
+      ez: ext.z ?? 0,
+    });
+  }
+
+  for (const feature of allFeatures) {
+    if (feature.properties.type !== 'Level_Entry') continue;
+
+    const p =
+      feature.properties.entity_properties?.position ??
+      { x: feature.geometry.coordinates[0],
+        y: feature.geometry.coordinates[1],
+        z: feature.geometry.coordinates[2] };
+    const fx = p.x ?? 0;
+    const fy = p.y ?? 0;
+    const fz = p.z ?? 0;
+
+    outer: for (const [area, list] of Object.entries(boxes)) {
+      for (const b of list) {
+        if (
+          Math.abs(fx - b.cx) <= b.ex &&
+          Math.abs(fy - b.cy) <= b.ey &&
+          Math.abs(fz - b.cz) <= b.ez
+        ) {
+          feature.properties.area = area;
+          feature.properties.areaFound = true;
+          break outer;
+        }
+      }
+    }
+  }
+}
+
 window.onload = function() {
 
   if (location.hash.length>1) {
@@ -2198,6 +2264,8 @@ window.onload = function() {
 
     lang = lg;
 
+    updateAreas();
+
     drawMap();
   });
 }
@@ -2205,3 +2273,4 @@ window.onload = function() {
 
 </body>
 </html>
+
