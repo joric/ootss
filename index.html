@@ -2144,7 +2144,6 @@ function drawMap() {
 
 function updateRegions() {
   const lookup = Object.fromEntries(allFeatures.map(f => [f.properties.id, f]));
-  const axes = ['x', 'y', 'z'];
 
   // Each local_area marker is its own box; its target Area_Pin only supplies the name.
   // Several markers may share one area name.
@@ -2156,16 +2155,21 @@ function updateRegions() {
     if (name) (boxes[name] ??= []).push(f);
   }
 
-  const inside = pt => ({ properties: { entity_properties: ep } }) => {
+  const inside = pt => f => {
+    const ep = f.properties.entity_properties;
     const c = ep.position ?? ep.visual_position, e = ep.box_extents;
-    return c && e && axes.every(k => Math.abs((pt[k] ?? 0) - (c[k] ?? 0)) <= (e[k] ?? 0));
+    return c && e && ['x','y','z'].every(k => Math.abs((pt[k] ?? 0) - (c[k] ?? 0)) <= (e[k] ?? 0));
   };
 
-  for (const { properties: p, geometry: { coordinates: [x, y, z] } } of allFeatures) {
-    if (p.type !== 'Level_Entry') continue;
-    const pt = p.entity_properties?.position ?? { x, y, z };
-    const hit = Object.entries(boxes).find(([, list]) => list.some(inside(pt)));
-    if (hit) p.region = hit[0];
+  for (const f of allFeatures) {
+    if (f.properties.type !== 'Level_Entry') continue;
+    const c = f.geometry.coordinates;
+    const pt = f.properties.entity_properties?.position ?? { x: c[0], y: c[1], z: c[2] };
+    for (const name in boxes) {
+      if (!boxes[name].some(inside(pt))) continue;
+      f.properties.region = name;
+      break;
+    }
   }
 }
 
