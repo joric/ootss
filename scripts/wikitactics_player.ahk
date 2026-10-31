@@ -2,9 +2,12 @@
 #SingleInstance Force
 
 ; Precision: no automatic delays after each sent key, and no line logging.
-SetKeyDelay(-1, -1)
+; NOTE: SetKeyDelay(-1,-1) is intentionally NOT used here. ControlSend needs a
+; real down->up gap or the target game's input poller can miss the press.
+SetKeyDelay(1, 25)      ; 1ms after down, 25ms before up (see PRESS_MS too)
 SetControlDelay(-1)
 SetWinDelay(-1)
+SendMode("Event")       ; real keybd_event timing, not atomic Input mode
 ListLines(false)
 
 ; ---------------------------------------------------------------------------
@@ -30,12 +33,18 @@ KEY_F         := "f"
 
 TICK_US        := 1
 DEFAULT_GAP_MS := 0
-PRESS_MS       := 16
+PRESS_MS       := 50     ; key hold duration; was 16 (1 frame) - too short
+SETTLE_MS      := 120    ; wait after reset before starting the schedule
+STATUS_MS      := 1000   ; status bar refresh interval
 PROCESS_PRIORITY := "High"
 
 global g_Abort := false, g_Playing := false, g_ExitRequested := false
 global g_LB := "", g_Fast := "", g_Slow := "", g_Shift2 := "", g_Offset := "", g_Delta := "", g_Status := ""
 global g_Recs := [], g_File := "", g_Target := TARGET_WIN
+
+; Shared state for the status ticker (updated from the playback loop).
+global g_StName := "", g_StMode := "", g_StTotal := 0, g_StIdx := 0
+global g_StT0 := 0, g_StActions := [], g_StActive := false
 
 ; ---------------------------------------------------------------------------
 ; JSON loading (plain InStr/SubStr only)
@@ -237,8 +246,6 @@ RequestExit() {
 ; ---------------------------------------------------------------------------
 ; Timing
 ; ---------------------------------------------------------------------------
-; Microsecond clock. The multiplication is split so it cannot overflow Int64
-; on machines with long uptime (t * 1e6 overflows after ~10 days at 10 MHz).
 QPC() {
     static freq := 0, buf := Buffer(8)
     if !freq {
@@ -251,8 +258,6 @@ QPC() {
     return q * 1000000 + (t - q * freq) * 1000000 // freq
 }
 
-; Coarse wait on a high-resolution timer, then pure busy-spin on QPC for the
-; final stretch, so the wake-up error is set by the spin, not by the OS timer.
 SleepUntilUS(target_us) {
     global g_Abort
     static timer := 0, tried := false, margin := 3000
@@ -371,7 +376,8 @@ BuildSchedule(rec, speed := 1, delta_ticks := 0) {
         }
         key := KeyForAction(action)
         if (key != "") {
-            schedule.Push({key: key, fire_at_us: t_us + delta_us, switches: pending})
+            schedule.Push({key: key, fire_at_us: t_us + delta_us, switches: pending,
+                actor: actor, action: action})
             pending := 0
         }
     }
@@ -381,15 +387,11 @@ BuildSchedule(rec, speed := 1, delta_ticks := 0) {
 }
 
 ; ---------------------------------------------------------------------------
-; Timeline: every key down/up as one time-sorted list (times relative to the
-; reset press, wall-clock microseconds). Built BEFORE playback starts so no
-; work is done between events.
+; Timeline
 ; ---------------------------------------------------------------------------
 TLAdd(tl, lastUp, t, key, dir, act := false) {
     ev := {t: t, key: key, dir: dir, cancel: false, act: act}
     if (dir = "down") {
-        ; Same key pressed again before its release: the earlier release is
-        ; dropped, so the key stays down until the last release.
         if (lastUp.Has(key) && lastUp[key].t > t)
             lastUp[key].cancel := true
     } else
@@ -406,9 +408,6 @@ BuildTimeline(schedule, offset_us, speed, hold_us) {
         at := Round((offset_us + ev.fire_at_us) / speed)
         n := ev.switches
         if (n > 0) {
-            ; Character switches are tapped BEFORE the action, finishing hold
-            ; time ahead of it, so the action itself lands exactly on time.
-            ; Taps shrink if the previous action is too close.
             w := Min(hold_us, Max(0, (at - prev) // (2 * n)))
             Loop n {
                 d := at - (n - A_Index + 1) * 2 * w
@@ -418,12 +417,13 @@ BuildTimeline(schedule, offset_us, speed, hold_us) {
         }
         if (ev.key != "") {
             keyName := (StrLen(ev.key) = 1) ? ev.key : SubStr(ev.key, 2, -1)
-            TLAdd(tl, lastUp, at, keyName, "down", true)
+            actEv := TLAdd(tl, lastUp, at, keyName, "down", true)
+            actEv.actor := ev.actor
+            actEv.action := ev.action
             TLAdd(tl, lastUp, at + hold_us, keyName, "up")
             prev := at
         }
     }
-    ; Stable insertion sort by time (list is nearly sorted already).
     Loop tl.Length - 1 {
         i := A_Index + 1
         x := tl[i]
@@ -435,6 +435,42 @@ BuildTimeline(schedule, offset_us, speed, hold_us) {
         tl[j + 1] := x
     }
     return tl
+}
+
+; ---------------------------------------------------------------------------
+; Status text helpers
+; ---------------------------------------------------------------------------
+FormatMoveText(actor, action, gap_ms) {
+    txt := actor ":" action
+    if (IsNumber(gap_ms) && gap_ms > 0)
+        txt .= " (" gap_ms "ms)"
+    return txt
+}
+
+; Runs on AHK's normal timer thread every STATUS_MS. Reads shared state set by
+; the playback loop. The state read is racy in theory but harmless: worst case
+; we render one stale frame, next tick fixes it.
+UpdateStatusTick() {
+    global g_StActive, g_StName, g_StMode, g_StTotal, g_StIdx, g_StT0, g_StActions, g_Status
+    if !g_StActive
+        return
+    if (g_StIdx < 1)
+        return
+    cur := g_StActions[g_StIdx]
+    curTxt := FormatMoveText(cur.actor, cur.action, cur.gap_ms)
+    if (g_StIdx < g_StTotal) {
+        nxt := g_StActions[g_StIdx + 1]
+        nxtTxt := FormatMoveText(nxt.actor, nxt.action, nxt.gap_ms)
+        ; Time until the NEXT action, from the timeline's t0.
+        remain_us := (g_StT0 + nxt.t) - QPC()
+        if (remain_us < 0)
+            remain_us := 0
+        secs := remain_us / 1000000
+        g_Status.SetText("Playing " g_StName ": " g_StIdx "/" g_StTotal g_StMode
+            . "  |  " curTxt . "  next in " Format("{:.1f}", secs) "s: " nxtTxt)
+    } else
+        g_Status.SetText("Playing " g_StName ": " g_StIdx "/" g_StTotal g_StMode
+            . "  |  " curTxt . "  (last move)")
 }
 
 ; ---------------------------------------------------------------------------
@@ -456,14 +492,13 @@ ReleaseHeldKeys(held) {
 ; ---------------------------------------------------------------------------
 ReplayLevel(rec) {
     global g_Abort, g_Playing, g_Status, g_Fast, g_Slow, g_Shift2, g_Offset, g_Delta, g_ExitRequested
-    global g_Target, TARGET_WIN, RESET_KEY, PRESS_MS
+    global g_Target, TARGET_WIN, RESET_KEY, PRESS_MS, SETTLE_MS, STATUS_MS
+    global g_StName, g_StMode, g_StTotal, g_StIdx, g_StT0, g_StActions, g_StActive
 
     offset_us := (IsInteger(g_Offset.Value) ? Integer(g_Offset.Value) : 0) * 1000
     fast := (g_Fast.Value = 1)
     slow := (g_Slow.Value = 1)
     shiftHold := (g_Shift2.Value = 1)
-    ; Clock factor: Alt = /4 wall-clock, Ctrl = *4 wall-clock. Only one can
-    ; scale the scheduler at a time; Alt wins if both are set.
     speed := fast ? 4 : (slow ? 0.25 : 1)
     name := rec["name"]
     if (rec["moves"] = "") {
@@ -475,7 +510,6 @@ ReplayLevel(rec) {
         g_Status.SetText("Game window not found: " TARGET_WIN)
         return
     }
-    ; Resolve the window once; every later send addresses it by handle.
     g_Target := "ahk_id " hwnd
 
     schedule := BuildSchedule(rec, speed,
@@ -494,9 +528,19 @@ ReplayLevel(rec) {
     hold_us := PRESS_MS * 1000
     tl := BuildTimeline(schedule, offset_us, speed, hold_us)
 
+    ; Annotate action events with wall-clock gap to next action for the status bar.
+    actions := []
+    for e in tl
+        if (e.act && !e.cancel)
+            actions.Push(e)
+    for i, e in actions {
+        gap_us := (i < actions.Length) ? (actions[i + 1].t - e.t) : 0
+        e.gap_ms := (gap_us > 0) ? Round(gap_us / 1000) : 0
+    }
+
     g_Abort := false
     g_Playing := true
-    total := schedule.Length, idx := 0, aborted := false
+    total := actions.Length, idx := 0, aborted := false
     held := Map()
     modeTag := (fast ? "  [4x]" : (slow ? "  [slow]" : ""))
         . (shiftHold ? "  [2x]" : "")
@@ -505,8 +549,6 @@ ReplayLevel(rec) {
     try {
         DllCall("SetThreadPriority", "Ptr", hThread, "Int", 15)  ; TIME_CRITICAL
 
-        ; Hold modifier keys BEFORE the reset, and keep them down for the run.
-        ; Shift changes the character's speed, not the clock; Alt/Ctrl scale time.
         if shiftHold {
             SendTargetKey("Shift", "down")
             held["Shift"] := true
@@ -533,6 +575,22 @@ ReplayLevel(rec) {
         SendTargetKey(RESET_KEY, "down")
         held[RESET_KEY] := true
 
+        ; Give the game a moment to process the reset before the schedule fires.
+        if (offset_us < SETTLE_MS * 1000) {
+            SleepUntilUS(t0 + SETTLE_MS * 1000)
+            t0 += (SETTLE_MS * 1000) - offset_us
+        }
+
+        ; Publish shared state for the ticker and start it.
+        g_StName := name
+        g_StMode := modeTag
+        g_StTotal := total
+        g_StIdx := 0
+        g_StT0 := t0
+        g_StActions := actions
+        g_StActive := true
+        SetTimer(UpdateStatusTick, STATUS_MS)
+
         lastStat := t0
         for e in tl {
             if e.cancel
@@ -546,17 +604,21 @@ ReplayLevel(rec) {
                 held[e.key] := true
                 if e.act {
                     idx++
-                    ; Throttle GUI updates so they never eat into event timing.
+                    g_StIdx := idx
+                    ; Also refresh immediately on the move boundary so the
+                    ; displayed "current" move isn't stale for up to 1s.
                     now := QPC()
                     if (now - lastStat > 150000) {
                         lastStat := now
-                        g_Status.SetText("Playing " name ": " idx "/" total modeTag)
+                        UpdateStatusTick()
                     }
                 }
             } else
                 held.Delete(e.key)
         }
     } finally {
+        g_StActive := false
+        SetTimer(UpdateStatusTick, 0)
         ReleaseHeldKeys(held)
         DllCall("SetThreadPriority", "Ptr", hThread, "Int", 0)
         DllCall("winmm\timeEndPeriod", "UInt", 1)

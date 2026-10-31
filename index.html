@@ -1467,7 +1467,7 @@ function openPopup(e) {
       ? `<a href="${youtube[name]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
       : '';
 
-  let region = o.region && `Area: ${translate(o.region)}`;
+  let region = o.region && `<span title="${o.region}">Area: ${translate(o.region)}</span>`;
 
   let unlocked = null
   let id = o.entity_properties?.unlocked_by_id;

@@ -11,13 +11,18 @@ Character-switch order:
        y ascending (top to bottom), then x ascending (left to right),
        i.e. a row-major grid read ``(y, x)``.
 
+Clones (e.g. ``beamer#2``) move in lockstep with their base class, so
+selection is class-based: a ``C`` is emitted only when the target class
+differs from the current class.  The cycle order is deduplicated to one
+entry per class.
+
 All classes in CHAR_TO_NUM are selectable, including ``pusher``.
 
 If a **druid** is present in the roster, the converter falls back to
 **digit-key selection** for every switch.
 
 Selection is suppressed entirely when the roster contains only a single
-character (nothing to switch to).
+character class (nothing to switch to).
 
 Timing:
     USE_ACTION_TICKS emits per-move ``_x.y_`` sleeps derived from
@@ -251,30 +256,43 @@ def _frame0_actors(frames):
 
 
 def _coordinate_order(frames):
-    """Row-major grid read: y ascending, then x ascending."""
+    """Row-major grid read: y ascending, then x ascending.
+
+    Deduplicated by class: clones share the same position and move in
+    lockstep, so only one entry per class is emitted.
+    """
     actors = _frame0_actors(frames)
     if not actors:
         return []
     actors.sort(key=lambda a: (a[1], a[0]))
-    counts = {}
+    seen = set()
     order = []
     for _, _, cls, _ in actors:
-        counts[cls] = counts.get(cls, 0) + 1
-        idx = counts[cls]
-        order.append(cls if idx == 1 else f"{cls}#{idx}")
+        if cls in seen:
+            continue
+        seen.add(cls)
+        order.append(cls)
     return order
 
 
 def _groups_order(groups):
-    """Return the ``groups`` order, or [] if groups is absent/empty."""
+    """Return the ``groups`` order, deduplicated by class, or [] if absent."""
     if not groups:
         return []
-    names = [
-        g["name"] for g in groups
-        if isinstance(g, dict) and isinstance(g.get("name"), str)
-        and _is_selectable(g["name"])
-    ]
-    return names
+    seen = set()
+    order = []
+    for g in groups:
+        if not isinstance(g, dict):
+            continue
+        name = g.get("name")
+        if not isinstance(name, str) or not _is_selectable(name):
+            continue
+        cls = _move_class(name)
+        if cls in seen:
+            continue
+        seen.add(cls)
+        order.append(cls)
+    return order
 
 
 def _groups_first_is_bottom(groups, frames):
@@ -296,7 +314,7 @@ def _groups_first_is_bottom(groups, frames):
 
 
 def _roster_order(groups, frames):
-    """Cycle order.
+    """Cycle order (one entry per class).
 
     Uses ``groups`` when its first actor sits at the bottom row (max y);
     otherwise uses the row-major ``(y, x)`` coordinate order.
@@ -309,49 +327,26 @@ def _roster_order(groups, frames):
 
 
 def _find_in_order(order, char_name):
-    try:
-        return order.index(char_name)
-    except ValueError:
-        pass
+    """Return the cycle index of a character's *class* in ``order``."""
     cls = _move_class(char_name)
-    idx = _instance_index(char_name)
-    seen = 0
-    for i, name in enumerate(order):
-        if _move_class(name) != cls:
-            continue
-        seen += 1
-        if seen == idx:
-            return i
-    if idx == 1:
-        for i, name in enumerate(order):
-            if name == cls:
-                return i
-    return None
-
-
-def _class_instance_count(order, cls):
-    if not order:
-        return 1
-    return sum(1 for name in order if _move_class(name) == cls) or 1
+    try:
+        return order.index(cls)
+    except ValueError:
+        return None
 
 
 def _digit_presses(char_name, current_char, order):
+    """Digit presses (class-key). Clones share a key, so only one press
+    is needed to reach a class — extra instances are just cosmetic and
+    move together."""
     cls = _move_class(char_name)
     key = CHAR_TO_NUM[cls]
-    target_idx = _instance_index(char_name)
     if current_char is None:
-        return [key] * target_idx
+        return [key]
     cur_cls = _move_class(current_char)
-    if cls != cur_cls:
-        return [key] * target_idx
-    cur_idx = _instance_index(current_char)
-    if target_idx == cur_idx:
+    if cls == cur_cls:
         return []
-    n = _class_instance_count(order, cls)
-    presses = (target_idx - cur_idx) % n
-    if presses == 0:
-        presses = n
-    return [key] * presses
+    return [key]
 
 
 def _cycle_presses(char_name, current_cycle, order):
@@ -381,16 +376,20 @@ def _has_druid_in_roster(groups, frames, moves):
 
 
 def _players_order(groups, frames, moves):
+    """Human-readable class order for the ``order`` field."""
     order = _roster_order(groups, frames)
     seen = set(order)
     for m in moves:
         if ":" not in m:
             continue
         name = m.split(":", 1)[0]
-        if not _is_selectable(name) or name in seen:
+        if not _is_selectable(name):
             continue
-        order.append(name)
-        seen.add(name)
+        cls = _move_class(name)
+        if cls in seen:
+            continue
+        order.append(cls)
+        seen.add(cls)
     return " ".join(order)
 
 
@@ -473,24 +472,30 @@ def _name_to_toid(groups):
     return out
 
 
-def _initial_actor_names(groups, frames):
+def _initial_actor_classes(groups, frames):
     if not frames or not groups:
         return set()
     ids = _actor_ids_in_frame(frames[0])
     if not ids:
         return set()
     m = _name_to_toid(groups)
-    return {name for name, toid in m.items() if toid in ids}
+    out = set()
+    for name, toid in m.items():
+        if toid in ids:
+            out.add(_move_class(name))
+    return out
 
 
 def detect_spawned_chars(moves, groups, frames):
+    """Return set of classes that appear mid-level (driven but not initial)."""
     if not frames:
         return set()
-    initial = _initial_actor_names(groups, frames)
+    initial = _initial_actor_classes(groups, frames)
     if not initial:
         return set()
     driven = {
-        m.split(":", 1)[0] for m in moves
+        _move_class(m.split(":", 1)[0])
+        for m in moves
         if ":" in m and _is_selectable(m.split(":", 1)[0])
     }
     return driven - initial
@@ -504,8 +509,10 @@ def _emit_selection(char_name, current_char, current_cycle, order, mode):
     if mode == "cycle" and order and current_cycle is not None:
         presses = _cycle_presses(char_name, current_cycle, order)
         if presses:
-            return ("C" * presses, False, char_name, _find_in_order(order, char_name))
-        return "", False, current_char, current_cycle
+            return ("C" * presses, False, char_name,
+                    _find_in_order(order, char_name))
+        # Same class already selected: keep current state.
+        return "", False, char_name, current_cycle
     presses = _digit_presses(char_name, current_char, order)
     fragment = " ".join(presses)
     new_cycle = current_cycle
@@ -550,9 +557,9 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
         elevator_post_b = ELEVATOR_POST_B
 
     order = _roster_order(groups, frames)
-    # A roster with a single character has nothing to switch to, so no
-    # selection keystrokes (cycle ``C`` or digit keys) are needed.
-    single_character = len(order) == 1
+    # A roster with a single character *class* has nothing to switch to,
+    # so no selection keystrokes (cycle ``C`` or digit keys) are needed.
+    single_character = len(order) <= 1
     if _has_druid_in_roster(groups, frames, moves):
         mode = "digit"
 
@@ -585,13 +592,17 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
             char_name, action = move.split(":", 1)
             if (not single_character
                     and _is_selectable(char_name)
-                    and char_name != current_char):
+                    and _move_class(char_name) != _move_class(current_char or "")):
                 frag, needs_space, current_char, current_cycle = _emit_selection(
                     char_name, current_char, current_cycle, order, mode)
                 if frag:
                     if needs_space and result:
                         result.append(" ")
                     result.append(frag)
+            elif not single_character and _is_selectable(char_name):
+                # Same class already active — just sync current_char so
+                # class comparisons stay correct for later moves.
+                current_char = char_name
             dz = deltas.get(i)
             result.append(_emit_action(
                 action, dz, emit_elevator_wait=emit_elevator_wait,
@@ -623,13 +634,15 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
         char_name, action = move.split(":", 1)
         if (not single_character
                 and _is_selectable(char_name)
-                and char_name != current_char):
+                and _move_class(char_name) != _move_class(current_char or "")):
             frag, needs_space, current_char, current_cycle = _emit_selection(
                 char_name, current_char, current_cycle, order, mode)
             if frag:
                 if needs_space and result:
                     result.append(" ")
                 result.append(frag)
+        elif not single_character and _is_selectable(char_name):
+            current_char = char_name
         dz = deltas.get(i)
         result.append(_emit_action(
             action, dz, emit_elevator_wait=emit_elevator_wait,
@@ -893,7 +906,6 @@ def main(argv=None):
         level=logging.DEBUG if args.verbose else logging.INFO,
         format="%(asctime)s %(levelname)-7s %(message)s",
         datefmt="%H:%M:%S")
-
     try:
         stats = convert_cache_to_json(
             wt_path=args.wt.expanduser().resolve(),
