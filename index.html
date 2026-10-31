@@ -570,6 +570,8 @@ let image_base = tileset_base;
 
 let allFeatures = [];
 
+let enableHoverPreview = false;
+
 function saveSettings() {
   localStorage.setItem(localDataName, JSON.stringify(localData));
 }
@@ -2005,7 +2007,7 @@ function drawMap() {
 
       marker.addTo(layers[group]);
 
-      {
+      if (enableHoverPreview) {
         const nm = baseName(o.name);
         if (nm && imageList[nm]) {
           const t = o.type === 'Freezer'
