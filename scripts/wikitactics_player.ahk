@@ -1,5 +1,11 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 #SingleInstance Force
+
+; Precision: no automatic delays after each sent key, and no line logging.
+SetKeyDelay(-1, -1)
+SetControlDelay(-1)
+SetWinDelay(-1)
+ListLines(false)
 
 ; ---------------------------------------------------------------------------
 ; Config
@@ -29,7 +35,7 @@ PROCESS_PRIORITY := "High"
 
 global g_Abort := false, g_Playing := false, g_ExitRequested := false
 global g_LB := "", g_Fast := "", g_Slow := "", g_Shift2 := "", g_Offset := "", g_Delta := "", g_Status := ""
-global g_Recs := [], g_File := ""
+global g_Recs := [], g_File := "", g_Target := TARGET_WIN
 
 ; ---------------------------------------------------------------------------
 ; JSON loading (plain InStr/SubStr only)
@@ -231,34 +237,44 @@ RequestExit() {
 ; ---------------------------------------------------------------------------
 ; Timing
 ; ---------------------------------------------------------------------------
+; Microsecond clock. The multiplication is split so it cannot overflow Int64
+; on machines with long uptime (t * 1e6 overflows after ~10 days at 10 MHz).
 QPC() {
-    static freq := 0
-    t := 0
-    if !freq
-        DllCall("QueryPerformanceFrequency", "Int64*", &freq)
-    DllCall("QueryPerformanceCounter", "Int64*", &t)
-    return t * 1000000 // freq
+    static freq := 0, buf := Buffer(8)
+    if !freq {
+        DllCall("QueryPerformanceFrequency", "Ptr", buf)
+        freq := NumGet(buf, "Int64")
+    }
+    DllCall("QueryPerformanceCounter", "Ptr", buf)
+    t := NumGet(buf, "Int64")
+    q := t // freq
+    return q * 1000000 + (t - q * freq) * 1000000 // freq
 }
 
+; Coarse wait on a high-resolution timer, then pure busy-spin on QPC for the
+; final stretch, so the wake-up error is set by the spin, not by the OS timer.
 SleepUntilUS(target_us) {
     global g_Abort
-    static timer := 0
-    if !timer {
+    static timer := 0, tried := false, margin := 3000
+    if !tried {
+        tried := true
         try timer := DllCall("CreateWaitableTimerExW", "Ptr", 0, "Ptr", 0,
             "UInt", 0x2, "UInt", 0x1F0003, "Ptr")
-        if !timer
-            timer := DllCall("CreateWaitableTimerW", "Ptr", 0, "Int", 0, "Ptr", 0, "Ptr")
+        if timer
+            margin := 1500
+        else
+            try timer := DllCall("CreateWaitableTimerW", "Ptr", 0, "Int", 0, "Ptr", 0, "Ptr")
     }
     while !g_Abort {
         remaining := target_us - QPC()
         if (remaining <= 0)
             return true
-        if (timer && remaining > 500) {
-            wait_us := Min(remaining - 300, 2000)
+        if (timer && remaining > margin) {
+            wait_us := Min(remaining - margin, 4000)
             due := -wait_us * 10
             DllCall("SetWaitableTimer", "Ptr", timer, "Int64*", &due,
                 "Int", 0, "Ptr", 0, "Ptr", 0, "Int", 0)
-            DllCall("WaitForSingleObject", "Ptr", timer, "UInt", 2)
+            DllCall("WaitForSingleObject", "Ptr", timer, "UInt", 10)
         }
     }
     return false
@@ -365,11 +381,68 @@ BuildSchedule(rec, speed := 1, delta_ticks := 0) {
 }
 
 ; ---------------------------------------------------------------------------
+; Timeline: every key down/up as one time-sorted list (times relative to the
+; reset press, wall-clock microseconds). Built BEFORE playback starts so no
+; work is done between events.
+; ---------------------------------------------------------------------------
+TLAdd(tl, lastUp, t, key, dir, act := false) {
+    ev := {t: t, key: key, dir: dir, cancel: false, act: act}
+    if (dir = "down") {
+        ; Same key pressed again before its release: the earlier release is
+        ; dropped, so the key stays down until the last release.
+        if (lastUp.Has(key) && lastUp[key].t > t)
+            lastUp[key].cancel := true
+    } else
+        lastUp[key] := ev
+    tl.Push(ev)
+    return ev
+}
+
+BuildTimeline(schedule, offset_us, speed, hold_us) {
+    global KEY_SWITCH, RESET_KEY
+    tl := [], lastUp := Map(), prev := 0
+    TLAdd(tl, lastUp, hold_us, RESET_KEY, "up")
+    for ev in schedule {
+        at := Round((offset_us + ev.fire_at_us) / speed)
+        n := ev.switches
+        if (n > 0) {
+            ; Character switches are tapped BEFORE the action, finishing hold
+            ; time ahead of it, so the action itself lands exactly on time.
+            ; Taps shrink if the previous action is too close.
+            w := Min(hold_us, Max(0, (at - prev) // (2 * n)))
+            Loop n {
+                d := at - (n - A_Index + 1) * 2 * w
+                TLAdd(tl, lastUp, d, KEY_SWITCH, "down")
+                TLAdd(tl, lastUp, d + w, KEY_SWITCH, "up")
+            }
+        }
+        if (ev.key != "") {
+            keyName := (StrLen(ev.key) = 1) ? ev.key : SubStr(ev.key, 2, -1)
+            TLAdd(tl, lastUp, at, keyName, "down", true)
+            TLAdd(tl, lastUp, at + hold_us, keyName, "up")
+            prev := at
+        }
+    }
+    ; Stable insertion sort by time (list is nearly sorted already).
+    Loop tl.Length - 1 {
+        i := A_Index + 1
+        x := tl[i]
+        j := i - 1
+        while (j >= 1 && tl[j].t > x.t) {
+            tl[j + 1] := tl[j]
+            j--
+        }
+        tl[j + 1] := x
+    }
+    return tl
+}
+
+; ---------------------------------------------------------------------------
 ; Input
 ; ---------------------------------------------------------------------------
 SendTargetKey(keyName, direction) {
-    global TARGET_WIN
-    ControlSend("{" keyName " " direction "}", , TARGET_WIN)
+    global g_Target
+    ControlSend("{" keyName " " direction "}", , g_Target)
 }
 
 ReleaseHeldKeys(held) {
@@ -378,19 +451,12 @@ ReleaseHeldKeys(held) {
     held.Clear()
 }
 
-HasPendingRelease(releases, keyName) {
-    for rel in releases
-        if (rel.key = keyName)
-            return true
-    return false
-}
-
 ; ---------------------------------------------------------------------------
 ; Playback
 ; ---------------------------------------------------------------------------
 ReplayLevel(rec) {
     global g_Abort, g_Playing, g_Status, g_Fast, g_Slow, g_Shift2, g_Offset, g_Delta, g_ExitRequested
-    global TARGET_WIN, RESET_KEY, PRESS_MS, KEY_SWITCH
+    global g_Target, TARGET_WIN, RESET_KEY, PRESS_MS
 
     offset_us := (IsInteger(g_Offset.Value) ? Integer(g_Offset.Value) : 0) * 1000
     fast := (g_Fast.Value = 1)
@@ -404,10 +470,13 @@ ReplayLevel(rec) {
         g_Status.SetText("No 'moves' for " name)
         return
     }
-    if !WinExist(TARGET_WIN) {
+    hwnd := WinExist(TARGET_WIN)
+    if !hwnd {
         g_Status.SetText("Game window not found: " TARGET_WIN)
         return
     }
+    ; Resolve the window once; every later send addresses it by handle.
+    g_Target := "ahk_id " hwnd
 
     schedule := BuildSchedule(rec, speed,
         IsNumber(g_Delta.Value) ? Number(g_Delta.Value) : 0)
@@ -416,19 +485,26 @@ ReplayLevel(rec) {
         return
     }
 
-    WinActivate(TARGET_WIN)
-    if !WinWaitActive(TARGET_WIN, , 2) {
+    WinActivate(g_Target)
+    if !WinWaitActive(g_Target, , 2) {
         g_Status.SetText("Could not focus game window.")
         return
     }
 
+    hold_us := PRESS_MS * 1000
+    tl := BuildTimeline(schedule, offset_us, speed, hold_us)
+
     g_Abort := false
     g_Playing := true
     total := schedule.Length, idx := 0, aborted := false
-    hold_us := PRESS_MS * 1000
     held := Map()
+    modeTag := (fast ? "  [4x]" : (slow ? "  [slow]" : ""))
+        . (shiftHold ? "  [2x]" : "")
+    hThread := DllCall("GetCurrentThread", "Ptr")
     DllCall("winmm\timeBeginPeriod", "UInt", 1)
     try {
+        DllCall("SetThreadPriority", "Ptr", hThread, "Int", 15)  ; TIME_CRITICAL
+
         ; Hold modifier keys BEFORE the reset, and keep them down for the run.
         ; Shift changes the character's speed, not the clock; Alt/Ctrl scale time.
         if shiftHold {
@@ -446,83 +522,48 @@ ReplayLevel(rec) {
         if shiftHold || (slow && !fast) || fast
             Sleep(50)
 
+        ; Warm-up: create the timer and exercise the send path so the first
+        ; real event does not pay one-time start-up costs.
+        SleepUntilUS(QPC() + 2000)
+        SendTargetKey("F24", "up")
         g_Status.SetText("Reset (" RESET_KEY ")...")
+
+        ; t0 is taken immediately BEFORE the reset press is sent.
+        t0 := QPC()
         SendTargetKey(RESET_KEY, "down")
         held[RESET_KEY] := true
-        t0 := QPC()
-        releases := [{key: RESET_KEY, at: t0 + hold_us}]
-        for ev in schedule {
-            if g_Abort {
+
+        lastStat := t0
+        for e in tl {
+            if e.cancel
+                continue
+            if !SleepUntilUS(t0 + e.t) {
                 aborted := true
                 break
             }
-            deadline := t0 + Round((offset_us + ev.fire_at_us) / speed)
-            ; Release any keys whose hold expires before this event.
-            while (releases.Length > 0) {
-                earliest := 1
-                for ri, rel in releases
-                    if (rel.at < releases[earliest].at)
-                        earliest := ri
-                if (releases[earliest].at > deadline)
-                    break
-                rel := releases.RemoveAt(earliest)
-                if !SleepUntilUS(rel.at) {
-                    aborted := true
-                    break
+            SendTargetKey(e.key, e.dir)
+            if (e.dir = "down") {
+                held[e.key] := true
+                if e.act {
+                    idx++
+                    ; Throttle GUI updates so they never eat into event timing.
+                    now := QPC()
+                    if (now - lastStat > 150000) {
+                        lastStat := now
+                        g_Status.SetText("Playing " name ": " idx "/" total modeTag)
+                    }
                 }
-                if !HasPendingRelease(releases, rel.key) {
-                    SendTargetKey(rel.key, "up")
-                    held.Delete(rel.key)
-                }
-            }
-            if aborted {
-                break
-            }
-            if !SleepUntilUS(deadline) {
-                aborted := true
-                break
-            }
-            ; Character switches are tapped immediately before the action.
-            Loop ev.switches {
-                SendTargetKey(KEY_SWITCH, "down")
-                SendTargetKey(KEY_SWITCH, "up")
-            }
-            if (ev.key != "") {
-                keyName := (StrLen(ev.key) = 1) ? ev.key : SubStr(ev.key, 2, -1)
-                SendTargetKey(keyName, "down")
-                held[keyName] := true
-                releases.Push({key: keyName, at: deadline + hold_us})
-                idx++
-                modeTag := (fast ? "  [4x]" : (slow ? "  [slow]" : ""))
-                    . (shiftHold ? "  [2x]" : "")
-                g_Status.SetText("Playing " name ": " idx "/" total modeTag)
-            }
-        }
-        ; Release remaining keys in deadline order.
-        while (releases.Length > 0 && !g_Abort) {
-            earliest := 1
-            for ri, rel in releases
-                if (rel.at < releases[earliest].at)
-                    earliest := ri
-            rel := releases.RemoveAt(earliest)
-            if !SleepUntilUS(rel.at) {
-                aborted := true
-                break
-            }
-            if !HasPendingRelease(releases, rel.key) {
-                SendTargetKey(rel.key, "up")
-                held.Delete(rel.key)
-            }
+            } else
+                held.Delete(e.key)
         }
     } finally {
         ReleaseHeldKeys(held)
+        DllCall("SetThreadPriority", "Ptr", hThread, "Int", 0)
         DllCall("winmm\timeEndPeriod", "UInt", 1)
     }
 
     g_Playing := false
     g_Abort := false
-    modeTag := (fast ? "  [4x]" : (slow ? "  [slow]" : ""))
-        . (shiftHold ? "  [2x]" : "")
     g_Status.SetText(aborted
         ? "Stopped after " idx "/" total " keys." modeTag
         : "Done: " name " (" total " keys)." modeTag)
