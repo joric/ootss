@@ -16,6 +16,9 @@ All classes in CHAR_TO_NUM are selectable, including ``pusher``.
 If a **druid** is present in the roster, the converter falls back to
 **digit-key selection** for every switch.
 
+Selection is suppressed entirely when the roster contains only a single
+character (nothing to switch to).
+
 Timing:
     USE_ACTION_TICKS emits per-move ``_x.y_`` sleeps derived from
     ``action_ticks`` / ``input_delay_ticks``.  When enabled and the level
@@ -547,6 +550,9 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
         elevator_post_b = ELEVATOR_POST_B
 
     order = _roster_order(groups, frames)
+    # A roster with a single character has nothing to switch to, so no
+    # selection keystrokes (cycle ``C`` or digit keys) are needed.
+    single_character = len(order) == 1
     if _has_druid_in_roster(groups, frames, moves):
         mode = "digit"
 
@@ -577,7 +583,9 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
             if ":" not in move:
                 continue
             char_name, action = move.split(":", 1)
-            if _is_selectable(char_name) and char_name != current_char:
+            if (not single_character
+                    and _is_selectable(char_name)
+                    and char_name != current_char):
                 frag, needs_space, current_char, current_cycle = _emit_selection(
                     char_name, current_char, current_cycle, order, mode)
                 if frag:
@@ -613,7 +621,9 @@ def convert_moves(moves, level, timing=None, deltas=None, *,
         if ":" not in move:
             continue
         char_name, action = move.split(":", 1)
-        if _is_selectable(char_name) and char_name != current_char:
+        if (not single_character
+                and _is_selectable(char_name)
+                and char_name != current_char):
             frag, needs_space, current_char, current_cycle = _emit_selection(
                 char_name, current_char, current_cycle, order, mode)
             if frag:
