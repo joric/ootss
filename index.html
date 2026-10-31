@@ -2142,63 +2142,30 @@ function drawMap() {
 
 }
 
-
 function updateRegions() {
-  const entities = {};
-  for (const feature of allFeatures) {
-    entities[String(feature.properties.id)] = feature;
-  }
+  const lookup = Object.fromEntries(allFeatures.map(f => [f.properties.id, f]));
+  const axes = ['x', 'y', 'z'];
 
-  // Build boxes: each local_area marker IS a box (its own position + box_extents).
-  // The Area_Pin it targets only supplies the human-readable area name.
-  // Multiple markers can share the same area name.
+  // Each local_area marker is its own box; its target Area_Pin only supplies the name.
+  // Several markers may share one area name.
   const boxes = {};
-  for (const feature of allFeatures) {
-    const ep = feature.properties.entity_properties;
+  for (const f of allFeatures) {
+    const ep = f.properties.entity_properties;
     if (ep?.script_name !== 'local_area') continue;
-
-    const pin = entities[String(ep.script_target_entity_id)];
-    const areaName = pin?.properties?.entity_properties?.local_area_name;
-    if (!areaName) continue;
-
-    const center = ep.position ?? ep.visual_position;
-    const ext = ep.box_extents;
-    if (!center || !ext) continue;
-
-    (boxes[areaName] ??= []).push({
-      cx: center.x ?? 0,
-      cy: center.y ?? 0,
-      cz: center.z ?? 0,
-      ex: ext.x ?? 0,
-      ey: ext.y ?? 0,
-      ez: ext.z ?? 0,
-    });
+    const name = lookup[ep.script_target_entity_id]?.properties.entity_properties?.local_area_name;
+    if (name) (boxes[name] ??= []).push(f);
   }
 
-  for (const feature of allFeatures) {
-    if (feature.properties.type !== 'Level_Entry') continue;
+  const inside = pt => ({ properties: { entity_properties: ep } }) => {
+    const c = ep.position ?? ep.visual_position, e = ep.box_extents;
+    return c && e && axes.every(k => Math.abs((pt[k] ?? 0) - (c[k] ?? 0)) <= (e[k] ?? 0));
+  };
 
-    const p =
-      feature.properties.entity_properties?.position ??
-      { x: feature.geometry.coordinates[0],
-        y: feature.geometry.coordinates[1],
-        z: feature.geometry.coordinates[2] };
-    const fx = p.x ?? 0;
-    const fy = p.y ?? 0;
-    const fz = p.z ?? 0;
-
-    outer: for (const [area, list] of Object.entries(boxes)) {
-      for (const b of list) {
-        if (
-          Math.abs(fx - b.cx) <= b.ex &&
-          Math.abs(fy - b.cy) <= b.ey &&
-          Math.abs(fz - b.cz) <= b.ez
-        ) {
-          feature.properties.region = area;
-          break outer;
-        }
-      }
-    }
+  for (const { properties: p, geometry: { coordinates: [x, y, z] } } of allFeatures) {
+    if (p.type !== 'Level_Entry') continue;
+    const pt = p.entity_properties?.position ?? { x, y, z };
+    const hit = Object.entries(boxes).find(([, list]) => list.some(inside(pt)));
+    if (hit) p.region = hit[0];
   }
 }
 
