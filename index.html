@@ -879,11 +879,11 @@ function getIconHTML(feature, size=48) {
 
   options = options || {class:'fa fa-circle', bg:'dimgrey'};
 
-  let areaColors = {'overworld': 'orange', 'sky': 'royalblue', 'underworld': 'brown', 'intro': 'green'};
+  let areaColors = {'overworld': 'orange', 'sky': 'royalblue', 'underworld': 'brown', 'intro': 'tan'};
 
-  //let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
+  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
 
-  let color = o.areaFound ? areaColors[getBaseLayer(feature)] : 'dimgrey';
+  //let color = o.areaFound ? areaColors[getBaseLayer(feature)] : 'dimgrey';
 
   options.bg = color;
 
@@ -1413,7 +1413,7 @@ const getCoordinates = marker => marker.feature.geometry.coordinates.map(String)
 
 function getTooltipTitle(marker) {
   let o = marker.feature.properties;
-  let title = `<b>${o.name}</b> in ${translate(o.area)} (${getCoordinates(marker)})`;
+  let title = `<b>${o.name}</b> in ${o.area} (${getCoordinates(marker)})`;
 
   if (o.type=='Freezer') {
     title = `Freezer`;
@@ -1448,7 +1448,7 @@ function openPopup(e) {
 
   let backlink = `<a class="copyable" href="${getMapURL(o.name)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
-  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name}</b></a> in ${translate(o.area)} (${getCoordinates(marker)}) ${backlink}</div>`;
+  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name}</b></a> in ${o.area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
   if (o.type == 'Freezer') {
     header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
@@ -1465,12 +1465,16 @@ function openPopup(e) {
       ? `<a href="${youtube[name]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
       : '';
 
-  let unlocked = '';
+  let region = o.region && translate(o.region);
+
+  let unlocked = null
   let id = o.entity_properties?.unlocked_by_id;
   let slug = nameLookup[id];
   if (slug) {
     unlocked = `Unlocked by: <a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
   }
+
+  let subtitle = [region, unlocked].filter(Boolean).join('&nbsp;/&nbsp;');
 
   function getSolutionWrapper(o) {
     let html = '<div class="solution-wrapper">';
@@ -1496,7 +1500,7 @@ function openPopup(e) {
 
   const footer = getSolutionWrapper(o);
 
-  let content = `${header}${image}${unlocked}${footer}`;
+  let content = `${header}${image}${subtitle}${footer}`;
 
   if (o.type=='Level_Entry') {
     let cid = o.name;
@@ -2137,7 +2141,7 @@ function drawMap() {
 }
 
 
-function updateAreas() {
+function updateRegions() {
   const entities = {};
   for (const feature of allFeatures) {
     entities[String(feature.properties.id)] = feature;
@@ -2188,8 +2192,7 @@ function updateAreas() {
           Math.abs(fy - b.cy) <= b.ey &&
           Math.abs(fz - b.cz) <= b.ez
         ) {
-          feature.properties.area = area;
-          feature.properties.areaFound = true;
+          feature.properties.region = area;
           break outer;
         }
       }
@@ -2264,7 +2267,7 @@ window.onload = function() {
 
     lang = lg;
 
-    updateAreas();
+    updateRegions(); // does not cover all markers, so commented out for now
 
     drawMap();
   });
