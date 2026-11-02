@@ -1476,7 +1476,7 @@ function openPopup(e) {
     unlocked = `Unlocked&nbsp;by:&nbsp;<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
   }
 
-  let subtitle = [region, unlocked].filter(Boolean).join('&nbsp;/&nbsp;');
+  let subtitle = [unlocked, region].filter(Boolean).join('&nbsp;/&nbsp;');
 
   function getSolutionWrapper(o) {
     let html = '<div class="solution-wrapper">';
