@@ -918,3 +918,10 @@ zap_bridge,moving-the-flat-things,moving-the-flat-things-5
 zap_bridge_perp,moving-the-flat-things,moving-the-flat-things-6
 zig_zag,mirrors-and-stones,mirrors-and-stones-30
 zombie_graves_v3,heroes-and-depth,heroes-and-depth-27
+heroes1_7,lobby,lobby-1
+torcher,lobby,lobby-3
+quad_torch_v1,lobby,lobby-4
+sender_simplified,lobby,lobby-12
+across_the_fence_old,lobby,lobby-10
+jenga_dispenser,lobby,lobby-15
+
