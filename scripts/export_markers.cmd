@@ -17,7 +17,7 @@ if not exist schema.json (
 
 set filter=
 
-set filter=Level_Entry Area_Pin Marker Freezer Teleporter
+set filter=Level_Entry Area_Pin Marker Freezer Teleporter Voice_Log
 
 rem set filter=-x Inanimate -x GAME_PROM_Bars_Straight_MOR_A -x Wall_Set -x Fence -x Decal -x Group -x Procedurally_Animating -x Point_Light -x Light_Probe -x Particle_Source
 

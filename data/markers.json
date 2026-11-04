@@ -160678,6 +160678,2859 @@
           "teleporter_type": "MAJOR"
         }
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.0,
+          97.0,
+          36.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115512840,
+        "entity_properties": {
+          "position": {
+            "x": 85.0,
+            "y": 97.0,
+            "z": 36.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 85.0,
+            "y": 97.0,
+            "z": 36.0
+          },
+          "name": "audiolog_s_tradition_of_our_people_part_2",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          141.0,
+          47.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115513880,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 141.0,
+            "z": 47.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": -15.0,
+            "y": 141.0,
+            "z": 47.0
+          },
+          "name": "audiolog_sky_invocation",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -14.0,
+          147.0,
+          44.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534361,
+        "entity_properties": {
+          "position": {
+            "x": -14.0,
+            "y": 147.0,
+            "z": 44.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": -14.0,
+            "y": 147.0,
+            "z": 44.0
+          },
+          "name": "end2_sokoban_writing_choice_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.0,
+          116.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534371,
+        "entity_properties": {
+          "position": {
+            "x": -5.0,
+            "y": 116.0,
+            "z": -24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": -5.0,
+            "y": 116.0,
+            "z": -24.0
+          },
+          "name": "end3_sokoban_writing_choice_4"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.0,
+          40.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115592371,
+        "entity_properties": {
+          "position": {
+            "x": 23.0,
+            "y": 40.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 23.0,
+            "y": 40.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_decay_1",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.0,
+          66.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115516972,
+        "entity_properties": {
+          "position": {
+            "x": 108.0,
+            "y": 66.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 108.0,
+            "y": 66.0
+          },
+          "name": "audiolog_g_work_and_care"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0,
+          129.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534372,
+        "entity_properties": {
+          "position": {
+            "x": -17.0,
+            "y": 129.0,
+            "z": -24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": -17.0,
+            "y": 129.0,
+            "z": -24.0
+          },
+          "name": "end3_sokoban_writing_choice_5"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.0,
+          43.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115592372,
+        "entity_properties": {
+          "position": {
+            "x": 46.0,
+            "y": 43.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 46.0,
+            "y": 43.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_decay_2",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.0,
+          33.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115592373,
+        "entity_properties": {
+          "position": {
+            "x": 34.0,
+            "y": 33.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 34.0,
+            "y": 33.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_decay_3",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          79.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115605453,
+        "entity_properties": {
+          "position": {
+            "x": 16.0,
+            "y": 79.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 16.0,
+            "y": 79.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_play_of_form_1a",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0,
+          54.0,
+          36.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564774,
+        "entity_properties": {
+          "position": {
+            "x": 21.0,
+            "y": 54.0,
+            "z": 36.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 21.0,
+            "y": 54.0,
+            "z": 36.0
+          },
+          "name": "audiolog_sky_combiners",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          53.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564775,
+        "entity_properties": {
+          "position": {
+            "x": 16.0,
+            "y": 53.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 16.0,
+            "y": 53.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_combiners_2",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.0,
+          20.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115592375,
+        "entity_properties": {
+          "position": {
+            "x": 34.0,
+            "y": 20.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 34.0,
+            "y": 20.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_decay_4",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0,
+          27.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564776,
+        "entity_properties": {
+          "position": {
+            "x": 28.0,
+            "y": 27.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 28.0,
+            "y": 27.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_combiners_3",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.0,
+          21.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115592376,
+        "entity_properties": {
+          "position": {
+            "x": 43.0,
+            "y": 21.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 43.0,
+            "y": 21.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_decay_5",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.0,
+          24.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115516457,
+        "entity_properties": {
+          "position": {
+            "x": 62.0,
+            "y": 24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 62.0,
+            "y": 24.0
+          },
+          "name": "audiolog_g_musing_on_freezers_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          28.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564777,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 28.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 28.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_combiners_4",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.0,
+          118.0,
+          34.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115593617,
+        "entity_properties": {
+          "position": {
+            "x": 150.0,
+            "y": 118.0,
+            "z": 34.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 150.0,
+            "y": 118.0,
+            "z": 34.0
+          },
+          "name": "audiolog_sky_laws_of_form",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.0,
+          50.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564778,
+        "entity_properties": {
+          "position": {
+            "x": 39.0,
+            "y": 50.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 39.0,
+            "y": 50.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_tetratetrad",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0,
+          52.0,
+          -22.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115566658,
+        "entity_properties": {
+          "position": {
+            "x": -2.0,
+            "y": 52.0,
+            "z": -22.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": -2.0,
+            "y": 52.0,
+            "z": -22.0
+          },
+          "name": "audiolog_u_chaos_1",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0,
+          49.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115566659,
+        "entity_properties": {
+          "position": {
+            "x": 6.0,
+            "y": 49.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 6.0,
+            "y": 49.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_chaos_2",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.0,
+          147.0,
+          44.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534362,
+        "entity_properties": {
+          "position": {
+            "x": -16.0,
+            "y": 147.0,
+            "z": 44.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": -16.0,
+            "y": 147.0,
+            "z": 44.0
+          },
+          "name": "end2_sokoban_writing_choice_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -21.0,
+          134.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115515940,
+        "entity_properties": {
+          "position": {
+            "x": -21.0,
+            "y": 134.0,
+            "z": -24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": -21.0,
+            "y": 134.0,
+            "z": -24.0
+          },
+          "name": "audiolog_u_job_41_fragments",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          18.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115516460,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 18.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 76.0,
+            "y": 18.0
+          },
+          "name": "audiolog_g_being_watched"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.0,
+          78.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115599220,
+        "entity_properties": {
+          "position": {
+            "x": 29.0,
+            "y": 78.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 29.0,
+            "y": 78.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_play_of_form_1",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0,
+          71.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115515941,
+        "entity_properties": {
+          "position": {
+            "x": 86.0,
+            "y": 71.0,
+            "z": 33.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 86.0,
+            "y": 71.0,
+            "z": 33.0
+          },
+          "name": "audiolog_sky_take_a_tour",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          86.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115599221,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 86.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 19.0,
+            "y": 86.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_play_of_form_2",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          69.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 62969981,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 69.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 76.0,
+            "y": 69.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_meeting",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.0,
+          96.0,
+          37.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115599222,
+        "entity_properties": {
+          "position": {
+            "x": 29.0,
+            "y": 96.0,
+            "z": 37.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 29.0,
+            "y": 96.0,
+            "z": 37.0
+          },
+          "name": "audiolog_sky_play_of_form_3",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -10.0,
+          147.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 62969982,
+        "entity_properties": {
+          "position": {
+            "x": -10.0,
+            "y": 147.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 63001008,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": -10.0,
+            "y": 147.0,
+            "z": -21.0
+          },
+          "name": "psalm_139_part_2",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.0,
+          117.0,
+          89.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115515423,
+        "entity_properties": {
+          "position": {
+            "x": 57.0,
+            "y": 117.0,
+            "z": 89.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "entity_flags": "IN_EXISTENCE_GROUP|CURRENTLY_EXISTS",
+          "group_id": 62929181,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 57.0,
+            "y": 117.0,
+            "z": 89.0
+          },
+          "name": "audiolog_g_musing_on_fast_travel"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.0,
+          77.0,
+          34.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115515943,
+        "entity_properties": {
+          "position": {
+            "x": 139.0,
+            "y": 77.0,
+            "z": 34.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 139.0,
+            "y": 77.0,
+            "z": 34.0
+          },
+          "name": "audiolog_sky_10000_things",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.0,
+          113.0,
+          89.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115515424,
+        "entity_properties": {
+          "position": {
+            "x": 51.0,
+            "y": 113.0,
+            "z": 89.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "entity_flags": "IN_EXISTENCE_GROUP|CURRENTLY_EXISTS",
+          "group_id": 95505109,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 51.0,
+            "y": 113.0,
+            "z": 89.0
+          },
+          "name": "audiolog_g_substrate"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.0,
+          19.0,
+          19.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115567264,
+        "entity_properties": {
+          "position": {
+            "x": 104.0,
+            "y": 19.0,
+            "z": 19.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 104.0,
+            "y": 19.0,
+            "z": 19.0
+          },
+          "name": "audiolog_sky_lifeboat_societies_3",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.0,
+          47.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115515425,
+        "entity_properties": {
+          "position": {
+            "x": 54.0,
+            "y": 47.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 54.0,
+            "y": 47.0
+          },
+          "name": "audiolog_g_how_many_gold_rooms"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          25.0,
+          22.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115567265,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 25.0,
+            "z": 22.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 76.0,
+            "y": 25.0,
+            "z": 22.0
+          },
+          "name": "audiolog_sky_lifeboat_societies_2",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0,
+          31.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115567266,
+        "entity_properties": {
+          "position": {
+            "x": 89.0,
+            "y": 31.0,
+            "z": 25.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 89.0,
+            "y": 31.0,
+            "z": 25.0
+          },
+          "name": "audiolog_sky_lifeboat_societies_1",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.0,
+          56.0,
+          34.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115533787,
+        "entity_properties": {
+          "position": {
+            "x": 138.0,
+            "y": 56.0,
+            "z": 34.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 138.0,
+            "y": 56.0,
+            "z": 34.0
+          },
+          "name": "audiolog_sky_why_so_big",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          160.0,
+          95.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115591747,
+        "entity_properties": {
+          "position": {
+            "x": 160.0,
+            "y": 95.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 160.0,
+            "y": 95.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_tetratetrad_troubles_1",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          163.0,
+          132.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115591748,
+        "entity_properties": {
+          "position": {
+            "x": 163.0,
+            "y": 132.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 163.0,
+            "y": 132.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_tetratetrad_troubles_2",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.0,
+          71.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115601708,
+        "entity_properties": {
+          "position": {
+            "x": 74.0,
+            "y": 71.0,
+            "z": 33.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 74.0,
+            "y": 71.0,
+            "z": 33.0
+          },
+          "name": "pre_coda_scene_assembled",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.0,
+          47.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115533789,
+        "entity_properties": {
+          "position": {
+            "x": 122.0,
+            "y": 47.0,
+            "z": 33.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 122.0,
+            "y": 47.0,
+            "z": 33.0
+          },
+          "name": "audiolog_sky_why_so_big_3",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.0,
+          134.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115601709,
+        "entity_properties": {
+          "position": {
+            "x": 137.0,
+            "y": 134.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 137.0,
+            "y": 134.0,
+            "z": -21.0
+          },
+          "name": "coda_scene_assembled",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -19.0,
+          145.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115570323,
+        "entity_properties": {
+          "position": {
+            "x": -19.0,
+            "y": 145.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": -19.0,
+            "y": 145.0
+          },
+          "name": "audiolog_g_crisis"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          96.0,
+          93.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115514910,
+        "entity_properties": {
+          "position": {
+            "x": 96.0,
+            "y": 93.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 96.0,
+            "y": 93.0
+          },
+          "name": "audiolog_g_gold_rooms"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          163.0,
+          149.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115591751,
+        "entity_properties": {
+          "position": {
+            "x": 163.0,
+            "y": 149.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_flags": "DOES_NOT_FALL",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 163.0,
+            "y": 149.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_tetratetrad_troubles_3",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.0,
+          111.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115514392,
+        "entity_properties": {
+          "position": {
+            "x": 48.0,
+            "y": 111.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 48.0,
+            "y": 111.0
+          },
+          "name": "audiolog_g_world_selection_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0,
+          41.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115569712,
+        "entity_properties": {
+          "position": {
+            "x": 89.0,
+            "y": 41.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 89.0,
+            "y": 41.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_boundary_matching_1",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          110.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115514393,
+        "entity_properties": {
+          "position": {
+            "x": 16.0,
+            "y": 110.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 16.0,
+            "y": 110.0
+          },
+          "name": "audiolog_g_world_selection_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.0,
+          42.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115569713,
+        "entity_properties": {
+          "position": {
+            "x": 108.0,
+            "y": 42.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 108.0,
+            "y": 42.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_boundary_matching_2",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0,
+          122.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115514394,
+        "entity_properties": {
+          "position": {
+            "x": 28.0,
+            "y": 122.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 28.0,
+            "y": 122.0
+          },
+          "name": "audiolog_g_world_selection_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.0,
+          95.0,
+          35.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115513355,
+        "entity_properties": {
+          "position": {
+            "x": 70.0,
+            "y": 95.0,
+            "z": 35.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 70.0,
+            "y": 95.0,
+            "z": 35.0
+          },
+          "name": "audiolog_s_tradition_of_our_people_part_3",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          71.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 106978596,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 71.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "XXX_Deprecated_bounding_center": {
+            "x": 0.027029335498809814,
+            "y": 0.008545607328414917,
+            "z": 0.7358644604682922
+          },
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 81.0,
+            "y": 71.0
+          },
+          "name": "sokoban_overworld"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.0,
+          97.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115512837,
+        "entity_properties": {
+          "position": {
+            "x": 73.0,
+            "y": 97.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 73.0,
+            "y": 97.0
+          },
+          "name": "audiolog_g_possession"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.0,
+          26.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115512838,
+        "entity_properties": {
+          "position": {
+            "x": 103.0,
+            "y": 26.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 103.0,
+            "y": 26.0
+          },
+          "name": "audiolog_g_no_eating"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.0,
+          5.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115514398,
+        "entity_properties": {
+          "position": {
+            "x": 126.0,
+            "y": 5.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 126.0,
+            "y": 5.0
+          },
+          "name": "audiolog_g_far_from_home"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.0,
+          121.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115567878,
+        "entity_properties": {
+          "position": {
+            "x": 120.0,
+            "y": 121.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 120.0,
+            "y": 121.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_computation",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          69.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 150996838,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 69.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 81.0,
+            "y": 69.0,
+            "z": -21.0
+          },
+          "name": "psalm_139",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          91.0,
+          35.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115512839,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 91.0,
+            "z": 35.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 80.0,
+            "y": 91.0,
+            "z": 35.0
+          },
+          "name": "audiolog_s_tradition_of_our_people_part_1",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.0,
+          97.0,
+          36.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115513879,
+        "entity_properties": {
+          "position": {
+            "x": 74.0,
+            "y": 97.0,
+            "z": 36.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 74.0,
+            "y": 97.0,
+            "z": 36.0
+          },
+          "name": "audiolog_s_tradition_of_our_people_part_2b",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.0,
+          81.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115567879,
+        "entity_properties": {
+          "position": {
+            "x": 91.0,
+            "y": 81.0,
+            "z": -21.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 91.0,
+            "y": 81.0,
+            "z": -21.0
+          },
+          "name": "audiolog_u_wizard_mirror_worlds_connect",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -10.0,
+          138.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534364,
+        "entity_properties": {
+          "position": {
+            "x": -10.0,
+            "y": 138.0,
+            "z": -24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": -10.0,
+            "y": 138.0,
+            "z": -24.0
+          },
+          "name": "end3_sokoban_writing_choice_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0,
+          128.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534365,
+        "entity_properties": {
+          "position": {
+            "x": 4.0,
+            "y": 128.0,
+            "z": -24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 4.0,
+            "y": 128.0,
+            "z": -24.0
+          },
+          "name": "end3_sokoban_writing_choice_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.0,
+          81.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115568487,
+        "entity_properties": {
+          "position": {
+            "x": 89.0,
+            "y": 81.0,
+            "z": 33.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 89.0,
+            "y": 81.0,
+            "z": 33.0
+          },
+          "name": "audiolog_sky_wool",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.0,
+          130.0,
+          36.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115591127,
+        "entity_properties": {
+          "position": {
+            "x": 120.0,
+            "y": 130.0,
+            "z": 36.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 120.0,
+            "y": 130.0,
+            "z": 36.0
+          },
+          "name": "audiolog_s_magistrate",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.0,
+          38.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115595487,
+        "entity_properties": {
+          "position": {
+            "x": 122.0,
+            "y": 38.0,
+            "z": 25.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 122.0,
+            "y": 38.0,
+            "z": 25.0
+          },
+          "name": "audiolog_sky_complexification_1",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0,
+          107.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115534368,
+        "entity_properties": {
+          "position": {
+            "x": 9.0,
+            "y": 107.0,
+            "z": -24.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_A",
+          "visual_position": {
+            "x": 9.0,
+            "y": 107.0,
+            "z": -24.0
+          },
+          "name": "end3_sokoban_writing_choice_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          107.0,
+          -18.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564168,
+        "entity_properties": {
+          "position": {
+            "x": 72.0,
+            "y": 107.0,
+            "z": -18.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 72.0,
+            "y": 107.0,
+            "z": -18.0
+          },
+          "name": "audiolog_u_old_games",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.0,
+          21.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115595488,
+        "entity_properties": {
+          "position": {
+            "x": 110.0,
+            "y": 21.0,
+            "z": 25.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 110.0,
+            "y": 21.0,
+            "z": 25.0
+          },
+          "name": "audiolog_sky_complexification_2",
+          "author": "ACTING"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.0,
+          109.0,
+          -17.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115564169,
+        "entity_properties": {
+          "position": {
+            "x": 57.0,
+            "y": 109.0,
+            "z": -17.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "GAME_OVER_Story_Sabbatical_A",
+          "visual_position": {
+            "x": 57.0,
+            "y": 109.0,
+            "z": -17.0
+          },
+          "name": "audiolog_u_games_inspirations",
+          "author": "SABBATICAL"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.0,
+          81.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Voice_Log",
+        "id": 115599849,
+        "entity_properties": {
+          "position": {
+            "x": 14.0,
+            "y": 81.0,
+            "z": 38.0
+          },
+          "scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "GAME_OVER_Story_Director_A",
+          "visual_position": {
+            "x": 14.0,
+            "y": 81.0,
+            "z": 38.0
+          },
+          "name": "audiolog_sky_play_of_form_1b",
+          "author": "ACTING"
+        }
+      }
     }
   ]
 }

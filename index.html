@@ -772,7 +772,8 @@ let map = null;
 let markerGroup = null;
 let searchLayer = null;
 let regionData = null;
-let lang = null;
+let lang = {};
+let subtitles = {};
 const nameLookup = {};
 const idLookup = {};
 const teleportTargets = {};
@@ -950,7 +951,43 @@ let icons = {};
 
 const getIcon = f => ({bg: 'red', fg: 'blue'});
 
-const customMarker = (latlng, feature) => L.marker(latlng, {searchText: feature.properties.name?.toLowerCase(), feature: feature, id: feature.properties.id, icon: baseIcon(feature)});
+function formatTime(seconds) {
+  const total = Math.max(0,Math.floor(seconds));
+  const m = Math.floor(total / 60);
+  const s = total % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+function getSearchText(feature) {
+  const o = feature.properties;
+  const title = o.name?.toLowerCase();
+
+  const searchSubs = false;// need to figure out how search control works
+
+  if (searchSubs) {
+    let text = '';
+    if (o.type == 'Voice_Log') {
+      const key = o.entity_properties?.name;
+      const subs = subtitles[key];
+      if (subs) {
+        text += `${key}\n`;
+        for (const t of subs) {
+          text += `${formatTime(t.time)} (${t.name}): ${t.text}\n`.toLowerCase();
+        }
+      }
+    }
+    return [title, text].join(' ');
+  }
+
+  return title; 
+}
+
+const customMarker = (latlng, feature) => L.marker(latlng, {
+  searchText: getSearchText(feature),
+  feature: feature,
+  id: feature.properties.id,
+  icon: baseIcon(feature),
+});
 
 const areaMarker = (latlng, feature, label) => L.marker(latlng, {zIndexOffset: 1000, searchText: label.toLowerCase(), feature: feature, id: feature.properties.id, icon: areaIcon(feature, label)});
 
@@ -1517,7 +1554,28 @@ function openPopup(e) {
     return html;
   }
 
-  const footer = getSolutionWrapper(o);
+  let footer = '';
+
+  if (o.type == 'Level_Entry') {
+    footer = getSolutionWrapper(o);
+  }
+
+  if (o.type == 'Voice_Log') {
+    const key = o.entity_properties?.name;
+    subtitle += `Entry: ${key}<br>`
+
+    let html = `<div class="solution-wrapper">`;
+    const subs = subtitles[key];
+    if (subs) {
+      for (const t of subs) {
+        html += `${formatTime(t.time)} (${t.name}): ${t.text}<br>`;
+      }
+    } else {
+      html += key;
+    }
+    html += '</div>';
+    footer = html;
+  }
 
   let content = `${header}${image}${subtitle}${footer}`;
 
@@ -1965,7 +2023,7 @@ function drawMap() {
     }
 
     // pre-create groups
-    for (const group of ['areas','freezers','teleporters','levels']) {
+    for (const group of ['areas','freezers','teleporters','audio','levels']) {
       if (!layers[group]) {
         layers[group] = L.layerGroup();
         layers[group].id = group;
@@ -1993,13 +2051,6 @@ function drawMap() {
       }
       //let count = solved ? areaCounters[area] : '?';
 
-      let label = youtube[name] ? `\u2009\u25B6` : solutions[name] || solutions2[name] ? '\u2714' :  hasImage ? '\u22EF' : '?';
-
-      if (o.type=='Freezer') label = '\u00D7';
-
-      if (o.type=='Teleporter') label = '\u2726';
-
-      if (o.type=='Marker') label = '\u2727';
 
       if (area != 'locations' && imageList[feature.properties.name]) {
         images.push( {src: `${image_base}/images/levels/${name}.webp`, name: name, area: area, title: title});
@@ -2011,37 +2062,36 @@ function drawMap() {
 
       if (!latlng) continue;
 
-      feature.properties.title = label;
 
       let group = 'levels';
-
-      //if (o.id=='14680959') 
-      //console.log(o.id, o.name);
-
       let marker = null;
 
-      if (o.type == 'Level_Entry') {
-        marker = customMarker(latlng, feature);
-      } else if (o.type == 'Freezer') {
-        // filter out non-unlocable freezers
-        if (nameLookup[o.entity_properties?.unlocked_by_id]) marker = customMarker(latlng, feature);
-        group = 'freezers';
-      } else if (o.type == 'Area_Pin' ) {
-        const f2 = featureLookup[o.entity_properties?.map_label_marker_id];
-        if (f2) {
-          const [x,y,z] = f2.geometry.coordinates;
-          marker = areaMarker([y+2,x], f2, o.entity_properties?.local_area_name);
-          group = 'areas';
-        }
-      } else if (o.type == 'Teleporter') {
-        marker = customMarker(latlng, feature);
-        group = 'teleporters';
-      } else if (o.type == 'Marker' && teleportTargets[o.id]) {
-        marker = customMarker(latlng, feature);
-        group = 'teleporters';
-      }
+      const defaultLabel = youtube[name] ? '\u2009\u25B6' : (solutions[name] || solutions2[name]) ? '\u2714' : hasImage ? '\u22EF' : '?';
 
-      if (!marker) continue;
+      const params = {
+        Level_Entry:  { label: defaultLabel,   make: () => ({ marker: customMarker(latlng, feature), group: 'levels' }) },
+        Freezer:      { label: '\u00D7',        make: () => ({ marker: nameLookup[o.entity_properties?.unlocked_by_id] ? customMarker(latlng, feature) : null, group: 'freezers' }) },
+        Area_Pin:     { label: defaultLabel,    make: () => {
+                          const f2 = featureLookup[o.entity_properties?.map_label_marker_id];
+                          if (!f2) return { marker: null };
+                          const [x, y] = f2.geometry.coordinates;
+                          return { marker: areaMarker([y + 2, x], f2, o.entity_properties?.local_area_name), group: 'areas' };
+                        } },
+        Teleporter:   { label: '\u2726',        make: () => ({ marker: customMarker(latlng, feature), group: 'teleporters' }) },
+        Marker:       { label: '\u2727',        make: () => ({ marker: teleportTargets[o.id] ? customMarker(latlng, feature) : null, group: 'teleporters' }) },
+        Voice_Log:    { label: '\u266B',        make: () => ({ marker: customMarker(latlng, feature), group: 'audio' }) },
+      };
+
+      const p = params[o.type];
+      if (!p) continue; // or `return;` if not in a classic loop
+
+      feature.properties.title = p.label;
+      const r = p.make();
+      if (r.group) group = r.group;
+      marker = r.marker;
+      if (!marker) continue; // or `return;`
+
+
 
       counters[feature.properties.area] = (counters[feature.properties.area]||0) +1;
 
@@ -2107,8 +2157,8 @@ function drawMap() {
 
     searchControl = new L.Control.Search({
       propertyName: 'searchText',
-      initial: false,
       layer: searchLayer,
+      initial: false,
       hideMarkerOnCollapse: true,
       marker: {
         icon: false,
@@ -2265,13 +2315,14 @@ window.onload = function() {
     'data/order.txt',
     'data/wt.txt',
     'data/Localization/en.json',
+    'data/Subtitles/en.json',
     'data/solutions.json',
   ].map(url =>
     fetch(url).then(r => url.endsWith('.txt') ? r.text() : r.json())
   );
 
   Promise.all(promises).then(data => {
-    let [base, intro, sol, yt, img, ord, wtd, lg, s2] = data;
+    let [base, intro, sol, yt, img, ord, wtd, lg, sb, s2] = data;
 
     solutions = Object.fromEntries(sol.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
     youtube = Object.fromEntries(yt.split('\n').map(s => s.trim().split(',', 2)).filter(([, v])=> v && v.length>=2));
@@ -2295,6 +2346,8 @@ window.onload = function() {
     for (const s of s2) solutions2[s.name] = s.solution;
 
     lang = lg;
+
+    subtitles = sb;
 
     updateRegions(); // does not cover all markers, so commented out for now
 
