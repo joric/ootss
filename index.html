@@ -775,6 +775,7 @@ let regionData = null;
 let lang = null;
 const nameLookup = {};
 const idLookup = {};
+const teleportTargets = {};
 const featureLookup = {};
 let baseLayers={};
 
@@ -1484,13 +1485,13 @@ function openPopup(e) {
   }
 
   let teleports = null;
-  if (o.type=='Teleporter') {
-    const slug = o.entity_properties?.target_id;
+  if (o.type=='Teleporter' || o.type == 'Marker') {
+    const slug = o.entity_properties?.target_id || teleportTargets[o.id];
     if (slug) {
-      teleports = `Teleports&nbsp;to:&nbsp;<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
+      const legend = (o.entity_properties?.target_id ? 'Teleports to: ' : 'Referenced by: ').replaceAll(' ','&nbsp');
+      teleports = `${legend}<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
     }
   }
-
 
   let subtitle = [unlocked, region, teleports].filter(Boolean).join(' / ');
 
@@ -1957,6 +1958,10 @@ function drawMap() {
       const o = feature.properties;
       nameLookup[o.id] = o.name;
       idLookup[o.id] = o.id;
+
+      if (o.type == 'Teleporter' && o.entity_properties?.target_id) {
+        teleportTargets[o.entity_properties?.target_id] = o.id;
+      }
     }
 
     // pre-create groups
@@ -1994,6 +1999,8 @@ function drawMap() {
 
       if (o.type=='Teleporter') label = '\u2726';
 
+      if (o.type=='Marker') label = '\u2727';
+
       if (area != 'locations' && imageList[feature.properties.name]) {
         images.push( {src: `${image_base}/images/levels/${name}.webp`, name: name, area: area, title: title});
       }
@@ -2027,6 +2034,9 @@ function drawMap() {
           group = 'areas';
         }
       } else if (o.type == 'Teleporter') {
+        marker = customMarker(latlng, feature);
+        group = 'teleporters';
+      } else if (o.type == 'Marker' && teleportTargets[o.id]) {
         marker = customMarker(latlng, feature);
         group = 'teleporters';
       }
