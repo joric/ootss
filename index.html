@@ -774,6 +774,7 @@ let searchLayer = null;
 let regionData = null;
 let lang = null;
 const nameLookup = {};
+const idLookup = {};
 const featureLookup = {};
 let baseLayers={};
 
@@ -835,7 +836,7 @@ function focusMarkerByName(name) {
   for (const g of Object.values(layers)) {
     if (!g.eachLayer) continue;
     g.eachLayer(l => {
-      if (!found && l instanceof L.Marker && l.feature?.properties?.name === name) {
+      if (!found && l instanceof L.Marker && (l.feature?.properties?.name === name || l.feature?.properties?.id == name)) {
         found = l;
         parent = g;
       }
@@ -848,6 +849,7 @@ function focusMarkerByName(name) {
   if (!found) return;
 
   let base = getBaseLayer(found.feature);
+
   let layer = baseLayers[base];
 
   setBaseLayer(base);
@@ -1240,17 +1242,14 @@ function getCentroidRaw2(points) {
 }
 
 let config = {
-  overworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} },
-  sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} },
-  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5} },
+  overworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-4,10] },
+  sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [10,75] },
+  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-57, -4] },
   intro: {"bounds": { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0} },
+  minimap: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [89, 89] },
+  minimap_high: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [104, 110] },
+  minimap_low: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [78, 78] },
 }
-
-let heightRanges = {
-  sky: [10, 75],
-  overworld: [-4, 10],
-  underworld: [-57, -4],
-};
 
 const locationSeparator = '@';
 const fullName = (name,location) => name + locationSeparator + location;
@@ -1261,8 +1260,13 @@ const getBaseLayer = feature => {
   if (!feature || !feature.properties) return defaultLayer;
   if (feature.properties.baseLayer) return feature.properties.baseLayer;
   const z = feature.geometry.coordinates[2]
-  for (const [name, [a, b]] of Object.entries(heightRanges)) {
-    if (z >= a && z <= b) return name;
+  for (const [name, values] of Object.entries(config)) {
+    if (values.heightRange) {
+      const [a,b] = values.heightRange;
+      if (z >= a && z <= b) {
+        return name;
+      }
+    }
   }
   return defaultLayer;
 };
@@ -1284,7 +1288,7 @@ function getCRS(name) {
   }
 
   let b = config[name]?.bounds;
-  if (b) {
+  if (b && !name.includes('minimap')) {
     let dd = b.right-b.left;
     m.size = dd;
     //m.bounds = [[0,0],[dd,dd]];
@@ -1415,7 +1419,8 @@ const getCoordinates = marker => marker.feature.geometry.coordinates.map(String)
 
 function getTooltipTitle(marker) {
   let o = marker.feature.properties;
-  let title = `<b>${o.name}</b> in ${o.area} (${getCoordinates(marker)})`;
+  let area = o.area || getBaseLayer(marker.feature);
+  let title = `<b>${o.name || o.type}</b> in ${area} (${getCoordinates(marker)})`;
 
   if (o.type=='Freezer') {
     title = `Freezer`;
@@ -1448,9 +1453,11 @@ function openPopup(e) {
   const marker = e.target;
   let o = marker.feature.properties;
 
-  let backlink = `<a class="copyable" href="${getMapURL(o.name)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
+  let area = o.area || getBaseLayer(marker.feature);
 
-  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name}</b></a> in ${o.area} (${getCoordinates(marker)}) ${backlink}</div>`;
+  let backlink = `<a class="copyable" href="${getMapURL(o.name || o.id)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
+
+  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
   if (o.type == 'Freezer') {
     header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
@@ -1476,7 +1483,16 @@ function openPopup(e) {
     unlocked = `Unlocked&nbsp;by:&nbsp;<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
   }
 
-  let subtitle = [unlocked, region].filter(Boolean).join(' / ');
+  let teleports = null;
+  if (o.type=='Teleporter') {
+    const slug = o.entity_properties?.target_id;
+    if (slug) {
+      teleports = `Teleports&nbsp;to:&nbsp;<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
+    }
+  }
+
+
+  let subtitle = [unlocked, region, teleports].filter(Boolean).join(' / ');
 
   function getSolutionWrapper(o) {
     let html = '<div class="solution-wrapper">';
@@ -1529,7 +1545,10 @@ function syncSearchLayer() {
 function setBaseLayer(name) {
   if (name == baseLayerName) return;
 
-  map.removeLayer(baseLayers[baseLayerName]);
+  if (baseLayerName) {
+    map.removeLayer(baseLayers[baseLayerName]);
+  }
+
   baseLayers[name].addTo(map);
 
 /*
@@ -1667,25 +1686,50 @@ function addGrid() {
 
 function drawMap() {
 
+  layers = {};
+
   for (const name of Object.keys(config)) {
 
     let b = config[name].bounds;
     let bounds = [[b.top,b.left],[b.bottom,b.right]]
 
     //baseLayers[`${name}_64k`] = L.tileLayer.canvas(`${tileset_base}/tiles/${name}_64k/{z}/{y}/{x}.webp`, {
-    baseLayers[name] = L.tileLayer(`${tileset_base}/tiles/${name}_64k/{z}/{y}/{x}.webp`, {
-      tileSize: 512,
-      maxNativeZoom: 7,
-      //edgeBufferTiles: 1,
-      bounds: bounds,
-      attribution: '<a href="https://github.com/joric/ootss/wiki" target=_blank>About the Map</a>',
-    });
+
+    if (!name.includes('minimap')) {
+
+      baseLayers[name] = L.tileLayer(`${tileset_base}/tiles/${name}_64k/{z}/{y}/{x}.webp`, {
+        tileSize: 512,
+        maxNativeZoom: 7,
+        //edgeBufferTiles: 1,
+        bounds: bounds,
+        attribution: '<a href="https://github.com/joric/ootss/wiki" target=_blank>About the Map</a>',
+      });
+
+    } else {
+      const url = `${tileset_base}/images/${name}.jpg`;
+      //console.log('creating overlay image', name, url, bounds);
+      baseLayers[name] = L.imageOverlay(url, bounds);
+    }
+
   }
 
-  let baseLayer = Object.values(baseLayers)[0]
+  let baseLayer = Object.values(baseLayers)[0];
 
   if (!settings.activeLayers) {
-    settings.activeLayers = {'overworld':true, 'levels':true, 'freezers': true, 'areas': true};
+    settings.activeLayers = {'overworld':true, 'levels':true, 'freezers': true, 'areas': true, 'teleporters': true};
+  }
+
+  // check if we have selected base layer, if not, reset to first one
+  let resetBaseLayer = true;
+  for (const [k,v] of Object.entries(baseLayers)) {
+    if (settings.activeLayers[k]) {
+      resetBaseLayer = false;
+    }
+  }
+
+  if (resetBaseLayer) {
+    baseLayerName = Object.keys(baseLayers)[0];
+    settings.activeLayers[baseLayerName] = true;
   }
 
   settings.markedItems = settings.markedItems ?? {};
@@ -1695,6 +1739,7 @@ function drawMap() {
   for (const [k,v] of Object.entries(baseLayers)) {
     if (settings.activeLayers[k]) {
       crs = getCRS(k);
+      break;
     }
   }
 
@@ -1877,8 +1922,6 @@ function drawMap() {
   // markers
   {
     counters = {};
-    layers = {};
-
 
     function getImageBounds(cellSize, iw,ih, dx, dy) {
       let tw = iw/cellSize;
@@ -1913,10 +1956,11 @@ function drawMap() {
       featureLookup[feature.properties.id] = feature;
       const o = feature.properties;
       nameLookup[o.id] = o.name;
+      idLookup[o.id] = o.id;
     }
 
     // pre-create groups
-    for (const group of ['areas','freezers','levels']) {
+    for (const group of ['areas','freezers','teleporters','levels']) {
       if (!layers[group]) {
         layers[group] = L.layerGroup();
         layers[group].id = group;
@@ -1948,6 +1992,8 @@ function drawMap() {
 
       if (o.type=='Freezer') label = '\u00D7';
 
+      if (o.type=='Teleporter') label = '\u2726';
+
       if (area != 'locations' && imageList[feature.properties.name]) {
         images.push( {src: `${image_base}/images/levels/${name}.webp`, name: name, area: area, title: title});
       }
@@ -1972,6 +2018,7 @@ function drawMap() {
       } else if (o.type == 'Freezer') {
         // filter out non-unlocable freezers
         if (nameLookup[o.entity_properties?.unlocked_by_id]) marker = customMarker(latlng, feature);
+        group = 'freezers';
       } else if (o.type == 'Area_Pin' ) {
         const f2 = featureLookup[o.entity_properties?.map_label_marker_id];
         if (f2) {
@@ -1979,10 +2026,9 @@ function drawMap() {
           marker = areaMarker([y+2,x], f2, o.entity_properties?.local_area_name);
           group = 'areas';
         }
-      }
-
-      if (o.type == 'Freezer') {
-        group = 'freezers';
+      } else if (o.type == 'Teleporter') {
+        marker = customMarker(latlng, feature);
+        group = 'teleporters';
       }
 
       if (!marker) continue;
@@ -2136,7 +2182,7 @@ function drawMap() {
 
     let slugs = Object.keys(config);
 
-    if (/^Digit[1-4]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
+    if (/^Digit[1-7]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
 
   });
 
