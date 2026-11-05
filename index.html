@@ -1485,6 +1485,10 @@ const getTooltip = function(marker) {
   if (moves) {
     content += `<br>Soution: ${getMovesCount(moves)} moves`;
   }
+  if (level_audio[marker.feature.properties.name]) {
+    content += `<br>${level_audio[marker.feature.properties.name].length} audio`;
+  }
+
   return content;
 };
 
