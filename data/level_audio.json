@@ -267,7 +267,6 @@
     "fix_exploit1"
   ],
   "fix_exploit_promesst_overworld": [
-    "end3_exploit_level_freezer_thaw",
     "fix_exploit_promesst_overworld"
   ],
   "flame_wand": [
@@ -574,11 +573,8 @@
     "audiolog_sky_10000_things",
     "audiolog_sky_laws_of_form",
     "audiolog_u_computation",
-    "editor_camera_z",
-    "enable_prompt_after_restart",
     "intro_1",
     "intro_before_teleporter",
-    "intro_end1_freezer_thaw",
     "intro_queen_am_i_dead",
     "intro_queen_callout_alt",
     "intro_queen_foreign_script",
@@ -588,12 +584,7 @@
     "intro_queen_sign",
     "intro_queen_teleporter",
     "paradise_lost_invocation_2",
-    "paradise_lost_invocation_credits",
-    "prompt_after_restart",
-    "set_pause_menu",
-    "start_sign_gamepad",
-    "start_sign_keyboard",
-    "undo_sign_alt"
+    "paradise_lost_invocation_credits"
   ],
   "island_friends": [
     "hs_island_friends_1"
@@ -660,15 +651,10 @@
   "mirror_10_d": [
     "mirror_stranger_before_hm_3"
   ],
-  "mirror_11": [
-    "clones_first_confusion"
-  ],
   "mirror_12": [
-    "clones_triple_confusion",
     "clones_triple_confusion_end"
   ],
   "mirror_13": [
-    "clones_working",
     "clones_working_end"
   ],
   "mirror_14": [
@@ -687,7 +673,6 @@
     "mirror_stranger_2"
   ],
   "mirror_2": [
-    "clones_early",
     "mirror_2"
   ],
   "mirror_21": [
@@ -747,9 +732,6 @@
     "hp_wizard_torus_1"
   ],
   "overworld": [
-    "FastTravelDiscoverTeleporter",
-    "FastTravelEnableGroup",
-    "SmashFastTravelRock",
     "audiolog_g_being_watched",
     "audiolog_g_crisis",
     "audiolog_g_far_from_home",
@@ -810,8 +792,6 @@
     "audiolog_u_tetratetrad_troubles_3",
     "audiolog_u_wizard_mirror_worlds_connect",
     "coda_scene_assembled",
-    "demo_bounds",
-    "editor_camera_z",
     "end2_sokoban_writing_choice_1",
     "end2_sokoban_writing_choice_2",
     "end3_queen_promesst_red",
@@ -820,10 +800,6 @@
     "end3_sokoban_writing_choice_3",
     "end3_sokoban_writing_choice_4",
     "end3_sokoban_writing_choice_5",
-    "grant_rank",
-    "local_area",
-    "may_jump_into_water",
-    "overworld",
     "pre_coda_scene_assembled",
     "psalm_139",
     "psalm_139_part_2",
@@ -841,9 +817,7 @@
     "queen_wishlist_3",
     "queen_wishlist_4",
     "queen_wishlist_5",
-    "set_pause_menu",
-    "sokoban_overworld",
-    "wait_for_fall"
+    "sokoban_overworld"
   ],
   "peak_toggle": [
     "end2_standard"
@@ -860,22 +834,34 @@
   "place_to_stand": [
     "ms_alone_3"
   ],
-  "plus_signs_v3": [
-    "sp_druid_takes_wand"
-  ],
   "prelude_priest_water_goblins_only": [
     "end2_standard"
   ],
   "promesst1_streamlined": [
-    "promesst1",
+    "promesst1_all_gems",
     "promesst1_cart",
+    "promesst1_destroy_rover",
     "promesst1_egg",
     "promesst1_end",
     "promesst1_exiting_egg_room",
     "promesst1_further_down",
+    "promesst1_gems_amount1",
+    "promesst1_gems_amount2",
+    "promesst1_gems_amount3",
+    "promesst1_gems_amount4",
+    "promesst1_gems_amount5",
+    "promesst1_gems_amount6",
+    "promesst1_gems_amount7",
+    "promesst1_gemsuit_cannot_turn_1",
+    "promesst1_gemsuit_cannot_turn_2",
+    "promesst1_gemsuit_cannot_turn_3",
+    "promesst1_gemsuit_cannot_turn_4",
+    "promesst1_gemsuit_cannot_turn_5",
+    "promesst1_lovely",
     "promesst1_place_them",
     "promesst1_red_beam_lower",
     "promesst1_start",
+    "promesst1_strong",
     "promesst1_unlock",
     "promesst1_wand_get",
     "promesst1_wand_strong",
@@ -883,27 +869,51 @@
     "wand_get"
   ],
   "promesst2_streamlined": [
-    "feed_me",
-    "promesst2",
+    "promesst2_baby_dragon_end",
+    "promesst2_baby_dragon_very_hungry",
+    "promesst2_baby_eaten_amount_1",
+    "promesst2_baby_eaten_amount_2",
+    "promesst2_baby_eaten_amount_3",
+    "promesst2_baby_eaten_amount_4",
+    "promesst2_baby_eaten_amount_5",
+    "promesst2_baby_impatient_a",
+    "promesst2_baby_impatient_b",
+    "promesst2_baby_impatient_c",
+    "promesst2_baby_impatient_d",
+    "promesst2_baby_will_eat_a",
+    "promesst2_baby_will_eat_b",
+    "promesst2_baby_will_eat_c",
+    "promesst2_baby_will_eat_d",
     "promesst2_buildings",
-    "promesst2_end",
     "promesst2_enjoying_torc",
     "promesst2_feed_gems",
     "promesst2_gold_room",
+    "promesst2_keep_some_a",
+    "promesst2_keep_some_b",
+    "promesst2_keep_some_c",
+    "promesst2_keep_some_d",
+    "promesst2_start",
     "promesst2_torc_get",
     "torc_get",
     "visit_baby_dragon"
   ],
   "promesst3_streamlined": [
-    "enable_friendly_dragon_bark",
     "prism_get",
-    "promesst3",
     "promesst3_end",
+    "promesst3_gems_amount_1",
+    "promesst3_gems_amount_2",
+    "promesst3_gems_amount_3",
+    "promesst3_gems_amount_4",
+    "promesst3_gems_amount_5",
+    "promesst3_gems_amount_6",
+    "promesst3_gems_amount_7",
+    "promesst3_gems_amount_8",
     "promesst3_gold_room",
     "promesst3_prism_get",
     "promesst3_second_room",
     "promesst3_start",
-    "promesst3_took_time_a"
+    "promesst3_took_time_a",
+    "promesst3_took_time_b"
   ],
   "pull_it_v4": [
     "hs_sailor_thief_1"
@@ -966,7 +976,6 @@
     "audiolog_di_sender_simplified_v2"
   ],
   "sidestone_zach_2_end2": [
-    "endgame_dynamic",
     "place_downward"
   ],
   "sidestone_zach_3": [
@@ -992,7 +1001,6 @@
     "skipping_stones_start_repeat"
   ],
   "skipping_pals": [
-    "diagonal_push_okay",
     "pals_asking_about_interdicts_1",
     "pals_asking_about_interdicts_2",
     "pals_borrie",
@@ -1010,20 +1018,36 @@
     "pals_start",
     "pals_two",
     "pals_where_from_1",
-    "pals_where_from_2",
-    "skipping_pals"
+    "pals_where_from_2"
   ],
   "skipping_stones": [
-    "level_state_got_to_target",
-    "remind_player_of_overhead_map",
-    "skipping_stones",
     "skipping_stones_approaching_impeller",
+    "skipping_stones_done_treasures_0",
+    "skipping_stones_done_treasures_1",
+    "skipping_stones_done_treasures_2_to_4",
+    "skipping_stones_done_treasures_5",
+    "skipping_stones_done_treasures_all",
     "skipping_stones_gold_room_impending",
     "skipping_stones_island_west",
+    "skipping_stones_island_west_no_treasures",
+    "skipping_stones_island_west_yes_treasures",
     "skipping_stones_near_boat",
+    "skipping_stones_return_no_impeller",
+    "skipping_stones_return_no_impeller_repeat",
+    "skipping_stones_return_treasures_0",
+    "skipping_stones_return_treasures_1",
+    "skipping_stones_return_treasures_2_to_4",
+    "skipping_stones_return_treasures_5",
+    "skipping_stones_return_treasures_all",
     "skipping_stones_shrine",
     "skipping_stones_start",
     "skipping_stones_start_repeat",
+    "skipping_stones_treasures_1",
+    "skipping_stones_treasures_2",
+    "skipping_stones_treasures_3",
+    "skipping_stones_treasures_4",
+    "skipping_stones_treasures_5",
+    "skipping_stones_treasures_6",
     "skipping_stones_whirlpool",
     "ssnew_built_in_1",
     "ssnew_built_in_2",
@@ -1133,9 +1157,6 @@
     "heroes3_victory_lap",
     "heroes3_victory_lap_end"
   ],
-  "wand_reintro": [
-    "editor_camera_z"
-  ],
   "watergate": [
     "hs_warrior_sailor_5"
   ],
@@ -1149,7 +1170,6 @@
     "heroes3_wizard_and_druid_1"
   ],
   "wizard_jailbreak_v2": [
-    "end3_exploit_level_freezer_thaw",
     "wizard_jailbreak"
   ],
   "wizard_with_a_capital_w": [
@@ -1184,7 +1204,6 @@
     "worlds_collide_HP_start"
   ],
   "worlds_collide_heroes_and_stones": [
-    "heroes_and_stones_outro",
     "worlds_collide_HS_end_of_level",
     "worlds_collide_HS_gates_opened_proximity",
     "worlds_collide_HS_on_switch_to_thief",
