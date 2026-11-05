@@ -250,6 +250,12 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
   max-height: 100px;
 }
 
+.audiolog-wrapper {
+  margin-top: 8px;
+  overflow: auto;
+  max-height: 300px;
+}
+
 #alert {
   position: absolute;
   margin: auto;
@@ -1571,9 +1577,9 @@ function openPopup(e) {
     footer += getSolutionWrapper(o);
   }
   
-  function getSubtitleWrapper(keys) {
+  function getSubtitleWrapper(keys, className) {
     if (!keys || keys.length==0) return '';
-    let html = `<div class="subtitle-wrapper">`;
+    let html = `<div class="${className ?? 'subtitle-wrapper'}">`;
     let data = [];
     for (const key of keys) {
       const subs = subtitles[key];
@@ -1591,7 +1597,7 @@ function openPopup(e) {
   }
 
   if (o.type == 'Voice_Log') {
-    footer += getSubtitleWrapper([o.entity_properties?.name]);
+    footer += getSubtitleWrapper([o.entity_properties?.name], 'audiolog-wrapper');
   }
 
   if (o.type == 'Level_Entry') {
