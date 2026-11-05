@@ -2,10 +2,6 @@
 
 Output: { "<level>": ["<subtitle_id>", ...], ... }
 
-Only fields that unambiguously name dialogue are read. Generic string
-arguments (Marker.string_parameter, Settings.story_tag, etc.) are skipped
-because they can hold script/flag names, not subtitle ids.
-
 python3 scripts/extract_audio_refs.py --package /path/to/levels.package --out audio.json
 """
 import argparse
@@ -15,9 +11,10 @@ from pathlib import Path
 
 from simp_tool import parse_entities, decode_diff, build_tables, load_schema, extract_schema
 
-# Only fields whose value is a dialogue/subtitle name.
+# Fields whose value is a subtitle-block reference.
 AUDIO_REF_FIELDS = {
     'Guy': {'initial_bark', 'win_bark'},
+    'Marker': {'string_parameter'},
     'Voice_Log': {'name'},
     'Checkpoint': {'story'},
     'Sign': {'turn_away_bark', 'look_at_bark'},
@@ -27,6 +24,9 @@ AUDIO_REF_FIELDS = {
     'Judge': {'code'},
     'Artifact': {'cutscene_name'},
 }
+
+# Marker.string_parameter counts only for these script variants.
+MARKER_SCRIPT = {'bark', 'bark_conditional', 'bark_on_id'}
 
 
 def package_entries(handle):
@@ -69,8 +69,12 @@ def scan(package):
                           for m in decode_diff(entity_type, diff, version) if 'name' in m}
                 for field in AUDIO_REF_FIELDS[entity_type]:
                     value = fields.get(field)
-                    if isinstance(value, str) and value:
-                        values.add(value)
+                    if not isinstance(value, str) or not value:
+                        continue
+                    if entity_type == 'Marker' and field == 'string_parameter':
+                        if fields.get('script_name') not in MARKER_SCRIPT:
+                            continue
+                    values.add(value)
             if values:
                 levels[Path(source).stem] = sorted(values)
     return levels
