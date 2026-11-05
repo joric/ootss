@@ -908,7 +908,7 @@ function getIconHTML(feature, size=48) {
     title = '';
   }
 
-  let label = o.name || o.type;
+  let label = o.name || o.entity_properties?.name || o.type;
 
   if (o.type=='Freezer') {
     label = `Freezer`;
@@ -1464,7 +1464,7 @@ const getCoordinates = marker => marker.feature.geometry.coordinates.map(String)
 function getTooltipTitle(marker) {
   let o = marker.feature.properties;
   let area = o.area || getBaseLayer(marker.feature);
-  let title = `<b>${o.name || o.type}</b> in ${area} (${getCoordinates(marker)})`;
+  let title = `<b>${o.name || o.entity_properties?.name || o.type}</b> in ${area} (${getCoordinates(marker)})`;
 
   if (o.type=='Freezer') {
     title = `Freezer`;
@@ -1501,7 +1501,7 @@ function openPopup(e) {
 
   let backlink = `<a class="copyable" href="${getMapURL(o.name || o.id)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
-  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
+  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.entity_properties?.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
   if (o.type == 'Freezer') {
     header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
@@ -1568,7 +1568,6 @@ function openPopup(e) {
 
   if (o.type == 'Voice_Log') {
     const key = o.entity_properties?.name;
-    subtitle += `Entry: ${key}<br>`
 
     let html = `<div class="subtitle-wrapper">`;
     const subs = subtitles[key];
