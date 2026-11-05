@@ -1593,7 +1593,7 @@ function openPopup(e) {
         for (const t of subs) {
           lines.push(`[${t.name}]: ${t.text}`);
         }
-        data.push(lines.join('<br>'));
+        data.push(`<span title="${key}">${lines.join('<br>')}</span>`);
       }
     }
     html += data.join('<br>---<br>');
