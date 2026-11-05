@@ -11,16 +11,22 @@ from pathlib import Path
 
 from simp_tool import parse_entities, decode_diff, build_tables, load_schema, extract_schema
 
-AUDIO_FIELDS = {
+# Fields whose value is a subtitle-block reference.
+AUDIO_REF_FIELDS = {
     'Guy': {'initial_bark', 'win_bark'},
-    'Marker': {'string_parameter', 'script_name'},
-    'Voice_Log': {'name'}, 'Checkpoint': {'story'},
-    'Sign': {'turn_away_bark', 'look_at_bark'}, 'Wardrobe': {'usage_bark'},
+    'Marker': {'string_parameter'},
+    'Voice_Log': {'name'},
+    'Checkpoint': {'story'},
+    'Sign': {'turn_away_bark', 'look_at_bark'},
+    'Wardrobe': {'usage_bark'},
     'Boat': {'initial_talk_name', 'repeat_talk_name'},
-    'Overworld_Unlock': {'bark_name'}, 'Judge': {'code'},
-    'Settings': {'story_tag', 'intro_cutscene', 'outro_cutscene', 'story_proc_arg_string'},
+    'Overworld_Unlock': {'bark_name'},
+    'Judge': {'code'},
     'Artifact': {'cutscene_name'},
 }
+
+# Marker.string_parameter counts only for these script variants.
+MARKER_SCRIPT = {'bark', 'bark_conditional', 'bark_on_id'}
 
 
 def package_entries(handle):
@@ -57,15 +63,18 @@ def scan(package):
             raw = handle.read(size)
             values = set()
             for _, entity_type, diff, version in parse_entities(raw):
-                # Filter by type BEFORE decoding — decode_diff is the expensive call.
-                if entity_type not in AUDIO_FIELDS:
+                if entity_type not in AUDIO_REF_FIELDS:
                     continue
                 fields = {m['name']: m['value']
                           for m in decode_diff(entity_type, diff, version) if 'name' in m}
-                for field in AUDIO_FIELDS[entity_type]:
+                for field in AUDIO_REF_FIELDS[entity_type]:
                     value = fields.get(field)
-                    if isinstance(value, str) and value:
-                        values.add(value)
+                    if not isinstance(value, str) or not value:
+                        continue
+                    if entity_type == 'Marker' and field == 'string_parameter':
+                        if fields.get('script_name') not in MARKER_SCRIPT:
+                            continue
+                    values.add(value)
             if values:
                 levels[Path(source).stem] = sorted(values)
     return levels
