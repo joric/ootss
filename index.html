@@ -975,10 +975,10 @@ function getSearchText(feature) {
   const o = feature.properties;
   const title = (o.name || o.type || o.entity_properties?.name)?.toLowerCase();
 
-  const searchSubs = true;
+  let text = '';
 
+  const searchSubs = true;
   if (searchSubs) {
-    let text = '';
     const keys = (o.type == 'Voice_Log' ? [o.entity_properties?.name] : level_audio[o.name]) ?? [];
     for (const key of keys) {
       const subs = subtitles[key];
@@ -989,10 +989,9 @@ function getSearchText(feature) {
         }
       }
     }
-    return [title, text].join(' ');
   }
 
-  return title; 
+  return [title, String(o.id), text].filter(Boolean).join(' ');
 }
 
 const customMarker = (latlng, feature) => L.marker(latlng, {

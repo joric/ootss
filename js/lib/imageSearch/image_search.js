@@ -260,6 +260,7 @@ function initImageSearch(cb, idx) {
   //   - screenshot -> paste (Chrome/Firefox/Safari put a File into clipboardData.files)
   //   - some sources only expose the image via clipboardData.items (as a Blob)
   window.addEventListener('paste', (e) => {
+    if (e.target.id.startsWith('searchtext')) return;
     const dt = e.clipboardData;
     if (!dt) return;
 
