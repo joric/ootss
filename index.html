@@ -973,19 +973,19 @@ function formatTime(seconds) {
 
 function getSearchText(feature) {
   const o = feature.properties;
-  const title = o.name?.toLowerCase();
+  const title = (o.name || o.type || o.entity_properties?.name)?.toLowerCase();
 
-  const searchSubs = false;// need to figure out how search control works
+  const searchSubs = true;
 
   if (searchSubs) {
     let text = '';
-    if (o.type == 'Voice_Log') {
-      const key = o.entity_properties?.name;
+    const keys = (o.type == 'Voice_Log' ? [o.entity_properties?.name] : level_audio[o.name]) ?? [];
+    for (const key of keys) {
       const subs = subtitles[key];
       if (subs) {
-        text += `${key}\n`;
+        text += `${key} `;
         for (const t of subs) {
-          text += `${formatTime(t.time)} (${t.name}): ${t.text}\n`.toLowerCase();
+          text += `[${t.name}]: ${t.text} `.toLowerCase();
         }
       }
     }
@@ -2188,14 +2188,31 @@ function drawMap() {
     syncSearchLayer();
 
     searchControl = new L.Control.Search({
-      propertyName: 'searchText',
+      propertyName: 'name',
       layer: searchLayer,
       initial: false,
       hideMarkerOnCollapse: true,
+
       marker: {
         icon: false,
         circle: false,
       },
+
+      filterData: function(text, records) {
+        const out = {};
+        const q = (text ?? '').trim().toLowerCase();
+        if (!q) return out;
+
+        for (const key in records) {
+          const p = records[key]?.layer?.options;
+          const haystack = (p?.searchText ?? '').toLowerCase();
+          if (haystack.includes(q)) {
+            out[key] = records[key];
+          }
+        }
+        return out;
+      }
+
     }).addTo(map);
 
     // switch base layer upon search
