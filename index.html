@@ -1570,14 +1570,18 @@ function openPopup(e) {
   function getSubtitleWrapper(keys) {
     if (!keys || keys.length==0) return '';
     let html = `<div class="subtitle-wrapper">`;
+    let data = [];
     for (const key of keys) {
       const subs = subtitles[key];
       if (subs) {
+        lines = [];
         for (const t of subs) {
-          html += `${formatTime(t.time)} (${t.name}): ${t.text}<br>`;
+          lines.push(`[${t.name}]: ${t.text}`);
         }
+        data.push(lines.join('<br>'));
       }
     }
+    html += data.join('<br>---<br>');
     html += '</div>';
     return html;
   }
