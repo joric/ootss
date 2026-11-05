@@ -1613,8 +1613,9 @@ function openPopup(e) {
 
   if (o.type == 'Sign') {
     const key = o.entity_properties?.line1 ?? o.entity_properties?.image ?? o.entity_properties?.display_hook;
+    console.log(o);
     if (key) {
-      footer += `<div class="subtitle-wrapper">${translate(key)}</div>`
+      footer += `<div class="subtitle-wrapper">${translate(key).split('\n').join('<br>')}</div>`
     }
   }
 

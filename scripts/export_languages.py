@@ -12,11 +12,17 @@ def convert(input_path, output_path):
         if line.startswith('`'):
             key = line.lstrip('`').strip()
             j = i + 1
-            while j < len(lines) and not lines[j].strip():
+            value_lines = []
+            while j < len(lines):
+                stripped = lines[j].strip()
+                # Stop when we hit the next key
+                if stripped.startswith('`'):
+                    break
+                if stripped:  # skip blank lines
+                    value_lines.append(stripped)
                 j += 1
-            value = lines[j].strip() if j < len(lines) else ''
-            result[key] = value
-            i = j + 1
+            result[key] = '\n'.join(value_lines)
+            i = j
         else:
             i += 1
 
