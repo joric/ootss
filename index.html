@@ -1296,10 +1296,13 @@ let config = {
   sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [10,75] },
   underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-57, -4] },
   intro: {"bounds": { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0} },
-  minimap: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [89, 89] },
-  minimap_high: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [104, 110] },
-  minimap_low: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [78, 78] },
+  minimap: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [89, 89], overlay: true },
+  minimap_high: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [104, 110], overlay: true },
+  minimap_low: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [78, 78], overlay: true },
+  stones: {"bounds": { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, overlay: true },
 }
+
+// 126 x 101, corner (-25, -17)
 
 const locationSeparator = '@';
 const fullName = (name,location) => name + locationSeparator + location;
@@ -1782,23 +1785,24 @@ function drawMap() {
 
     let b = config[name].bounds;
     let bounds = [[b.top,b.left],[b.bottom,b.right]]
+    const attribution = '<a href="https://github.com/joric/ootss/wiki" target=_blank>About the Map</a>';
 
-    //baseLayers[`${name}_64k`] = L.tileLayer.canvas(`${tileset_base}/tiles/${name}_64k/{z}/{y}/{x}.webp`, {
-
-    if (!name.includes('minimap')) {
+    if (!config[name].overlay) {
 
       baseLayers[name] = L.tileLayer(`${tileset_base}/tiles/${name}_64k/{z}/{y}/{x}.webp`, {
         tileSize: 512,
         maxNativeZoom: 7,
         //edgeBufferTiles: 1,
         bounds: bounds,
-        attribution: '<a href="https://github.com/joric/ootss/wiki" target=_blank>About the Map</a>',
+        attribution: attribution,
       });
 
     } else {
       const url = `${tileset_base}/images/${name}.jpg`;
       //console.log('creating overlay image', name, url, bounds);
-      baseLayers[name] = L.imageOverlay(url, bounds);
+      baseLayers[name] = L.imageOverlay(url, bounds, {
+        attribution: attribution,
+      });
     }
 
   }
@@ -2054,7 +2058,7 @@ function drawMap() {
     }
 
     // pre-create groups
-    for (const group of ['areas','freezers','teleporters','audio','levels']) {
+    for (const group of ['areas','freezers','teleporters','audio','treasure','levels']) {
       if (!layers[group]) {
         layers[group] = L.layerGroup();
         layers[group].id = group;
@@ -2111,6 +2115,7 @@ function drawMap() {
         Teleporter:   { label: '\u2726',        make: () => ({ marker: customMarker(latlng, feature), group: 'teleporters' }) },
         Marker:       { label: '\u2727',        make: () => ({ marker: teleportTargets[o.id] ? customMarker(latlng, feature) : null, group: 'teleporters' }) },
         Voice_Log:    { label: '\u266B',        make: () => ({ marker: customMarker(latlng, feature), group: 'audio' }) },
+        Treasure:     { label: '\u2727',        make: () => ({ marker: customMarker(latlng, feature), group: 'treasure' }) },
       };
 
       const p = params[o.type];
@@ -2290,7 +2295,7 @@ function drawMap() {
 
     let slugs = Object.keys(config);
 
-    if (/^Digit[1-7]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
+    if (/^Digit[1-8]$/.test(e.code) && +e.code.slice(5) <= slugs.length) setBaseLayer(slugs[+e.code.slice(5)-1]);
 
   });
 
@@ -2357,6 +2362,7 @@ window.onload = function() {
   const promises = [
     'data/markers.json',
     'data/markers_intro.json',
+    'data/markers_stones.json',
     'data/solutions.txt',
     'data/youtube.txt',
     'data/images.txt',
@@ -2371,7 +2377,7 @@ window.onload = function() {
   );
 
   Promise.all(promises).then(data => {
-    let [base, intro, sol, yt, img, ord, wtd, lg, sb, la, s2] = data;
+    let [base, intro, stones, sol, yt, img, ord, wtd, lg, sb, la, s2] = data;
 
     solutions = Object.fromEntries(sol.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
     youtube = Object.fromEntries(yt.split('\n').map(s => s.trim().split(',', 2)).filter(([, v])=> v && v.length>=2));
@@ -2387,7 +2393,11 @@ window.onload = function() {
       if (names.has(f.properties.name)) f.properties.name = fullName(f.properties.name, f.properties.baseLayer);
     }
 
-    allFeatures = [...base.features, ...intro.features];
+    for (const f of stones.features) {
+      f.properties.baseLayer = 'stones';
+    }
+
+    allFeatures = [...base.features, ...intro.features, ...stones.features];
 
     console.log(`loaded ${allFeatures.length} features`);
 
