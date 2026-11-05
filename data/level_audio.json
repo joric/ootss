@@ -20,7 +20,6 @@
   ],
   "all_together_now": [
     "all_together_now",
-    "all_together_now_reassembly_1",
     "all_together_now_reassembly_2"
   ],
   "allocate_heroes_end3": [
@@ -32,8 +31,7 @@
     "end3_heroes_first"
   ],
   "beam_shatter": [
-    "beam_shatter_start",
-    "beam_shatter_wish"
+    "beam_shatter_start"
   ],
   "best_beam_colors": [
     "best_beam_colors",
@@ -49,27 +47,20 @@
     "vm_thief_priestess_1"
   ],
   "bridgey2": [
-    "vm_thief_priestess_2",
-    "vm_thief_priestess_2_mid"
+    "vm_thief_priestess_2"
   ],
   "bridgey2b": [
-    "vm_thief_priestess_3",
-    "vm_thief_priestess_3_mid"
+    "vm_thief_priestess_3"
   ],
   "bridgey3_abstract_art": [
-    "vm_thief_priestess_4",
-    "vm_thief_priestess_4_mid"
-  ],
-  "bug_spray": [
-    "sp_bard_takes_wand"
+    "vm_thief_priestess_4"
   ],
   "button_playground": [
     "hp_bard_market_square"
   ],
   "carry_simplified": [
     "3d_intro_carry",
-    "3d_intro_carry_end",
-    "stone_on_head"
+    "3d_intro_carry_end"
   ],
   "catching_up_v0": [
     "audiolog_di_catching_up_v0",
@@ -116,13 +107,10 @@
   ],
   "double_tempo": [
     "hp_bard_town",
-    "hp_bard_town_end",
-    "hp_bard_town_mid",
-    "hp_bard_town_mid2"
+    "hp_bard_town_end"
   ],
   "dragons_layer": [
-    "obf_many_drop",
-    "obf_many_drop_mid"
+    "obf_many_drop"
   ],
   "drowner": [
     "hw_warrior_goblins"
@@ -223,8 +211,7 @@
     "end3_pipeline_setup"
   ],
   "end3_promesst_red": [
-    "end3_promesst_red",
-    "end3_queen_promesst_red"
+    "end3_promesst_red"
   ],
   "end3_redundant_beams": [
     "end3_redundant_beams"
@@ -269,9 +256,6 @@
   "fix_exploit_promesst_overworld": [
     "fix_exploit_promesst_overworld"
   ],
-  "flame_wand": [
-    "sp_warrior_takes_wand"
-  ],
   "floor_plan_v3": [
     "floor_plan"
   ],
@@ -302,8 +286,7 @@
     "audiolog_di_height_chooser_v0"
   ],
   "heroes1_1": [
-    "heroes_mouse",
-    "warrior_heroes1_start_end"
+    "heroes_mouse"
   ],
   "heroes1_10_inv_v4_b": [
     "heroes1_wizard_array_end"
@@ -316,21 +299,14 @@
   ],
   "heroes1_13_v2": [
     "heroes1_warrior_thief",
-    "heroes1_warrior_thief_end",
-    "heroes1_warrior_thief_mid",
-    "heroes1_warrior_thief_mid0"
+    "heroes1_warrior_thief_end"
   ],
   "heroes1_15": [
-    "heroes1_warrior_wizard_confused",
-    "heroes1_warrior_wizard_confused_mid"
+    "heroes1_warrior_wizard_confused"
   ],
   "heroes1_16_v3": [
     "heroes_three_for_the_first_time_optional",
     "heroes_three_for_the_first_time_optional_end"
-  ],
-  "heroes1_17": [
-    "heroes_three_for_the_first_time_mandatory",
-    "heroes_three_for_the_first_time_mandatory_end"
   ],
   "heroes1_18": [
     "heroes_three_for_the_second_time_mandatory",
@@ -341,15 +317,10 @@
   ],
   "heroes1_21_v3": [
     "heroes_jail2",
-    "heroes_jail2_end",
-    "heroes_jail2_mid",
-    "heroes_jail2_mid2"
+    "heroes_jail2_end"
   ],
   "heroes1_2_v2": [
     "warrior_heroes1_call"
-  ],
-  "heroes1_3": [
-    "heroes_warrior_gate"
   ],
   "heroes1_4.5": [
     "thief_first"
@@ -372,7 +343,6 @@
   ],
   "heroes1_7_v2": [
     "audiolog_di_heroes_1_7_v2",
-    "heroes_tif_lone_crystal",
     "heroes_tif_return",
     "heroes_tif_so_much_space"
   ],
@@ -406,8 +376,7 @@
     "heroes2_postmeetup_warrior"
   ],
   "heroes2_12_v2": [
-    "heroes2_postmeetup_wizard",
-    "heroes2_postmeetup_wizard_mid"
+    "heroes2_postmeetup_wizard"
   ],
   "heroes2_14": [
     "heroes2_wizard_priestess_first",
@@ -418,34 +387,27 @@
     "heroes2_warrior_priestess_first_end"
   ],
   "heroes2_16v4": [
-    "heroes2_thief_priestess_crawler",
     "heroes2_thief_priestess_second"
   ],
   "heroes2_17": [
-    "heroes2_wizard_and_priestess_alone_third",
-    "heroes2_wizard_and_priestess_alone_third_end"
+    "heroes2_wizard_and_priestess_alone_third"
   ],
   "heroes2_17_intro": [
     "heroes2_wizard_and_priestess_alone_second"
   ],
   "heroes2_18": [
     "heroes2_thief_priestess_second_end",
-    "heroes2_thief_priestess_second_mid_disgraced",
-    "heroes2_thief_priestess_second_mid_warrior",
-    "heroes2_thief_priestess_second_mid_wizard"
+    "heroes2_thief_priestess_second_mid_warrior"
   ],
   "heroes2_2": [
     "heroes2_warrior_goblins_2",
-    "heroes2_warrior_goblins_2_end",
-    "heroes2_warrior_goblins_2_mid",
-    "heroes2_warrior_goblins_2_mid_2"
+    "heroes2_warrior_goblins_2_end"
   ],
   "heroes2_20": [
     "heroes2_wizard_thief_priestess_goblins"
   ],
   "heroes2_21b": [
-    "heroes2_thief_wizard_priestess_compartments",
-    "heroes2_thief_wizard_priestess_compartments_mid"
+    "heroes2_thief_wizard_priestess_compartments"
   ],
   "heroes2_22_v2": [
     "heroes2_four"
@@ -454,8 +416,7 @@
     "heroes2_warrior_goblins_1"
   ],
   "heroes2_3_v2": [
-    "heroes2_wizard_goblins",
-    "heroes2_wizard_goblins_mid"
+    "heroes2_wizard_goblins"
   ],
   "heroes2_3monster": [
     "heroes2_warrior_3monster",
@@ -470,10 +431,6 @@
   ],
   "heroes2_5_no_crystal": [
     "heroes2_thief_dragons_intro",
-    "heroes2_thief_dragons_intro_2",
-    "heroes2_thief_dragons_intro_3",
-    "heroes2_thief_dragons_intro_4",
-    "heroes2_thief_dragons_intro_5",
     "heroes2_thief_dragons_intro_6"
   ],
   "heroes2_6_v3": [
@@ -482,19 +439,16 @@
   ],
   "heroes2_9": [
     "heroes2_three_first",
-    "heroes2_three_first_end",
-    "heroes2_three_first_mid"
+    "heroes2_three_first_end"
   ],
   "heroes2_reprise": [
     "heroes2_warrior_priestess_second",
     "heroes2_warrior_priestess_second_end"
   ],
   "heroes2_thief_goblin": [
-    "heroes2_thief_goblins",
-    "heroes2_thief_goblins_mid"
+    "heroes2_thief_goblins"
   ],
   "heroes3_10": [
-    "heroes3_druid_thief_crystal",
     "heroes3_druid_thief_first",
     "heroes3_druid_thief_first_end"
   ],
@@ -527,8 +481,7 @@
   ],
   "heroes3_3_v2": [
     "heroes3_bard_crystals_first",
-    "heroes3_bard_crystals_first_end",
-    "heroes3_bard_crystals_first_mid"
+    "heroes3_bard_crystals_first_end"
   ],
   "heroes3_4": [
     "heroes3_bard_two_goblins"
@@ -541,17 +494,14 @@
     "heroes3_bard_warrior_thief"
   ],
   "heroes3_7_v4": [
-    "heroes3_bard_and_wizard",
-    "heroes3_bard_and_wizard_2"
+    "heroes3_bard_and_wizard"
   ],
   "heroes3_8_thief": [
-    "heroes3_bard_thief_first",
-    "heroes3_bard_thief_mid"
+    "heroes3_bard_thief_first"
   ],
   "heroes3_8_v3_alt3": [
     "heroes3_bard_and_priestess",
-    "heroes3_bard_and_priestess_end",
-    "heroes3_bard_and_priestess_mid"
+    "heroes3_bard_and_priestess_end"
   ],
   "heroes3_8_v4_alt": [
     "heroes3_bard_dragon_maze"
@@ -575,14 +525,7 @@
     "audiolog_u_computation",
     "intro_1",
     "intro_before_teleporter",
-    "intro_queen_am_i_dead",
-    "intro_queen_callout_alt",
-    "intro_queen_foreign_script",
-    "intro_queen_hosts_1",
-    "intro_queen_hosts_2",
-    "intro_queen_hosts_3",
     "intro_queen_sign",
-    "intro_queen_teleporter",
     "paradise_lost_invocation_2",
     "paradise_lost_invocation_credits"
   ],
@@ -624,8 +567,7 @@
     "make_thief_goblin_maze"
   ],
   "matching_purple": [
-    "hp_bard_purple",
-    "hp_bard_purple_crystal"
+    "hp_bard_purple"
   ],
   "metamirror_same_dir_2_alt_2": [
     "mm_course"
@@ -696,8 +638,7 @@
     "mirror_oracle_3"
   ],
   "mirror_7": [
-    "mirror_oracle_4",
-    "mirror_oracle_4b"
+    "mirror_oracle_4"
   ],
   "mirror_8_v5": [
     "mirror_pre_clones",
@@ -794,7 +735,6 @@
     "coda_scene_assembled",
     "end2_sokoban_writing_choice_1",
     "end2_sokoban_writing_choice_2",
-    "end3_queen_promesst_red",
     "end3_sokoban_writing_choice_1",
     "end3_sokoban_writing_choice_2",
     "end3_sokoban_writing_choice_3",
@@ -804,14 +744,6 @@
     "psalm_139",
     "psalm_139_part_2",
     "queen_og_ask",
-    "queen_og_first_green_beam",
-    "queen_og_first_lily",
-    "queen_og_first_orange_beam",
-    "queen_og_gold_room_first",
-    "queen_og_heroes2",
-    "queen_og_heroes_entry",
-    "queen_og_wardrobe",
-    "queen_og_wardrobe_2",
     "queen_wishlist_1",
     "queen_wishlist_2",
     "queen_wishlist_3",
@@ -838,36 +770,17 @@
     "end2_standard"
   ],
   "promesst1_streamlined": [
-    "promesst1_cart",
-    "promesst1_egg",
-    "promesst1_exiting_egg_room",
-    "promesst1_further_down",
-    "promesst1_place_them",
-    "promesst1_red_beam_lower",
     "promesst1_start",
-    "promesst1_unlock",
-    "promesst1_wand_get",
-    "promesst1_wand_strong",
-    "promesst1_wrap",
     "wand_get"
   ],
   "promesst2_streamlined": [
-    "promesst2_buildings",
-    "promesst2_enjoying_torc",
     "promesst2_feed_gems",
-    "promesst2_gold_room",
-    "promesst2_torc_get",
-    "torc_get",
-    "visit_baby_dragon"
+    "torc_get"
   ],
   "promesst3_streamlined": [
     "prism_get",
     "promesst3_end",
-    "promesst3_gold_room",
-    "promesst3_prism_get",
-    "promesst3_second_room",
-    "promesst3_start",
-    "promesst3_took_time_a"
+    "promesst3_start"
   ],
   "pull_it_v4": [
     "hs_sailor_thief_1"
@@ -886,8 +799,7 @@
     "audiolog_di_push_down_a_lot_small"
   ],
   "push_down_v2": [
-    "3d_intro_down",
-    "3d_intro_down_almost"
+    "3d_intro_down"
   ],
   "quad_torch": [
     "audiolog_di_quad_torch"
@@ -897,9 +809,6 @@
   ],
   "quick_redirect_v5": [
     "vm_warrior_mirror_guy_1"
-  ],
-  "red_handed": [
-    "sp_thief_open_beam"
   ],
   "river_dictionary_alt_up": [
     "river_dictionary"
@@ -946,8 +855,7 @@
   ],
   "sister_staircase_harder": [
     "3d_intro_staircase",
-    "3d_intro_staircase_end",
-    "3d_intro_staircase_mid"
+    "3d_intro_staircase_end"
   ],
   "skipping_near_beams_v2": [
     "skipping_near_beams",
@@ -960,29 +868,19 @@
     "pals_borrie",
     "pals_deadwaters",
     "pals_farguild",
-    "pals_good_luck",
-    "pals_interdict_1",
-    "pals_interdict_2",
     "pals_job_1",
     "pals_job_2",
     "pals_job_3",
     "pals_job_4",
-    "pals_meeting_vedessud",
-    "pals_rearrival_on_starting_island",
     "pals_start",
     "pals_two",
     "pals_where_from_1",
     "pals_where_from_2"
   ],
   "skipping_stones": [
-    "skipping_stones_approaching_impeller",
-    "skipping_stones_gold_room_impending",
-    "skipping_stones_island_west",
-    "skipping_stones_near_boat",
     "skipping_stones_shrine",
     "skipping_stones_start",
     "skipping_stones_start_repeat",
-    "skipping_stones_whirlpool",
     "ssnew_built_in_1",
     "ssnew_built_in_2",
     "ssnew_built_in_3",
@@ -992,7 +890,6 @@
     "ssnew_interdictions_secret",
     "ssnew_interdictions_secret_2",
     "ssnew_no_traps",
-    "ssnew_please_disable_interdict",
     "ssnew_pre_map",
     "ssnew_tacking",
     "ssnew_traps",
@@ -1001,8 +898,7 @@
   ],
   "skipping_wrapping_v3": [
     "sp_wrapping_level_intro",
-    "sp_wrapping_level_intro_end",
-    "sp_wrapping_level_intro_mid"
+    "sp_wrapping_level_intro_end"
   ],
   "spin_doctors_v3": [
     "spin_doctors",
@@ -1051,9 +947,6 @@
   ],
   "the_sky_is_falling_v2": [
     "obf_many_drop_2"
-  ],
-  "thief_wand": [
-    "sp_thief_takes_wand"
   ],
   "three_birds_push": [
     "end2_standard"
@@ -1128,23 +1021,18 @@
   "worlds_collide_heroes_and_promesst_v3": [
     "audiolog_di_worlds_collide_heroes_and_promesst_v3",
     "worlds_collide_HP_end",
-    "worlds_collide_HP_monster_gates_open",
     "worlds_collide_HP_start"
   ],
   "worlds_collide_heroes_and_promesst_v4": [
     "audiolog_di_worlds_collide_heroes_and_promesst_v4",
     "worlds_collide_HP_end",
-    "worlds_collide_HP_monster_gates_open",
     "worlds_collide_HP_start"
   ],
   "worlds_collide_heroes_and_stones": [
     "worlds_collide_HS_end_of_level",
-    "worlds_collide_HS_gates_opened_proximity",
-    "worlds_collide_HS_on_switch_to_thief",
     "worlds_collide_HS_start"
   ],
   "worlds_collide_mirrors_and_stones_v2": [
-    "worlds_collide_MS_first_teleport",
     "worlds_collide_MS_start"
   ],
   "worlds_collide_ps": [
