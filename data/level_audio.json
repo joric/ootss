@@ -1,0 +1,1336 @@
+{
+  "3d_intro_mirrors": [
+    "3d_intro_mirrors"
+  ],
+  "3d_intro_vanilla": [
+    "3d_intro_heights",
+    "3d_intro_heights_end"
+  ],
+  "across_the_fence_old": [
+    "audiolog_di_across_the_fence_old"
+  ],
+  "across_the_fence_vtrader_m_p": [
+    "audiolog_di_across_the_fence_vtrader_m_p"
+  ],
+  "airmail": [
+    "ms_alone"
+  ],
+  "all_out_goblin_war": [
+    "vm_thief_priestess_5"
+  ],
+  "all_together_now": [
+    "all_together_now",
+    "all_together_now_reassembly_1",
+    "all_together_now_reassembly_2",
+    "bark"
+  ],
+  "allocate_heroes_end3": [
+    "allocate_heroes_end3",
+    "end3_heroes_first"
+  ],
+  "allocate_heroes_v2": [
+    "allocate_heroes",
+    "end3_heroes_first"
+  ],
+  "annoying_orange_v3": [
+    "camera_z_lock"
+  ],
+  "bard_triangle": [
+    "camera_z_lock"
+  ],
+  "beam_shatter": [
+    "bark",
+    "beam_shatter_start",
+    "beam_shatter_wish"
+  ],
+  "best_beam_colors": [
+    "best_beam_colors",
+    "end3_suit"
+  ],
+  "binary_maze": [
+    "hp_torus_3"
+  ],
+  "breath_skip": [
+    "hs_warrior_sailor_1"
+  ],
+  "bridgey": [
+    "vm_thief_priestess_1"
+  ],
+  "bridgey2": [
+    "bark",
+    "vm_thief_priestess_2",
+    "vm_thief_priestess_2_mid"
+  ],
+  "bridgey2b": [
+    "bark",
+    "vm_thief_priestess_3",
+    "vm_thief_priestess_3_mid"
+  ],
+  "bridgey3_abstract_art": [
+    "bark",
+    "vm_thief_priestess_4",
+    "vm_thief_priestess_4_mid"
+  ],
+  "bug_spray": [
+    "bark",
+    "sp_bard_takes_wand"
+  ],
+  "button_playground": [
+    "hp_bard_market_square"
+  ],
+  "carry_simplified": [
+    "3d_intro_carry",
+    "3d_intro_carry_end",
+    "bark_conditional",
+    "stone_on_head"
+  ],
+  "catching_up_v0": [
+    "audiolog_di_catching_up_v0",
+    "audiolog_di_catching_up_v0_part_2"
+  ],
+  "catching_up_v2": [
+    "audiolog_di_catching_up_v2"
+  ],
+  "chart_a_course": [
+    "end2_standard"
+  ],
+  "cliff_hopping": [
+    "like_an_isle_2"
+  ],
+  "color_picker": [
+    "end2_standard"
+  ],
+  "compactor_v2": [
+    "heroes3_four_with_button_quad"
+  ],
+  "connect_the_dots_v5": [
+    "thief_promesst_crystals"
+  ],
+  "crystal_bridges": [
+    "hw_second"
+  ],
+  "crystal_logistics": [
+    "camera_z_lock"
+  ],
+  "crystals_not_stones": [
+    "hp_crystals_not_stones"
+  ],
+  "design_corner": [
+    "design_corner"
+  ],
+  "design_fts": [
+    "design_fts"
+  ],
+  "detonator": [
+    "hw_warrior_thief_dragons"
+  ],
+  "dipping_your_toes_in": [
+    "hw_first"
+  ],
+  "dont_push_the_button": [
+    "hw_warrior_going"
+  ],
+  "double_tempo": [
+    "bark",
+    "hp_bard_town",
+    "hp_bard_town_end",
+    "hp_bard_town_mid",
+    "hp_bard_town_mid2"
+  ],
+  "dragons_layer": [
+    "bark",
+    "obf_many_drop",
+    "obf_many_drop_mid"
+  ],
+  "drowner": [
+    "hw_warrior_goblins"
+  ],
+  "druid_and_dragon": [
+    "heroes3_warrior_and_druid_2",
+    "heroes3_warrior_and_druid_2_end"
+  ],
+  "druids_stone_0_v2": [
+    "hs_sailor_druid_1"
+  ],
+  "druids_stone_2_v4": [
+    "hs_sailor_druid_3",
+    "hs_sailor_druid_3_end"
+  ],
+  "druids_stone_alt": [
+    "hs_sailor_druid_2"
+  ],
+  "elevator_mechanic": [
+    "end2_standard"
+  ],
+  "end1": [
+    "end1",
+    "end1_dimension_0"
+  ],
+  "end2_clone_divergence": [
+    "end2_clone_divergence"
+  ],
+  "end2_clone_divergence_2": [
+    "end2_clone_divergence_2"
+  ],
+  "end2_heroes_1_2": [
+    "end2_place_crystal",
+    "warrior_heroes1_call"
+  ],
+  "end2_heroes_1_5": [
+    "end2_place_crystal",
+    "heroes1_5"
+  ],
+  "end2_mirror1": [
+    "end2_mirror1"
+  ],
+  "end2_mirror_3": [
+    "end2_mirror_3",
+    "mirror_watcher_first"
+  ],
+  "end2_mirror_4_islands_v2": [
+    "mirror_4_islands"
+  ],
+  "end2_monster_connect": [
+    "monster_connect"
+  ],
+  "end2_prism_hp": [
+    "end2_standard"
+  ],
+  "end2_river_place": [
+    "end2_river_place"
+  ],
+  "end3_denoise_pool": [
+    "end3_denoise_pool"
+  ],
+  "end3_heroes_1": [
+    "end3_heroes_1",
+    "end3_thief_taunted"
+  ],
+  "end3_mirror_1_v3": [
+    "end3_mirror_1"
+  ],
+  "end3_mirror_2_alt2": [
+    "end3_mirror_2",
+    "end3_mirror_isles_second"
+  ],
+  "end3_off_topic_alt": [
+    "end3_off_topic"
+  ],
+  "end3_off_topic_heroes": [
+    "end3_off_topic_heroes"
+  ],
+  "end3_off_topic_mirror": [
+    "end3_off_topic_mirror"
+  ],
+  "end3_pipeline_aesthetics": [
+    "end3_pipeline_aesthetics"
+  ],
+  "end3_pipeline_cleanup": [
+    "end3_pipeline_cleanup"
+  ],
+  "end3_pipeline_cut": [
+    "end3_pipeline_cut"
+  ],
+  "end3_pipeline_design": [
+    "end3_pipeline_design"
+  ],
+  "end3_pipeline_reorder": [
+    "end3_pipeline_reorder"
+  ],
+  "end3_pipeline_setup": [
+    "end3_pipeline_setup"
+  ],
+  "end3_promesst_red": [
+    "bark_conditional",
+    "end3_promesst_red",
+    "end3_queen_promesst_red"
+  ],
+  "end3_redundant_beams": [
+    "end3_redundant_beams"
+  ],
+  "end3_reorder_mirror": [
+    "end3_reorder_mirror"
+  ],
+  "end3_reorder_skipping_fix": [
+    "end3_reorder_skipping"
+  ],
+  "end3_skipping_1": [
+    "end3_skipping_1"
+  ],
+  "end3_skipping_red": [
+    "end3_boats",
+    "end3_skipping_red"
+  ],
+  "endpoint_weapon": [
+    "hp_endpoint_weapon",
+    "hp_endpoint_weapon_end",
+    "hp_endpoint_weapon_mid1",
+    "hp_endpoint_weapon_mid2",
+    "hp_endpoint_weapon_mid3",
+    "hp_endpoint_weapon_mid4",
+    "hp_endpoint_weapon_mid5"
+  ],
+  "environment_art_background": [
+    "environment_art_background"
+  ],
+  "environment_art_grid": [
+    "environment_art_grid"
+  ],
+  "environment_art_objects": [
+    "environment_art_objects"
+  ],
+  "escape_bridge": [
+    "vm_thief_priestess_6"
+  ],
+  "fix_exploit": [
+    "fix_exploit1"
+  ],
+  "fix_exploit_promesst_overworld": [
+    "end3_exploit_level_freezer_thaw",
+    "fix_exploit_promesst_overworld"
+  ],
+  "flame_wand": [
+    "bark",
+    "sp_warrior_takes_wand"
+  ],
+  "floor_plan_v3": [
+    "floor_plan"
+  ],
+  "friendly_nudges": [
+    "sp_friendly_nudges"
+  ],
+  "gated_twice_thief_v2": [
+    "beautiful_view_thief"
+  ],
+  "gated_twice_v2": [
+    "beautiful_view_warrior"
+  ],
+  "gatekeeping_v3": [
+    "heroes3_bard_wizard_druid_pondering"
+  ],
+  "gem_transport": [
+    "sp_gem_transport",
+    "sp_gem_transport_end"
+  ],
+  "gem_transport_2": [
+    "sp_gem_transport_2",
+    "sp_gem_transport_2_end"
+  ],
+  "height_chooser": [
+    "audiolog_di_height_chooser"
+  ],
+  "height_chooser_v0": [
+    "audiolog_di_height_chooser_v0"
+  ],
+  "heroes1_1": [
+    "bark",
+    "heroes_mouse",
+    "warrior_heroes1_start_end"
+  ],
+  "heroes1_10_inv_v4_b": [
+    "heroes1_wizard_array_end"
+  ],
+  "heroes1_11_v2": [
+    "heroes1_warrior_wizard"
+  ],
+  "heroes1_12_v2_alt": [
+    "heroes1_wizard_thief"
+  ],
+  "heroes1_13_v2": [
+    "bark",
+    "bark_on_id",
+    "heroes1_warrior_thief",
+    "heroes1_warrior_thief_end",
+    "heroes1_warrior_thief_mid",
+    "heroes1_warrior_thief_mid0"
+  ],
+  "heroes1_15": [
+    "bark_conditional",
+    "heroes1_warrior_wizard_confused",
+    "heroes1_warrior_wizard_confused_mid"
+  ],
+  "heroes1_16_v3": [
+    "heroes_three_for_the_first_time_optional",
+    "heroes_three_for_the_first_time_optional_end"
+  ],
+  "heroes1_17": [
+    "bark",
+    "bark_on_id",
+    "heroes_three_for_the_first_time_mandatory",
+    "heroes_three_for_the_first_time_mandatory_end"
+  ],
+  "heroes1_18": [
+    "heroes_three_for_the_second_time_mandatory",
+    "heroes_three_for_the_second_time_mandatory_end"
+  ],
+  "heroes1_19_jail": [
+    "heroes_jail"
+  ],
+  "heroes1_21_v3": [
+    "bark",
+    "bark_on_id",
+    "heroes_jail2",
+    "heroes_jail2_end",
+    "heroes_jail2_mid",
+    "heroes_jail2_mid2"
+  ],
+  "heroes1_2_v2": [
+    "warrior_heroes1_call"
+  ],
+  "heroes1_3": [
+    "bark",
+    "heroes_warrior_gate"
+  ],
+  "heroes1_4.5": [
+    "thief_first"
+  ],
+  "heroes1_4": [
+    "heroes_warrior_mistrust",
+    "heroes_warrior_where_is_tif"
+  ],
+  "heroes1_5_v2": [
+    "heroes1_5"
+  ],
+  "heroes1_6": [
+    "heroes1_thief_three_crystals_end"
+  ],
+  "heroes1_7.5": [
+    "heroes1_wizard_1"
+  ],
+  "heroes1_7": [
+    "audiolog_di_heroes_1_7"
+  ],
+  "heroes1_7_v2": [
+    "audiolog_di_heroes_1_7_v2",
+    "bark",
+    "heroes_tif_lone_crystal",
+    "heroes_tif_return",
+    "heroes_tif_so_much_space"
+  ],
+  "heroes1_8_v2": [
+    "heroes1_wizard_2",
+    "heroes1_wizard_2_end"
+  ],
+  "heroes1_9": [
+    "heroes1_wizard_three_crystals",
+    "heroes1_wizard_three_crystals_end"
+  ],
+  "heroes2_10.5": [
+    "heroes2_wizard_per_turn_goblins",
+    "heroes2_wizard_per_turn_goblins_end"
+  ],
+  "heroes2_10": [
+    "heroes2_postmeetup_thief"
+  ],
+  "heroes2_10a": [
+    "heroes2_warrior_monster_gate_2_optional_end"
+  ],
+  "heroes2_10a_intro": [
+    "heroes2_warrior_monster_gate_first",
+    "heroes2_warrior_monster_gate_first_end"
+  ],
+  "heroes2_11_v2": [
+    "heroes2_warrior_goblins_vs_dragon",
+    "heroes2_warrior_goblins_vs_dragon_end"
+  ],
+  "heroes2_11_v2_easier": [
+    "heroes2_postmeetup_warrior"
+  ],
+  "heroes2_12_v2": [
+    "bark",
+    "heroes2_postmeetup_wizard",
+    "heroes2_postmeetup_wizard_mid"
+  ],
+  "heroes2_14": [
+    "heroes2_wizard_priestess_first",
+    "heroes2_wizard_priestess_first_end"
+  ],
+  "heroes2_15": [
+    "heroes2_warrior_priestess_first",
+    "heroes2_warrior_priestess_first_end"
+  ],
+  "heroes2_16v4": [
+    "bark",
+    "heroes2_thief_priestess_crawler",
+    "heroes2_thief_priestess_second"
+  ],
+  "heroes2_17": [
+    "bark",
+    "heroes2_wizard_and_priestess_alone_third",
+    "heroes2_wizard_and_priestess_alone_third_end"
+  ],
+  "heroes2_17_intro": [
+    "heroes2_wizard_and_priestess_alone_second"
+  ],
+  "heroes2_18": [
+    "bark",
+    "heroes2_thief_priestess_second_end",
+    "heroes2_thief_priestess_second_mid_disgraced",
+    "heroes2_thief_priestess_second_mid_warrior",
+    "heroes2_thief_priestess_second_mid_wizard"
+  ],
+  "heroes2_2": [
+    "bark",
+    "heroes2_warrior_goblins_2",
+    "heroes2_warrior_goblins_2_end",
+    "heroes2_warrior_goblins_2_mid",
+    "heroes2_warrior_goblins_2_mid_2"
+  ],
+  "heroes2_20": [
+    "heroes2_wizard_thief_priestess_goblins"
+  ],
+  "heroes2_21b": [
+    "bark",
+    "heroes2_thief_wizard_priestess_compartments",
+    "heroes2_thief_wizard_priestess_compartments_mid"
+  ],
+  "heroes2_22_v2": [
+    "heroes2_four"
+  ],
+  "heroes2_2b": [
+    "heroes2_warrior_goblins_1"
+  ],
+  "heroes2_3_v2": [
+    "bark",
+    "heroes2_wizard_goblins",
+    "heroes2_wizard_goblins_mid"
+  ],
+  "heroes2_3monster": [
+    "heroes2_warrior_3monster",
+    "heroes2_warrior_3monster_end"
+  ],
+  "heroes2_5.5v5": [
+    "heroes2_thief_dragons_second"
+  ],
+  "heroes2_5_altE": [
+    "heroes2_warrior_dragon_intro",
+    "heroes2_warrior_dragon_intro_end"
+  ],
+  "heroes2_5_no_crystal": [
+    "bark",
+    "heroes2_thief_dragons_intro",
+    "heroes2_thief_dragons_intro_2",
+    "heroes2_thief_dragons_intro_3",
+    "heroes2_thief_dragons_intro_4",
+    "heroes2_thief_dragons_intro_5",
+    "heroes2_thief_dragons_intro_6"
+  ],
+  "heroes2_6_v3": [
+    "heroes2_thief_dragons_third",
+    "heroes2_thief_dragons_third_end"
+  ],
+  "heroes2_9": [
+    "bark",
+    "heroes2_three_first",
+    "heroes2_three_first_end",
+    "heroes2_three_first_mid"
+  ],
+  "heroes2_reprise": [
+    "heroes2_warrior_priestess_second",
+    "heroes2_warrior_priestess_second_end"
+  ],
+  "heroes2_thief_goblin": [
+    "bark_on_id",
+    "heroes2_thief_goblins",
+    "heroes2_thief_goblins_mid"
+  ],
+  "heroes3_10": [
+    "bark",
+    "heroes3_druid_thief_crystal",
+    "heroes3_druid_thief_first",
+    "heroes3_druid_thief_first_end"
+  ],
+  "heroes3_11_v2": [
+    "heroes3_warrior_and_druid_1"
+  ],
+  "heroes3_13_v2": [
+    "heroes3_druid_and_priestess_1"
+  ],
+  "heroes3_14_v3": [
+    "heroes3_bard_and_druid_first",
+    "heroes3_bard_and_druid_first_end"
+  ],
+  "heroes3_15_v4": [
+    "heroes3_wizard_and_druid_2"
+  ],
+  "heroes3_16_v4_alt": [
+    "heroes3_bard_and_druid_second"
+  ],
+  "heroes3_1_v3": [
+    "heroes3_bard_first",
+    "heroes3_bard_first_end"
+  ],
+  "heroes3_21_condensed": [
+    "heroes3_six"
+  ],
+  "heroes3_2_v4": [
+    "heroes3_bard_second",
+    "heroes3_bard_second_end"
+  ],
+  "heroes3_3_v2": [
+    "bark",
+    "heroes3_bard_crystals_first",
+    "heroes3_bard_crystals_first_end",
+    "heroes3_bard_crystals_first_mid"
+  ],
+  "heroes3_4": [
+    "heroes3_bard_two_goblins"
+  ],
+  "heroes3_5": [
+    "heroes3_bard_warrior_first",
+    "heroes3_bard_warrior_first_end"
+  ],
+  "heroes3_6_v3": [
+    "heroes3_bard_warrior_thief"
+  ],
+  "heroes3_7_v4": [
+    "bark",
+    "heroes3_bard_and_wizard",
+    "heroes3_bard_and_wizard_2"
+  ],
+  "heroes3_8_thief": [
+    "bark",
+    "heroes3_bard_thief_first",
+    "heroes3_bard_thief_mid"
+  ],
+  "heroes3_8_v3_alt3": [
+    "bark",
+    "heroes3_bard_and_priestess",
+    "heroes3_bard_and_priestess_end",
+    "heroes3_bard_and_priestess_mid"
+  ],
+  "heroes3_8_v4_alt": [
+    "heroes3_bard_dragon_maze"
+  ],
+  "heroes3_druid_a": [
+    "heroes3_four_with_dragon"
+  ],
+  "heroes3_druid_b_v2": [
+    "heroes3_druid_and_priestess_2"
+  ],
+  "high_horse": [
+    "camera_z_lock"
+  ],
+  "indirect_skip": [
+    "hs_warrior_sailor_2"
+  ],
+  "indirect_skip_2": [
+    "hs_warrior_sailor_3"
+  ],
+  "intro": [
+    "actor_credits",
+    "audiolog_sky_10000_things",
+    "audiolog_sky_laws_of_form",
+    "audiolog_u_computation",
+    "bark",
+    "editor_camera_z",
+    "enable_prompt_after_restart",
+    "intro_1",
+    "intro_before_teleporter",
+    "intro_end1_freezer_thaw",
+    "intro_queen_am_i_dead",
+    "intro_queen_callout_alt",
+    "intro_queen_foreign_script",
+    "intro_queen_hosts_1",
+    "intro_queen_hosts_2",
+    "intro_queen_hosts_3",
+    "intro_queen_sign",
+    "intro_queen_teleporter",
+    "menu_intro_a",
+    "paradise_lost_invocation_2",
+    "paradise_lost_invocation_credits",
+    "prompt_after_restart",
+    "set_pause_menu",
+    "start_sign_gamepad",
+    "start_sign_keyboard",
+    "undo_sign_alt"
+  ],
+  "island_friends": [
+    "hs_island_friends_1"
+  ],
+  "laser_pointer": [
+    "end2_standard"
+  ],
+  "learning_double": [
+    "hp_wizard_torus_2"
+  ],
+  "lily_wearing_intro": [
+    "audiolog_di_lily_wearing_intro"
+  ],
+  "long_platform_v2": [
+    "moment_alone_2",
+    "moment_alone_2_end"
+  ],
+  "magic_shield": [
+    "hp_wizard_torus_4"
+  ],
+  "magic_square": [
+    "hp_wizard_torus_3"
+  ],
+  "magnitudes_v3": [
+    "camera_z_lock",
+    "magnitudes_intro"
+  ],
+  "make_oneway": [
+    "make_oneway"
+  ],
+  "make_shoreline": [
+    "make_shoreline"
+  ],
+  "make_sokoban": [
+    "make_sokoban"
+  ],
+  "make_thief_goblin_maze_v2": [
+    "make_thief_goblin_maze"
+  ],
+  "matching_purple": [
+    "bark",
+    "hp_bard_purple",
+    "hp_bard_purple_crystal"
+  ],
+  "metamirror_same_dir_2_alt_2": [
+    "mm_course"
+  ],
+  "metamirror_same_dir_3_alt_2": [
+    "mm_merit"
+  ],
+  "metamirror_same_dir_5_alt": [
+    "mm_how"
+  ],
+  "metamirror_same_dir_v2": [
+    "mm_why"
+  ],
+  "mini_green_maze": [
+    "hp_wizard_torus_5"
+  ],
+  "mirror_1": [
+    "mirror_new_1_start"
+  ],
+  "mirror_10_alt2": [
+    "mirror_stranger_double_mirrors"
+  ],
+  "mirror_10_d": [
+    "mirror_stranger_before_hm_3"
+  ],
+  "mirror_11": [
+    "clones_first_confusion"
+  ],
+  "mirror_12": [
+    "clones_triple_confusion",
+    "clones_triple_confusion_end"
+  ],
+  "mirror_13": [
+    "clones_working",
+    "clones_working_end"
+  ],
+  "mirror_14": [
+    "clones_merge"
+  ],
+  "mirror_15": [
+    "mirror_stranger_1"
+  ],
+  "mirror_17": [
+    "mirror_stranger_3"
+  ],
+  "mirror_18": [
+    "mirror_stranger_6"
+  ],
+  "mirror_19": [
+    "mirror_stranger_2"
+  ],
+  "mirror_2": [
+    "clones_early",
+    "mirror_2"
+  ],
+  "mirror_21": [
+    "mirror_deal_1",
+    "mirror_deal_1_end"
+  ],
+  "mirror_22_v2": [
+    "mirror_deal_2",
+    "mirror_deal_2_end"
+  ],
+  "mirror_3": [
+    "mirror_watcher_first"
+  ],
+  "mirror_4": [
+    "mirror_oracle_1"
+  ],
+  "mirror_5": [
+    "mirror_oracle_2"
+  ],
+  "mirror_6_alt": [
+    "mirror_oracle_3"
+  ],
+  "mirror_7": [
+    "bark_on_id",
+    "mirror_oracle_4",
+    "mirror_oracle_4b"
+  ],
+  "mirror_8_v5": [
+    "mirror_pre_clones",
+    "mirror_pre_clones_end"
+  ],
+  "mirror_pals": [
+    "mirror_pals"
+  ],
+  "mirror_prelude_v2_fix": [
+    "mirror_prelude"
+  ],
+  "mirror_sink": [
+    "mirror_stranger_4"
+  ],
+  "monster_drop": [
+    "obf_monster_drop"
+  ],
+  "mosh_pit_small": [
+    "heroes2_wizard_and_priestess_alone_first"
+  ],
+  "mundane_mirror": [
+    "mirror_stranger_before_hm_1"
+  ],
+  "one_bird_two_stones": [
+    "hs_warrior_sailor_0"
+  ],
+  "one_fire_v2": [
+    "heroes2_one_fire_warrior_thief_optional",
+    "heroes2_one_fire_warrior_thief_optional_end"
+  ],
+  "open_monster": [
+    "camera_z_lock"
+  ],
+  "orange_wizard_intro": [
+    "hp_wizard_torus_1"
+  ],
+  "overworld": [
+    "FastTravelDiscoverTeleporter",
+    "FastTravelEnableGroup",
+    "SmashFastTravelRock",
+    "audiolog_g_being_watched",
+    "audiolog_g_crisis",
+    "audiolog_g_far_from_home",
+    "audiolog_g_gold_rooms",
+    "audiolog_g_how_many_gold_rooms",
+    "audiolog_g_musing_on_fast_travel",
+    "audiolog_g_musing_on_freezers_1",
+    "audiolog_g_no_eating",
+    "audiolog_g_possession",
+    "audiolog_g_substrate",
+    "audiolog_g_work_and_care",
+    "audiolog_g_world_selection_1",
+    "audiolog_g_world_selection_2",
+    "audiolog_g_world_selection_3",
+    "audiolog_s_magistrate",
+    "audiolog_s_tradition_of_our_people_part_1",
+    "audiolog_s_tradition_of_our_people_part_2",
+    "audiolog_s_tradition_of_our_people_part_2b",
+    "audiolog_s_tradition_of_our_people_part_3",
+    "audiolog_sky_10000_things",
+    "audiolog_sky_combiners",
+    "audiolog_sky_combiners_2",
+    "audiolog_sky_combiners_3",
+    "audiolog_sky_combiners_4",
+    "audiolog_sky_complexification_1",
+    "audiolog_sky_complexification_2",
+    "audiolog_sky_invocation",
+    "audiolog_sky_laws_of_form",
+    "audiolog_sky_lifeboat_societies_1",
+    "audiolog_sky_lifeboat_societies_2",
+    "audiolog_sky_lifeboat_societies_3",
+    "audiolog_sky_play_of_form_1",
+    "audiolog_sky_play_of_form_1a",
+    "audiolog_sky_play_of_form_1b",
+    "audiolog_sky_play_of_form_2",
+    "audiolog_sky_play_of_form_3",
+    "audiolog_sky_take_a_tour",
+    "audiolog_sky_tetratetrad",
+    "audiolog_sky_why_so_big",
+    "audiolog_sky_why_so_big_3",
+    "audiolog_sky_wool",
+    "audiolog_u_boundary_matching_1",
+    "audiolog_u_boundary_matching_2",
+    "audiolog_u_chaos_1",
+    "audiolog_u_chaos_2",
+    "audiolog_u_computation",
+    "audiolog_u_decay_1",
+    "audiolog_u_decay_2",
+    "audiolog_u_decay_3",
+    "audiolog_u_decay_4",
+    "audiolog_u_decay_5",
+    "audiolog_u_games_inspirations",
+    "audiolog_u_job_41_fragments",
+    "audiolog_u_meeting",
+    "audiolog_u_old_games",
+    "audiolog_u_tetratetrad_troubles_1",
+    "audiolog_u_tetratetrad_troubles_2",
+    "audiolog_u_tetratetrad_troubles_3",
+    "audiolog_u_wizard_mirror_worlds_connect",
+    "bark",
+    "camera_z_lock",
+    "coda_scene_assembled",
+    "demo_bounds",
+    "e",
+    "editor_camera_z",
+    "end2_sokoban_writing_choice_1",
+    "end2_sokoban_writing_choice_2",
+    "end3_queen_promesst_red",
+    "end3_sokoban_writing_choice_1",
+    "end3_sokoban_writing_choice_2",
+    "end3_sokoban_writing_choice_3",
+    "end3_sokoban_writing_choice_4",
+    "end3_sokoban_writing_choice_5",
+    "ew",
+    "grant_rank",
+    "local_area",
+    "may_jump_into_water",
+    "menu_combo_heroes_light_a",
+    "menu_combo_heroes_mirrors_a",
+    "menu_combo_heroes_stones_a",
+    "menu_combo_heroes_water_a",
+    "menu_combo_mirrors_stones_a",
+    "menu_combo_prom_skip_a",
+    "menu_combo_reflected_beams_a",
+    "menu_heroes_a",
+    "menu_intro_a",
+    "menu_mirror_isles_a",
+    "menu_promesst_a",
+    "menu_skipping_a",
+    "menu_skipping_b",
+    "menu_sky_double_a",
+    "menu_sky_goblin_a",
+    "menu_sky_heroes_a",
+    "menu_sky_mirror_a",
+    "menu_sky_prommest_a",
+    "menu_sky_skipping_a",
+    "menu_under_beam_computation_a",
+    "menu_under_crossroads_a",
+    "menu_under_endless_skipping_a",
+    "menu_under_endpoint_falling_a",
+    "menu_under_gems_obstacles_a",
+    "menu_under_lily_beam_a",
+    "menu_under_mirror_obstacle_a",
+    "menu_under_mirror_stone_reversion_a",
+    "menu_under_mirrors_artifacts_a",
+    "menu_under_mirrors_rivers_a",
+    "menu_under_monsters_through_a",
+    "menu_under_skipping_misc_beams_a",
+    "menu_under_tricky_mirrors_a",
+    "n",
+    "ns",
+    "nsew",
+    "overworld",
+    "pre_coda_scene_assembled",
+    "psalm_139",
+    "psalm_139_part_2",
+    "queen_og_ask",
+    "queen_og_first_green_beam",
+    "queen_og_first_lily",
+    "queen_og_first_orange_beam",
+    "queen_og_gold_room_first",
+    "queen_og_heroes2",
+    "queen_og_heroes_entry",
+    "queen_og_wardrobe",
+    "queen_og_wardrobe_2",
+    "queen_wishlist_1",
+    "queen_wishlist_2",
+    "queen_wishlist_3",
+    "queen_wishlist_4",
+    "queen_wishlist_5",
+    "s",
+    "set_pause_menu",
+    "sokoban_overworld",
+    "w",
+    "wait_for_fall"
+  ],
+  "peak_toggle": [
+    "end2_standard"
+  ],
+  "place_lily_pushstyle_v6": [
+    "end2_standard"
+  ],
+  "place_promesst_rooms": [
+    "place_promesst_rooms"
+  ],
+  "place_slot_4x4_pushstyle": [
+    "end2_standard"
+  ],
+  "place_to_stand": [
+    "ms_alone_3"
+  ],
+  "plus_signs_v3": [
+    "sp_druid_takes_wand",
+    "sp_thief_takes_wand"
+  ],
+  "prelude_priest_water_goblins_only": [
+    "end2_standard"
+  ],
+  "promesst1_streamlined": [
+    "bark",
+    "bark_conditional",
+    "enable_other_bark_marker",
+    "promesst1",
+    "promesst1_cart",
+    "promesst1_egg",
+    "promesst1_end",
+    "promesst1_exiting_egg_room",
+    "promesst1_further_down",
+    "promesst1_place_them",
+    "promesst1_red_beam_lower",
+    "promesst1_start",
+    "promesst1_unlock",
+    "promesst1_wand_get",
+    "promesst1_wand_strong",
+    "promesst1_wrap",
+    "wand_get"
+  ],
+  "promesst2_streamlined": [
+    "bark",
+    "bark_conditional",
+    "enable_other_bark_marker",
+    "feed_me",
+    "promesst2",
+    "promesst2_buildings",
+    "promesst2_end",
+    "promesst2_enjoying_torc",
+    "promesst2_feed_gems",
+    "promesst2_gold_room",
+    "promesst2_torc_get",
+    "torc_get",
+    "visit_baby_dragon"
+  ],
+  "promesst3_streamlined": [
+    "bark",
+    "bark_on_id",
+    "enable_friendly_dragon_bark",
+    "prism_get",
+    "promesst3",
+    "promesst3_end",
+    "promesst3_gold_room",
+    "promesst3_prism_get",
+    "promesst3_second_room",
+    "promesst3_start",
+    "promesst3_took_time_a"
+  ],
+  "pull_it_v4": [
+    "hs_sailor_thief_1"
+  ],
+  "purple_beam_intro_v2_alt": [
+    "sp_architecture"
+  ],
+  "push_and_pull_zach": [
+    "hw_warrior_thief",
+    "hw_warrior_thief_end"
+  ],
+  "push_down_a_lot": [
+    "audiolog_di_push_down_a_lot"
+  ],
+  "push_down_a_lot_small": [
+    "audiolog_di_push_down_a_lot_small"
+  ],
+  "push_down_v2": [
+    "3d_intro_down",
+    "3d_intro_down_almost",
+    "bark"
+  ],
+  "quad_torch": [
+    "audiolog_di_quad_torch"
+  ],
+  "quad_torch_v1": [
+    "audiolog_di_quad_torch_v1"
+  ],
+  "quick_redirect_v5": [
+    "vm_warrior_mirror_guy_1"
+  ],
+  "red_handed": [
+    "bark",
+    "sp_thief_open_beam"
+  ],
+  "river_dictionary_alt_up": [
+    "river_dictionary"
+  ],
+  "river_exploit_v2": [
+    "river_exploit"
+  ],
+  "rotator": [
+    "rotator"
+  ],
+  "rover_impulse_v2": [
+    "sp_rover_mission",
+    "sp_rover_mission_end"
+  ],
+  "see_no_evil": [
+    "end2_standard"
+  ],
+  "see_through": [
+    "hp_wizard_torus_6"
+  ],
+  "sender": [
+    "audiolog_di_sender"
+  ],
+  "sender_simplified": [
+    "audiolog_di_sender_simplified"
+  ],
+  "sender_simplified_v2": [
+    "audiolog_di_sender_simplified_v2"
+  ],
+  "sidestone_zach_2_end2": [
+    "endgame_dynamic",
+    "place_downward"
+  ],
+  "sidestone_zach_3": [
+    "mirror_transport_3"
+  ],
+  "sidestone_zach_4": [
+    "mirror_transport_4"
+  ],
+  "simplify_skipping": [
+    "simplify_skipping"
+  ],
+  "simplify_wizard": [
+    "simplify_wizard"
+  ],
+  "sister_staircase_harder": [
+    "3d_intro_staircase",
+    "3d_intro_staircase_end",
+    "3d_intro_staircase_mid",
+    "bark"
+  ],
+  "skipping_near_beams_v2": [
+    "skipping_near_beams",
+    "skipping_stones_start",
+    "skipping_stones_start_repeat"
+  ],
+  "skipping_pals": [
+    "bark",
+    "bark_conditional",
+    "diagonal_push_okay",
+    "enable_other_bark_marker",
+    "pals_asking_about_interdicts_1",
+    "pals_asking_about_interdicts_2",
+    "pals_borrie",
+    "pals_deadwaters",
+    "pals_farguild",
+    "pals_good_luck",
+    "pals_interdict_1",
+    "pals_interdict_2",
+    "pals_job_1",
+    "pals_job_2",
+    "pals_job_3",
+    "pals_job_4",
+    "pals_meeting_vedessud",
+    "pals_rearrival_on_starting_island",
+    "pals_start",
+    "pals_two",
+    "pals_where_from_1",
+    "pals_where_from_2",
+    "skipping_pals"
+  ],
+  "skipping_stones": [
+    "bark",
+    "bark_conditional",
+    "level_state_got_to_target",
+    "remind_player_of_overhead_map",
+    "skipping_stones",
+    "skipping_stones_approaching_impeller",
+    "skipping_stones_gold_room_impending",
+    "skipping_stones_island_west",
+    "skipping_stones_near_boat",
+    "skipping_stones_shrine",
+    "skipping_stones_start",
+    "skipping_stones_start_repeat",
+    "skipping_stones_whirlpool",
+    "ssnew_built_in_1",
+    "ssnew_built_in_2",
+    "ssnew_built_in_3",
+    "ssnew_good_place",
+    "ssnew_good_place_2",
+    "ssnew_interdiction_first",
+    "ssnew_interdictions_secret",
+    "ssnew_interdictions_secret_2",
+    "ssnew_no_traps",
+    "ssnew_please_disable_interdict",
+    "ssnew_pre_map",
+    "ssnew_tacking",
+    "ssnew_traps",
+    "ssnew_weather",
+    "ssnew_what_do_i_do"
+  ],
+  "skipping_wrapping_v3": [
+    "bark",
+    "sp_wrapping_level_intro",
+    "sp_wrapping_level_intro_end",
+    "sp_wrapping_level_intro_mid"
+  ],
+  "smartbomb_combo_v3": [
+    "camera_z_lock"
+  ],
+  "spin_doctors_v3": [
+    "spin_doctors",
+    "spin_doctors_end"
+  ],
+  "spin_heroes": [
+    "spin_heroes"
+  ],
+  "spray_and_pray": [
+    "spray_and_pray"
+  ],
+  "sprint_skip0": [
+    "hs_warrior_sailor_4"
+  ],
+  "stack_prelude_pushstyle": [
+    "end2_standard"
+  ],
+  "stone_economy": [
+    "end2_standard"
+  ],
+  "stones_not_crystals": [
+    "hp_stones_not_crystals"
+  ],
+  "stones_prelude": [
+    "stones_prelude"
+  ],
+  "strategic_stack": [
+    "audiolog_di_strategic_stack"
+  ],
+  "submarine": [
+    "double_agent_intro",
+    "double_agent_intro_end"
+  ],
+  "submarine_far_away": [
+    "sp_double_agent"
+  ],
+  "surrounded": [
+    "hw_warrior_surrounded"
+  ],
+  "tandem": [
+    "vm_thief_priestess_7"
+  ],
+  "thats_my_ride": [
+    "ms_alone_2",
+    "ms_alone_2_end"
+  ],
+  "the_sky_is_falling_v2": [
+    "obf_many_drop_2"
+  ],
+  "thief_dragger_v2": [
+    "camera_z_lock"
+  ],
+  "thief_wand": [
+    "bark",
+    "sp_thief_takes_wand"
+  ],
+  "thin_ice_rooms": [
+    "camera_z_lock"
+  ],
+  "three_artifacts_v3": [
+    "camera_z_lock"
+  ],
+  "three_birds_push": [
+    "end2_standard"
+  ],
+  "through_intro": [
+    "hp_torus"
+  ],
+  "through_push": [
+    "hp_torus_2",
+    "sp_warrior_green_beam_end"
+  ],
+  "tiger_lily_v2": [
+    "audiolog_di_tiger_lily_v2"
+  ],
+  "tippy_intro": [
+    "camera_z_lock"
+  ],
+  "to_kill_a_goblin": [
+    "vm_warrior_mirror_guy_2"
+  ],
+  "torcher": [
+    "audiolog_di_torcher"
+  ],
+  "trader_descend": [
+    "like_an_isle"
+  ],
+  "triple_gate": [
+    "audiolog_di_triple_gate"
+  ],
+  "turn_control_v2": [
+    "warrior_lonely",
+    "warrior_lonely_end"
+  ],
+  "two_through_alt_2": [
+    "hp_wizard_torus_8"
+  ],
+  "victory_lap": [
+    "heroes3_victory_lap",
+    "heroes3_victory_lap_end"
+  ],
+  "wand_reintro": [
+    "editor_camera_z"
+  ],
+  "watergate": [
+    "hs_warrior_sailor_5"
+  ],
+  "who_you_gonna_call": [
+    "who_you_gonna_call"
+  ],
+  "wizard_and_druid_alt": [
+    "heroes3_wizard_and_druid_optional"
+  ],
+  "wizard_and_druid_alt_5": [
+    "heroes3_wizard_and_druid_1"
+  ],
+  "wizard_jailbreak_v2": [
+    "end3_exploit_level_freezer_thaw",
+    "wizard_jailbreak"
+  ],
+  "wizard_with_a_capital_w": [
+    "hs_island_friends_2"
+  ],
+  "wizard_with_a_capital_w_2_v2": [
+    "hs_island_friends_3",
+    "hs_island_friends_3_end"
+  ],
+  "worlds_collide_alt": [
+    "worlds_collide_MP_start"
+  ],
+  "worlds_collide_heroes_and_mirrors_v3": [
+    "worlds_collide_HM_start"
+  ],
+  "worlds_collide_heroes_and_promesst": [
+    "audiolog_di_worlds_collide_heroes_and_promesst"
+  ],
+  "worlds_collide_heroes_and_promesst_v2": [
+    "audiolog_di_worlds_collide_heroes_and_promesst_v2"
+  ],
+  "worlds_collide_heroes_and_promesst_v3": [
+    "audiolog_di_worlds_collide_heroes_and_promesst_v3",
+    "bark_on_id",
+    "worlds_collide_HP_end",
+    "worlds_collide_HP_monster_gates_open",
+    "worlds_collide_HP_start"
+  ],
+  "worlds_collide_heroes_and_promesst_v4": [
+    "audiolog_di_worlds_collide_heroes_and_promesst_v4",
+    "bark_on_id",
+    "worlds_collide_HP_end",
+    "worlds_collide_HP_monster_gates_open",
+    "worlds_collide_HP_start"
+  ],
+  "worlds_collide_heroes_and_stones": [
+    "bark",
+    "bark_on_id",
+    "heroes_and_stones_outro",
+    "worlds_collide_HS_end_of_level",
+    "worlds_collide_HS_gates_opened_proximity",
+    "worlds_collide_HS_on_switch_to_thief",
+    "worlds_collide_HS_start"
+  ],
+  "worlds_collide_mirrors_and_stones_v2": [
+    "bark",
+    "worlds_collide_MS_first_teleport",
+    "worlds_collide_MS_start"
+  ],
+  "worlds_collide_ps": [
+    "worlds_collide_SP_start"
+  ]
+}

@@ -247,7 +247,7 @@ html, body, #map { width:100%; height: 100%; margin: 0; padding: 0; overflow: hi
 .subtitle-wrapper {
   margin-top: 8px;
   overflow: auto;
-  max-height: 300px;
+  max-height: 160px;
 }
 
 #alert {
@@ -780,6 +780,7 @@ let searchLayer = null;
 let regionData = null;
 let lang = {};
 let subtitles = {};
+let level_audio = {};
 const nameLookup = {};
 const idLookup = {};
 const teleportTargets = {};
@@ -1563,23 +1564,30 @@ function openPopup(e) {
   let footer = '';
 
   if (o.type == 'Level_Entry') {
-    footer = getSolutionWrapper(o);
+    footer += getSolutionWrapper(o);
+  }
+  
+  function getSubtitleWrapper(keys) {
+    if (!keys || keys.length==0) return '';
+    let html = `<div class="subtitle-wrapper">`;
+    for (const key of keys) {
+      const subs = subtitles[key];
+      if (subs) {
+        for (const t of subs) {
+          html += `${formatTime(t.time)} (${t.name}): ${t.text}<br>`;
+        }
+      }
+    }
+    html += '</div>';
+    return html;
   }
 
   if (o.type == 'Voice_Log') {
-    const key = o.entity_properties?.name;
+    footer += getSubtitleWrapper([o.entity_properties?.name]);
+  }
 
-    let html = `<div class="subtitle-wrapper">`;
-    const subs = subtitles[key];
-    if (subs) {
-      for (const t of subs) {
-        html += `${formatTime(t.time)} (${t.name}): ${t.text}<br>`;
-      }
-    } else {
-      html += key;
-    }
-    html += '</div>';
-    footer = html;
+  if (o.type == 'Level_Entry') {
+    footer += getSubtitleWrapper(level_audio[o.name] ?? []);
   }
 
   let content = `${header}${image}${subtitle}${footer}`;
@@ -2321,13 +2329,14 @@ window.onload = function() {
     'data/wt.txt',
     'data/Localization/en.json',
     'data/Subtitles/en.json',
+    'data/level_audio.json',
     'data/solutions.json',
   ].map(url =>
     fetch(url).then(r => url.endsWith('.txt') ? r.text() : r.json())
   );
 
   Promise.all(promises).then(data => {
-    let [base, intro, sol, yt, img, ord, wtd, lg, sb, s2] = data;
+    let [base, intro, sol, yt, img, ord, wtd, lg, sb, la, s2] = data;
 
     solutions = Object.fromEntries(sol.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
     youtube = Object.fromEntries(yt.split('\n').map(s => s.trim().split(',', 2)).filter(([, v])=> v && v.length>=2));
@@ -2351,7 +2360,7 @@ window.onload = function() {
     for (const s of s2) solutions2[s.name] = s.solution;
 
     lang = lg;
-
+    level_audio = la;
     subtitles = sb;
 
     updateRegions(); // does not cover all markers, so commented out for now
