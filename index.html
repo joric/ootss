@@ -1292,17 +1292,15 @@ function getCentroidRaw2(points) {
 }
 
 let config = {
-  overworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-4,10], entities: "overworld" },
-  sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [10,75], entities: "overworld" },
-  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-57, -4], entities: "overworld" },
-  intro: {"bounds": { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0}, entities: "intro" },
-  minimap: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [89, 89], overlay: true, entities: "overworld" },
-  minimap_high: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [104, 110], overlay: true, entities: "overworld" },
-  minimap_low: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [78, 78], overlay: true, entities: "overworld" },
-  stones: {"bounds": { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, overlay: true, entities: "skipping_stones" },
+  overworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-4,10], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld" },
+  sky: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [10,75], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld" },
+  underworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-57, -4], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld" },
+  intro: {bounds: { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0},size:[91, 105], corner: [0, -21], grid: [13, 7], entities: "intro" },
+  minimap: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [89, 89], overlay: true, entities: "overworld" },
+  minimap_high: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [104, 110], overlay: true, entities: "overworld" },
+  minimap_low: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [78, 78], overlay: true, entities: "overworld" },
+  stones: {bounds: { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, size:[126, 101], corner: [-25, -17], grid: [9, 6], overlay: true, entities: "skipping_stones" },
 }
-
-// 126 x 101, corner (-25, -17)
 
 const locationSeparator = '@';
 const fullName = (name,location) => name + locationSeparator + location;
@@ -1767,11 +1765,9 @@ const hoverPreview = (() => {
 function addGrid() {
     gridLayer.clearLayers();
 
-    let conf = { size:[190,156], corner: [-24,-2], grid: [19, 13] };
+    let conf = config[baseLayerName];
 
-    if (baseLayerName == 'intro') {
-        conf = { size:[91, 105], corner: [0, -21], grid: [13, 7] };
-    }
+    if (!conf || !conf.grid) return;
 
     const [w, h] = conf.size;
     const [cx, cy] = conf.corner;
