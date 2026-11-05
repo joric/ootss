@@ -1487,12 +1487,17 @@ function getTooltipTitle(marker) {
 
 const getTooltip = function(marker) {
   let content = getTooltipTitle(marker);
-  let moves = solutions[marker.feature.properties.name];
+  let name = marker.feature.properties.name;
+
+  let moves = solutions[name];
   if (moves) {
     content += `<br>Soution: ${getMovesCount(moves)} moves`;
   }
-  if (level_audio[marker.feature.properties.name]) {
-    content += `<br>${level_audio[marker.feature.properties.name].length} audio`;
+
+  const audio = level_audio[name];
+  if (audio) {
+    const count = audio.filter(id => subtitles[id]).length;
+    if (count) content += `<br>${count} audio`;
   }
 
   return content;
