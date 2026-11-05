@@ -1588,10 +1588,10 @@ function openPopup(e) {
     let data = [];
     for (const key of keys) {
       const subs = subtitles[key];
-      if (subs) {
+      if (subs && subs.length) {
         lines = [];
         for (const t of subs) {
-          lines.push(`[${t.name}]: ${t.text}`);
+          if (t.text) lines.push(`[${t.name}]: ${t.text}`);
         }
         data.push(`<span title="${key}">${lines.join('<br>')}</span>`);
       }
