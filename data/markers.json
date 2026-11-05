@@ -139651,6 +139651,5054 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          111.0,
+          96.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519600,
+        "entity_properties": {
+          "position": {
+            "x": 111.0,
+            "y": 96.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 111.0,
+            "y": 96.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3",
+          "turn_away_bark": "queen_wishlist_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          117.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135382560,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 117.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 83.0,
+            "y": 117.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          76.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027120,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 76.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 82.0,
+            "y": 76.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115373187
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521041,
+        "entity_properties": {
+          "position": {
+            "x": 4.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 4.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_reading_the_level_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.0,
+          72.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027121,
+        "entity_properties": {
+          "position": {
+            "x": 84.0,
+            "y": 72.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 84.0,
+            "y": 72.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348571
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.0,
+          116.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519090,
+        "entity_properties": {
+          "position": {
+            "x": 70.0,
+            "y": 116.0
+          },
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 70.0,
+            "y": 116.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2",
+          "turn_away_bark": "queen_wishlist_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0,
+          108.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520930,
+        "entity_properties": {
+          "position": {
+            "x": 9.0,
+            "y": 108.0,
+            "z": -24.0
+          },
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 9.0,
+            "y": 108.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_progression_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.0,
+          131.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519091,
+        "entity_properties": {
+          "position": {
+            "x": 110.0,
+            "y": 131.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 110.0,
+            "y": 131.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3",
+          "turn_away_bark": "queen_wishlist_5"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.0,
+          113.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520771,
+        "entity_properties": {
+          "position": {
+            "x": 17.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 17.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_clarity_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          49.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115574011,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 49.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 80.0,
+            "y": 49.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.0,
+          96.0,
+          36.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 106956892,
+        "entity_properties": {
+          "position": {
+            "x": 122.0,
+            "y": 96.0,
+            "z": 36.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 122.0,
+            "y": 96.0,
+            "z": 36.0
+          },
+          "line1": "sign_arch",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.0,
+          78.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519092,
+        "entity_properties": {
+          "position": {
+            "x": 117.0,
+            "y": 78.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.10374287515878677,
+            "y": 0.22757437825202942,
+            "z": 0.16210544109344482,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 117.0,
+            "y": 78.0
+          },
+          "line1": "sign_demo_phase_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_1",
+          "turn_away_bark": "queen_wishlist_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          49.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115574012,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 49.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 81.0,
+            "y": 49.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.0,
+          58.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519093,
+        "entity_properties": {
+          "position": {
+            "x": 142.0,
+            "y": 58.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 142.0,
+            "y": 58.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3",
+          "turn_away_bark": "queen_wishlist_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.0,
+          49.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115574013,
+        "entity_properties": {
+          "position": {
+            "x": 84.0,
+            "y": 49.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 84.0,
+            "y": 49.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -20.0,
+          147.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115373173,
+        "entity_properties": {
+          "position": {
+            "x": -20.0,
+            "y": 147.0,
+            "z": -21.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.38854169845581055,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -20.0,
+            "y": 147.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115373172
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.0,
+          59.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519094,
+        "entity_properties": {
+          "position": {
+            "x": 103.0,
+            "y": 59.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 103.0,
+            "y": 59.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.0,
+          107.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520934,
+        "entity_properties": {
+          "position": {
+            "x": 10.0,
+            "y": 107.0,
+            "z": -24.0
+          },
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 10.0,
+            "y": 107.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_progression_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          49.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115574014,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 49.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 82.0,
+            "y": 49.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0,
+          71.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115346134,
+        "entity_properties": {
+          "position": {
+            "x": -17.0,
+            "y": 71.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": -17.0,
+            "y": 71.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115347314
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.0,
+          27.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63057294,
+        "entity_properties": {
+          "position": {
+            "x": 27.0,
+            "y": 27.0,
+            "z": 38.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 27.0,
+            "y": 27.0,
+            "z": 38.0
+          },
+          "line1": "sign_combiners_3",
+          "image": "sign_combiners_3",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          49.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115574015,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 49.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 83.0,
+            "y": 49.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          27.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63057295,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 27.0,
+            "z": 38.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 45.0,
+            "y": 27.0,
+            "z": 38.0
+          },
+          "line1": "sign_combiners_4",
+          "image": "sign_combiners_4",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          144.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115346136,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 144.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 80.0,
+            "y": 144.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 87038884
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -21.0,
+          128.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115407136,
+        "entity_properties": {
+          "position": {
+            "x": -21.0,
+            "y": 128.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End3",
+          "visual_position": {
+            "x": -21.0,
+            "y": 128.0
+          },
+          "image": "sign_endgame_underworld",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -19.0,
+          150.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348577,
+        "entity_properties": {
+          "position": {
+            "x": -19.0,
+            "y": 150.0,
+            "z": -21.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.38854169845581055,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -19.0,
+            "y": 150.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348586
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.0,
+          128.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115407138,
+        "entity_properties": {
+          "position": {
+            "x": -9.0,
+            "y": 128.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": -9.0,
+            "y": 128.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.0,
+          43.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345339,
+        "entity_properties": {
+          "position": {
+            "x": 106.0,
+            "y": 43.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 106.0,
+            "y": 43.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 87038888
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.0,
+          95.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345722,
+        "entity_properties": {
+          "position": {
+            "x": 106.0,
+            "y": 95.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 106.0,
+            "y": 95.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 87038882
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          141.0,
+          37.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348482,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 141.0,
+            "z": 37.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -15.0,
+            "y": 141.0,
+            "z": 37.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348481
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          67.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027122,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 67.0,
+            "z": -21.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 83.0,
+            "y": 67.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348554
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520622,
+        "entity_properties": {
+          "position": {
+            "x": 21.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 21.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_idea_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          113.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520822,
+        "entity_properties": {
+          "position": {
+            "x": 25.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 25.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_clarity_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -19.0,
+          144.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348542,
+        "entity_properties": {
+          "position": {
+            "x": -19.0,
+            "y": 144.0,
+            "z": -21.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.38854169845581055,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -19.0,
+            "y": 144.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348544
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032502,
+        "entity_properties": {
+          "position": {
+            "x": 22.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 22.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_idea_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0,
+          71.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111245223,
+        "entity_properties": {
+          "position": {
+            "x": 28.0,
+            "y": 71.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.001573156681843102,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 28.0,
+            "y": 71.0
+          },
+          "image": "sign_endgame_ground_star",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.0,
+          112.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520783,
+        "entity_properties": {
+          "position": {
+            "x": 18.0,
+            "y": 112.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 18.0,
+            "y": 112.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_clarity_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.0,
+          116.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373183,
+        "entity_properties": {
+          "position": {
+            "x": 70.0,
+            "y": 116.0
+          },
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 70.0,
+            "y": 116.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3",
+          "turn_away_bark": "queen_wishlist_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.0,
+          137.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032503,
+        "entity_properties": {
+          "position": {
+            "x": 24.0,
+            "y": 137.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 24.0,
+            "y": 137.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_idea_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.0,
+          50.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115611704,
+        "entity_properties": {
+          "position": {
+            "x": 38.0,
+            "y": 50.0,
+            "z": 38.0
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 38.0,
+            "y": 50.0,
+            "z": 38.0
+          },
+          "line1": "sign_tetratetrad",
+          "image": "sign_tetratetrad",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.0,
+          116.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373184,
+        "entity_properties": {
+          "position": {
+            "x": 85.0,
+            "y": 116.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8470636606216431,
+            "y": 0.8419451713562012,
+            "z": 0.8419451713562012,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 85.0,
+            "y": 116.0
+          },
+          "line1": "sign_demo_bard_and_druid",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032504,
+        "entity_properties": {
+          "position": {
+            "x": 26.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 26.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_idea_4",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.0,
+          115.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111245225,
+        "entity_properties": {
+          "position": {
+            "x": 73.0,
+            "y": 115.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.0,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 73.0,
+            "y": 115.0
+          },
+          "image": "sign_endgame_ground_star",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521105,
+        "entity_properties": {
+          "position": {
+            "x": 6.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 6.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_reading_the_level_4",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.0,
+          145.0,
+          47.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115404465,
+        "entity_properties": {
+          "position": {
+            "x": -16.0,
+            "y": 145.0,
+            "z": 47.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 115348606,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.8069666028022766,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -16.0,
+            "y": 145.0,
+            "z": 47.0
+          },
+          "line1": "sign_end2_intro_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          126.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032505,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 19.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_exploits_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          138.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111246306,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 138.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": -15.0,
+            "y": 138.0
+          },
+          "image": "sign_endgame_ground_star",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.0,
+          116.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115536706,
+        "entity_properties": {
+          "position": {
+            "x": 85.0,
+            "y": 116.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8470636606216431,
+            "y": 0.8419451713562012,
+            "z": 0.8419451713562012,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 85.0,
+            "y": 116.0
+          },
+          "line1": "sign_demo_bard_and_druid",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.0,
+          96.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373186,
+        "entity_properties": {
+          "position": {
+            "x": 111.0,
+            "y": 96.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 111.0,
+            "y": 96.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2",
+          "turn_away_bark": "queen_wishlist_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.0,
+          12.0,
+          19.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027706,
+        "entity_properties": {
+          "position": {
+            "x": 66.0,
+            "y": 12.0,
+            "z": 19.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 63028249,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.920073926448822,
+            "y": 0.004006653558462858,
+            "z": 0.004006653558462858,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 66.0,
+            "y": 12.0,
+            "z": 19.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0,
+          126.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032506,
+        "entity_properties": {
+          "position": {
+            "x": 21.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 21.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_exploits_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          124.0,
+          127.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 95543946,
+        "entity_properties": {
+          "position": {
+            "x": 124.0,
+            "y": 127.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 124.0,
+            "y": 127.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521067,
+        "entity_properties": {
+          "position": {
+            "x": 1.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 1.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_reading_the_level_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.0,
+          131.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373187,
+        "entity_properties": {
+          "position": {
+            "x": 110.0,
+            "y": 131.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 110.0,
+            "y": 131.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2",
+          "turn_away_bark": "queen_wishlist_5"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          126.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032507,
+        "entity_properties": {
+          "position": {
+            "x": 25.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 25.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_exploits_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.0,
+          50.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115503348,
+        "entity_properties": {
+          "position": {
+            "x": 106.0,
+            "y": 50.0,
+            "z": 33.0
+          },
+          "tint_color_a": {
+            "x": 0.920073926448822,
+            "y": 0.004006653558462858,
+            "z": 0.004006653558462858,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 106.0,
+            "y": 50.0,
+            "z": 33.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          152.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115373188,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 152.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": 270.0,
+          "theta_target": 270.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.38854169845581055,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -15.0,
+            "y": 152.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115373187
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          153.0,
+          37.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348468,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 153.0,
+            "z": 37.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -15.0,
+            "y": 153.0,
+            "z": 37.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348470
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.0,
+          59.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373188,
+        "entity_properties": {
+          "position": {
+            "x": 103.0,
+            "y": 59.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 103.0,
+            "y": 59.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          126.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032508,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 31.0,
+            "y": 126.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_exploits_4",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.0,
+          113.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520829,
+        "entity_properties": {
+          "position": {
+            "x": 26.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 26.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_clarity_4",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          145.0,
+          47.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115404469,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 145.0,
+            "z": 47.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 115348606,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.8069666028022766,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -15.0,
+            "y": 145.0,
+            "z": 47.0
+          },
+          "line1": "sign_end2_intro_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.0,
+          58.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373189,
+        "entity_properties": {
+          "position": {
+            "x": 142.0,
+            "y": 58.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 142.0,
+            "y": 58.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2",
+          "turn_away_bark": "queen_wishlist_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          124.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63032509,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 124.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 31.0,
+            "y": 124.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_exploits_5",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -13.0,
+          110.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521003,
+        "entity_properties": {
+          "position": {
+            "x": -13.0,
+            "y": 110.0,
+            "z": -24.0
+          },
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -13.0,
+            "y": 110.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_visuals_6",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0,
+          92.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115346123,
+        "entity_properties": {
+          "position": {
+            "x": 58.0,
+            "y": 92.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 58.0,
+            "y": 92.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 87038886
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.0,
+          19.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115596110,
+        "entity_properties": {
+          "position": {
+            "x": 110.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 110.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "image": "growing_connections0",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.0,
+          136.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115601710,
+        "entity_properties": {
+          "position": {
+            "x": 137.0,
+            "y": 136.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.19178687036037445,
+            "y": 0.0,
+            "z": 0.5697072744369507,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 137.0,
+            "y": 136.0,
+            "z": -21.0
+          },
+          "image": "sign_endgame_underworld",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -14.0,
+          145.0,
+          47.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115404470,
+        "entity_properties": {
+          "position": {
+            "x": -14.0,
+            "y": 145.0,
+            "z": 47.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 115348606,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.8069666028022766,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -14.0,
+            "y": 145.0,
+            "z": 47.0
+          },
+          "line1": "sign_end2_intro_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.0,
+          69.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373190,
+        "entity_properties": {
+          "position": {
+            "x": 48.0,
+            "y": 69.0
+          },
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 48.0,
+            "y": 69.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2",
+          "turn_away_bark": "queen_wishlist_4"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.0,
+          68.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111245231,
+        "entity_properties": {
+          "position": {
+            "x": 132.0,
+            "y": 68.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 111257804,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.9647319316864014,
+            "y": 0.0005427375435829163,
+            "z": 0.0005427375435829163,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 132.0,
+            "y": 68.0
+          },
+          "image": "sign_endgame_ground_star",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -18.0,
+          108.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520951,
+        "entity_properties": {
+          "position": {
+            "x": -18.0,
+            "y": 108.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -18.0,
+            "y": 108.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_visuals_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.0,
+          19.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115596111,
+        "entity_properties": {
+          "position": {
+            "x": 111.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 111.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "image": "growing_connections",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.0,
+          69.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115373151,
+        "entity_properties": {
+          "position": {
+            "x": 74.0,
+            "y": 69.0,
+            "z": 33.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 74.0,
+            "y": 69.0,
+            "z": 33.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "gold_room_connection_unlocker": true,
+          "tower_id": 115348473
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.0,
+          68.0,
+          35.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111234512,
+        "entity_properties": {
+          "position": {
+            "x": 118.0,
+            "y": 68.0,
+            "z": 35.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 118.0,
+            "y": 68.0,
+            "z": 35.0
+          },
+          "line1": "sign_pyramid",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          111.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520952,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 111.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -15.0,
+            "y": 111.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_visuals_5",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          75.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115373152,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 75.0,
+            "z": 33.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 80.0,
+            "y": 75.0,
+            "z": 33.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "gold_room_connection_unlocker": true,
+          "tower_id": 115348481
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.0,
+          109.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520873,
+        "entity_properties": {
+          "position": {
+            "x": 8.0,
+            "y": 109.0,
+            "z": -24.0
+          },
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 8.0,
+            "y": 109.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_progression_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          110.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520913,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 110.0,
+            "z": -24.0
+          },
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 7.0,
+            "y": 110.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_progression_4",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0,
+          69.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115373153,
+        "entity_properties": {
+          "position": {
+            "x": 86.0,
+            "y": 69.0,
+            "z": 33.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 86.0,
+            "y": 69.0,
+            "z": 33.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "gold_room_connection_unlocker": true,
+          "tower_id": 115348477
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          63.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115373154,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 63.0,
+            "z": 33.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 80.0,
+            "y": 63.0,
+            "z": 33.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348470
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.0,
+          147.0,
+          38.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348474,
+        "entity_properties": {
+          "position": {
+            "x": -9.0,
+            "y": 147.0,
+            "z": 38.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -9.0,
+            "y": 147.0,
+            "z": 38.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348473
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          19.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111245235,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 19.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.05421954020857811,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 80.0,
+            "y": 19.0
+          },
+          "image": "sign_endgame_ground_star",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521035,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 7.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_reading_the_level_5",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -11.0,
+          144.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348557,
+        "entity_properties": {
+          "position": {
+            "x": -11.0,
+            "y": 144.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.38854169845581055,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -11.0,
+            "y": 144.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348554
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          66.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027117,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 66.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 76.0,
+            "y": 66.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348544
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0,
+          19.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115598598,
+        "entity_properties": {
+          "position": {
+            "x": 112.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 112.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "image": "growing_connections2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -21.0,
+          147.0,
+          37.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348478,
+        "entity_properties": {
+          "position": {
+            "x": -21.0,
+            "y": 147.0,
+            "z": 37.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -21.0,
+            "y": 147.0,
+            "z": 37.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348477
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.0,
+          66.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027118,
+        "entity_properties": {
+          "position": {
+            "x": 66.0,
+            "y": 66.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": 270.0,
+          "theta_target": 270.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 66.0,
+            "y": 66.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115373172
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0,
+          105.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520959,
+        "entity_properties": {
+          "position": {
+            "x": -15.0,
+            "y": 105.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -15.0,
+            "y": 105.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_visuals_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          139.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521039,
+        "entity_properties": {
+          "position": {
+            "x": 2.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 2.0,
+            "y": 139.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_reading_the_level_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.0,
+          19.0,
+          25.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115598599,
+        "entity_properties": {
+          "position": {
+            "x": 113.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 113.0,
+            "y": 19.0,
+            "z": 25.0
+          },
+          "image": "growing_connections3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          72.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 63027119,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 72.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 76.0,
+            "y": 72.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348586
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0,
+          106.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115521004,
+        "entity_properties": {
+          "position": {
+            "x": -17.0,
+            "y": 106.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -17.0,
+            "y": 106.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_visuals_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0,
+          110.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520965,
+        "entity_properties": {
+          "position": {
+            "x": -17.0,
+            "y": 110.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -17.0,
+            "y": 110.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_visuals_4",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.0,
+          43.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115346125,
+        "entity_properties": {
+          "position": {
+            "x": 54.0,
+            "y": 43.0
+          },
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.12320732325315475,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 54.0,
+            "y": 43.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 87038892
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          58.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519086,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 58.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 83.0,
+            "y": 58.0
+          },
+          "line1": "sign_demo_skipping_stones",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_2",
+          "turn_away_bark": "queen_wishlist_5"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.0,
+          69.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519087,
+        "entity_properties": {
+          "position": {
+            "x": 48.0,
+            "y": 69.0
+          },
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 48.0,
+            "y": 69.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3",
+          "turn_away_bark": "queen_wishlist_4"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0,
+          78.0,
+          35.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115389567,
+        "entity_properties": {
+          "position": {
+            "x": 35.0,
+            "y": 78.0,
+            "z": 35.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.920073926448822,
+            "y": 0.004006653558462858,
+            "z": 0.004006653558462858,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 35.0,
+            "y": 78.0,
+            "z": 35.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0,
+          115.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519088,
+        "entity_properties": {
+          "position": {
+            "x": 86.0,
+            "y": 115.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.10374287515878677,
+            "y": 0.22757437825202942,
+            "z": 0.16210544109344482,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 86.0,
+            "y": 115.0
+          },
+          "line1": "sign_demo_phase_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_1",
+          "turn_away_bark": "queen_wishlist_1"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.0,
+          87.0,
+          33.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115389568,
+        "entity_properties": {
+          "position": {
+            "x": 73.0,
+            "y": 87.0,
+            "z": 33.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.920073926448822,
+            "y": 0.004006653558462858,
+            "z": 0.004006653558462858,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 73.0,
+            "y": 87.0,
+            "z": 33.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          124.0,
+          127.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 135373808,
+        "entity_properties": {
+          "position": {
+            "x": 124.0,
+            "y": 127.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 124.0,
+            "y": 127.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          117.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115519089,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 117.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.03343098238110542,
+            "y": 0.03343098238110542,
+            "z": 0.03343098238110542,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.41924625635147095,
+            "y": 0.37233272194862366,
+            "z": 0.30386224389076233
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 83.0,
+            "y": 117.0
+          },
+          "line1": "sign_demo_phase_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "demo_phase": "DEMO_PHASE_3"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.0,
+          113.0,
+          -24.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115520809,
+        "entity_properties": {
+          "position": {
+            "x": 29.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.3831176161766052,
+            "y": 0.3831176161766052,
+            "z": 0.3831176161766052
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": 29.0,
+            "y": 113.0,
+            "z": -24.0
+          },
+          "line1": "sign_end3_clarity_5",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -11.0,
+          150.0,
+          -21.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115348569,
+        "entity_properties": {
+          "position": {
+            "x": -11.0,
+            "y": 150.0,
+            "z": -21.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "y": 0.7406845688819885,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "tint_color_b": {
+            "x": 0.9092893004417419,
+            "y": 0.38854169845581055,
+            "z": 0.02473219484090805
+          },
+          "mesh": "overworld_plaque",
+          "visual_position": {
+            "x": -11.0,
+            "y": 150.0,
+            "z": -21.0
+          },
+          "image_y_scale": 0.800000011920929,
+          "display_hook": "TOWER_STATUS",
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "tower_id": 115348571
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -19.0,
+          147.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344129,
+        "entity_properties": {
+          "position": {
+            "x": -19.0,
+            "y": 147.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.8055219054222107,
+            "y": 0.8055219054222107,
+            "z": 0.8055219054222107,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": -19.0,
+            "y": 147.0
+          },
+          "display_hook": "END1_STATUS",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "gold_room_connection_unlocker": true
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           122.0,
           77.0,
           -21.0

@@ -1611,6 +1611,14 @@ function openPopup(e) {
     footer += getSubtitleWrapper(level_audio[o.name] ?? []);
   }
 
+  if (o.type == 'Sign') {
+    const key = o.entity_properties?.line1 ?? o.entity_properties?.image ?? o.entity_properties?.display_hook;
+    if (key) {
+      footer += `<div class="subtitle-wrapper">${translate(key)}</div>`
+    }
+  }
+
+
   let content = `${header}${image}${subtitle}${footer}`;
 
   if (o.type=='Level_Entry') {
@@ -2058,7 +2066,7 @@ function drawMap() {
     }
 
     // pre-create groups
-    for (const group of ['areas','freezers','teleporters','audio','treasure','levels']) {
+    for (const group of ['areas','freezers','teleporters','audio','treasure','sign','levels']) {
       if (!layers[group]) {
         layers[group] = L.layerGroup();
         layers[group].id = group;
@@ -2116,6 +2124,7 @@ function drawMap() {
         Marker:       { label: '\u2727',        make: () => ({ marker: teleportTargets[o.id] ? customMarker(latlng, feature) : null, group: 'teleporters' }) },
         Voice_Log:    { label: '\u266B',        make: () => ({ marker: customMarker(latlng, feature), group: 'audio' }) },
         Treasure:     { label: '\u2727',        make: () => ({ marker: customMarker(latlng, feature), group: 'treasure' }) },
+        Sign:         { label: '\u2691',        make: () => ({ marker: customMarker(latlng, feature), group: 'sign' }) },
       };
 
       const p = params[o.type];

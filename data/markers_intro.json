@@ -5675,6 +5675,4915 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          47.0,
+          10.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111149186,
+        "entity_properties": {
+          "position": {
+            "x": 47.0,
+            "y": 10.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "entity_name": "intro_69_sign",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.9178853631019592,
+            "z": 0.18449021875858307,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 47.0,
+            "y": 10.0
+          },
+          "image": "sign_combinator",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "look_at_bark": "intro_queen_sign"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          23.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111149209,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 23.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 45.0,
+            "y": 23.0
+          },
+          "line1": "sign_push_rock",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.0,
+          47.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111149222,
+        "entity_properties": {
+          "position": {
+            "x": 41.0,
+            "y": 47.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 115343472,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.23965859413146973,
+            "z": 0.0032756885048002005,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 41.0,
+            "y": 47.0
+          },
+          "line1": "sign_follow",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.550000011920929,
+          "unlock_freezers_with_rank": 255
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.0,
+          47.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111149224,
+        "entity_properties": {
+          "position": {
+            "x": 49.0,
+            "y": 47.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 115343472,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.23965859413146973,
+            "z": 0.0032756885048002005,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 49.0,
+            "y": 47.0
+          },
+          "line1": "sign_thought",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.550000011920929,
+          "unlock_freezers_with_rank": 255
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          17.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111149234,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 17.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.6836708188056946,
+            "z": 0.1844901740550995,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 17.0
+          },
+          "line1": "sign_start_tutorial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.0,
+          10.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 111149307,
+        "entity_properties": {
+          "position": {
+            "x": 43.0,
+            "y": 10.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.9178853631019592,
+            "z": 0.18449021875858307,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 43.0,
+            "y": 10.0
+          },
+          "line1": "sign_forged",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.0,
+          27.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344412,
+        "entity_properties": {
+          "position": {
+            "x": 48.0,
+            "y": 27.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "entity_flags": "INVISIBLE|DOES_NOT_FALL",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 48.0,
+            "y": 27.0
+          },
+          "line1": "sign_undo_alt",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344441,
+        "entity_properties": {
+          "position": {
+            "x": 20.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 20.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_heroes_3",
+          "image": "sign_illustration_heroes_C",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344444,
+        "entity_properties": {
+          "position": {
+            "x": 18.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 18.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_heroes_1",
+          "image": "sign_illustration_heroes_A",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344445,
+        "entity_properties": {
+          "position": {
+            "x": 20.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 20.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_skipping_3",
+          "image": "sign_illustration_skipping_C",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344450,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 19.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_heroes_2",
+          "image": "sign_illustration_heroes_B",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.0,
+          45.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344455,
+        "entity_properties": {
+          "position": {
+            "x": 23.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 23.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_mirror_2",
+          "image": "sign_illustration_mirror_B",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344456,
+        "entity_properties": {
+          "position": {
+            "x": 16.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 16.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_promesst_1",
+          "image": "sign_illustration_promesst_A",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          42.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344460,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 42.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 19.0,
+            "y": 42.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_skipping_2",
+          "image": "sign_illustration_skipping_B",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344462,
+        "entity_properties": {
+          "position": {
+            "x": 22.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 22.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_mirror_1",
+          "image": "sign_illustration_mirror_A",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344466,
+        "entity_properties": {
+          "position": {
+            "x": 18.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 18.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_skipping_1",
+          "image": "sign_illustration_skipping_A",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344468,
+        "entity_properties": {
+          "position": {
+            "x": 16.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 16.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_promesst_3",
+          "image": "sign_illustration_promesst_C",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.0,
+          45.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344470,
+        "entity_properties": {
+          "position": {
+            "x": 15.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 15.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_promesst_2",
+          "image": "sign_illustration_promesst_B",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344473,
+        "entity_properties": {
+          "position": {
+            "x": 22.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 22.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_art_mirror_3",
+          "image": "sign_illustration_mirror_C",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344482,
+        "entity_properties": {
+          "position": {
+            "x": 29.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 29.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "line1": "sign_overworld_design_room",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344483,
+        "entity_properties": {
+          "position": {
+            "x": 34.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 34.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_overworld_design_4",
+          "image": "sign_illustration_overworld_C",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          46.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344484,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 31.0,
+            "y": 46.0,
+            "z": 2.0
+          },
+          "line1": "sign_overworld_design_1",
+          "image": "sign_illustration_overworld_D",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344486,
+        "entity_properties": {
+          "position": {
+            "x": 33.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 33.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_overworld_design_3",
+          "image": "sign_illustration_overworld_B",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.0,
+          45.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344489,
+        "entity_properties": {
+          "position": {
+            "x": 32.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 32.0,
+            "y": 45.0,
+            "z": 2.0
+          },
+          "line1": "sign_overworld_design_2",
+          "image": "sign_illustration_overworld_A",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          63.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344490,
+        "entity_properties": {
+          "position": {
+            "x": 63.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8847140073776245,
+            "y": 0.49196356534957886,
+            "z": 0.01683741621673107,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 63.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_illustrations",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344492,
+        "entity_properties": {
+          "position": {
+            "x": 62.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 62.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_promesst_3",
+          "image": "sign_illustration_promesst_overhead_C",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344493,
+        "entity_properties": {
+          "position": {
+            "x": 57.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 57.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_elaborated",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344497,
+        "entity_properties": {
+          "position": {
+            "x": 60.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 60.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_promesst_1",
+          "image": "sign_illustration_promesst_overhead_A",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344499,
+        "entity_properties": {
+          "position": {
+            "x": 61.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 61.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_promesst_2",
+          "image": "sign_illustration_promesst_overhead_B",
+          "image_y_scale": 0.7400000095367432,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "text_y": 0.10000000149011612
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344500,
+        "entity_properties": {
+          "position": {
+            "x": 54.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 54.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344504,
+        "entity_properties": {
+          "position": {
+            "x": 68.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 68.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_expanded",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344509,
+        "entity_properties": {
+          "position": {
+            "x": 66.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 66.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344519,
+        "entity_properties": {
+          "position": {
+            "x": 76.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 76.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_tuned",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344528,
+        "entity_properties": {
+          "position": {
+            "x": 74.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 74.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344531,
+        "entity_properties": {
+          "position": {
+            "x": 75.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 75.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_reduced",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344535,
+        "entity_properties": {
+          "position": {
+            "x": 87.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 87.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_economized",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344541,
+        "entity_properties": {
+          "position": {
+            "x": 86.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 86.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344545,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": -0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 80.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.0,
+          44.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344553,
+        "entity_properties": {
+          "position": {
+            "x": 79.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 79.0,
+            "y": 44.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_clarity",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344557,
+        "entity_properties": {
+          "position": {
+            "x": 85.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 85.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_compacted",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          84.0,
+          43.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344562,
+        "entity_properties": {
+          "position": {
+            "x": 84.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 84.0,
+            "y": 43.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344568,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": -0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 82.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_simplified_again",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344573,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": -0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 83.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_cleaned_up",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344575,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": -0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 81.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_simplified",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0,
+          47.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344578,
+        "entity_properties": {
+          "position": {
+            "x": 88.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 88.0,
+            "y": 47.0,
+            "z": 2.0
+          },
+          "line1": "sign_design_economized_again",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.0,
+          46.0,
+          6.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344643,
+        "entity_properties": {
+          "position": {
+            "x": 11.0,
+            "y": 46.0,
+            "z": 6.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 11.0,
+            "y": 46.0,
+            "z": 6.0
+          },
+          "line1": "sign_design_reimagined",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.0,
+          47.0,
+          6.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344650,
+        "entity_properties": {
+          "position": {
+            "x": 11.0,
+            "y": 47.0,
+            "z": 6.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 11.0,
+            "y": 47.0,
+            "z": 6.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.0,
+          49.0,
+          8.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344654,
+        "entity_properties": {
+          "position": {
+            "x": 10.0,
+            "y": 49.0,
+            "z": 8.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 10.0,
+            "y": 49.0,
+            "z": 8.0
+          },
+          "line1": "sign_design_focused",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          47.0,
+          4.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344673,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 47.0,
+            "z": 4.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 7.0,
+            "y": 47.0,
+            "z": 4.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.0,
+          48.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344681,
+        "entity_properties": {
+          "position": {
+            "x": 4.0,
+            "y": 48.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 4.0,
+            "y": 48.0,
+            "z": 1.0
+          },
+          "line1": "sign_design_streamlined",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          48.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344684,
+        "entity_properties": {
+          "position": {
+            "x": 2.0,
+            "y": 48.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 2.0,
+            "y": 48.0,
+            "z": 1.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.0,
+          49.0,
+          8.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344690,
+        "entity_properties": {
+          "position": {
+            "x": 8.0,
+            "y": 49.0,
+            "z": 8.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 8.0,
+            "y": 49.0,
+            "z": 8.0
+          },
+          "line1": "sign_design_initial",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          46.0,
+          4.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344691,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 7.0,
+            "y": 46.0,
+            "z": 4.0
+          },
+          "line1": "sign_design_clarified",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          1.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344704,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 82.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "line1": "credits_additional_art",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344735,
+        "entity_properties": {
+          "position": {
+            "x": 69.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 69.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "line1": "credits_design_interns",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0,
+          3.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344749,
+        "entity_properties": {
+          "position": {
+            "x": 87.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 87.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "line1": "credits_programming",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344757,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 81.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "line1": "credits_visual_artists",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          64.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344833,
+        "entity_properties": {
+          "position": {
+            "x": 64.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 64.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "line1": "sign_credits",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344836,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 82.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_character_animation",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.0,
+          3.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344876,
+        "entity_properties": {
+          "position": {
+            "x": 54.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 54.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "line1": "credits_thanks",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344889,
+        "entity_properties": {
+          "position": {
+            "x": 61.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End3",
+          "visual_position": {
+            "x": 61.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "image": "sign_endgame_underworld",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0,
+          1.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344916,
+        "entity_properties": {
+          "position": {
+            "x": 58.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 58.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "line1": "credits_directed",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          69.0,
+          1.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344923,
+        "entity_properties": {
+          "position": {
+            "x": 69.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 69.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "line1": "credits_design",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.0,
+          5.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344937,
+        "entity_properties": {
+          "position": {
+            "x": 88.0,
+            "y": 5.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 88.0,
+            "y": 5.0,
+            "z": 2.0
+          },
+          "line1": "credits_additional_programming",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          5.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344946,
+        "entity_properties": {
+          "position": {
+            "x": 72.0,
+            "y": 5.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 72.0,
+            "y": 5.0,
+            "z": 2.0
+          },
+          "line1": "credits_design_others",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          70.0,
+          3.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344973,
+        "entity_properties": {
+          "position": {
+            "x": 70.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 70.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "line1": "credits_zach",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344979,
+        "entity_properties": {
+          "position": {
+            "x": 80.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 80.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_visual_art_leads",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344990,
+        "entity_properties": {
+          "position": {
+            "x": 61.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 61.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345006,
+        "entity_properties": {
+          "position": {
+            "x": 21.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 21.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "line1": "credits_testers",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345013,
+        "entity_properties": {
+          "position": {
+            "x": 17.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 17.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "line1": "credits_playtesters",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0,
+          1.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345017,
+        "entity_properties": {
+          "position": {
+            "x": 28.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 28.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "line1": "credits_production",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345020,
+        "entity_properties": {
+          "position": {
+            "x": 19.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 270.0,
+          "theta_target": 270.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 19.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "line1": "credits_test_lead",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345021,
+        "entity_properties": {
+          "position": {
+            "x": 32.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 32.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "line1": "credits_publisher",
+          "line_stride_factor": 0.20000000298023224,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0,
+          2.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345032,
+        "entity_properties": {
+          "position": {
+            "x": 9.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 9.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "line1": "credits_voice_skipping",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0,
+          6.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345033,
+        "entity_properties": {
+          "position": {
+            "x": 9.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 9.0,
+            "y": 6.0,
+            "z": 2.0
+          },
+          "line1": "credits_voice_heroes",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345034,
+        "entity_properties": {
+          "position": {
+            "x": 11.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 135266335,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 11.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_voice_mirror",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345041,
+        "entity_properties": {
+          "position": {
+            "x": 9.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 9.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_voice_overworld",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345048,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 7.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_voice_promesst",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345060,
+        "entity_properties": {
+          "position": {
+            "x": 1.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "group_id": 135266335,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 1.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_audio",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345373,
+        "entity_properties": {
+          "position": {
+            "x": 7.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.22025322914123535,
+            "z": 0.0010302745504304767
+          },
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 7.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "image": "laws_of_form_page_5",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345374,
+        "entity_properties": {
+          "position": {
+            "x": 5.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.22025322914123535,
+            "z": 0.0010302745504304767
+          },
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 5.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "image": "laws_of_form",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0,
+          24.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345375,
+        "entity_properties": {
+          "position": {
+            "x": 3.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.22025322914123535,
+            "z": 0.0010302745504304767
+          },
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 3.0,
+            "y": 24.0,
+            "z": 1.0
+          },
+          "line1": "caption_sky_10000_things",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0,
+          27.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345447,
+        "entity_properties": {
+          "position": {
+            "x": 81.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.22025322914123535,
+            "z": 0.0010302745504304767
+          },
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 81.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "image": "mandelbrot1",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          83.0,
+          27.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345449,
+        "entity_properties": {
+          "position": {
+            "x": 83.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.22025322914123535,
+            "z": 0.0010302745504304767
+          },
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 83.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "image": "conway_life",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.0,
+          27.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345450,
+        "entity_properties": {
+          "position": {
+            "x": 82.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.22025322914123535,
+            "z": 0.0010302745504304767
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 82.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "image": "mandelbrot2",
+          "image_y_scale": 0.699999988079071,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0,
+          7.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345521,
+        "entity_properties": {
+          "position": {
+            "x": 12.0,
+            "y": 7.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 12.0,
+            "y": 7.0,
+            "z": 2.0
+          },
+          "line1": "credits_voice_general",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.0,
+          26.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345552,
+        "entity_properties": {
+          "position": {
+            "x": 33.0,
+            "y": 26.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 33.0,
+            "y": 26.0,
+            "z": 1.0
+          },
+          "line1": "sign_timeline_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          26.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345553,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 26.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 31.0,
+            "y": 26.0,
+            "z": 1.0
+          },
+          "line1": "sign_timeline_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.0,
+          26.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345554,
+        "entity_properties": {
+          "position": {
+            "x": 29.0,
+            "y": 26.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": 270.0,
+          "theta_target": 270.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 29.0,
+            "y": 26.0,
+            "z": 1.0
+          },
+          "line1": "sign_timeline_3",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.0,
+          27.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345555,
+        "entity_properties": {
+          "position": {
+            "x": 72.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 72.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "line1": "sign_difficult_puzzles",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.0,
+          1.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345663,
+        "entity_properties": {
+          "position": {
+            "x": 36.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 36.0,
+            "y": 1.0,
+            "z": 2.0
+          },
+          "line1": "credits_china_publisher",
+          "line_stride_factor": 0.20000000298023224,
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.0,
+          4.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115345692,
+        "entity_properties": {
+          "position": {
+            "x": 5.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 5.0,
+            "y": 4.0,
+            "z": 2.0
+          },
+          "line1": "credits_music_production",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.0,
+          21.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343691,
+        "entity_properties": {
+          "position": {
+            "x": 53.0,
+            "y": 21.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 53.0,
+            "y": 21.0
+          },
+          "line1": "sign_two_rocks",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.0,
+          28.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343711,
+        "entity_properties": {
+          "position": {
+            "x": 50.0,
+            "y": 28.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 50.0,
+            "y": 28.0
+          },
+          "line1": "sign_checkpoint",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.0,
+          30.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343712,
+        "entity_properties": {
+          "position": {
+            "x": 43.0,
+            "y": 30.0
+          },
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 43.0,
+            "y": 30.0
+          },
+          "line1": "sign_reset_to_checkpoint",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.0,
+          33.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343713,
+        "entity_properties": {
+          "position": {
+            "x": 54.0,
+            "y": 33.0
+          },
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 54.0,
+            "y": 33.0
+          },
+          "line1": "sign_reset",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.0,
+          75.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343742,
+        "entity_properties": {
+          "position": {
+            "x": 33.0,
+            "y": 75.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "entity_flags": "INVISIBLE|DOES_NOT_FALL",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7465033531188965,
+            "z": 0.18449021875858307,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 33.0,
+            "y": 75.0,
+            "z": 1.0
+          },
+          "line1": "sign_undo_reset",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.0,
+          3.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343778,
+        "entity_properties": {
+          "position": {
+            "x": 39.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "tint_color_a": {
+            "x": 0.11665116250514984,
+            "y": 0.0016584465047344565,
+            "z": 0.0016584465047344565
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 39.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "line1": "sign_lobby_1",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.0,
+          3.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343779,
+        "entity_properties": {
+          "position": {
+            "x": 51.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "tint_color_a": {
+            "x": 0.11665116250514984,
+            "y": 0.0016584465047344565,
+            "z": 0.0016584465047344565
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 51.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "line1": "sign_lobby_2",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343937,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "entity_name": "intro_end3_sign",
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End3",
+          "visual_position": {
+            "x": 40.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "image": "sign_endgame_underworld",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343939,
+        "entity_properties": {
+          "position": {
+            "x": 50.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "entity_name": "intro_end2_sign",
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 50.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.0,
+          21.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343941,
+        "entity_properties": {
+          "position": {
+            "x": 39.0,
+            "y": 21.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.11665116250514984,
+            "y": 0.0016584465047344565,
+            "z": 0.0016584465047344565,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_End2",
+          "visual_position": {
+            "x": 39.0,
+            "y": 21.0,
+            "z": 2.0
+          },
+          "image": "sign_endgame_sky",
+          "image_y_scale": 0.800000011920929,
+          "color": {
+            "x": 0.8893442749977112,
+            "y": 0.8893442749977112,
+            "z": 0.8893442749977112,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          48.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115343950,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "tint_color_a": {
+            "y": 0.0002568111231084913,
+            "z": 0.0,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_D",
+          "visual_position": {
+            "x": 45.0,
+            "y": 48.0,
+            "z": 2.0
+          },
+          "image": "sign_endgame_ground_star",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "unlock_freezers_with_rank": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0,
+          27.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344052,
+        "entity_properties": {
+          "position": {
+            "x": 22.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 22.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "line1": "sign_original_star",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.0,
+          27.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344053,
+        "entity_properties": {
+          "position": {
+            "x": 16.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 270.0,
+          "theta_target": 270.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 16.0,
+            "y": 27.0,
+            "z": 1.0
+          },
+          "line1": "sign_new_star",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0,
+          22.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344061,
+        "entity_properties": {
+          "position": {
+            "x": 31.0,
+            "y": 22.0,
+            "z": 1.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 135266335,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_C",
+          "visual_position": {
+            "x": 31.0,
+            "y": 22.0,
+            "z": 1.0
+          },
+          "line1": "sign_osst",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.0,
+          31.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344128,
+        "entity_properties": {
+          "position": {
+            "x": 55.0,
+            "y": 31.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 55.0,
+            "y": 31.0
+          },
+          "line1": "sign_run",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          -4.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 115344337,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": -4.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.9178853631019592,
+            "z": 0.18449021875858307,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": -4.0
+          },
+          "line1": "sign_entry_window",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          54.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914687,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 54.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 135266335,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "x": 0.8847140073776245,
+            "y": 0.49196356534957886,
+            "z": 0.01683741621673107,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 45.0,
+            "y": 54.0,
+            "z": 2.0
+          },
+          "line1": "sign_strive",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0,
+          66.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914689,
+        "entity_properties": {
+          "position": {
+            "x": 45.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "group_id": 115343517,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_B",
+          "visual_position": {
+            "x": 45.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "line1": "credits_base_games",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.0,
+          73.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914691,
+        "entity_properties": {
+          "position": {
+            "x": 42.0,
+            "y": 73.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 1.0,
+            "w": -4.371138828673793e-08
+          },
+          "group_id": 115343517,
+          "theta_current": 180.0,
+          "theta_target": 180.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 42.0,
+            "y": 73.0,
+            "z": 2.0
+          },
+          "line1": "credits_game_h",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.0,
+          57.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914693,
+        "entity_properties": {
+          "position": {
+            "x": 40.0,
+            "y": 57.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": 0.7071068286895752
+          },
+          "group_id": 115343517,
+          "theta_current": 90.0,
+          "theta_target": 90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 40.0,
+            "y": 57.0,
+            "z": 2.0
+          },
+          "line1": "credits_game_s",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.0,
+          66.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914695,
+        "entity_properties": {
+          "position": {
+            "x": 34.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "group_id": 115343517,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 34.0,
+            "y": 66.0,
+            "z": 2.0
+          },
+          "line1": "credits_game_p",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.0,
+          67.0,
+          2.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914697,
+        "entity_properties": {
+          "position": {
+            "x": 55.0,
+            "y": 67.0,
+            "z": 2.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "group_id": 115343517,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 55.0,
+            "y": 67.0,
+            "z": 2.0
+          },
+          "line1": "credits_game_m",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.0,
+          26.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914575,
+        "entity_properties": {
+          "position": {
+            "x": 48.0,
+            "y": 26.0
+          },
+          "orientation": {
+            "z": 0.7071068286895752,
+            "w": -0.7071068286895752
+          },
+          "theta_current": 270.0,
+          "theta_target": 270.0,
+          "tint_color_a": {
+            "y": 0.5113319158554077,
+            "z": 0.02095613069832325,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 48.0,
+            "y": 26.0
+          },
+          "line1": "sign_undo",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.0,
+          -21.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 62914569,
+        "entity_properties": {
+          "position": {
+            "x": 42.0,
+            "y": -21.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "entity_flags": "INVISIBLE|DOES_NOT_FALL",
+          "entity_name": "start_sign_keyboard",
+          "group_id": 115343732,
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7465033531188965,
+            "z": 0.18449021875858307,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 42.0,
+            "y": -21.0
+          },
+          "line1": "sign_start",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.0,
+          -21.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "type": "Sign",
+        "id": 95420499,
+        "entity_properties": {
+          "position": {
+            "x": 41.0,
+            "y": -21.0
+          },
+          "orientation": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -0.7071067690849304,
+            "w": 0.7071067690849304
+          },
+          "entity_flags": "INVISIBLE|DOES_NOT_FALL",
+          "entity_name": "start_sign_gamepad",
+          "theta_current": -90.0,
+          "theta_target": -90.0,
+          "tint_color_a": {
+            "y": 0.7465033531188965,
+            "z": 0.18449021875858307,
+            "w": 0.6000000238418579
+          },
+          "mesh": "overworld_plaque_A",
+          "visual_position": {
+            "x": 41.0,
+            "y": -21.0
+          },
+          "line1": "sign_start_gamepad",
+          "color": {
+            "y": 0.6210259795188904,
+            "z": 1.0,
+            "w": 1.0
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           49.0,
           2.0,
           0.0
