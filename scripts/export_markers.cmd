@@ -21,8 +21,11 @@ set filter=Level_Entry Area_Pin Marker Freezer Teleporter Voice_Log Treasure Sig
 
 rem set filter=-x Inanimate -x GAME_PROM_Bars_Straight_MOR_A -x Wall_Set -x Fence -x Decal -x Group -x Procedurally_Animating -x Point_Light -x Light_Probe -x Particle_Source
 
-python simp_tool.py markers "%package%" --output ../data/markers.json --schema schema.json --entities "%entities%\overworld.entities" --entity-properties %filter%
+rem python simp_tool.py markers "%package%" --output ../data/markers.json --schema schema.json --entities "%entities%\overworld.entities" --entity-properties %filter%
 
-python simp_tool.py markers "%package%" --output ../data/markers_intro.json --schema schema.json --entities "%entities%\intro.entities" --entity-properties %filter%
+rem python simp_tool.py markers "%package%" --output ../data/markers_intro.json --schema schema.json --entities "%entities%\intro.entities" --entity-properties %filter%
 
-python simp_tool.py markers "%package%" --output ../data/markers_stones.json --schema schema.json --entities "%entities%\skipping_stones.entities" --entity-properties %filter%
+rem python simp_tool.py markers "%package%" --output ../data/markers_stones.json --schema schema.json --entities "%entities%\skipping_stones.entities" --entity-properties %filter%
+
+
+python simp_tool.py markers "%package%" --output ../data/markers.json --schema schema.json --entity-properties %filter% --entities "%entities%\overworld.entities" --entities "%entities%\skipping_stones.entities" --entities "%entities%\intro.entities" --entities "%entities%\skipping_stones.entities"

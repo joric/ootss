@@ -77,7 +77,7 @@ examples:
   Whitelist then remove some:
     python simp_tool.py markers levels.package --entities overworld.entities Monster Fence --exclude Fence
 
-  Export with all entity properties nested under properties.entity_properties:
+  Export with every decoded entity field directly on the properties object:
     python simp_tool.py markers levels.package --entities overworld.entities --entity-properties
 
   Collect markers from several sources (repeat the option; entry name or file path):
@@ -579,6 +579,14 @@ def pick_area(set_names):
     return next((s for s in set_names if s not in GENERIC_LEVEL_SETS and 'drafts' not in s), "UNDEFINED")
 
 
+def source_entities_name(source):
+    """The 'entities' name for an entities source: its file name without the .entities extension."""
+    base = file_name_of(source)
+    if base.lower().endswith(".entities"):
+        base = base[:-len(".entities")]
+    return base
+
+
 def _json_safe(value):
     """Make a decoded value safe for JSON serialization."""
     if isinstance(value, bytes):
@@ -663,7 +671,7 @@ def read_level_entries(entries, sources, include_types=None, exclude_types=None,
                 if name is None:
                     continue
 
-                # Track position and level_name for geometry / area lookup
+                # Track position and level_name for geometry / level_set lookup
                 if name in POSITION_FIELDS:
                     position[POSITION_FIELDS[name]] = member["value"]
                 elif name == LEVEL_NAME_FIELD:
@@ -677,7 +685,8 @@ def read_level_entries(entries, sources, include_types=None, exclude_types=None,
                         continue
                     properties[name] = value
 
-            entry = {"id": entity_id, "type": type_name, "level": level_name, **position}
+            entry = {"id": entity_id, "type": type_name, "level": level_name,
+                     "source": source, **position}
             if entity_properties:
                 entry["properties"] = properties
             result.append(entry)
@@ -689,24 +698,27 @@ def build_geojson(level_entries, areas, entity_properties=False):
     for entry in sorted(level_entries, key=lambda e: (e["type"], e["level"] or "")):
         set_names = areas.get((entry["level"] or "").lower(), [])
 
-        # id is always present
+        # type, id and entities are always present; entities comes from the source file name
         props = {
             "type": entry["type"],
             "id": entry["id"],
+            "entities": source_entities_name(entry["source"]),
         }
 
         # name only when the entity actually has one
         if entry["level"]:
             props["name"] = entry["level"]
 
-        # area only when known
-        area = pick_area(set_names)
-        if area is not None:
-            props["area"] = area
+        # level_set only when known (the old "area" value, from .level_set files)
+        level_set = pick_area(set_names)
+        if level_set is not None:
+            props["level_set"] = level_set
 
-        # All entity fields go under entity_properties (nested by dotted name)
+        # decoded entity fields sit directly on the properties object; the derived
+        # fields above win when a struct member has the same name
         if entity_properties:
-            props["entity_properties"] = _nest_dotted(entry.get("properties", {}))
+            for key, value in _nest_dotted(entry.get("properties", {})).items():
+                props.setdefault(key, value)
 
         features.append({
             "type": "Feature",
@@ -1355,18 +1367,18 @@ def command_markers(args):
                                 entity_properties=args.entity_properties),
                   f, indent=2, ensure_ascii=False)
 
-    without_area = [e["level"] for e in level_entries
-                    if e["level"] and not areas.get(e["level"].lower())]
+    without_level_set = [e["level"] for e in level_entries
+                         if e["level"] and not areas.get(e["level"].lower())]
     print(f"Wrote {len(level_entries)} level entries from {len(sources)} source(s) to {args.output}")
     if args.types:
         print(f"Included types: {', '.join(args.types)}")
     if args.exclude:
         print(f"Excluded types: {', '.join(args.exclude)}")
     if args.entity_properties:
-        print("Included entity properties under 'entity_properties'")
-    if without_area:
-        print(f"{len(without_area)} without an area (not in any level set): "
-              + ", ".join(str(n) for n in without_area))
+        print("Included decoded entity fields directly on the properties object")
+    if without_level_set:
+        print(f"{len(without_level_set)} without a level_set (level not in any level set): "
+              + ", ".join(str(n) for n in without_level_set))
 
 
 def command_schema(args):
@@ -1510,9 +1522,9 @@ def build_parser():
     sub.add_argument("-x", "--exclude", action="append", default=[], metavar="Type",
                      help="entity type to exclude (repeatable). Applied after the whitelist")
     sub.add_argument("--entity-properties", action="store_true",
-                     help="include every decoded entity member under properties.entity_properties "
-                          "(arrays whose elements are all empty strings are dropped, "
-                          "dotted names are nested)")
+                     help="include every decoded entity field directly on the feature's "
+                          "properties object (arrays whose elements are all empty strings "
+                          "are dropped, dotted names are nested)")
     add_schema_options(sub)
 
     sub = add_command(commands, "schema", "read the Type_Info from the game exe and save it as a JSON schema",

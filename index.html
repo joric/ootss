@@ -793,28 +793,6 @@ const teleportTargets = {};
 const featureLookup = {};
 let baseLayers={};
 
-let regionColors = {
-  heroes1:'#ff0000',
-  heroes2:'#00ff00',
-  heroes3:'#ff00ff',
-  mirror: '#ffa500',
-  promesst1_and_2: '#0000ff',
-  heroes_and_water: 'cyan',
-  heroes_and_mirrors: 'forestgreen',
-  worlds_collide: 'gold',
-  sideways_gates: 'brown',
-  skipping_stones: `darkseagreen`,
-  clones: 'yellowgreen',
-  beams_and_mirrors: `darkcyan`,
-  beams_and_stones: 'lightgreen',
-  heroes_and_stones: 'chocolate',
-  beaming_objects: 'tomato',
-  beams_and_basic_heroes: 'steelblue',
-  mirrorable_stones: 'mediumorchid',
-  mirrors_and_stones: 'mediumpurple',
-  promesst3: 'indigo',
-};
-
 let images = [];
 
 let currentOpenMarker = null;
@@ -900,7 +878,29 @@ function getIconHTML(feature, size=48) {
 
   let areaColors = {'overworld': 'orange', 'sky': 'royalblue', 'underworld': 'brown', 'intro': 'tan'};
 
-  let color = regionColors[o.area] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
+  let setColors = {
+    heroes1:'#ff0000',
+    heroes2:'#00ff00',
+    heroes3:'#ff00ff',
+    mirror: '#ffa500',
+    promesst1_and_2: '#0000ff',
+    heroes_and_water: 'cyan',
+    heroes_and_mirrors: 'forestgreen',
+    worlds_collide: 'gold',
+    sideways_gates: 'brown',
+    skipping_stones: `darkseagreen`,
+    clones: 'yellowgreen',
+    beams_and_mirrors: `darkcyan`,
+    beams_and_stones: 'lightgreen',
+    heroes_and_stones: 'chocolate',
+    beaming_objects: 'tomato',
+    beams_and_basic_heroes: 'steelblue',
+    mirrorable_stones: 'mediumorchid',
+    mirrors_and_stones: 'mediumpurple',
+    promesst3: 'indigo',
+  };
+
+  let color = setColors[o.level_set] || (o.type=='Level_Entry' && areaColors[getBaseLayer(feature)]) || 'dimgrey';
 
   //let color = o.areaFound ? areaColors[getBaseLayer(feature)] : 'dimgrey';
 
@@ -915,11 +915,11 @@ function getIconHTML(feature, size=48) {
     title = '';
   }
 
-  let label = o.name || o.entity_properties?.name || o.type;
+  let label = o.name || o.type;
 
   if (o.type=='Freezer') {
     label = `Freezer`;
-    let id = o.entity_properties?.unlocked_by_id;
+    let id = o.unlocked_by_id;
     let slug = nameLookup[id];
     if (slug) {
       label = `[${slug}]`;
@@ -973,13 +973,13 @@ function formatTime(seconds) {
 
 function getSearchText(feature) {
   const o = feature.properties;
-  const title = (o.name || o.type || o.entity_properties?.name)?.toLowerCase();
+  const title = (o.name || o.type)?.toLowerCase();
 
   let text = '';
 
   const searchSubs = true;
   if (searchSubs) {
-    const keys = (o.type == 'Voice_Log' ? [o.entity_properties?.name] : level_audio[o.name]) ?? [];
+    const keys = (o.type == 'Voice_Log' ? [o.name] : level_audio[o.name]) ?? [];
     for (const key of keys) {
       const subs = subtitles[key];
       if (subs) {
@@ -1292,14 +1292,14 @@ function getCentroidRaw2(points) {
 }
 
 let config = {
-  overworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-4,10] },
-  sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [10,75] },
-  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-57, -4] },
-  intro: {"bounds": { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0} },
-  minimap: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [89, 89], overlay: true },
-  minimap_high: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [104, 110], overlay: true },
-  minimap_low: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [78, 78], overlay: true },
-  stones: {"bounds": { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, overlay: true },
+  overworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-4,10], entities: "overworld" },
+  sky: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [10,75], entities: "overworld" },
+  underworld: {"bounds": { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, "heightRange": [-57, -4], entities: "overworld" },
+  intro: {"bounds": { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0}, entities: "intro" },
+  minimap: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [89, 89], overlay: true, entities: "overworld" },
+  minimap_high: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [104, 110], overlay: true, entities: "overworld" },
+  minimap_low: {"bounds": {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, "heightRange": [78, 78], overlay: true, entities: "overworld" },
+  stones: {"bounds": { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, overlay: true, entities: "skipping_stones" },
 }
 
 // 126 x 101, corner (-25, -17)
@@ -1309,18 +1309,23 @@ const fullName = (name,location) => name + locationSeparator + location;
 const baseName = name => (name || '').replace(new RegExp(`${locationSeparator}.*$`), '');
 
 const getBaseLayer = feature => {
-  const defaultLayer = Object.keys(config)[0];
   if (!feature || !feature.properties) return defaultLayer;
-  if (feature.properties.baseLayer) return feature.properties.baseLayer;
-  const z = feature.geometry.coordinates[2]
-  for (const [name, values] of Object.entries(config)) {
-    if (values.heightRange) {
-      const [a,b] = values.heightRange;
+
+  const o = feature.properties;
+  const defaultLayer = Object.keys(config)[0];
+
+  for (const [name, conf] of Object.entries(config)) {
+    if (conf.heightRange && conf.entities == o.entities) {
+      const [a,b] = conf.heightRange;
+      const z = feature.geometry.coordinates[2]
       if (z >= a && z <= b) {
         return name;
       }
+    } else {
+      if (conf.entities == o.entities) return name;
     }
   }
+
   return defaultLayer;
 };
 
@@ -1419,7 +1424,7 @@ function markItems() {
 
       // also mark all related freezers
       if (o?.type == 'Freezer') {
-        let id = o?.entity_properties?.unlocked_by_id;
+        let id = o.unlocked_by_id;
         let slug = nameLookup[id];
         if (settings.markedItems[slug] === true) found = true;
       }
@@ -1473,11 +1478,11 @@ const getCoordinates = marker => marker.feature.geometry.coordinates.map(String)
 function getTooltipTitle(marker) {
   let o = marker.feature.properties;
   let area = o.area || getBaseLayer(marker.feature);
-  let title = `<b>${o.name || o.entity_properties?.name || o.type}</b> in ${area} (${getCoordinates(marker)})`;
+  let title = `<b>${o.name || o.type}</b> in ${area} (${getCoordinates(marker)})`;
 
   if (o.type=='Freezer') {
     title = `Freezer`;
-    let id = o.entity_properties?.unlocked_by_id;
+    let id = o.unlocked_by_id;
     let slug = nameLookup[id];
     if (slug) {
       title += ` [${slug}]`;
@@ -1519,10 +1524,10 @@ function openPopup(e) {
 
   let backlink = `<a class="copyable" href="${getMapURL(o.name || o.id)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
-  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.entity_properties?.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
+  let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
   if (o.type == 'Freezer') {
-    header = `<div class="header"><b>Freezer</b> [${o.entity_properties?.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
+    header = `<div class="header"><b>Freezer</b> [${o.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
   }
 
   let sol = solutions[o.name] || solutions2[o.name];
@@ -1539,7 +1544,7 @@ function openPopup(e) {
   let region = o.region && `Area:&nbsp;<a class="copyable" title="${o.region}" href="#${o.region}"><b>${translate(o.region)}</b></a>`;
 
   let unlocked = null
-  let id = o.entity_properties?.unlocked_by_id;
+  let id = o.unlocked_by_id;
   let slug = nameLookup[id];
   if (slug) {
     unlocked = `Unlocked&nbsp;by:&nbsp;<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
@@ -1547,9 +1552,9 @@ function openPopup(e) {
 
   let teleports = null;
   if (o.type=='Teleporter' || o.type == 'Marker') {
-    const slug = o.entity_properties?.target_id || teleportTargets[o.id];
+    const slug = o.target_id || teleportTargets[o.id];
     if (slug) {
-      const legend = (o.entity_properties?.target_id ? 'Teleports to: ' : 'Referenced by: ').replaceAll(' ','&nbsp');
+      const legend = (o.target_id ? 'Teleports to: ' : 'Referenced by: ').replaceAll(' ','&nbsp');
       teleports = `${legend}<a href="${getMapURL(slug)}" onclick="focusMarkerByName('${slug}'); return false;">${slug}</a>`;
     }
   }
@@ -1604,7 +1609,7 @@ function openPopup(e) {
   }
 
   if (o.type == 'Voice_Log') {
-    footer += getSubtitleWrapper([o.entity_properties?.name], 'audiolog-wrapper');
+    footer += getSubtitleWrapper([o.name], 'audiolog-wrapper');
   }
 
   if (o.type == 'Level_Entry') {
@@ -1612,8 +1617,7 @@ function openPopup(e) {
   }
 
   if (o.type == 'Sign') {
-    const key = o.entity_properties?.line1 ?? o.entity_properties?.image ?? o.entity_properties?.display_hook;
-    console.log(o);
+    const key = o.line1 ?? o.image ?? o.display_hook;
     if (key) {
       footer += `<div class="subtitle-wrapper">${translate(key).split('\n').join('<br>')}</div>`
     }
@@ -2061,8 +2065,8 @@ function drawMap() {
       nameLookup[o.id] = o.name;
       idLookup[o.id] = o.id;
 
-      if (o.type == 'Teleporter' && o.entity_properties?.target_id) {
-        teleportTargets[o.entity_properties?.target_id] = o.id;
+      if (o.type == 'Teleporter' && o.target_id) {
+        teleportTargets[o.target_id] = o.id;
       }
     }
 
@@ -2114,12 +2118,12 @@ function drawMap() {
 
       const params = {
         Level_Entry:  { label: defaultLabel,   make: () => ({ marker: customMarker(latlng, feature), group: 'levels' }) },
-        Freezer:      { label: '\u00D7',        make: () => ({ marker: nameLookup[o.entity_properties?.unlocked_by_id] ? customMarker(latlng, feature) : null, group: 'freezers' }) },
+        Freezer:      { label: '\u00D7',        make: () => ({ marker: nameLookup[o.unlocked_by_id] ? customMarker(latlng, feature) : null, group: 'freezers' }) },
         Area_Pin:     { label: defaultLabel,    make: () => {
-                          const f2 = featureLookup[o.entity_properties?.map_label_marker_id];
+                          const f2 = featureLookup[o.map_label_marker_id];
                           if (!f2) return { marker: null };
                           const [x, y] = f2.geometry.coordinates;
-                          return { marker: areaMarker([y + 2, x], f2, o.entity_properties?.local_area_name), group: 'areas' };
+                          return { marker: areaMarker([y + 2, x], f2, o.local_area_name), group: 'areas' };
                         } },
         Teleporter:   { label: '\u2726',        make: () => ({ marker: customMarker(latlng, feature), group: 'teleporters' }) },
         Marker:       { label: '\u2727',        make: () => ({ marker: teleportTargets[o.id] ? customMarker(latlng, feature) : null, group: 'teleporters' }) },
@@ -2163,7 +2167,7 @@ function drawMap() {
         const nm = baseName(o.name);
         if (nm && imageList[nm]) {
           const t = o.type === 'Freezer'
-            ? `Freezer${nameLookup[o.entity_properties?.unlocked_by_id] ? ' [' + nameLookup[o.entity_properties.unlocked_by_id] + ']' : ''}`
+            ? `Freezer${nameLookup[o.unlocked_by_id] ? ' [' + nameLookup[o.unlocked_by_id] + ']' : ''}`
             : nm;
           marker.on('mouseover', (e) => hoverPreview.enter(nm, t, e.originalEvent.clientX, e.originalEvent.clientY, marker));
           marker.on('mousemove', (e) => hoverPreview.move(e.originalEvent.clientX, e.originalEvent.clientY, marker));
@@ -2318,14 +2322,14 @@ function updateRegions() {
   // Several markers may share one area name.
   const boxes = {};
   for (const f of allFeatures) {
-    const ep = f.properties.entity_properties;
+    const ep = f.properties;
     if (ep?.script_name !== 'local_area') continue;
-    const name = lookup[ep.script_target_entity_id]?.properties.entity_properties?.local_area_name;
+    const name = lookup[ep.script_target_entity_id]?.properties.local_area_name;
     if (name) (boxes[name] ??= []).push(f);
   }
 
   const inside = pt => f => {
-    const ep = f.properties.entity_properties;
+    const ep = f.properties;
     const c = ep.position ?? ep.visual_position, e = ep.box_extents;
     return c && e && ['x','y','z'].every(k => Math.abs((pt[k] ?? 0) - (c[k] ?? 0)) <= (e[k] ?? 0));
   };
@@ -2333,7 +2337,7 @@ function updateRegions() {
   for (const f of allFeatures) {
     if (f.properties.type !== 'Level_Entry') continue;
     const c = f.geometry.coordinates;
-    const pt = f.properties.entity_properties?.position ?? { x: c[0], y: c[1], z: c[2] };
+    const pt = f.properties.position ?? { x: c[0], y: c[1], z: c[2] };
     for (const name in boxes) {
       if (!boxes[name].some(inside(pt))) continue;
       f.properties.region = name;
@@ -2371,8 +2375,6 @@ window.onload = function() {
 
   const promises = [
     'data/markers.json',
-    'data/markers_intro.json',
-    'data/markers_stones.json',
     'data/solutions.txt',
     'data/youtube.txt',
     'data/images.txt',
@@ -2387,7 +2389,7 @@ window.onload = function() {
   );
 
   Promise.all(promises).then(data => {
-    let [base, intro, stones, sol, yt, img, ord, wtd, lg, sb, la, s2] = data;
+    let [geo, sol, yt, img, ord, wtd, lg, sb, la, s2] = data;
 
     solutions = Object.fromEntries(sol.split('\n').map(s => s.trim().split(':', 2)).filter(([, v])=> v && v.length>=2));
     youtube = Object.fromEntries(yt.split('\n').map(s => s.trim().split(',', 2)).filter(([, v])=> v && v.length>=2));
@@ -2395,22 +2397,9 @@ window.onload = function() {
     order = Object.fromEntries(ord.split('\n').map(s => s.trim()).filter(Boolean).map((s, i) => [s, i]));
     wt = Object.fromEntries(wtd.trim().split('\n').map(s => { const [n,a,i] = s.trim().split(','); return [n, [a,i]]; }));
 
-
-    const names = new Set(base.features.map(f => f.properties.name).filter(Boolean));
-
-    for (const f of intro.features) {
-      f.properties.baseLayer = 'intro';
-      if (names.has(f.properties.name)) f.properties.name = fullName(f.properties.name, f.properties.baseLayer);
-    }
-
-    for (const f of stones.features) {
-      f.properties.baseLayer = 'stones';
-    }
-
-    allFeatures = [...base.features, ...intro.features, ...stones.features];
+    allFeatures = geo.features;
 
     console.log(`loaded ${allFeatures.length} features`);
-
 
     for (const s of s2) solutions2[s.name] = s.solution;
 
