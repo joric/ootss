@@ -1320,7 +1320,7 @@ function getCentroidRaw2(points) {
 
 // [+] overworld:       190x165, grid cell is 19x13 units, 10x12 cells
 // [+] intro:            91x105, grid cell is 13x7 units,  7x15 cells (looks fine, considering larger camera angle)
-// [?] minimap        :   50x36, grid cell is 5x3 units,   10x12 cells, seem right (total field is 59x34 in info, bounds may be slightly off, needs re-taking)
+// [?] minimap        :   50x36, grid cell is 5x3 units,   10x12 cells, seem right (total field is 59x34 corner -18,-11 in info, bounds may be slightly off, needs re-taking)
 // [?] skipping_stones: 126x101, grid cell is 9x6 units, 14x16.83 cells, needs checking (total 126x101 in info)
 
 let config = {
@@ -1853,7 +1853,7 @@ function drawMap() {
   let baseLayer = Object.values(baseLayers)[0];
 
   if (!settings.activeLayers) {
-    settings.activeLayers = {'overworld':true, 'levels':true, 'freezers': true, 'areas': true, 'teleporters': true};
+    settings.activeLayers = {'overworld':true, 'levels':true, 'areas': true};
   }
 
   // check if we have selected base layer, if not, reset to first one
