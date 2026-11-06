@@ -38,6 +38,10 @@ TRANSPARENT_MEMBERS = {"undoable_data"}   # wrapper members that add no name par
 POSITION_FIELDS = {"position.x": "x", "position.y": "y", "position.z": "z"}
 LEVEL_NAME_FIELD = "level_name"
 
+# Name of the GeoJSON property that holds the .entities source name (file name without
+# the .entities extension), e.g. "overworld". Change this to rename the property.
+entities_field_name = "group"
+
 # Mixed level sets: never used as "area" if a regular set lists the level.
 GENERIC_LEVEL_SETS = {"overworld", "intro", "intro_hard_puzzles", "design_illustrations" }
 
@@ -579,8 +583,8 @@ def pick_area(set_names):
     return next((s for s in set_names if s not in GENERIC_LEVEL_SETS and 'drafts' not in s), "UNDEFINED")
 
 
-def source_area_name(source):
-    """The 'area' name for an entities source: its file name without the .entities extension."""
+def source_name(source):
+    """The name used for the configurable source field: the file name without the .entities extension."""
     base = file_name_of(source)
     if base.lower().endswith(".entities"):
         base = base[:-len(".entities")]
@@ -698,11 +702,12 @@ def build_geojson(level_entries, areas, entity_properties=False):
     for entry in sorted(level_entries, key=lambda e: (e["type"], e["level"] or "")):
         set_names = areas.get((entry["level"] or "").lower(), [])
 
-        # type, id and area are always present; area comes from the source file name
+        # type, id and the configured source field are always present;
+        # its value comes from the source file name (without the .entities extension)
         props = {
             "type": entry["type"],
             "id": entry["id"],
-            "area": source_area_name(entry["source"]),
+            entities_field_name: source_name(entry["source"]),
         }
 
         # name only when the entity actually has one

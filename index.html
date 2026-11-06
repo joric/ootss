@@ -1297,17 +1297,17 @@ function getCentroidRaw2(points) {
 // [?] skipping_stones: 126x101, grid cell is 9x6 units, 14x16.83 cells, needs checking (total 126x101 in info)
 
 let config = {
-  overworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-4,10], size: [190,156], corner: [-24,-2], grid: [19, 13], area: "overworld", urlTemplate: "tiles/overworld_64k/{z}/{y}/{x}.webp" },
-  overworld_high: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [10,75], size: [190,156], corner: [-24,-2], grid: [19, 13], area: "overworld", urlTemplate: "tiles/sky_64k/{z}/{y}/{x}.webp" },
-  overworld_low: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-57, -4], size: [190,156], corner: [-24,-2], grid: [19, 13], area: "overworld", urlTemplate: "tiles/underworld_64k/{z}/{y}/{x}.webp" },
+  overworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-4,10], size: [190,156], corner: [-24,-2], grid: [19, 13], group: "overworld", urlTemplate: "tiles/overworld_64k/{z}/{y}/{x}.webp" },
+  overworld_high: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [10,75], size: [190,156], corner: [-24,-2], grid: [19, 13], group: "overworld", urlTemplate: "tiles/sky_64k/{z}/{y}/{x}.webp" },
+  overworld_low: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-57, -4], size: [190,156], corner: [-24,-2], grid: [19, 13], group: "overworld", urlTemplate: "tiles/underworld_64k/{z}/{y}/{x}.webp" },
 
-  intro: {bounds: { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0},size:[91, 105], corner: [0, -21], grid: [13, 7], area: "intro", urlTemplate: "tiles/intro_64k/{z}/{y}/{x}.webp" },
+  intro: {bounds: { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0},size:[91, 105], corner: [0, -21], grid: [13, 7], group: "intro", urlTemplate: "tiles/intro_64k/{z}/{y}/{x}.webp" },
 
-  minimap: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [89, 89], overlay: true, area: "overworld", url:"images/minimap.jpg" },
-  minimap_high: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [104, 110], overlay: true, area: "overworld",url:"images/minimap_high.jpg" },
-  minimap_low: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [78, 78], overlay: true, area: "overworld", url:"images/minimap_low.jpg" },
+  minimap: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [89, 89], overlay: true, group: "overworld", url:"images/minimap.jpg" },
+  minimap_high: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [104, 110], overlay: true, group: "overworld",url:"images/minimap_high.jpg" },
+  minimap_low: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [78, 78], overlay: true, group: "overworld", url:"images/minimap_low.jpg" },
 
-  sinking_stones: {bounds: { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, size:[126, 101], corner: [-25, -17], grid: [9, 6], overlay: true, area: "skipping_stones", url:"images/stones.jpg" },
+  sinking_stones: {bounds: { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, size:[126, 101], corner: [-25, -17], grid: [9, 6], overlay: true, group: "skipping_stones", url:"images/stones.jpg" },
 }
 
 const locationSeparator = '@';
@@ -1316,25 +1316,24 @@ const baseName = name => (name || '').replace(new RegExp(`${locationSeparator}.*
 
 function getBaseLayer(feature) {
   const defaultLayer = Object.keys(config)[0];
-
   if (!feature || !feature.properties) return defaultLayer;
 
   const o = feature.properties;
+  const z = feature.geometry.coordinates[2];
 
   for (const [name, conf] of Object.entries(config)) {
-    if (conf.heightRange && conf.area == o.area) {
-      const [a,b] = conf.heightRange;
-      const z = feature.geometry.coordinates[2]
-      if (z >= a && z <= b) {
-        return name;
-      }
-    } else {
-      if (conf.area == o.area) return name;
+    if (conf.group === o.group && conf.heightRange) {
+      const [a, b] = conf.heightRange;
+      if (z>=a && z<=b) return name;
     }
   }
 
+  for (const [name, conf] of Object.entries(config)) {
+    if (conf.group === o.group) return name;
+  }
+
   return defaultLayer;
-};
+}
 
 
 function getCRS(name) {
