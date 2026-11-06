@@ -1565,13 +1565,14 @@ function openPopup(e) {
     header = `<div class="header"><b>Freezer</b> [${o.unlocked_by_id}] (${getCoordinates(marker)})</div>`;
   }
 
-  let sol = solutions[o.name] || solutions2[o.name];
-  const ytId = youtube[o.name] ? youTubeId(youtube[o.name]) : null;
+  let sol = solutions[name] || solutions2[name];
+  const yt = youtube[name];
+  const ytId = yt ? youTubeId(yt) : null;
 
   let image = imageList[name]
     ? `<a href="javascript:openGallery('${name}')" title="Click to open image gallery" class="image-wrapper"><img class="popup-image" src="${image_base}/images/levels/${name}.webp"></a>`
     : ytId
-      ? `<a href="${youtube[name]}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
+      ? `<a href="${yt}" class="image-wrapper" target="_blank" rel="noopener" title="Watch on YouTube"><img class="popup-image" src="https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg" alt=""></a>`
       : '';
 
   let region = o.region && `Area:&nbsp;<a class="copyable" title="${o.region}" href="#${o.region}"><b>${translate(o.region)}</b></a>`;
@@ -1599,7 +1600,7 @@ function openPopup(e) {
 
     const name = baseName(o.name);
 
-    const ytLink = youtube[name] && `<a href="${youtube[o.name]}" target=_blank>YouTube</a>`;
+    const ytLink = ytId && `<a href="${yt}" target=_blank>YouTube</a>`;
     const psLink = solutions[name] && `<a href="${getSolutionPlayerLink(o.name, true)}" target=_blank>PuzzleScript</a>`;
     const wtLink = wt[name] && `<a href="https://sinkingstar.wikitactics.com/areas/${wt[name][0]}/#${wt[name][1]}" target=_blank>WikiTactics</a>`;
 
@@ -1616,11 +1617,7 @@ function openPopup(e) {
     return html;
   }
 
-  let footer = '';
-
-  if (o.type == 'Level_Entry') {
-    footer += getSolutionWrapper(o);
-  }
+  let footer = getSolutionWrapper(o);
   
   function getSubtitleWrapper(feature, className = 'subtitle-wrapper') {
     let html = `<div class="${className}">`;
@@ -2105,7 +2102,7 @@ function drawMap() {
       let group = 'levels';
       let marker = null;
 
-      const defaultLabel = youtube[name] ? '\u2009\u25B6' : (solutions[name] || solutions2[name]) ? '\u2714' : hasImage ? '\u22EF' : '?';
+      const defaultLabel = youtube[name || o.id] ? '\u2009\u25B6' : (solutions[name] || solutions2[name]) ? '\u2714' : hasImage ? '\u22EF' : '?';
 
       const params = {
         Level_Entry:  { label: defaultLabel,   make: () => ({ marker: customMarker(latlng, feature), group: 'levels' }) },
@@ -2126,13 +2123,14 @@ function drawMap() {
       const p = params[o.type];
       if (!p) continue; // or `return;` if not in a classic loop
 
-      feature.properties.title = p.label;
+      let label = p.label;
+      if (youtube[name || o.id]) label = '\u2009\u25B6';
+
+      feature.properties.title = label;
       const r = p.make();
       if (r.group) group = r.group;
       marker = r.marker;
       if (!marker) continue; // or `return;`
-
-
 
       counters[feature.properties.area] = (counters[feature.properties.area]||0) +1;
 
