@@ -971,24 +971,51 @@ function formatTime(seconds) {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
+function getSubtitles(feature) {
+  let res = [];
+  let o = feature.properties;
+  const keys = (o.type == 'Voice_Log' ? [o.name] : level_audio[o.name]) ?? [];
+  for (const key of keys) {
+    const subs = subtitles[key];
+    if (subs) {
+      let lines = [];
+      for (const t of subs) {
+        lines.push(`[${t.name}]: ${t.text}`);
+      }
+      res.push({key: key, lines: lines});
+    }
+  }
+  return res;
+}
+
+function getSignText(feature) {
+  let res = {};
+  let o = feature.properties;
+  if (o.type == 'Sign') {
+    const key = o.line1 ?? o.image ?? o.display_hook;
+    if (key) {
+      let text = translate(key);
+      res = {key: key, lines: text.split('\n')};
+    }
+  }
+  return res;
+}
+
+
 function getSearchText(feature) {
   const o = feature.properties;
   const title = (o.name || o.type)?.toLowerCase();
 
   let text = '';
 
-  const searchSubs = true;
-  if (searchSubs) {
-    const keys = (o.type == 'Voice_Log' ? [o.name] : level_audio[o.name]) ?? [];
-    for (const key of keys) {
-      const subs = subtitles[key];
-      if (subs) {
-        text += `${key} `;
-        for (const t of subs) {
-          text += `[${t.name}]: ${t.text} `.toLowerCase();
-        }
-      }
-    }
+  let subs = getSubtitles(feature);
+  for (const r of subs) {
+    text += `${r.key} ${r.lines.join(' ')} `;
+  }
+
+  let r = getSignText(feature);
+  if (r && r.key) {
+    text += `${r.key} ${r.lines.join(' ')} `;
   }
 
   return [title, String(o.id), text].filter(Boolean).join(' ');
@@ -1524,11 +1551,13 @@ function youTubeId(url) {
 
 function openPopup(e) {
   const marker = e.target;
-  let o = marker.feature.properties;
-
+  const feature = marker.feature;
+  let o = feature.properties;
   let area = o.area || getBaseLayer(marker.feature);
 
-  let backlink = `<a class="copyable" href="${getMapURL(o.name || o.id)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
+  let name = baseName(o.name || String(o.id));
+
+  let backlink = `<a class="copyable" href="${getMapURL(name)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
   let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
@@ -1538,8 +1567,6 @@ function openPopup(e) {
 
   let sol = solutions[o.name] || solutions2[o.name];
   const ytId = youtube[o.name] ? youTubeId(youtube[o.name]) : null;
-
-  let name = baseName(o.name);
 
   let image = imageList[name]
     ? `<a href="javascript:openGallery('${name}')" title="Click to open image gallery" class="image-wrapper"><img class="popup-image" src="${image_base}/images/levels/${name}.webp"></a>`
@@ -1595,37 +1622,36 @@ function openPopup(e) {
     footer += getSolutionWrapper(o);
   }
   
-  function getSubtitleWrapper(keys, className) {
-    if (!keys || keys.length==0) return '';
-    let html = `<div class="${className ?? 'subtitle-wrapper'}">`;
-    let data = [];
-    for (const key of keys) {
-      const subs = subtitles[key];
-      if (subs && subs.length) {
-        lines = [];
-        for (const t of subs) {
-          if (t.text) lines.push(`[${t.name}]: ${t.text}`);
-        }
-        data.push(`<span title="${key}">${lines.join('<br>')}</span>`);
-      }
+  function getSubtitleWrapper(feature, className = 'subtitle-wrapper') {
+    let html = `<div class="${className}">`;
+
+    let res = getSubtitles(feature);
+
+    if (!res || res.length==0) return '';
+
+    let subs = [];
+    for (const r of res) {
+      subs.push(`<span title="${r.key}">${r.lines.join('<br>')}</span>`);
     }
-    html += data.join('<br>---<br>');
+
+    html += subs.join('<br>---<br>');
     html += '</div>';
+
     return html;
   }
 
   if (o.type == 'Voice_Log') {
-    footer += getSubtitleWrapper([o.name], 'audiolog-wrapper');
+    footer += getSubtitleWrapper(feature, 'audiolog-wrapper');
   }
 
   if (o.type == 'Level_Entry') {
-    footer += getSubtitleWrapper(level_audio[o.name] ?? []);
+    footer += getSubtitleWrapper(feature);
   }
 
   if (o.type == 'Sign') {
-    const key = o.line1 ?? o.image ?? o.display_hook;
-    if (key) {
-      footer += `<div class="subtitle-wrapper">${translate(key).split('\n').join('<br>')}</div>`
+    let r = getSignText(feature);
+    if (r) {
+      footer += `<div class="audiolog-wrapper" title=${r.key}>${r.lines.join('<br>')}</div>`;
     }
   }
 
