@@ -579,8 +579,8 @@ def pick_area(set_names):
     return next((s for s in set_names if s not in GENERIC_LEVEL_SETS and 'drafts' not in s), "UNDEFINED")
 
 
-def source_entities_name(source):
-    """The 'entities' name for an entities source: its file name without the .entities extension."""
+def source_area_name(source):
+    """The 'area' name for an entities source: its file name without the .entities extension."""
     base = file_name_of(source)
     if base.lower().endswith(".entities"):
         base = base[:-len(".entities")]
@@ -698,18 +698,18 @@ def build_geojson(level_entries, areas, entity_properties=False):
     for entry in sorted(level_entries, key=lambda e: (e["type"], e["level"] or "")):
         set_names = areas.get((entry["level"] or "").lower(), [])
 
-        # type, id and entities are always present; entities comes from the source file name
+        # type, id and area are always present; area comes from the source file name
         props = {
             "type": entry["type"],
             "id": entry["id"],
-            "entities": source_entities_name(entry["source"]),
+            "area": source_area_name(entry["source"]),
         }
 
         # name only when the entity actually has one
         if entry["level"]:
             props["name"] = entry["level"]
 
-        # level_set only when known (the old "area" value, from .level_set files)
+        # level_set only when known (from .level_set files)
         level_set = pick_area(set_names)
         if level_set is not None:
             props["level_set"] = level_set
