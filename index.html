@@ -1291,15 +1291,25 @@ function getCentroidRaw2(points) {
     return [centroidX, centroidY, 0];
 }
 
+// [+] overworld:       190x165, grid cell is 19x13 units, 10x12 cells
+// [+] intro:            91x105, grid cell is 13x7 units,  7x15 cells (looks fine, considering larger camera angle)
+// [?] minimap        :   50x36, grid cell is 5x3 units,   10x12 cells, seem right (total field is 59x34 in info, bounds may be slightly off, needs re-taking)
+// [?] skipping_stones: 126x101, grid cell is 9x6 units, 14x16.83 cells, needs checking (total 126x101 in info)
+
 let config = {
-  overworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-4,10], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld" },
-  sky: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [10,75], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld" },
-  underworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-57, -4], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld" },
-  intro: {bounds: { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0},size:[91, 105], corner: [0, -21], grid: [13, 7], entities: "intro" },
-  minimap: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [89, 89], overlay: true, entities: "overworld" },
-  minimap_high: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [104, 110], overlay: true, entities: "overworld" },
-  minimap_low: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [78, 78], overlay: true, entities: "overworld" },
-  stones: {bounds: { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, size:[126, 101], corner: [-25, -17], grid: [9, 6], overlay: true, entities: "skipping_stones" },
+  overworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-4,10], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld", urlTemplate: "tiles/overworld_64k/{z}/{y}/{x}.webp" },
+  sky: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [10,75], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld", urlTemplate: "tiles/sky_64k/{z}/{y}/{x}.webp" },
+  underworld: {bounds: { "left": -24.5, "top": 170.5, "right": 165.5, "bottom": -18.5}, heightRange: [-57, -4], size: [190,156], corner: [-24,-2], grid: [19, 13], entities: "overworld", urlTemplate: "tiles/underworld_64k/{z}/{y}/{x}.webp" },
+
+  intro: {bounds: { "left": -50.0, "top": 126.0, "right": 140.0, "bottom": -63.0},size:[91, 105], corner: [0, -21], grid: [13, 7], entities: "intro", urlTemplate: "tiles/intro_64k/{z}/{y}/{x}.webp" },
+
+  //minimap: {bounds: {"left": 34.5, "top": 139.5, "right": 84.5, "bottom": 103.5 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [89, 89], overlay: true, entities: "overworld", url:"images/minimap.png" },
+
+  minimap: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [89, 89], overlay: true, entities: "overworld", url:"images/minimap.jpg" },
+  minimap_high: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [104, 110], overlay: true, entities: "overworld",url:"images/minimap_high.jpg" },
+  minimap_low: {bounds: {"left": 34.55, "top": 139.45, "right": 84.45, "bottom": 103.55 }, size:[50,36], corner: [35, 104], grid: [5, 3], heightRange: [78, 78], overlay: true, entities: "overworld", url:"images/minimap_low.jpg" },
+
+  stones: {bounds: { "left": -25.0, "bottom": -17.0, "right": 101.0, "top": 84}, size:[126, 101], corner: [-25, -17], grid: [9, 6], overlay: true, entities: "skipping_stones", url:"images/stones.jpg" },
 }
 
 const locationSeparator = '@';
@@ -1796,18 +1806,18 @@ function drawMap() {
     let bounds = [[b.top,b.left],[b.bottom,b.right]]
     const attribution = '<a href="https://github.com/joric/ootss/wiki" target=_blank>About the Map</a>';
 
-    if (!config[name].overlay) {
+    const conf = config[name];
 
-      baseLayers[name] = L.tileLayer(`${tileset_base}/tiles/${name}_64k/{z}/{y}/{x}.webp`, {
+    if (conf.urlTemplate) {
+      baseLayers[name] = L.tileLayer(`${tileset_base}/${conf.urlTemplate}`, {
         tileSize: 512,
         maxNativeZoom: 7,
         //edgeBufferTiles: 1,
         bounds: bounds,
         attribution: attribution,
       });
-
-    } else {
-      const url = `${tileset_base}/images/${name}.jpg`;
+    } else if (conf.url) {
+      const url = `${tileset_base}/${conf.url}`;
       //console.log('creating overlay image', name, url, bounds);
       baseLayers[name] = L.imageOverlay(url, bounds, {
         attribution: attribution,
