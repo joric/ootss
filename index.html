@@ -1316,11 +1316,12 @@ const locationSeparator = '@';
 const fullName = (name,location) => name + locationSeparator + location;
 const baseName = name => (name || '').replace(new RegExp(`${locationSeparator}.*$`), '');
 
-const getBaseLayer = feature => {
+function getBaseLayer(feature) {
+  const defaultLayer = Object.keys(config)[0];
+
   if (!feature || !feature.properties) return defaultLayer;
 
   const o = feature.properties;
-  const defaultLayer = Object.keys(config)[0];
 
   for (const [name, conf] of Object.entries(config)) {
     if (conf.heightRange && conf.entities == o.entities) {
