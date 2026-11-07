@@ -1238,6 +1238,10 @@ function getBaseURL() {
 
 function getMapURL(id) { return getBaseURL() + '#' + encodeURIComponent(id); }
 
+function getBacklink(feature) {
+  count = 0; for (const f of allFeatures) if (f.properties.name == o.name) count += 1;
+  return (count>1 && o.group != 'overworld') ? getMapURL(o.id) : getMapURL(o.name || o.id);
+}
 
 unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n))
 getMovesCount = s => unpackSolution(s).length;
@@ -1551,16 +1555,9 @@ function openPopup(e) {
   const feature = marker.feature;
   let o = feature.properties;
   let area = getBaseLayer(marker.feature);
-
-  let mapURL = getMapURL(o.name || o.id);
-
-  // check for duplicates in intro
-  count = 0; for (const f of allFeatures) if (f.properties.name == o.name) count += 1;
-  if (count>1 && o.group != 'overworld') mapURL = getMapURL(o.id);
-
   let name = baseName(o.name) || String(o.id);
 
-  let backlink = `<a class="copyable" href="${mapURL}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
+  let backlink = `<a class="copyable" href="${getBacklink(feature)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
   let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
