@@ -782,7 +782,6 @@ let mapParam = {};
 
 let map = null;
 let markerGroup = null;
-let searchLayer = null;
 let regionData = null;
 let lang = {};
 let subtitles = {};
@@ -1004,7 +1003,7 @@ function getSignText(feature) {
 
 function getSearchText(feature) {
   const o = feature.properties;
-  const title = (o.name || o.type)?.toLowerCase();
+  const title = (o.name || o.type);
 
   let text = '';
 
@@ -1018,7 +1017,7 @@ function getSearchText(feature) {
     text += `${r.key} ${r.lines.join(' ')} `;
   }
 
-  return [title, String(o.id), text].filter(Boolean).join(' ');
+  return [title, String(o.id), text].filter(Boolean).join(' ').toLowerCase();
 }
 
 const customMarker = (latlng, feature) => L.marker(latlng, {
@@ -1669,14 +1668,6 @@ function openPopup(e) {
   return false; // in case of js clicking
 }
 
-function syncSearchLayer() {
-  searchLayer.clearLayers();
-  for (const g of Object.values(layers)) {
-    if (g.id === 'grid' || g.id=='areas' || !map.hasLayer(g)) continue;
-    g.eachLayer(l => { if (l instanceof L.Marker) searchLayer.addLayer(l); });
-  }
-}
-
 function setBaseLayer(name) {
   if (name == baseLayerName) return;
 
@@ -1685,21 +1676,6 @@ function setBaseLayer(name) {
   }
 
   baseLayers[name].addTo(map);
-
-/*
-
-  if (!layer) {
-    console.warn(`No base layer for "${name}"`);
-  } else {
-    // Remove whichever base layer is currently on the map
-    map.eachLayer(l => {
-      if (l.isBaseLayer && l !== layer) map.removeLayer(l);
-    });
-
-    // Add the new one if not already present
-    if (!map.hasLayer(layer)) layer.addTo(map);
-  }
-*/
 }
 
 const hoverPreview = (() => {
@@ -1892,7 +1868,6 @@ function drawMap() {
   map.on('overlayadd', function(e) {
     settings.activeLayers[e.layer.id] = true;
     addGrid();
-    syncSearchLayer();
     updateMarkers();
     saveSettings();
   });
@@ -2191,41 +2166,51 @@ function drawMap() {
 
     let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: true, position: 'topright'}).addTo(map);
 
-    searchLayer = L.layerGroup();
-    syncSearchLayer();
+    const index = allFeatures
+      .filter(f => (f.properties || {}).type !== 'Area_Pin')
+      .map((f, i) => {
+        const p = f.properties || {};
+        const g = f.geometry;
+        const latlng = g.type === 'Point'
+          ? L.latLng(g.coordinates[1], g.coordinates[0])
+          : L.geoJSON(f).getBounds().getCenter();
+        return {
+          title: `${p.name || p.type} in ${translate(p.region || p.group)} (${p.type}:${p.id})`,
+          hay: getSearchText(f),
+          latlng,
+          feature: f
+        };
+      });
+
+    const featureByTitle = {};
+    for (const r of index) featureByTitle[r.title] = r.feature;
 
     searchControl = new L.Control.Search({
-      propertyName: 'name',
-      layer: searchLayer,
-      initial: false,
-      hideMarkerOnCollapse: true,
-
-      marker: {
-        icon: false,
-        circle: false,
-      },
-
-      filterData: function(text, records) {
-        const out = {};
+      sourceData: function (text, callResponse) {
         const q = (text ?? '').trim().toLowerCase();
-        if (!q) return out;
-
-        for (const key in records) {
-          const p = records[key]?.layer?.options;
-          const haystack = (p?.searchText ?? '').toLowerCase();
-          if (haystack.includes(q)) {
-            out[key] = records[key];
+        const out = {};
+        if (q) {
+          for (const r of index) {
+            if (r.hay.includes(q)) out[r.title] = r.latlng;
           }
         }
-        return out;
-      }
-
+        callResponse(out);
+        return { abort() {} };
+      },
+      formatData: (data) => data,
+      filterData: (text, records) => records,
+      initial: false,
+      hideMarkerOnCollapse: true,
+      marker: { icon: false, circle: false },
+      zoom: 16
     }).addTo(map);
 
-    // switch base layer upon search
-    searchControl.on('search:locationfound', e=>{
-      setBaseLayer(getBaseLayer(e.layer.feature.geometry.coordinates[2]));
-      focusMarkerByName(e.layer.feature.properties.name);
+    searchControl.on('search:locationfound', (e) => {
+      const feature = featureByTitle[e.text];
+      if (!feature) return;
+      const layerName = getBaseLayer(feature);
+      setBaseLayer(layerName);
+      focusMarkerByName(feature.properties.id);
     });
 
     const search = document.querySelector('.leaflet-control-search');
