@@ -1238,10 +1238,10 @@ function getBaseURL() {
 
 function getMapURL(id) { return getBaseURL() + '#' + encodeURIComponent(id); }
 
-function getBacklink(feature) {
-  count = 0; for (const f of allFeatures) if (f.properties.name == o.name) count += 1;
-  return (count>1 && o.group != 'overworld') ? getMapURL(o.id) : getMapURL(o.name || o.id);
-}
+const getBacklink = o => {
+  const count = allFeatures.filter(f => f.properties.name === o.name).length;
+  return getMapURL(count > 1 && o.group !== 'overworld' ? o.id : o.name || o.id);
+};
 
 unpackSolution = s => s.replace(/([A-Z])(\d+)/g, (_,l,n)=>l.repeat(+n))
 getMovesCount = s => unpackSolution(s).length;
