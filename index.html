@@ -981,7 +981,7 @@ function getSubtitles(feature) {
       for (const t of subs) {
         lines.push(`[${t.name}]: ${t.text}`);
       }
-      res.push({key: key, lines: lines});
+      if (key && lines.length>0) res.push({key: key, lines: lines});
     }
   }
   return res;
