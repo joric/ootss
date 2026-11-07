@@ -2294,15 +2294,15 @@ function updateRegions() {
   // Several markers may share one area name.
   const boxes = {};
   for (const f of allFeatures) {
-    const ep = f.properties;
-    if (ep?.script_name !== 'local_area') continue;
-    const name = lookup[ep.script_target_entity_id]?.properties.local_area_name;
+    const o = f.properties;
+    if (o.script_name !== 'local_area') continue;
+    const name = lookup[o.script_target_entity_id]?.properties.local_area_name;
     if (name) (boxes[name] ??= []).push(f);
   }
 
   const inside = pt => f => {
-    const ep = f.properties;
-    const c = ep.position ?? ep.visual_position, e = ep.box_extents;
+    const o = f.properties;
+    const c = o.position ?? o.visual_position, e = o.box_extents;
     return c && e && ['x','y','z'].every(k => Math.abs((pt[k] ?? 0) - (c[k] ?? 0)) <= (e[k] ?? 0));
   };
 
@@ -2311,7 +2311,7 @@ function updateRegions() {
     const c = f.geometry.coordinates;
     const pt = f.properties.position ?? { x: c[0], y: c[1], z: c[2] };
     for (const [name, box] of Object.entries(boxes)) {
-      if (box.area != f.area) continue;
+      if (box.group != f.properties.group) continue;
       if (!box.some(inside(pt))) continue;
       f.properties.region = name;
       break;
