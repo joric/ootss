@@ -2168,6 +2168,8 @@ function drawMap() {
 
     let layercontrol = L.control.layers(baseLayers, overlaysWithCounts, {collapsed: true, position: 'topright'}).addTo(map);
 
+    const tokenize = s => (s ?? '').toLowerCase().split(/\s+/).filter(Boolean);
+
     const index = allFeatures
       .filter(f => (f.properties || {}).type !== 'Area_Pin')
       .map((f, i) => {
@@ -2178,7 +2180,7 @@ function drawMap() {
           : L.geoJSON(f).getBounds().getCenter();
         return {
           title: `${o.name || o.type} in ${o.group}${o.region ? ' / ' + translate(o.region):''} #${o.id}`,
-          tokens: getSearchText(f).toLowerCase().split(/\s+/).filter(Boolean),
+          tokens: tokenize(getSearchText(f)),
           latlng,
           feature: f
         };
@@ -2186,8 +2188,6 @@ function drawMap() {
 
     const featureByTitle = {};
     for (const r of index) featureByTitle[r.title] = r.feature;
-
-    const tokenize = s => (s ?? '').toLowerCase().split(/\s+/).filter(Boolean);
 
     function match(words, q) {
       return q.every(t => words.some(w => w.includes(t)));
