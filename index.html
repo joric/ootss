@@ -1551,15 +1551,16 @@ function openPopup(e) {
   const feature = marker.feature;
   let o = feature.properties;
   let area = getBaseLayer(marker.feature);
-  let fullName = o.name;
+
+  let mapURL = getMapURL(o.name || o.id);
 
   // check for duplicates in intro
   count = 0; for (const f of allFeatures) if (f.properties.name == o.name) count += 1;
-  if (count>1 && o.group != 'overworld') fullName = `${o.id}`;
+  if (count>1 && o.group != 'overworld') mapURL = getMapURL(o.id);
 
-  let name = baseName(fullName) || String(o.id);
+  let name = baseName(o.name) || String(o.id);
 
-  let backlink = `<a class="copyable" href="${getMapURL(fullName)}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
+  let backlink = `<a class="copyable" href="${mapURL}" title="Click to copy link to clipboard"><i class="fa fa-link"></i></a>`;
 
   let header = `<div class="header"><b class="copyable" title="Click to copy name to clipboard">${o.name || o.type}</b></a> in ${area} (${getCoordinates(marker)}) ${backlink}</div>`;
 
