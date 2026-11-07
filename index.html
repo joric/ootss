@@ -2316,9 +2316,9 @@ function updateRegions() {
     if (f.properties.type !== 'Level_Entry') continue;
     const c = f.geometry.coordinates;
     const pt = f.properties.position ?? { x: c[0], y: c[1], z: c[2] };
-    for (const [name, box] of Object.entries(boxes)) {
-      if (box.group != f.properties.group) continue;
-      if (!box.some(inside(pt))) continue;
+    for (const [name, entries] of Object.entries(boxes)) {
+      if (entries.some(e => e.properties.group != f.properties.group)) continue;
+      if (!entries.some(inside(pt))) continue;
       f.properties.region = name;
       break;
     }
