@@ -1017,13 +1017,11 @@ function getSearchText(feature) {
     text += `${r.key} ${r.lines.join(' ')} `;
   }
 
-  return [title, String(o.id), text, o.type, translate(o.region)].filter(Boolean).join(' ').toLowerCase();
+  return [title, String(o.id), text, o.type, o.group, translate(o.region)].filter(Boolean).join(' ').toLowerCase();
 }
 
 const customMarker = (latlng, feature) => L.marker(latlng, {
-  searchText: getSearchText(feature),
   feature: feature,
-  id: feature.properties.id,
   icon: baseIcon(feature),
 });
 
@@ -2169,13 +2167,13 @@ function drawMap() {
     const index = allFeatures
       .filter(f => (f.properties || {}).type !== 'Area_Pin')
       .map((f, i) => {
-        const p = f.properties || {};
+        const o = f.properties || {};
         const g = f.geometry;
         const latlng = g.type === 'Point'
           ? L.latLng(g.coordinates[1], g.coordinates[0])
           : L.geoJSON(f).getBounds().getCenter();
         return {
-          title: `${p.name || p.type} in ${translate(p.region || p.group)} (${p.type}:${p.id})`,
+          title: `${o.name || o.type} in ${o.group} (${o.type}:${o.id})`,
           hay: getSearchText(f),
           latlng,
           feature: f
