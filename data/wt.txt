@@ -336,7 +336,7 @@ heroes2_10.5,heroes-2-monsters,heroes-2-monsters-6
 heroes2_10a,heroes-2-monsters,heroes-2-monsters-11
 heroes2_10a_intro,heroes-2-monsters,heroes-2-monsters-10
 heroes2_11_v2,heroes-2-monsters,heroes-2-monsters-5
-heroes2_11_v2_easier,heroes-3-bard-druid,heroes-3-bard-druid-26
+heroes2_11_v2_easier,heroes-2-monsters,heroes-2-monsters-30
 heroes2_12_v2,heroes-3-bard-druid,heroes-3-bard-druid-27
 heroes2_13,heroes-2-monsters,heroes-2-monsters-2
 heroes2_14,heroes-2-monsters,heroes-2-monsters-3
