@@ -331,7 +331,7 @@ heroes1_7.5,heroes-of-hauling,heroes-of-hauling-10
 heroes1_7_v2,heroes-of-hauling,heroes-of-hauling-15
 heroes1_8_v2,heroes-of-hauling,heroes-of-hauling-11
 heroes1_9,heroes-of-hauling,heroes-of-hauling-13
-heroes2_10,heroes-3-bard-druid,heroes-3-bard-druid-25
+heroes2_10,heroes-2-monsters,heroes-2-monsters-29
 heroes2_10.5,heroes-2-monsters,heroes-2-monsters-6
 heroes2_10a,heroes-2-monsters,heroes-2-monsters-11
 heroes2_10a_intro,heroes-2-monsters,heroes-2-monsters-10
