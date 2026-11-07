@@ -2177,7 +2177,7 @@ function drawMap() {
           ? L.latLng(g.coordinates[1], g.coordinates[0])
           : L.geoJSON(f).getBounds().getCenter();
         return {
-          title: `${o.name || o.type} in ${o.group}${o.region ? ' / ' + translate(o.region):''} (${o.type}:${o.id})`,
+          title: `${o.name || o.type} in ${o.group}${o.region ? ' / ' + translate(o.region):''} #${o.id}`,
           hay: getSearchText(f),
           latlng,
           feature: f
