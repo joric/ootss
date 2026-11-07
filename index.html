@@ -2187,16 +2187,18 @@ function drawMap() {
     const featureByTitle = {};
     for (const r of index) featureByTitle[r.title] = r.feature;
 
-    function match(words, text) {
-      const q = (text ?? '').toLowerCase().split(/\s+/).filter(Boolean);
-      return q.length > 0 && q.every(t => words.some(w => w.includes(t)));
+    const tokenize = s => (s ?? '').toLowerCase().split(/\s+/).filter(Boolean);
+
+    function match(words, q) {
+      return q.every(t => words.some(w => w.includes(t)));
     }
       
     searchControl = new L.Control.Search({
       sourceData: function (text, callResponse) {
+        const q = tokenize(text);
         const out = {};
         for (const r of index) {
-          if (match(r.tokens, text)) out[r.title] = r.latlng;
+          if (match(r.tokens, q)) out[r.title] = r.latlng;
         }
         callResponse(out);
         return { abort() {} };
