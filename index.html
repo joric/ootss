@@ -1017,7 +1017,7 @@ function getSearchText(feature) {
     text += `${r.key} ${r.lines.join(' ')} `;
   }
 
-  return [title, String(o.id), text].filter(Boolean).join(' ').toLowerCase();
+  return [title, String(o.id), text, o.type, translate(o.region)].filter(Boolean).join(' ').toLowerCase();
 }
 
 const customMarker = (latlng, feature) => L.marker(latlng, {
