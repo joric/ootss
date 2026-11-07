@@ -2178,7 +2178,7 @@ function drawMap() {
           : L.geoJSON(f).getBounds().getCenter();
         return {
           title: `${o.name || o.type} in ${o.group}${o.region ? ' / ' + translate(o.region):''} #${o.id}`,
-          hay: getSearchText(f),
+          tokens: getSearchText(f).toLowerCase().split(/\s+/).filter(Boolean),
           latlng,
           feature: f
         };
@@ -2187,18 +2187,16 @@ function drawMap() {
     const featureByTitle = {};
     for (const r of index) featureByTitle[r.title] = r.feature;
 
-    function match(hay, text) {
-      const qTokens = (text ?? '').toLowerCase().split(/\s+/).filter(Boolean);
-      if (!qTokens.length) return false;
-      const hayTokens = (hay ?? '').toLowerCase().split(/\s+/).filter(Boolean);
-      return qTokens.every(q => hayTokens.some(h => h.includes(q)));
+    function match(words, text) {
+      const q = (text ?? '').toLowerCase().split(/\s+/).filter(Boolean);
+      return q.length > 0 && q.every(t => words.some(w => w.includes(t)));
     }
-
+      
     searchControl = new L.Control.Search({
       sourceData: function (text, callResponse) {
         const out = {};
         for (const r of index) {
-          if (match(r.hay, text)) out[r.title] = r.latlng;
+          if (match(r.tokens, text)) out[r.title] = r.latlng;
         }
         callResponse(out);
         return { abort() {} };
