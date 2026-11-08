@@ -1828,7 +1828,7 @@ function drawMap() {
   let baseLayer = Object.values(baseLayers)[0];
 
   if (!settings.activeLayers) {
-    settings.activeLayers = {'overworld':true, 'levels':true, 'areas': true};
+    settings.activeLayers = {'overworld':true, 'levels':true, 'labels': true};
   }
 
   // check if we have selected base layer, if not, reset to first one
@@ -2036,7 +2036,7 @@ function drawMap() {
     }
 
     // pre-create groups
-    for (const group of ['areas','freezers','teleporters','audio','treasure','sign','levels']) {
+    for (const group of ['labels','freezers','teleporters','audio','treasure','sign','levels']) {
       if (!layers[group]) {
         layers[group] = L.layerGroup();
         layers[group].id = group;
@@ -2088,7 +2088,7 @@ function drawMap() {
                           const f2 = featureLookup[o.map_label_marker_id];
                           if (!f2) return { marker: null };
                           const [x, y] = f2.geometry.coordinates;
-                          return { marker: areaMarker([y + 2, x], f2, o.local_area_name), group: 'areas' };
+                          return { marker: areaMarker([y + 2, x], f2, o.local_area_name), group: 'labels' };
                         } },
         Teleporter:   { label: '\u2726',        make: () => ({ marker: customMarker(latlng, feature), group: 'teleporters' }) },
         Marker:       { label: '\u2727',        make: () => ({ marker: teleportTargets[o.id] ? customMarker(latlng, feature) : null, group: 'teleporters' }) },
