@@ -2036,7 +2036,7 @@ function drawMap() {
     }
 
     // pre-create groups
-    for (const group of ['labels','freezers','teleporters','logs','treasure','sign','levels']) {
+    for (const group of ['labels','freezers','teleporters','logs','treasure','signs','levels']) {
       if (!layers[group]) {
         layers[group] = L.layerGroup();
         layers[group].id = group;
@@ -2094,7 +2094,7 @@ function drawMap() {
         Marker:       { label: '\u2727',        make: () => ({ marker: teleportTargets[o.id] ? customMarker(latlng, feature) : null, group: 'teleporters' }) },
         Voice_Log:    { label: '\u266B',        make: () => ({ marker: customMarker(latlng, feature), group: 'logs' }) },
         Treasure:     { label: '\u2727',        make: () => ({ marker: customMarker(latlng, feature), group: 'treasure' }) },
-        Sign:         { label: '\u2691',        make: () => ({ marker: customMarker(latlng, feature), group: 'sign' }) },
+        Sign:         { label: '\u2691',        make: () => ({ marker: customMarker(latlng, feature), group: 'signs' }) },
       };
 
       const p = params[o.type];
