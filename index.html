@@ -2086,7 +2086,9 @@ function drawMap() {
         Freezer:      { label: '\u00D7',        make: () => ({ marker: nameLookup[o.unlocked_by_id] ? customMarker(latlng, feature) : null, group: 'freezers' }) },
         Area_Pin:     { label: defaultLabel,    make: () => {
                           const f2 = featureLookup[o.map_label_marker_id];
-                          if (!f2) return { marker: null };
+                          if (!f2) return { 
+                            marker: areaMarker(latlng, feature, o.local_area_name), group: 'labels'
+                          };
                           const [x, y] = f2.geometry.coordinates;
                           return { marker: areaMarker([y + 2, x], f2, o.local_area_name), group: 'labels' };
                         } },
