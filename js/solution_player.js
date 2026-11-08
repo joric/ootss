@@ -197,6 +197,8 @@ function pin() {
 function updateControls() {
   document.title = `${levelName} - ${state.metadata.title}`;
 
+
+
   const select = document.getElementById('levelSelect');
   if (select) select.value = levelName;
 
@@ -219,6 +221,9 @@ function updateControls() {
 
   document.getElementById('record').innerText = recording ? 'Stop' : 'Record';
   document.getElementById('play').innerText = playing ? 'Stop' : 'Play';
+
+
+  document.getElementById('popup-title').textContent = `Solution Player (${pos}/${solution.length})`;
 }
 
 
@@ -636,7 +641,7 @@ function load_player() {
   el.id = 'player';
   el.innerHTML = `
     <div class="header">
-      Solution Player
+      <span id="popup-title">Solution Player</span>
       <button class="close" data-fn="hidePlayer">&times;</button>
     </div>
 
